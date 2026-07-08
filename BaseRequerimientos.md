@@ -3,6 +3,7 @@
 > Documento maestro de requerimientos funcionales, no funcionales, reglas de negocio y flujos de usuario.
 > Basado en: GlobalProjecto.md · AnexoMVP.md · AnalisisMercadoNegocio.md · ADRs Dayca
 > Versión: 1.0 · Fecha: Junio 2026
+> Guia de mantenimiento: `MatrizDocumentacion.md`
 
 ---
 
@@ -78,6 +79,14 @@ Catálogo de gimnasios, geolocalización contextual, check-in por GPS, heatmaps 
 | RF-021 | Los mapas deben ser locales/regionales basados en gimnasios cercanos (radios 1km, 3km, 5km) | Media | RF-015 |
 | RF-022 | El sistema debe tener una sección "Actividad del Gym" por gimnasio mostrando: últimas conquistas, PRs recientes, top levantamientos del día, usuarios activos recientes, máquinas más disputadas | Alta | RF-016 |
 
+### 2.1 Búsqueda y selección de gimnasios
+
+| ID | Descripción | Prioridad | Dependencias |
+|----|------------|-----------|--------------|
+| RF-022A | El sistema debe buscar gimnasios usando la última ubicación válida del usuario como punto de partida y mostrar resultados para selección | Alta | RF-015, RF-017 |
+| RF-022B | El sistema debe permitir abrir los resultados de búsqueda en Google Maps o un proveedor equivalente para que el usuario seleccione el gimnasio correcto | Alta | RF-014 |
+| RF-022C | El sistema debe permitir al usuario confirmar un gimnasio desde los resultados y guardarlo como gimnasio principal o gimnasio visitado | Alta | RF-017, RF-016 |
+
 ### 3. Reglas de Negocio
 
 | ID | Regla | Excepción |
@@ -86,6 +95,7 @@ Catálogo de gimnasios, geolocalización contextual, check-in por GPS, heatmaps 
 | RN-007 | El check-in expira después de 2 horas sin actividad registrada | — |
 | RN-008 | No existe tracking continuo GPS segundo a segundo | — |
 | RN-009 | Un usuario solo puede tener un gimnasio principal activo a la vez | — |
+| RN-010 | La búsqueda de gimnasios debe priorizar la última ubicación válida del usuario; si no existe, usar la ubicación actual o permitir búsqueda manual | — |
 
 ---
 

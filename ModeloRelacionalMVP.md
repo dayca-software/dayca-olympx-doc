@@ -173,7 +173,20 @@ Este documento muestra:
 | followingId | uuid | No | PK/FK | Usuario seguido |
 | createdAt | timestamptz | No | - | Creacion |
 
-### 4.9 ExerciseStrengthStandard
+### 4.9 UserLocationSnapshot
+
+| Campo | Tipo | Null | Clave | Descripcion |
+|-------|------|------|-------|-------------|
+| id | uuid | No | PK | Snapshot de ubicacion del usuario |
+| userId | uuid | No | FK | Usuario |
+| source | varchar | No | - | gps, manual, gym_checkin, last_known |
+| lat | decimal(10,7) | No | - | Latitud |
+| lng | decimal(10,7) | No | - | Longitud |
+| accuracyMeters | decimal(8,2) | Si | - | Precision reportada |
+| capturedAt | timestamptz | No | - | Momento en que se obtuvo |
+| isLastKnown | boolean | No | - | Marca la ubicacion mas reciente utilizable |
+
+### 4.10 ExerciseStrengthStandard
 
 | Campo | Tipo | Null | Clave | Descripcion |
 |-------|------|------|-------|-------------|
@@ -186,7 +199,7 @@ Este documento muestra:
 | createdAt | timestamptz | No | - | Creacion |
 | updatedAt | timestamptz | No | - | Actualizacion |
 
-### 4.10 ExerciseStrengthStandardBand
+### 4.11 ExerciseStrengthStandardBand
 
 | Campo | Tipo | Null | Clave | Descripcion |
 |-------|------|------|-------|-------------|
