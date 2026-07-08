@@ -330,7 +330,7 @@ Clasificación de fuerza basada en evidencia para comparar el rendimiento del us
 | RF-088 | El sistema debe segmentar los rangos de fuerza primariamente por sexo | Alta | RF-042 |
 | RF-089 | El sistema debe mostrar para cada ejercicio el rango actual, el percentil dentro de su categoría y la diferencia hasta el siguiente rango | Alta | RF-087 |
 | RF-090 | El sistema debe generar una tarjeta visual compartible y una plantilla PDF con el rango obtenido, percentil y progreso hacia el siguiente nivel | Media | RF-089 |
-| RF-091 | El sistema debe limitar el MVP a ejercicios principales definidos por negocio y permitir expansión post-MVP con data propia de la comunidad | Alta | RF-087 |
+| RF-091 | El sistema debe limitar el MVP a ejercicios principales definidos por negocio: press banca, sentadilla, peso muerto, dominadas, press militar, curl de bíceps, fondos con lastre, curl isquiotibial, leg extension, hip thrust, jalón al pecho y remo barra libre; luego permitir expansión post-MVP con data propia de la comunidad | Alta | RF-087 |
 
 ### 3. Reglas de Negocio
 
@@ -340,6 +340,7 @@ Clasificación de fuerza basada en evidencia para comparar el rendimiento del us
 | RN-039 | Los umbrales iniciales de rangos deben ser configurables y curados con base en evidencia | — |
 | RN-040 | En el MVP solo se habilitan los ejercicios principales aprobados por negocio; el resto queda para post-MVP | — |
 | RN-041 | La visualización pública debe mostrar el rango actual, el percentil y la distancia al siguiente rango cuando exista clasificación | — |
+| RN-042 | Los umbrales y categorías iniciales de fuerza se mantienen por ejercicio y sexo, sin depender del gimnasio | — |
 
 ---
 
