@@ -13,6 +13,9 @@ Evitar duplicacion, mantener trazabilidad y asegurar que cada cambio actualice l
 - Si cambia el almacenamiento o relaciones, actualiza `ModeloRelacionalMVP.md`.
 - Si cambia el presupuesto o etapas, actualiza `AnexoMVP.md`.
 - Si cambia la guia operativa general del proyecto, actualiza `CLAUDE.md`.
+- Si cambia la priorizacion ejecutiva, actualiza `ResumenEjecutivoPO.md`.
+- Si cambia el panel interno de administracion, actualiza `AdminRequerimientos.md`.
+- Si cambia la trazabilidad entre vision, requerimientos y datos, actualiza `MatrizTrazabilidad.md`.
 
 ## 3. Matriz Por Tipo De Cambio
 
@@ -37,6 +40,9 @@ Evitar duplicacion, mantener trazabilidad y asegurar que cada cambio actualice l
 | `ModeloRelacionalMVP.md` | Backend / Datos | Cada cambio en entidades o relaciones |
 | `AlcanceMusculosYRangos.md` | Producto + UX | Cuando cambie el scope de esa feature |
 | `AnexoMVP.md` | Producto + Delivery | Cuando cambie costo, etapas u horas |
+| `ResumenEjecutivoPO.md` | Producto | Cuando cambie el mensaje ejecutivo o la prioridad |
+| `AdminRequerimientos.md` | Operaciones / Admin | Cuando cambie el panel interno, moderacion o soporte |
+| `MatrizTrazabilidad.md` | Producto + BA + Engineering | Cuando cambie la relacion entre vision, requisitos y datos |
 
 ## 5. Checklist Antes De Cerrar Un Cambio
 
@@ -53,3 +59,4 @@ Evitar duplicacion, mantener trazabilidad y asegurar que cada cambio actualice l
 - Datos: `ModeloRelacionalMVP.md`
 - Planificacion: `AnexoMVP.md`
 - Contexto general: `CLAUDE.md`
+- Admin interno: `AdminRequerimientos.md`

@@ -5,6 +5,103 @@
 > Versión: 1.0 · Fecha: Junio 2026
 > Guia de mantenimiento: `MatrizDocumentacion.md`
 
+> Alcance recomendado para validación inicial: MVP Core de 8 semanas. La capa social y competitiva queda como Fase 2.
+
+> Lectura por perfil:
+> - PO / Producto: usar módulos, prioridades, fases y criterios de valor.
+> - BA / Analisis: usar RF, RN, flujos, dependencias y trazabilidad.
+> - Engineering / SWE: usar RNF, entidades, etapas y contratos ADR-005.
+
+---
+
+## 0. Requerimientos Del Cliente
+
+Esta seccion resume lo que el cliente realmente necesita validar con OlympX antes de ampliar el alcance:
+
+La trazabilidad entre esta necesidad, los módulos, los criterios de aceptación y los casos borde se mantiene en `MatrizTrazabilidad.md`.
+
+| ID | Necesidad del cliente | Prioridad | Cobertura |
+|----|------------------------|-----------|-----------|
+| RCL-001 | El usuario debe poder registrar su progreso de entrenamiento sin friccion | Critica | M01, M04, M05 |
+| RCL-002 | El usuario debe poder competir y compararse dentro de su gimnasio y categoria | Alta | M05, M06, M10, M11 |
+| RCL-003 | La app debe mostrar una identidad competitiva clara, no un tracker generico | Alta | M01, M06, M07, M09, M10 |
+| RCL-004 | El producto debe monetizar con freemium sin bloquear la adopcion inicial | Alta | M01, M05, M11 |
+| RCL-005 | El MVP debe permitir validar el uso real en 3-5 gimnasios piloto | Alta | M02, M05, M06 |
+| RCL-006 | El sistema debe generar contenidos compartibles para retencion y viralidad | Media | M06, M08, M09 |
+| RCL-007 | El alcance inicial no debe depender de tracking continuo ni IA | Critica | M02, M04, M07, M09 |
+| RCL-008 | La version inicial debe priorizar entrenamiento + progreso antes que red social completa | Critica | M04, M05, M11 |
+
+---
+
+## 0.1 Priorizacion MoSCoW
+
+| Prioridad | Alcance | Motivo |
+|-----------|---------|--------|
+| Must have | M01, M02, M03, M04, M05, M11 | Sin esto no existe el loop principal de valor ni la validacion del MVP Core |
+| Should have | M06, M08 | Aumenta retencion y competitividad, pero no bloquea la validacion inicial |
+| Could have | M07, M09, M10 | Mejora viralidad y diferenciacion, pero puede esperar a una fase posterior |
+| Won't have for MVP Core | Tracking continuo, IA, offline completo, grabacion directa de video, mapa nacional | Complejidad y costo que no aportan a la validacion inicial |
+
+### Lectura Rapida
+
+- **Must** = lo que el cliente necesita para validar utilidad real.
+- **Should** = lo que fortalece el producto una vez que el core ya funciona.
+- **Could** = diferenciadores que aportan marca y viralidad, pero no son bloqueantes.
+- **Won't** = fuera del MVP por costo, complejidad o falta de impacto temprano.
+
+---
+
+## 0.2 Matriz Valor Vs Esfuerzo
+
+| Iniciativa | Valor | Esfuerzo | Prioridad sugerida | Motivo |
+|-----------|-------|----------|-------------------|--------|
+| Autenticacion, perfil y gimnasio principal | Alto | Medio | Muy alta | Es la puerta de entrada y habilita el loop base |
+| Registro de entrenamiento y progreso | Muy alto | Medio | Muy alta | Es el valor central que valida uso real |
+| PRs, tonelaje e historial | Muy alto | Medio | Muy alta | Demuestra progreso y retencion |
+| Rangos de fuerza universales | Alto | Medio | Alta | Diferenciador premium y de comparacion |
+| Búsqueda y check-in por GPS | Alto | Medio | Alta | Da contexto local sin tracking continuo |
+| Biblioteca de ejercicios | Alto | Bajo | Alta | Habilita el core con bajo costo |
+| Conquistas por gimnasio | Alto | Alto | Media | Aporta diferenciacion, pero requiere masa critica |
+| Notificaciones asincronas | Medio | Medio | Media | Mejora retorno, no es bloqueante |
+| Feed social | Alto | Alto | Media | Potente para viralidad, pero costoso y dependiente de comunidad |
+| Activity summary | Medio | Medio | Baja | Aumenta compartibilidad, pero no valida el core |
+| Rivalidades y titles | Medio | Medio | Baja | Aporta engagement, no cambia la tesis inicial |
+
+### Lectura Rapida
+
+- **Valor alto + esfuerzo bajo/medio** entra primero.
+- **Valor alto + esfuerzo alto** se reserva para Fase 2 o después de validación.
+- **Valor medio** solo entra si acelera retencion o conversion.
+
+---
+
+## 0.3 Limites Del Plan Free
+
+El plan Free existe para activar y retener, no para reemplazar el plan Paid.
+
+| Limite | Regla |
+|--------|-------|
+| Sesiones semanales | Maximo 3 sesiones por semana |
+| Historial visible | Maximo 20 sesiones historicas visibles |
+| Tarjeta de rango | Maximo 3 ejercicios con tarjeta completa de rango |
+| Exportacion PDF | No disponible |
+| Tarjetas compartibles premium | No disponible |
+| Ranking avanzado por categoria | No disponible |
+| Comparaciones avanzadas | No disponible |
+| Conquistas activas | No disponible |
+| Feed social publicacion | No disponible |
+| Notificaciones premium | No disponible |
+| Gimnasio principal | Solo 1 gimnasio principal activo |
+| Nuevas altas Free | Limitadas por cupo configurable; al alcanzar el tope, solo se ofrece trial de 7 dias con tarjeta |
+
+### Regla De Producto
+
+- Free debe permitir validar el loop de entrenamiento y progreso.
+- Free debe mostrar suficiente valor para activar, pero no suficiente para eliminar la necesidad de Paid.
+- Las funciones de comparacion profunda, exportacion y social competitivo se reservan para Paid o Fase 2.
+- El cupo aplica solo a nuevas altas Free; los usuarios Free existentes no pierden acceso por alcanzar el tope.
+- Cuando el cupo Free se agota, el flujo de registro debe redirigir a un trial de 7 dias con tarjeta.
+
 ---
 
 ## Índice de Módulos
@@ -22,6 +119,15 @@
 | Activity Summary | M09 | Baja | 2 |
 | Rivalidades, Top del Día y Títulos | M10 | Baja | 2 |
 | Rangos de Fuerza Universales | M11 | Alta | 1 |
+
+## Cobertura Funcional
+
+Este documento cubre la visión completa de `GlobalProjecto.md`, pero la ejecución se divide en:
+
+- **Fase 1 / MVP Core:** validación operativa del producto base.
+- **Fase 2 / Social y Competitiva:** viralidad, comunidad y monetización.
+
+La regla es simple: **primero asegurar el loop de entrenamiento y progreso, luego expandir a loop social y competitivo**.
 
 ---
 
@@ -373,6 +479,35 @@ Clasificación de fuerza basada en evidencia para comparar el rendimiento del us
 | RNF-013 | Las respuestas paginadas deben seguir formato ADR-005: `{ data: [], meta: { page, pageSize, total } }` | ADR-005 | Media |
 
 ---
+
+## Criterios De Aceptacion MVP Core
+
+| ID | Criterio | Validacion |
+|----|----------|------------|
+| CA-001 | El usuario puede registrarse e iniciar sesion sin friccion | Crear cuenta, login y acceso exitoso |
+| CA-002 | El usuario puede completar su perfil y seleccionar un gimnasio principal | Perfil persistido correctamente |
+| CA-003 | El usuario puede detectar gimnasios cercanos y hacer check-in valido | Check-in solo dentro del radio permitido |
+| CA-004 | El usuario puede registrar un entrenamiento con series, repeticiones, peso, RPE y RIR | Sesion guardada y visible en historial |
+| CA-005 | El sistema calcula tonelaje y PRs de forma consistente | Valores visibles en detalle de sesion y perfil |
+| CA-006 | El usuario puede ver su rango de fuerza por ejercicio base | Rango, percentil y distancia al siguiente nivel visibles |
+| CA-007 | El MVP no requiere feed social, conquistas ni notificaciones para ser usable | La validacion inicial funciona sin M06-M10 |
+| CA-008 | El producto permite validacion en 3-5 gimnasios piloto | Operacion estable con usuarios reales y datos localizados |
+| CA-009 | La propuesta freemium no bloquea la adopcion inicial | Free usable, Paid claramente incremental |
+
+## Casos Borde Relevantes
+
+| ID | Escenario | Comportamiento esperado |
+|----|-----------|--------------------------|
+| CB-001 | No hay ubicacion disponible | Permitir busqueda manual de gimnasio o reintento de GPS |
+| CB-002 | El usuario esta fuera del radio de check-in | Rechazar check-in y mostrar mensaje claro |
+| CB-003 | Email o nickname duplicado | Bloquear registro y pedir correccion |
+| CB-004 | El usuario intenta registrar un set invalido | Validar rango de RPE/RIR/peso y no guardar datos corruptos |
+| CB-005 | Se supera el limite de 50 sets por sesion | Bloquear nuevos sets y sugerir dividir la sesion |
+| CB-006 | No existe rango cargado para un ejercicio | Mostrar estado de soporte parcial y ocultar comparacion premium |
+| CB-007 | Falla la carga de multimedia | Permitir guardar la sesion sin media y reintentar subida |
+| CB-008 | El trial expira y la tarjeta falla | Revertir a Free sin perder historial |
+| CB-009 | El usuario no concede permisos de notificaciones | La app sigue funcionando con notificaciones desactivadas |
+| CB-010 | Se cae la red durante el registro | Guardar progreso localmente o mostrar reintento seguro |
 
 ## Matriz de Trazabilidad Módulos vs. Etapas (AnexoMVP)
 

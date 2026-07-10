@@ -1,5 +1,6 @@
 OlympX MVP 2026 — Documento Global y Detallado
-Documento maestro de especificación funcional del MVP de OlympX. Incluye visión general, flujo completo del usuario, sistema social, módulo de conquista, rankings, GPS contextual, heatmaps, perfiles, rutinas, calculadores inteligentes y estructura de gamificación.
+Documento maestro de visión y alcance total de OlympX. Incluye flujo completo del usuario, sistema social, módulo de conquista, rankings, GPS contextual, heatmaps, perfiles, rutinas, calculadores inteligentes y estructura de gamificación.
+La implementación se gobierna por `BaseRequerimientos.md`, que traduce esta visión en requerimientos PO, BA y engineering.
 Se eliminó lo que tiene que ver con running, y validaciones de IA, agregándose ideas tipo HEVY y aminorando problemas pensando en servidor, pero a la vez también integrando elementos que lo hagan de una app paga, una experiencia elite (aunque básica, pero distintiva)
 5. Flujo Completo del Usuario
 

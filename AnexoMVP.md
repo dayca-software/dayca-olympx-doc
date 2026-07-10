@@ -1,5 +1,5 @@
 Anexo Cotización OlympX MVP
-Desglose por etapas | 3,5 meses | 888 horas
+Desglose por etapas | MVP Core 2 meses (8 semanas) + Fase Extendida 3,5 meses | 888 horas
 Junio 2026
 Anexo Técnico — Cotización OlympX MVP Lite
 Presupuesto: CLP $6.000.000
@@ -7,14 +7,50 @@ Horas totales: 888 h
 Plazo: 3,5 meses (14 semanas)
 Distribución: 7 etapas secuenciales de ~2 semanas cada una
 
+0. Definición recomendada del MVP
+
+El MVP correcto para validar OlympX en 2 meses es el MVP Core, no el producto completo.
+
+Incluye:
+• Registro e inicio de sesión por email.
+• Completar perfil básico.
+• Selección de gimnasio principal.
+• GPS contextual para detectar gimnasios cercanos y check-in.
+• Biblioteca de ejercicios.
+• Rutinas y registro de entrenamiento.
+• PRs, tonelaje e historial personal.
+• Rangos de fuerza universales para ejercicios base.
+
+No incluye en MVP Core:
+• Feed social.
+• Fotos y videos temporales.
+• Conquistas.
+• Rankings públicos avanzados.
+• Notificaciones push.
+• Heatmaps.
+• Reacciones, comentarios y seguidores.
+
+Criterio de éxito:
+• El usuario puede registrarse.
+• El usuario puede configurar su perfil y gimnasio.
+• El usuario puede registrar entrenamientos.
+• El usuario puede ver su progreso y PRs.
+• El usuario vuelve a usar la app semanalmente.
+
 Resumen de inversión
 Concepto Monto
 Desarrollo (7 etapas) CLP $4.000.000
 Contingencia servidores e infraestructura CLP $2.000.000
 Total CLP $6.000.000
 
+Nota: la cotización original de 3,5 meses cubre el alcance completo planeado. Si el objetivo es salir a validar mercado rápido, el corte recomendado es el MVP Core de 8 semanas y dejar la capa social para una Fase 2.
+
 Estructura por etapas
 Las 888 horas de desarrollo se agrupan en 7 etapas ejecutadas en 14 semanas consecutivas, con entregables parciales al final de cada etapa.
+
+Fase de validación recomendada:
+• Etapas 1 a 4 = MVP Core (8 semanas).
+• Etapas 5 a 7 = Fase 2 / expansión social y competitiva.
 
 Etapa 1 — Discovery, Planificación y Diseño UX/UI
 Semanas 1–2 | Total: 120 h
