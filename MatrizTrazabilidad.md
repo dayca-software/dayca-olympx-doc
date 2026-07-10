@@ -12,6 +12,7 @@ Conectar vision, requerimientos, etapas, datos y entrega para evitar ambiguedad 
 |------|------------------|---------------|
 | Vision total | `GlobalProjecto.md` | PO / direccion de producto |
 | Requerimientos base | `BaseRequerimientos.md` | BA / engineering |
+| Datos globales | `ModeloRelacionalGlobal.md` | PO / BA / backend |
 | Planificacion | `AnexoMVP.md` | Delivery / presupuesto / fases |
 | Datos | `ModeloRelacionalMVP.md` | Backend / DB / API |
 | Extension muscular | `AlcanceMusculosYRangos.md` | Feature scope especifico |

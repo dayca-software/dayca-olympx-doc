@@ -2,6 +2,7 @@
 
 > Borrador para revisar campos y relaciones antes de implementar Prisma/API.
 > Enfocado en el MVP y en el nuevo modulo de rangos de fuerza universales.
+> Este documento es un subconjunto operativo de `ModeloRelacionalGlobal.md`.
 
 ## 1. Alcance
 
