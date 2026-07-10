@@ -31,13 +31,14 @@ Conectar vision, requerimientos, etapas, datos y entrega para evitar ambiguedad 
 | Notificaciones | `GlobalProjecto.md` seccion 11 | M08 | E6 | futura cola/eventos |
 | Activity summary | `GlobalProjecto.md` seccion 12 | M09 | Post-MVP | derivado de sesiones/PRs/conquistas |
 | Rivalidades y titles | `GlobalProjecto.md` seccion 13 | M10 | Post-MVP | derivado de usuarios, PRs y rankings |
+| Coach y acompanamiento | `GlobalProjecto.md` objetivo psicologico y beneficios psicologicos | M12 | Fase 2 | derivado de sesiones, estados pre-sesion y preferencias |
 
 ## 4. Trazabilidad Por Fase
 
 | Fase | Cobertura | Criterio de salida |
 |------|-----------|--------------------|
 | MVP Core | M01, M02, M03, M04, M05, M11 | El usuario puede registrarse, entrenar y ver progreso |
-| Fase 2 | M06, M07, M08, M09, M10 | El usuario puede competir, compartir y retenerse por comunidad |
+| Fase 2 | M06, M07, M08, M09, M10, M12 | El usuario puede competir, compartir, retenerse por comunidad y recibir acompanamiento |
 
 ## 5. Trazabilidad Cliente -> Modulo -> RF -> CA -> CB
 
@@ -51,6 +52,7 @@ Conectar vision, requerimientos, etapas, datos y entrega para evitar ambiguedad 
 | Generar contenido compartible | M06, M08, M09 | RF-050, RF-052, RF-065, RF-068, RF-075, RF-076 | CA-007 | CB-007, CB-009 |
 | No depender de tracking continuo ni IA | M02, M04, M07, M09 | RF-008, RF-011, RF-027, RF-054, RF-067, RF-075 | CA-007 | CB-001, CB-010 |
 | Priorizar entrenamiento y progreso antes que red social | M04, M05, M11 | RF-031, RF-033, RF-038, RF-087, RF-091 | CA-004, CA-005, CA-006 | CB-004, CB-006 |
+| Apoyo motivacional y adherencia | M12 | RF-092, RF-093, RF-094, RF-095, RF-096, RF-097, RF-099 | CA-010, CA-011, CA-012, CA-013 | CB-010, CB-011, CB-012, CB-013 |
 
 ## 6. Reglas de uso
 
@@ -61,4 +63,4 @@ Conectar vision, requerimientos, etapas, datos y entrega para evitar ambiguedad 
 
 ## 7. Observacion
 
-La trazabilidad de `M07`, `M08`, `M09` y `M10` existe en vision y requerimientos, pero su implementacion deberia considerarse posterior al MVP Core salvo decision explicita de ampliar alcance.
+La trazabilidad de `M07`, `M08`, `M09`, `M10` y `M12` existe en vision y requerimientos, pero su implementacion deberia considerarse posterior al MVP Core salvo decision explicita de ampliar alcance.

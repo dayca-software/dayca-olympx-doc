@@ -38,7 +38,7 @@ La trazabilidad entre esta necesidad, los módulos, los criterios de aceptación
 | Prioridad | Alcance | Motivo |
 |-----------|---------|--------|
 | Must have | M01, M02, M03, M04, M05, M11 | Sin esto no existe el loop principal de valor ni la validacion del MVP Core |
-| Should have | M06, M08 | Aumenta retencion y competitividad, pero no bloquea la validacion inicial |
+| Should have | M06, M08, M12 | Aumenta retencion, competitividad y adherencia, pero no bloquea la validacion inicial |
 | Could have | M07, M09, M10 | Mejora viralidad y diferenciacion, pero puede esperar a una fase posterior |
 | Won't have for MVP Core | Tracking continuo, IA, offline completo, grabacion directa de video, mapa nacional | Complejidad y costo que no aportan a la validacion inicial |
 
@@ -66,6 +66,7 @@ La trazabilidad entre esta necesidad, los módulos, los criterios de aceptación
 | Feed social | Alto | Alto | Media | Potente para viralidad, pero costoso y dependiente de comunidad |
 | Activity summary | Medio | Medio | Baja | Aumenta compartibilidad, pero no valida el core |
 | Rivalidades y titles | Medio | Medio | Baja | Aporta engagement, no cambia la tesis inicial |
+| Coach y acompanamiento | Medio | Medio | Media | Mejora adherencia y retencion, pero no valida el core por si solo |
 
 ### Lectura Rapida
 
@@ -119,13 +120,14 @@ El plan Free existe para activar y retener, no para reemplazar el plan Paid.
 | Activity Summary | M09 | Baja | 2 |
 | Rivalidades, Top del Día y Títulos | M10 | Baja | 2 |
 | Rangos de Fuerza Universales | M11 | Alta | 1 |
+| Coach y Acompañamiento | M12 | Media | 2 |
 
 ## Cobertura Funcional
 
 Este documento cubre la visión completa de `GlobalProjecto.md`, pero la ejecución se divide en:
 
 - **Fase 1 / MVP Core:** validación operativa del producto base.
-- **Fase 2 / Social y Competitiva:** viralidad, comunidad y monetización.
+- **Fase 2 / Social, Competitiva y Acompañamiento:** viralidad, comunidad, monetización y apoyo al hábito.
 
 La regla es simple: **primero asegurar el loop de entrenamiento y progreso, luego expandir a loop social y competitivo**.
 
@@ -457,6 +459,73 @@ Clasificación de fuerza basada en evidencia para comparar el rendimiento del us
 | RN-040 | En el MVP solo se habilitan los ejercicios principales aprobados por negocio; el resto queda para post-MVP | — |
 | RN-041 | La visualización pública debe mostrar el rango actual, el percentil y la distancia al siguiente rango cuando exista clasificación | — |
 | RN-042 | Los umbrales y categorías iniciales de fuerza se mantienen por ejercicio y sexo, sin depender del gimnasio | — |
+
+---
+
+## M12 — Coach y Acompañamiento
+
+### 1. Descripción
+
+Módulo de apoyo motivacional y de hábitos para aumentar adherencia, consistencia y retención. No reemplaza terapia, psicología clínica ni consejo médico.
+
+### 2. Requerimientos Funcionales
+
+| ID | Descripción | Prioridad | Dependencias |
+|----|------------|-----------|--------------|
+| RF-092 | El sistema debe mostrar mensajes de ánimo y refuerzo positivo antes, durante o después del entrenamiento | Media | RF-031 |
+| RF-093 | El sistema debe permitir registrar estado breve pre-sesión: ánimo, energía, estrés y motivación | Media | RF-031 |
+| RF-094 | El sistema debe generar sugerencias simples basadas en el estado del usuario: bajar intensidad, entrenar ligero, descansar o mantener plan | Media | RF-093 |
+| RF-095 | El sistema debe detectar inactividad o abandono de rutina y enviar nudges contextuales | Media | RF-074 |
+| RF-096 | El sistema debe permitir metas semanales de adherencia, frecuencia y progreso | Media | RF-037 |
+| RF-097 | El sistema debe mostrar seguimiento de streaks, consistencia y cumplimiento de metas | Media | RF-037 |
+| RF-098 | El sistema debe permitir al usuario personalizar el tono del coach: directo, motivador o neutral | Baja | RF-092 |
+| RF-099 | El sistema debe permitir desactivar por completo el acompañamiento motivacional | Alta | RF-092 |
+| RF-100 | El sistema debe ofrecer mensajes de apoyo no clínicos ante abandono prolongado o caídas de consistencia | Baja | RF-095 |
+
+### 3. Reglas de Negocio
+
+| ID | Regla | Excepción |
+|----|-------|-----------|
+| RN-043 | El coach no puede emitir diagnósticos, interpretaciones clínicas ni recomendaciones médicas | Ninguna |
+| RN-044 | Las sugerencias del coach son orientativas y no obligatorias | Ninguna |
+| RN-045 | El usuario puede desactivar el coach en cualquier momento | Ninguna |
+| RN-046 | El coach debe usar señales de producto, no datos sensibles innecesarios | Ninguna |
+| RN-047 | El coach no debe generar spam ni repetir mensajes idénticos en exceso | Ninguna |
+
+### 4. Requerimientos No Funcionales
+
+| ID | Descripción | Métrica |
+|----|------------|---------|
+| RNF-014 | El módulo coach debe respetar privacidad y minimizar datos usados para sugerencias | Data minimization |
+| RNF-015 | Los mensajes motivacionales deben mostrarse sin fricción perceptible | < 2s p95 |
+| RNF-016 | El usuario debe poder apagar el módulo sin perder historial | 100% |
+
+### 5. Criterios De Aceptación
+
+| ID | Criterio | Validación |
+|----|----------|------------|
+| CA-010 | El usuario puede ver mensajes de ánimo y sugerencias simples | Mensaje visible |
+| CA-011 | El usuario puede registrar su estado pre-sesión | Datos persistidos |
+| CA-012 | El usuario puede desactivar el coach | Preferencia guardada |
+| CA-013 | El sistema no emite contenido clínico o médico | Revisión de contenido |
+
+### 6. Casos Borde
+
+| ID | Escenario | Comportamiento esperado |
+|----|-----------|-------------------------|
+| CB-010 | Usuario desactiva el coach | Deja de enviar mensajes motivacionales |
+| CB-011 | El sistema no tiene suficiente contexto | Muestra sugerencia genérica y neutral |
+| CB-012 | El usuario reporta un mensaje como inapropiado | Se oculta y queda registro |
+| CB-013 | El usuario lleva mucho tiempo inactivo | Se envía nudging suave, no agresivo |
+
+### 7. Trazabilidad
+
+| Necesidad del cliente | Modulo | Resultado esperado |
+|----------------------|--------|-------------------|
+| Apoyo y motivación | M12 | Refuerzo positivo y nudges |
+| Mejora de adherencia | M12 | Metas y consistencia visibles |
+| Control del tono | M12 | Acompañamiento configurable |
+| Seguridad de producto | M12 | Sin diagnóstico ni consejo clínico |
 
 ---
 

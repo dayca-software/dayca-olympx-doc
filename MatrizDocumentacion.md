@@ -15,6 +15,7 @@ Evitar duplicacion, mantener trazabilidad y asegurar que cada cambio actualice l
 - Si cambia la guia operativa general del proyecto, actualiza `CLAUDE.md`.
 - Si cambia la priorizacion ejecutiva, actualiza `ResumenEjecutivoPO.md`.
 - Si cambia el panel interno de administracion, actualiza `AdminRequerimientos.md`.
+- Si cambia el modulo de coach o acompanamiento, actualiza `CoachRequerimientos.md`.
 - Si cambia la trazabilidad entre vision, requerimientos y datos, actualiza `MatrizTrazabilidad.md`.
 
 ## 3. Matriz Por Tipo De Cambio
@@ -26,6 +27,7 @@ Evitar duplicacion, mantener trazabilidad y asegurar que cada cambio actualice l
 | Nuevo campo o entidad | `ModeloRelacionalMVP.md` | `BaseRequerimientos.md` | Agregar `Muscle` o `ExerciseMuscleTarget` |
 | Cambio de regla de negocio | `BaseRequerimientos.md` | `Alcance*.md` | Definir si `otros` entra en ranking de fuerza |
 | Cambio de UX/flujo | `BaseRequerimientos.md` | `Alcance*.md` | Agregar plantilla PDF compartible |
+| Cambio de coach/acompanamiento | `CoachRequerimientos.md` | `BaseRequerimientos.md` | Mensajes de animo, nudges o estados pre-sesion |
 | Cambio de etapas/horas | `AnexoMVP.md` | `BaseRequerimientos.md` | Mover rangos de fuerza de E5 a E6 |
 | Cambio tecnico operativo | `CLAUDE.md` | `BaseRequerimientos.md` | Ajustar comandos, stack o estructura |
 | Cambio de API contract | `BaseRequerimientos.md` | `ModeloRelacionalMVP.md` | Cambiar envelope o estructura de respuesta |
@@ -42,6 +44,7 @@ Evitar duplicacion, mantener trazabilidad y asegurar que cada cambio actualice l
 | `AnexoMVP.md` | Producto + Delivery | Cuando cambie costo, etapas u horas |
 | `ResumenEjecutivoPO.md` | Producto | Cuando cambie el mensaje ejecutivo o la prioridad |
 | `AdminRequerimientos.md` | Operaciones / Admin | Cuando cambie el panel interno, moderacion o soporte |
+| `CoachRequerimientos.md` | Producto / Retencion | Cuando cambie el acompanamiento, nudges o bienestar ligero |
 | `MatrizTrazabilidad.md` | Producto + BA + Engineering | Cuando cambie la relacion entre vision, requisitos y datos |
 
 ## 5. Checklist Antes De Cerrar Un Cambio
@@ -60,3 +63,4 @@ Evitar duplicacion, mantener trazabilidad y asegurar que cada cambio actualice l
 - Planificacion: `AnexoMVP.md`
 - Contexto general: `CLAUDE.md`
 - Admin interno: `AdminRequerimientos.md`
+- Coach interno: `CoachRequerimientos.md`
