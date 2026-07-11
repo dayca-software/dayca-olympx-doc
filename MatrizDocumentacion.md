@@ -21,6 +21,9 @@ Evitar duplicacion, mantener trazabilidad y asegurar que cada cambio actualice l
 - Si cambia el panel interno de administracion, actualiza `AdminRequerimientos.md`.
 - Si cambia el modulo de coach o acompanamiento, actualiza `CoachRequerimientos.md`.
 - Si cambia la trazabilidad entre vision, requerimientos y datos, actualiza `MatrizTrazabilidad.md`.
+- Si cambia el estado real de API o mobile, actualiza `AvanceAPI.md`, `AvanceMobile.md` o `AvanceGlobal.md`.
+- Si cambia el estado real de pruebas o cobertura, actualiza `AvanceQA.md`.
+- Si cambia el estado real de web publica o admin, actualiza `AvanceWebAdmin.md`.
 
 ## 3. Matriz Por Tipo De Cambio
 
@@ -46,6 +49,11 @@ Evitar duplicacion, mantener trazabilidad y asegurar que cada cambio actualice l
 | Documento                   | Dueño                       | Frecuencia de revision                                     |
 | --------------------------- | --------------------------- | ---------------------------------------------------------- |
 | `CLAUDE.md`                 | Contexto del proyecto       | Cuando cambie el proyecto o stack                          |
+| `AvanceGlobal.md`           | Liderazgo tecnico / PM      | Cuando cambie la foto ejecutiva del avance                 |
+| `AvanceAPI.md`              | Backend / Datos             | Cuando cambie el estado funcional de la API                |
+| `AvanceMobile.md`           | Mobile / Producto           | Cuando cambie el estado funcional de la app mobile         |
+| `AvanceQA.md`               | QA / Engineering            | Cuando cambie el estado de pruebas y cobertura             |
+| `AvanceWebAdmin.md`         | Frontend / Producto         | Cuando cambie el estado funcional de web o admin           |
 | `BaseRequerimientos.md`     | Producto / Analisis         | Cada cambio funcional                                      |
 | `ModeloRelacionalMVP.md`    | Backend / Datos             | Cada cambio en entidades o relaciones                      |
 | `ModeloRelacionalGlobal.md` | Backend / Datos             | Cuando cambie el alcance global de datos                   |
