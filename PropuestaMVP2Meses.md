@@ -9,6 +9,7 @@ Validar que OlympX resuelve un problema real: ayudar al usuario a entrenar mejor
 ## 2. Tesis De Producto
 
 OlympX puede arrancar como un modelo freemium:
+
 - Free para adquirir usuarios y generar activacion.
 - Paid para monetizar el valor avanzado: rankings completos, rangos de fuerza, exportables, comparaciones y experiencia premium.
 - Trial de 7 dias con tarjeta para reducir friccion y validar conversion.
@@ -24,24 +25,28 @@ OlympX puede arrancar como un modelo freemium:
 ## 4. Alcance MVP En 8 Semanas
 
 ### Semana 1-2: Fundacion
+
 - Auth, perfil y onboarding.
 - Busqueda de gimnasios desde ultima ubicacion.
 - Seleccion de gimnasio principal.
 - Base de datos y modelo de ejercicios.
 
 ### Semana 3-4: Core de entrenamiento
+
 - Biblioteca de ejercicios.
 - Registro de sesiones y sets.
 - Calculo de tonelaje y 1RM estimado.
 - PRs basicos.
 
 ### Semana 5-6: Competencia y fuerza
+
 - Rangos de fuerza universales por ejercicio y sexo.
 - Tarjeta de rango actual.
 - Vista de progreso hacia el siguiente rango.
 - Highlighter muscular basico solo lectura.
 
 ### Semana 7-8: Monetizacion y cierre
+
 - Plan Free / Paid.
 - Trial de 7 dias con tarjeta.
 - Bloqueo de features premium.
@@ -52,6 +57,7 @@ OlympX puede arrancar como un modelo freemium:
 ### Free
 
 Incluye:
+
 - Registro y perfil.
 - Busqueda de gimnasios.
 - 1 gimnasio principal.
@@ -61,6 +67,7 @@ Incluye:
 - Historial limitado.
 
 Limites:
+
 - Hasta 3 sesiones por semana.
 - Hasta 20 sesiones historicas visibles.
 - Hasta 3 ejercicios con tarjeta de rango completa.
@@ -71,6 +78,7 @@ Limites:
 ### Paid
 
 Incluye todo lo de Free mas:
+
 - Sesiones ilimitadas.
 - Historial completo.
 - Todos los ejercicios habilitados del MVP.
@@ -84,6 +92,7 @@ Incluye todo lo de Free mas:
 ## 6. Trial De 7 Dias Con Tarjeta
 
 Reglas:
+
 - El usuario ingresa tarjeta al activar el trial.
 - Se habilita todo el plan Paid por 7 dias.
 - No se cobra hasta finalizar el dia 7.
@@ -92,6 +101,7 @@ Reglas:
 - Si la tarjeta falla, el usuario vuelve a Free.
 
 Objetivo:
+
 - Reducir friccion de conversion.
 - Medir disposicion real a pagar.
 - Validar valor premium desde el primer contacto.
@@ -99,14 +109,17 @@ Objetivo:
 ## 7. Modelo De Negocio
 
 ### Opcion A: Freemium B2C
+
 - Free para crecer base de usuarios.
 - Paid mensual para monetizar power users.
 
 ### Opcion B: Freemium + B2B futuro
+
 - Usuarios individuales en Free/Paid.
 - Gimnasios como clientes de analitica, branding y presencia local.
 
 ### Opcion C: Marketplace de visibilidad
+
 - Gimnasios promocionados.
 - Rankeo local patrocinado.
 - Publicidad contextual mas adelante.
@@ -114,6 +127,7 @@ Objetivo:
 ## 8. Precio Referencial
 
 Sugerencia inicial para test de mercado:
+
 - Free: CLP $0
 - Paid mensual: CLP $4.990 - $7.990
 - Paid anual: 10x mensual con descuento

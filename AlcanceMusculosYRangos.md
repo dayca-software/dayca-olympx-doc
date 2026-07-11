@@ -5,6 +5,7 @@
 ## 1. Objetivo
 
 Definir con claridad que entra en el MVP para:
+
 - Catalogo de musculos y relacion con ejercicios.
 - Componente visual de highlighter corporal.
 - Rangos de fuerza universales por ejercicio, sexo y 1RM estimado.
@@ -12,6 +13,7 @@ Definir con claridad que entra en el MVP para:
 ## 2. Problema Que Resuelve
 
 El usuario necesita:
+
 - Ver que musculos trabaja un ejercicio.
 - Entender visualmente la activacion muscular con un componente reusable.
 - Comparar su rendimiento con una base basada en evidencia.
@@ -22,6 +24,7 @@ El usuario necesita:
 ### 3.1 Catalogo muscular
 
 Incluye:
+
 - Catalogo normalizado de musculos o grupos musculares.
 - Relacion entre ejercicio y musculo.
 - Rol muscular por ejercicio: `primary`, `secondary`, `stabilizer`.
@@ -30,6 +33,7 @@ Incluye:
 ### 3.2 Highlighter visual
 
 Incluye:
+
 - Componente reusable para pintar musculos trabajados.
 - Vista frontal y posterior.
 - Leyenda basica de colores.
@@ -38,6 +42,7 @@ Incluye:
 ### 3.3 Rangos de fuerza universales
 
 Incluye:
+
 - Calculo de 1RM estimado.
 - Clasificacion por ejercicio + sexo.
 - Rangos: Bronze, Silver, Gold, Platinum, Diamond.
@@ -91,6 +96,7 @@ El alcance inicial prioriza ejercicios principales con evidencia suficiente. Los
 ## 9. Criterio De Exito
 
 El feature se considera listo cuando:
+
 - El usuario puede ver los musculos principales de un ejercicio.
 - El usuario puede ver su rango actual de fuerza por ejercicio.
 - El sistema puede mostrar el progreso hacia el siguiente rango.

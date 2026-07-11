@@ -140,14 +140,14 @@ Etapa Descripción Semanas Horas Costo Total 50%
 5 PRs, progreso y rankings 8–10 140 h CLP $630.000 CLP $315.000
 6 Conquistas, estadísticas y notificaciones 10–12 118 h CLP $531.000 CLP $265.500
 7 QA, estabilización y cierre 12–14 90 h CLP $409.000 CLP $204.500
-Total  3,5 meses 888 h  CLP $4.000.000
+Total 3,5 meses 888 h CLP $4.000.000
 
 Cronograma visual
-Mes 1                    Mes 2                    Mes 3                    Mes 3.5
+Mes 1 Mes 2 Mes 3 Mes 3.5
 ├───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┤
- E1    E2    E3    E4    E5    E6    E7
- │     │     │     │     │     │     │
- s1  s2 s3  s4 s5  s6 s7  s8 s9 s10 s11 s12 s13 s14
+E1 E2 E3 E4 E5 E6 E7
+│ │ │ │ │ │ │
+s1 s2 s3 s4 s5 s6 s7 s8 s9 s10 s11 s12 s13 s14
 
 E1: Discovery + Diseño UX/UI
 E2: Backend + Auth
