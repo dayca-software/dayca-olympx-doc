@@ -8,17 +8,18 @@
 
 - Backend NestJS operativo.
 - Base de datos y Prisma funcionando.
-- Login, perfil y health check disponibles.
+- Login, registro, perfil y health check disponibles.
 - Contrato de respuesta estandarizado aplicado.
 
 ## Entregable pendiente
 
-- Cierre de validaciones finales de autenticacion y hardening.
 - Si se mantiene en alcance, completitud de OAuth Google y Apple.
+- Cierre de validaciones finales de autenticacion y hardening.
 
 ## Alcance minimo validado
 
 - Inicio de sesion.
+- Alta de usuario.
 - Consulta de usuario autenticado.
 - Respuesta uniforme desde la API.
 - Base tecnica lista para seguir con gimnasios, GPS y ejercicios.

@@ -14,6 +14,7 @@
 
 - `GET /api/health` responde correctamente.
 - `POST /api/auth/login` entrega token y usuario.
+- `POST /api/auth/register` crea cuenta y entrega token inicial.
 - `GET /api/auth/me` devuelve la sesion actual.
 - `GET /api/users/me` devuelve el perfil autenticado.
 - `POST /api/auth/login/admin` funciona para cuentas de admin.
@@ -24,6 +25,7 @@
 - NestJS activo.
 - Prisma y seed funcionando.
 - Login y `me` operativos.
+- Registro de usuario operativo.
 - Auth admin operativo.
 - Envelope `ApiEnvelope<T>` aplicado.
 - Swagger, CORS, Helmet y throttling configurados.
@@ -38,11 +40,9 @@
 
 ## Pendientes de cierre
 
-- Registro completo con validaciones finales.
 - OAuth Google y Apple si se mantiene en alcance.
 - Refinar perfil de usuario y estados de error.
 - Endurecimiento de seguridad y pruebas de regresion.
-- Revisar si el registro queda en scope de esta etapa o pasa a la siguiente.
 
 ## Criterio de aprobacion
 

@@ -8,7 +8,7 @@
 | Etapa | Nombre | Estado | Cobertura real |
 | --- | --- | --- | --- |
 | 1 | Discovery, planificación y UX/UI | Parcial | Documentación lista, Figma en curso |
-| 2 | Backend, BD y autenticación | Casi completa | API funcional, contratos y seed |
+| 2 | Backend, BD y autenticación | Casi completa | API funcional, contratos, seed y registro |
 | 3 | Gimnasios, GPS y biblioteca | Parcial alta | Gimnasios + ubicación + ejercicios |
 | 4 | Rutinas y registro de entrenamiento | Parcial media | Sesiones y sets, sin rutinas completas |
 | 5 | PRs, progreso y rankings | Parcial baja | Progreso básico y leaderboard inicial |
@@ -44,7 +44,7 @@
 ### Estado actual
 - NestJS operativo con `health`, Swagger, CORS, Helmet y throttling.
 - Prisma activo con seed funcional.
-- Auth con login, `me`, admin login y token JWT.
+- Auth con login, registro, `me`, admin login y token JWT.
 - Envelope `ApiEnvelope<T>` implementado.
 - La Etapa 2 ya cubre el core backend de la validacion inicial; faltan solo detalles de cierre y endurecimiento.
 
