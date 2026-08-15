@@ -12,12 +12,16 @@ La API ya esta alineada con NestJS + Prisma + PostgreSQL y expone el contrato un
 
 Hoy cubre:
 
-- Autenticacion con login y consulta de usuario actual.
+- Autenticacion con login, registro y consulta de usuario actual.
 - Resumen para home mobile.
-- Catalogo y detalle de gimnasios.
+- Catalogo, busqueda y detalle de gimnasios.
 - Feed social con publicaciones, comentarios y likes.
-- Resumen de administracion.
+- Ranking de usuarios.
+- Alertas sobre actividad en publicaciones con marcado de vistas.
+- Perfil, avatar y ubicacion del usuario.
 - Registro y consulta de sesiones de entrenamiento.
+- Suscripcion, trial y catalogo comercial.
+- Resumen de administracion.
 - Health check y Swagger.
 
 ## 3. Modulos Implementados
@@ -25,12 +29,17 @@ Hoy cubre:
 ### Auth
 
 - `POST /api/auth/login`
+- `POST /api/auth/register`
 - `GET /api/auth/me`
 - Soporta token bearer y flujo de sesion para mobile.
 
 ### Users
 
 - `GET /api/users/me`
+- `PATCH /api/users/me`
+- `POST /api/users/me/avatar`
+- `PATCH /api/users/me/location`
+- `GET /api/users/me/stats`
 
 ### Home
 
@@ -40,7 +49,21 @@ Hoy cubre:
 ### Gyms
 
 - `GET /api/gyms`
+- `GET /api/gyms/nearby`
 - `GET /api/gyms/:id`
+
+### Search
+
+- `GET /api/search`
+
+### Leaderboard
+
+- `GET /api/leaderboard`
+
+### Notifications
+
+- `GET /api/notifications`
+- `POST /api/notifications/viewed`
 
 ### Posts
 
@@ -53,7 +76,15 @@ Hoy cubre:
 ### Training
 
 - `GET /api/training/sessions`
+- `GET /api/training/sessions/:id`
 - `POST /api/training/sessions`
+- `POST /api/training/sessions/:id/sets`
+
+### Commercial
+
+- `GET /api/commercial/plans`
+- `GET /api/subscriptions/me`
+- `POST /api/subscriptions/me/start-trial`
 
 ### Admin
 
@@ -84,8 +115,19 @@ Entidades actuales en Prisma:
 - `PostComment`
 - `PostLike`
 - `TrainingSession`
+- `TrainingSet`
 
-## 6. Seeds Y Datos Demo
+## 6. Flujos Ya Cubiertos Por Mobile
+
+- Login y registro.
+- Home con summary y feed.
+- Busqueda de gimnasios, ejercicios y posts.
+- Ranking y notificaciones con estado de visto.
+- Perfil editable con avatar y stats.
+- Crear sesion, agregar sets y revisar detalle.
+- Trial y paywall basico.
+
+## 7. Seeds Y Datos Demo
 
 El seed actual deja listo el entorno con:
 
@@ -97,49 +139,49 @@ El seed actual deja listo el entorno con:
 
 Eso permite validar el flujo completo sin depender de carga manual inicial.
 
-## 7. Swagger Y Validacion
+## 8. Swagger Y Validacion
 
 - Swagger esta habilitado en `/api/docs`.
 - `ValidationPipe` global activo con `transform` y `whitelist`.
 - Los DTOs cubren los flujos de escritura principales.
 
-## 8. Decisiones Tecnicas
+## 9. Decisiones Tecnicas
 
 - Se priorizo contrato compartido para evitar divergencia con mobile.
 - Se mantuvo `ApiEnvelope` como formato unico para todas las respuestas.
 - El home agrega tanto feed como entrenos para reducir roundtrips en mobile.
 - Las sesiones de entrenamiento viven como dominio propio, no como parte del feed.
 
-## 9. Estado De Calidad
+## 10. Estado De Calidad
 
 Verificado recientemente:
 
-- `pnpm --filter olympx-api typecheck`
-- `pnpm run format:check`
-- `pnpm --filter olympx-api run prisma:generate`
-- `pnpm --filter olympx-api run prisma:push`
-- `pnpm --filter olympx-api run prisma:seed`
+- typecheck de API
+- check de formato
+- prisma generate
+- prisma push
+- prisma seed
 
-## 10. Pendientes Priorizados
+## 11. Pendientes Priorizados
 
 1. Evitar el uso de `any` en queries Prisma y tipar el acceso al client generado.
 2. Introducir DTOs y validaciones mas especificas en escrituras.
-3. Separar mejor el dominio social del dominio entrenamiento si el producto crece.
-4. Agregar tests de integracion para auth, posts y training.
-5. Revisar paginacion si el volumen de datos crece.
+3. Agregar tests de integracion para auth, posts, search, training y commercial.
+4. Revisar paginacion y performance del feed si el volumen de datos crece.
+5. Tipar mejor los selects complejos de Prisma.
 
-## 11. Riesgos Y Deuda Actual
+## 12. Riesgos Y Deuda Actual
 
 - El backend ya resuelve bastante del MVP, pero el tipado Prisma aun tiene atajos.
 - Falta cobertura automatizada de endpoints.
 - La consulta de likes en home/posts se resuelve con conteo adicional por item.
 - Si el feed crece, se necesitara paginacion real para no cargar demasiados registros.
 
-## 12. Criterio De Cierre Del Bloque
+## 13. Criterio De Cierre Del Bloque
 
 Este bloque se puede considerar estable cuando:
 
 - Login y `me` funcionan de forma consistente.
 - `home/summary` entrega todo lo que mobile necesita.
-- Crear posts, comentarios, likes y sesiones responde bien.
+- Crear posts, comentarios, likes, search y sesiones responde bien.
 - Prisma, seed y typecheck permanecen limpios.

@@ -12,12 +12,14 @@ OlympX ya tiene una base funcional integrada entre backend y mobile.
 
 Hoy el producto soporta:
 
-- Login y persistencia de sesion.
+- Login, registro y persistencia de sesion.
 - Home unificado con perfil, gimnasios, feed y entrenos recientes.
+- Busqueda, ranking y alertas con vistas persistidas.
 - Creacion de publicaciones.
-- Creacion de entrenamientos.
+- Creacion y seguimiento de entrenamientos.
 - Comentarios y likes en publicaciones.
-- Detalle de gimnasio y detalle de publicacion.
+- Detalle de gimnasio, detalle de publicacion y detalle de sesion.
+- Perfil editable y paywall basico.
 
 ## 3. Cobertura Real
 
@@ -28,10 +30,15 @@ La API cubre el core operativo del MVP:
 - autenticacion
 - home summary
 - gimnasios
+- search
+- leaderboard
+- notifications
 - publicaciones
 - comentarios
 - likes
+- perfil y stats
 - sesiones de entrenamiento
+- suscripciones y plans
 - admin summary
 - health check
 
@@ -40,12 +47,18 @@ La API cubre el core operativo del MVP:
 La app mobile ya permite validar el producto en un flujo completo:
 
 - entrar con credenciales
+- registrar cuenta
 - ver el estado del usuario
 - revisar gimnasios sugeridos
+- buscar contenido
+- ver ranking
+- revisar alertas y marcarlas como vistas
 - publicar en el feed
 - registrar entrenos
 - revisar entrenos recientes
 - abrir detalle de posts y gimnasios
+- editar perfil
+- revisar suscripcion y trial
 
 ## 4. Contrato y Datos
 
@@ -58,12 +71,12 @@ La app mobile ya permite validar el producto en un flujo completo:
 
 Validaciones ejecutadas recientemente:
 
-- `pnpm --filter olympx-api typecheck`
-- `pnpm --filter olympx-mobile typecheck`
-- `pnpm run format:check`
-- `pnpm --filter olympx-api run prisma:generate`
-- `pnpm --filter olympx-api run prisma:push`
-- `pnpm --filter olympx-api run prisma:seed`
+- typecheck de API
+- typecheck de mobile
+- check de formato
+- prisma generate
+- prisma push
+- prisma seed
 
 ## 6. Riesgos Actuales
 
@@ -71,13 +84,13 @@ Validaciones ejecutadas recientemente:
 - Falta cache local para mejorar resiliencia.
 - Todavia no hay tests de integracion cubriendo el flujo completo.
 - El acceso Prisma sigue teniendo algunos atajos con `any`.
-
 ## 7. Proxima Prioridad
 
 1. Separar mejor los flujos de publicaciones y entrenos.
-2. Agregar historial dedicado de entrenamientos.
-3. Cubrir endpoints criticos con tests.
-4. Reducir el uso de `any` en backend.
+2. Cubrir endpoints criticos con tests.
+3. Reducir el uso de `any` en backend.
+4. Mejorar cache y resiliencia offline en mobile.
+5. Sumar tests de integracion del flujo completo.
 
 ## 8. Documentos Detallados
 
