@@ -34,7 +34,7 @@ El orden recomendado es:
 
 - Mostrar PRs y progreso de forma mas visible.
 - Conectar mejor el historial con el detalle.
-- Agregar cache local para summary y listados.
+- Agregar cola de acciones offline si se valida la necesidad de escritura sin red.
 - Definir limites Free/Paid sin afectar el core.
 
 ### P2 - Preparacion comercial
@@ -121,5 +121,5 @@ La recomendacion es continuar con la ruta:
 ## 8. Siguiente Paso Recomendado
 
 1. Agregar tests smoke de auth, home y training.
-2. Introducir cache local para reducir carga inicial.
+2. Definir cola de sincronizacion para acciones offline.
 3. Definir el paquete minimo de Free vs Paid.

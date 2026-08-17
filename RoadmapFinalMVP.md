@@ -16,7 +16,7 @@ Objetivo: asegurar que el producto principal ya no tenga huecos de flujo.
 
 Objetivo: reducir deuda antes de pedir feedback externo.
 
-- Cache local para summary y listados.
+- Cola de acciones offline para operaciones de escritura.
 - Manejo de errores y estados vacios.
 - Type safety mas estricto en Prisma y contracts.
 - Smoke tests para auth, home, search y training.

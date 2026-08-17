@@ -18,8 +18,23 @@ Hoy cubre:
 - Ranking de usuarios.
 - Alertas de actividad con persistencia backend de vistas.
 - Perfil y edicion de perfil.
+- Perfiles publicos desde el ranking.
+- Seguir y dejar de seguir usuarios.
+- Listas de seguidores y seguidos.
+- Logros y conquistas calculados desde la actividad.
+- Historial de check-ins del usuario.
 - Detalle de gimnasio y detalle de publicacion.
 - Historial, creacion y detalle de sesiones de entrenamiento.
+- Historial con filtros por periodo e intensidad.
+- Rutinas persistentes y creación desde sesiones.
+- Ranking por ejercicio con mejor 1RM estimado.
+- Tab dedicada de Comunidad en la navegación principal.
+- Edición de nickname, región, provincia y comuna con catálogos de Chile.
+- Cache local y fallback offline para Home e historial.
+- Home con pull-to-refresh.
+- Reacciones fitness, reportes y check-in de gimnasio.
+- Feed filtrable entre todo el contenido y usuarios seguidos.
+- Actividad reciente del gimnasio.
 - Paywall con RevenueCat.
 - Terminos y condiciones dentro de la app.
 
@@ -40,6 +55,7 @@ Hoy cubre:
 - Listado de entrenos recientes.
 - Feed de publicaciones.
 - Obtiene ubicacion para gimnasios cercanos.
+- Permite alternar feed general y feed de seguidos.
 
 ### Search
 
@@ -48,6 +64,8 @@ Hoy cubre:
 ### Leaderboard
 
 - Muestra ranking por score social y entreno.
+- Permite abrir el perfil publico de cada usuario.
+- Permite seguir o dejar de seguir desde el perfil.
 
 ### Notifications
 
@@ -57,18 +75,25 @@ Hoy cubre:
 ### Gym Detail
 
 - Muestra detalle del gimnasio seleccionado.
+- Permite elegir gimnasio principal y registrar check-in.
+- Muestra check-ins y publicaciones recientes del gimnasio.
 
 ### Post Detail
 
 - Muestra contenido completo de la publicacion.
 - Permite comentar.
 - Permite dar like / unlike.
+- Permite reacciones fitness y reportar la publicacion.
 - Refresca estado local al recibir respuesta de la API.
 
 ### Training History
 
 - Lista sesiones registradas.
 - Entra al detalle de cada sesion.
+- Filtra por periodo e intensidad.
+- Muestra progreso, volumen, reps y 1RM estimado.
+- Conserva el ultimo historial valido sin red.
+- Permite acceder a la biblioteca de rutinas.
 
 ### Training Session Create
 
@@ -79,12 +104,35 @@ Hoy cubre:
 
 - Muestra resumen, sets, volumen y progreso.
 - Permite registrar sets nuevos.
+- Permite editar y eliminar la sesion propia.
 - Incluye ajustes avanzados opcionales de RPE y RIR.
+- Permite compartir el resumen como publicación.
+- Permite guardar la sesión como rutina.
+
+### Routines
+
+- Lista rutinas guardadas.
+- Crea rutinas base.
+- Edita el nombre, descripción, días, ejercicios, sets objetivo y reps objetivo.
+- Inicia una sesión desde una rutina.
+
+### Exercise Leaderboard
+
+- Muestra los mejores sets competitivos por ejercicio.
+- Se abre desde el detalle de una sesión.
+
+### Community
+
+- Feed social dedicado con filtros Todos/Siguiendo.
+- Publicación de posts, likes y paginación.
+- Accesos rápidos a búsqueda de atletas y ranking general.
+- Interfaz visual tipo red social con historias de seguidos, composer compacto y tarjetas de actividad.
 
 ### Profile
 
 - Muestra datos basicos del usuario autenticado.
 - Carga estadisticas de usuario y suscripcion.
+- Muestra logros, conquistas y check-ins recientes.
 
 ### Edit Profile
 
@@ -112,15 +160,20 @@ La app consume estos flujos principales:
 - `GET /api/posts/:id`
 - `POST /api/posts/:id/comments`
 - `POST /api/posts/:id/like`
+- `POST /api/posts/:id/reactions`
+- `POST /api/reports`
 - `GET /api/gyms`
 - `GET /api/gyms/nearby`
 - `GET /api/gyms/:id`
+- `POST /api/gyms/:id/check-in`
 - `GET /api/search`
 - `GET /api/leaderboard`
 - `GET /api/notifications`
 - `GET /api/users/me`
 - `GET /api/users/me/stats`
+- `GET /api/users/:id`
 - `PATCH /api/users/me`
+- `PATCH /api/users/me/gym`
 - `POST /api/users/me/avatar`
 - `PATCH /api/users/me/location`
 - `GET /api/subscriptions/me`
@@ -165,6 +218,7 @@ La base de la integracion usa `axios` con interceptor de `Authorization` y `ApiE
 - Se reutiliza el paquete privado de contratos para evitar drift entre API y mobile.
 - El estado de auth se centraliza en Zustand.
 - La persistencia local usa AsyncStorage para mantener sesion entre aperturas.
+- Home e historial guardan el ultimo estado valido para tolerar fallos de red.
 - Home agrupa el contenido operativo para reducir navegacion y acelerar validacion de MVP.
 
 ## 7. Estado De Calidad
@@ -176,18 +230,17 @@ Verificado recientemente:
 
 ## 8. Pendientes Priorizados
 
-1. Agregar cache local para reducir llamadas al summary y a listados.
-2. Sumar tests basicos de mobile para login, home y training.
-3. Separar mejor el composer de publicaciones y el composer de entrenos.
-4. Mejorar estados vacios, errores y loading para resiliencia offline.
-5. Evaluar analitica de uso mobile.
+1. Sumar tests basicos de mobile para login, home y training.
+2. Separar mejor el composer de publicaciones y el composer de entrenos.
+3. Mejorar sincronizacion de acciones creadas offline.
+4. Evaluar analitica de uso mobile.
 
 ## 9. Riesgos Y Deuda Actual
 
 - El home concentra demasiadas acciones en una sola pantalla.
-- Falta una capa de cache para mejorar experiencia offline o con red inestable.
 - No hay analitica de uso mobile aun.
 - No hay tests automatizados para mobile.
+- La cache actual es de solo lectura offline; no hay cola de acciones pendientes.
 
 ## 10. Criterio De Cierre Del Bloque
 

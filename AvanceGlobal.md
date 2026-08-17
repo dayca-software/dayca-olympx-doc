@@ -15,11 +15,23 @@ Hoy el producto soporta:
 - Login, registro y persistencia de sesion.
 - Home unificado con perfil, gimnasios, feed y entrenos recientes.
 - Busqueda, ranking y alertas con vistas persistidas.
+- Perfiles publicos, reacciones fitness y reportes.
+- Seguimiento social entre usuarios.
+- Feed personalizado y actividad reciente de gimnasios.
+- Listas sociales, logros y check-ins personales.
+- Rutinas persistentes y sesiones desde plantilla.
+- Editor mobile de días y ejercicios de rutina.
+- Tab mobile dedicada para la comunidad y descubrimiento social.
+- Ubicación de perfil ampliada con provincia persistente.
+- Ranking competitivo por ejercicio y mejor 1RM estimado.
 - Creacion de publicaciones.
 - Creacion y seguimiento de entrenamientos.
+- Historial con filtros y cache offline basica.
+- Progreso de entrenamiento y mantenimiento de sesiones.
 - Comentarios y likes en publicaciones.
 - Detalle de gimnasio, detalle de publicacion y detalle de sesion.
 - Perfil editable y paywall basico.
+- Gimnasio principal y check-in.
 
 ## 3. Cobertura Real
 
@@ -53,9 +65,14 @@ La app mobile ya permite validar el producto en un flujo completo:
 - buscar contenido
 - ver ranking
 - revisar alertas y marcarlas como vistas
+- abrir perfiles publicos desde el ranking
 - publicar en el feed
 - registrar entrenos
 - revisar entrenos recientes
+- revisar progreso, volumen y 1RM estimado
+- editar o eliminar sesiones propias
+- reaccionar y reportar publicaciones
+- elegir gimnasio principal y hacer check-in
 - abrir detalle de posts y gimnasios
 - editar perfil
 - revisar suscripcion y trial
@@ -81,16 +98,16 @@ Validaciones ejecutadas recientemente:
 ## 6. Riesgos Actuales
 
 - El home concentra demasiadas acciones.
-- Falta cache local para mejorar resiliencia.
 - Todavia no hay tests de integracion cubriendo el flujo completo.
 - El acceso Prisma sigue teniendo algunos atajos con `any`.
+- La cache actual es de solo lectura; no hay cola de acciones pendientes.
 ## 7. Proxima Prioridad
 
 1. Separar mejor los flujos de publicaciones y entrenos.
 2. Cubrir endpoints criticos con tests.
 3. Reducir el uso de `any` en backend.
-4. Mejorar cache y resiliencia offline en mobile.
-5. Sumar tests de integracion del flujo completo.
+4. Sumar tests de integracion del flujo completo.
+5. Agregar cola de acciones pendientes si se necesita escritura offline.
 
 ## 8. Documentos Detallados
 

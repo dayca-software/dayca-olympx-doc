@@ -16,10 +16,20 @@ Hoy cubre:
 - Resumen para home mobile.
 - Catalogo, busqueda y detalle de gimnasios.
 - Feed social con publicaciones, comentarios y likes.
+- Reacciones fitness y reportes de publicaciones.
 - Ranking de usuarios.
 - Alertas sobre actividad en publicaciones con marcado de vistas.
 - Perfil, avatar y ubicacion del usuario.
+- Perfiles publicos con estadisticas y publicaciones.
+- Seguimiento entre usuarios.
+- Feed personalizado por usuarios seguidos.
+- Actividad reciente de gimnasios.
 - Registro y consulta de sesiones de entrenamiento.
+- Progreso de entrenamiento con volumen, reps, semanas y 1RM estimado.
+- Rutinas persistentes y sesiones iniciadas desde plantilla.
+- Ranking competitivo por ejercicio basado en mejor 1RM estimado.
+- Perfil editable con nickname, región, provincia y comuna persistidos.
+- Edicion y eliminacion segura de sesiones propias.
 - Suscripcion, trial y catalogo comercial.
 - Resumen de administracion.
 - Health check y Swagger.
@@ -40,6 +50,13 @@ Hoy cubre:
 - `POST /api/users/me/avatar`
 - `PATCH /api/users/me/location`
 - `GET /api/users/me/stats`
+- `GET /api/users/me/achievements`
+- `GET /api/users/me/check-ins`
+- `GET /api/users/:id`
+- `PATCH /api/users/me/gym`
+- `POST /api/users/:id/follow`
+- `GET /api/users/:id/followers`
+- `GET /api/users/:id/following`
 
 ### Home
 
@@ -51,6 +68,8 @@ Hoy cubre:
 - `GET /api/gyms`
 - `GET /api/gyms/nearby`
 - `GET /api/gyms/:id`
+- `POST /api/gyms/:id/check-in`
+- `GET /api/gyms/:id/activity`
 
 ### Search
 
@@ -68,16 +87,35 @@ Hoy cubre:
 ### Posts
 
 - `GET /api/posts`
+  - soporta `scope=all|following`
 - `POST /api/posts`
 - `GET /api/posts/:id`
 - `POST /api/posts/:id/comments`
 - `POST /api/posts/:id/like`
+- `POST /api/posts/:id/reactions`
+
+### Reports
+
+- `POST /api/reports`
 
 ### Training
 
+- `GET /api/training/routines`
+- `GET /api/training/routines/:id`
+- `POST /api/training/routines`
+- `POST /api/training/routines/from-session/:sessionId`
+- `PATCH /api/training/routines/:id`
+- `POST /api/training/routines/:id/start`
 - `GET /api/training/sessions`
+
+### Leaderboard
+
+- `GET /api/leaderboard/exercises/:exerciseId`
+- `GET /api/training/progress`
 - `GET /api/training/sessions/:id`
 - `POST /api/training/sessions`
+- `PATCH /api/training/sessions/:id`
+- `DELETE /api/training/sessions/:id`
 - `POST /api/training/sessions/:id/sets`
 
 ### Commercial
@@ -114,8 +152,10 @@ Entidades actuales en Prisma:
 - `Post`
 - `PostComment`
 - `PostLike`
+- `PostReaction`
 - `TrainingSession`
 - `TrainingSet`
+- `GymCheckIn`
 
 ## 6. Flujos Ya Cubiertos Por Mobile
 
@@ -125,6 +165,8 @@ Entidades actuales en Prisma:
 - Ranking y notificaciones con estado de visto.
 - Perfil editable con avatar y stats.
 - Crear sesion, agregar sets y revisar detalle.
+- Consultar progreso de los ultimos 30 dias.
+- Editar y eliminar sesiones propias.
 - Trial y paywall basico.
 
 ## 7. Seeds Y Datos Demo
