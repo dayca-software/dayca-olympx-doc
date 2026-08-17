@@ -24,6 +24,7 @@ Hoy el producto soporta:
 - Tab mobile dedicada para la comunidad y descubrimiento social.
 - Ubicación de perfil ampliada con provincia persistente.
 - Ranking competitivo por ejercicio y mejor 1RM estimado.
+- Ranking general con filtros temporales, alcance por gimnasio y posición personal.
 - Creacion de publicaciones.
 - Creacion y seguimiento de entrenamientos.
 - Historial con filtros y cache offline basica.

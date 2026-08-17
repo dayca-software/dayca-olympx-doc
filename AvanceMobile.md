@@ -16,6 +16,7 @@ Hoy cubre:
 - Home con resumen de perfil, gimnasios, publicaciones y entrenos recientes.
 - Busqueda global.
 - Ranking de usuarios.
+- Ranking con podio, filtros por periodo/alcance y posición personal.
 - Alertas de actividad con persistencia backend de vistas.
 - Perfil y edicion de perfil.
 - Perfiles publicos desde el ranking.

@@ -78,6 +78,8 @@ Hoy cubre:
 ### Leaderboard
 
 - `GET /api/leaderboard`
+- acepta `period=all|30d` y `scope=global|gym`.
+- devuelve la posición y puntuación del usuario actual.
 
 ### Notifications
 
