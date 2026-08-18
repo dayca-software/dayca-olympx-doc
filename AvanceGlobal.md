@@ -20,11 +20,15 @@ Hoy el producto soporta:
 - Feed personalizado y actividad reciente de gimnasios.
 - Listas sociales, logros y check-ins personales.
 - Rutinas persistentes y sesiones desde plantilla.
+- Onboarding obligatorio post-registro y límites comerciales rolling de 30 días.
 - Editor mobile de días y ejercicios de rutina.
 - Tab mobile dedicada para la comunidad y descubrimiento social.
 - Ubicación de perfil ampliada con provincia persistente.
 - Ranking competitivo por ejercicio y mejor 1RM estimado.
 - Ranking general con filtros temporales, alcance por gimnasio y posición personal.
+- Registro legal, bloqueo de cuentas suspendidas y check-in con proximidad validada.
+- Webhook de RevenueCat protegido por secreto de integración.
+- Moderación ejecuta acciones reales sobre contenido y cuentas sancionadas.
 - Creacion de publicaciones.
 - Creacion y seguimiento de entrenamientos.
 - Historial con filtros y cache offline basica.

@@ -17,6 +17,7 @@ OlympX tiene una base de testing aun inicial. Hay pruebas smoke/minimas en web, 
 - Script de test: `vitest run`
 - Script de cobertura: `vitest run --coverage`
 - Test visible actualmente: smoke del modulo principal (`test/app.test.ts`)
+- Suite API actual: 6 archivos y 95 tests pasando.
 - Typecheck y Prisma sync se usan como validacion adicional de calidad
 
 ### Web
@@ -59,6 +60,7 @@ OlympX tiene una base de testing aun inicial. Hay pruebas smoke/minimas en web, 
 
 - `pnpm --filter olympx-api typecheck`
 - `pnpm --filter olympx-mobile typecheck`
+- `pnpm --filter olympx-api test`
 - `pnpm run format:check`
 - `pnpm --filter olympx-api run prisma:generate`
 - `pnpm --filter olympx-api run prisma:push`

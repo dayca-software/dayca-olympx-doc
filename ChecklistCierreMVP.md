@@ -10,6 +10,7 @@
 - [ ] Search devuelve gimnasios, ejercicios y posts.
 - [ ] Leaderboard responde sin errores.
 - [ ] Perfil y edicion de perfil guardan cambios.
+- [x] Onboarding post-registro obliga a completar perfil mínimo y gimnasio.
 
 ## 2. Entrenamiento
 
@@ -33,6 +34,8 @@
 - [ ] Cargar paywall sin bloquear el core.
 - [ ] Activar trial desde home.
 - [ ] Confirmar acceso a premium con RevenueCat.
+- [x] Definir periodo rolling de 30 días para límites comerciales.
+- [ ] Implementar eventos de uso para exportaciones y compartición cuando existan esos flujos.
 
 ## 5. Calidad
 

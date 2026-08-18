@@ -31,6 +31,9 @@ Hoy cubre:
 - Perfil editable con nickname, región, provincia y comuna persistidos.
 - Edicion y eliminacion segura de sesiones propias.
 - Suscripcion, trial y catalogo comercial.
+- Límites comerciales rolling de 30 días para sesiones, gimnasios y ejercicios.
+- Endpoint de uso comercial: `GET /api/subscriptions/me/limits`.
+- Onboarding persistido con validación de perfil mínimo y gimnasio principal.
 - Resumen de administracion.
 - Health check y Swagger.
 
@@ -41,6 +44,7 @@ Hoy cubre:
 - `POST /api/auth/login`
 - `POST /api/auth/register`
 - `GET /api/auth/me`
+- `PATCH /api/users/me/onboarding/complete`
 - Soporta token bearer y flujo de sesion para mobile.
 
 ### Users
@@ -69,6 +73,7 @@ Hoy cubre:
 - `GET /api/gyms/nearby`
 - `GET /api/gyms/:id`
 - `POST /api/gyms/:id/check-in`
+- exige coordenadas, gimnasio activo/verificado y distancia máxima configurable.
 - `GET /api/gyms/:id/activity`
 
 ### Search
@@ -106,6 +111,7 @@ Hoy cubre:
 ### Reports
 
 - `POST /api/reports`
+- Aprobar un reporte ejecuta la acción: elimina post/comentario o suspende al usuario.
 
 ### Training
 
@@ -121,6 +127,7 @@ Hoy cubre:
 ### Leaderboard
 
 - `GET /api/leaderboard/exercises/:exerciseId`
+- Los rankings excluyen usuarios suspendidos.
 - `GET /api/training/progress`
 - `GET /api/training/prs`
 - `GET /api/training/sessions/:id`
@@ -134,6 +141,7 @@ Hoy cubre:
 - `GET /api/commercial/plans`
 - `GET /api/subscriptions/me`
 - `POST /api/subscriptions/me/start-trial`
+- `POST /api/billing/revenuecat/webhook` protegido por `REVENUECAT_WEBHOOK_SECRET`.
 
 ### Admin
 

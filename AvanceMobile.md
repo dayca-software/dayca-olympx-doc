@@ -13,6 +13,7 @@ La app mobile ya esta alineada con el stack Dayca y consume el contrato comparti
 Hoy cubre:
 
 - Autenticacion con persistencia local.
+- Registro con aceptación persistida de términos y versión legal.
 - Home con resumen de perfil, gimnasios, publicaciones y entrenos recientes.
 - Busqueda global.
 - Ranking de usuarios.
@@ -34,12 +35,16 @@ Hoy cubre:
 - Cache local y fallback offline para Home e historial.
 - Home con pull-to-refresh.
 - Reacciones fitness, reportes y check-in de gimnasio.
+- Check-in con solicitud de ubicación y validación de proximidad.
+- Las cuentas suspendidas no pueden iniciar ni mantener sesión activa.
 - Alertas sociales para likes, comentarios, reacciones y nuevos seguidores.
 - Filtros de alertas y acción para marcar todo como leído.
 - Cliente preparado para registrar y desactivar tokens FCM/APNs.
 - Edición y eliminación de publicaciones propias.
 - Edición, eliminación y reporte de comentarios.
 - Bloqueo y desbloqueo de usuarios desde perfiles públicos.
+- Onboarding post-registro con datos mínimos, nivel y gimnasio principal.
+- Redirección al onboarding antes de acceder al contenido principal.
 - Contador de comentarios visible en el feed.
 - Reordenamiento de ejercicios dentro de rutinas.
 - Gráfico semanal de volumen y mejores marcas por ejercicio.
