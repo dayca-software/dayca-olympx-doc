@@ -39,7 +39,8 @@
 
 ## 5. Calidad
 
-- [ ] Agregar smoke tests para auth, home y training.
+- [x] Agregar smoke tests para onboarding y training con límite comercial.
+- [x] Agregar smoke test de Home autenticado y rechazo de sesión inválida.
 - [ ] Cubrir al menos un test de notifications.
 - [ ] Verificar typecheck de API.
 - [ ] Verificar typecheck de mobile.
