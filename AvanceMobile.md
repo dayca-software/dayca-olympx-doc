@@ -34,6 +34,16 @@ Hoy cubre:
 - Cache local y fallback offline para Home e historial.
 - Home con pull-to-refresh.
 - Reacciones fitness, reportes y check-in de gimnasio.
+- Alertas sociales para likes, comentarios, reacciones y nuevos seguidores.
+- Filtros de alertas y acción para marcar todo como leído.
+- Cliente preparado para registrar y desactivar tokens FCM/APNs.
+- Edición y eliminación de publicaciones propias.
+- Edición, eliminación y reporte de comentarios.
+- Bloqueo y desbloqueo de usuarios desde perfiles públicos.
+- Contador de comentarios visible en el feed.
+- Reordenamiento de ejercicios dentro de rutinas.
+- Gráfico semanal de volumen y mejores marcas por ejercicio.
+- Historial de récords personales por ejercicio.
 - Feed filtrable entre todo el contenido y usuarios seguidos.
 - Actividad reciente del gimnasio.
 - Paywall con RevenueCat.

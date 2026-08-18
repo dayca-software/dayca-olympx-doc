@@ -30,6 +30,12 @@ Hoy el producto soporta:
 - Historial con filtros y cache offline basica.
 - Progreso de entrenamiento y mantenimiento de sesiones.
 - Comentarios y likes en publicaciones.
+- Alertas sociales y gestión de publicaciones propias.
+- Rutinas con orden editable, objetivos y métricas visuales de progreso.
+- Moderación social con bloqueo, edición, eliminación y reportes de comentarios.
+- Alertas filtrables con estado persistente de lectura.
+- Infraestructura preparada para tokens push FCM/APNs.
+- Historial de récords personales por ejercicio.
 - Detalle de gimnasio, detalle de publicacion y detalle de sesion.
 - Perfil editable y paywall basico.
 - Gimnasio principal y check-in.

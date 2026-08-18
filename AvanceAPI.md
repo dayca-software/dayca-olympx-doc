@@ -85,12 +85,19 @@ Hoy cubre:
 
 - `GET /api/notifications`
 - `POST /api/notifications/viewed`
+- Las alertas incluyen likes, comentarios, reacciones fitness y nuevos seguidores.
+- `GET /api/notifications?type=all|like|comment|reaction|follow`
+- `POST /api/notifications/viewed/all`
+- `POST /api/notifications/devices`
+- `POST /api/notifications/devices/disable`
 
 ### Posts
 
 - `GET /api/posts`
   - soporta `scope=all|following`
 - `POST /api/posts`
+- `PATCH /api/posts/:id`
+- `DELETE /api/posts/:id`
 - `GET /api/posts/:id`
 - `POST /api/posts/:id/comments`
 - `POST /api/posts/:id/like`
@@ -108,12 +115,14 @@ Hoy cubre:
 - `POST /api/training/routines/from-session/:sessionId`
 - `PATCH /api/training/routines/:id`
 - `POST /api/training/routines/:id/start`
+- Al iniciar una rutina, el mobile carga sus ejercicios y objetivos en la sesión.
 - `GET /api/training/sessions`
 
 ### Leaderboard
 
 - `GET /api/leaderboard/exercises/:exerciseId`
 - `GET /api/training/progress`
+- `GET /api/training/prs`
 - `GET /api/training/sessions/:id`
 - `POST /api/training/sessions`
 - `PATCH /api/training/sessions/:id`
