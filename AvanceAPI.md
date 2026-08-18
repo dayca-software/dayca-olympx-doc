@@ -73,7 +73,7 @@ Hoy cubre:
 - `GET /api/gyms/nearby`
 - `GET /api/gyms/:id`
 - `POST /api/gyms/:id/check-in`
-- exige coordenadas, gimnasio activo/verificado y distancia máxima configurable.
+- exige coordenadas, gimnasio activo/verificado, distancia máxima configurable y evita duplicados durante 30 minutos.
 - `GET /api/gyms/:id/activity`
 
 ### Search

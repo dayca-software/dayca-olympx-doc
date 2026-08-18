@@ -45,6 +45,8 @@
 - [ ] Verificar typecheck de API.
 - [ ] Verificar typecheck de mobile.
 - [ ] Verificar format check general.
+- [x] Check-in valida GPS, gimnasio disponible y duplicados recientes.
+- [x] Búsqueda, alertas e historial ofrecen reintento o acción útil en estados vacíos/error.
 
 ## 6. Definition Of Done
 

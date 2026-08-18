@@ -53,6 +53,8 @@ Hoy cubre:
 - Actividad reciente del gimnasio.
 - Paywall con RevenueCat.
 - Terminos y condiciones dentro de la app.
+- Reintento explícito en errores de búsqueda, alertas e historial de entrenamiento.
+- Estados vacíos de entrenamiento con CTA para registrar la primera sesión.
 
 ## 3. Pantallas Implementadas
 
