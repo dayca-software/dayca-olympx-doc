@@ -31,7 +31,7 @@ Hoy cubre:
 - Perfil editable con nickname, región, provincia y comuna persistidos.
 - Edicion y eliminacion segura de sesiones propias.
 - Suscripcion, trial y catalogo comercial.
-- Límites comerciales rolling de 30 días para sesiones, gimnasios y ejercicios.
+- Límites comerciales rolling de 30 días aplicados para sesiones, gimnasios y ejercicios.
 - Endpoint de uso comercial: `GET /api/subscriptions/me/limits`.
 - Onboarding persistido con validación de perfil mínimo y gimnasio principal.
 - Resumen de administracion.
