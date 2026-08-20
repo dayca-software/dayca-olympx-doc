@@ -8,7 +8,7 @@ Tener visibilidad clara de que esta probado hoy, que esta solo preparado y que f
 
 ## 2. Estado General
 
-OlympX tiene una base de testing aun inicial. Hay pruebas smoke/minimas en web, admin y API, pero no existe todavia una estrategia completa de integracion o E2E para el flujo total del producto.
+OlympX tiene una base de testing aun inicial. Hay pruebas smoke/minimas en web, admin y API; el procedimiento manual de push E2E esta documentado, pero aun no se ha ejecutado ni automatizado.
 
 ## 3. Cobertura Actual
 
@@ -17,7 +17,7 @@ OlympX tiene una base de testing aun inicial. Hay pruebas smoke/minimas en web, 
 - Script de test: `vitest run`
 - Script de cobertura: `vitest run --coverage`
 - Test visible actualmente: smoke del modulo principal (`test/app.test.ts`)
-- Suite API actual: 10 archivos y 106 tests pasando.
+- Suite API actual: 12 archivos y 110 tests pasando.
 - Smoke tests de onboarding y creación de sesiones con límite comercial.
 - Smoke test de Home autenticado y rechazo de sesión inválida.
 - Smoke tests de check-in dentro/fuera de radio y duplicado reciente.
@@ -56,7 +56,8 @@ OlympX tiene una base de testing aun inicial. Hay pruebas smoke/minimas en web, 
 
 ### E2E
 
-- No existe suite E2E versionada en el repo hoy.
+- No existe suite E2E automatizada/versionada en el repo hoy.
+- La prueba manual de notificaciones push esta documentada en `doc/E2EPushNotifications.md`.
 - No hay Playwright/Cypress visible ni comandos raiz para ejecutarla.
 
 ## 5. Validaciones Que Si Se Estan Usando
@@ -80,9 +81,10 @@ OlympX tiene una base de testing aun inicial. Hay pruebas smoke/minimas en web, 
 
 1. Agregar tests de integracion para auth, home y posts en API.
 2. Agregar tests de UI para `HomeScreen` y `PostDetailScreen`.
-3. Introducir E2E para el flujo login -> home -> post -> training.
-4. Medir cobertura y fijar un piso minimo para codigo nuevo.
-5. Añadir smoke tests para mobile cuando el stack de pruebas quede definido.
+3. Ejecutar `doc/E2EPushNotifications.md` y registrar el resultado.
+4. Introducir E2E automatizado para el flujo login -> home -> post -> training.
+5. Medir cobertura y fijar un piso minimo para codigo nuevo.
+6. Añadir smoke tests para mobile cuando el stack de pruebas quede definido.
 
 ## 8. Criterio De Cierre Del Bloque
 

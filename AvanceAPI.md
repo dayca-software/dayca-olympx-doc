@@ -95,6 +95,8 @@ Hoy cubre:
 - `POST /api/notifications/viewed/all`
 - `POST /api/notifications/devices`
 - `POST /api/notifications/devices/disable`
+- Firebase Admin envia notificaciones dirigidas a todos los `PushDevice` activos del usuario.
+- Los tokens invalidos se desactivan automaticamente sin romper la accion social.
 
 ### Posts
 
@@ -107,6 +109,7 @@ Hoy cubre:
 - `POST /api/posts/:id/comments`
 - `POST /api/posts/:id/like`
 - `POST /api/posts/:id/reactions`
+- Likes, comentarios y reacciones disparan push al propietario del post cuando corresponde.
 
 ### Reports
 
