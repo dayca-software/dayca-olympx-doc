@@ -39,7 +39,7 @@ Hoy cubre:
 - Las cuentas suspendidas no pueden iniciar ni mantener sesión activa.
 - Alertas sociales para likes, comentarios, reacciones y nuevos seguidores.
 - Filtros de alertas y acción para marcar todo como leído.
-- Cliente preparado para registrar y desactivar tokens FCM/APNs.
+- Firebase Messaging configurado para registrar tokens FCM/APNs y refrescarlos en la API.
 - Edición y eliminación de publicaciones propias.
 - Edición, eliminación y reporte de comentarios.
 - Bloqueo y desbloqueo de usuarios desde perfiles públicos.

@@ -34,6 +34,7 @@
 - [ ] Cargar paywall sin bloquear el core.
 - [ ] Activar trial desde home.
 - [ ] Confirmar acceso a premium con RevenueCat.
+- [x] Configurar Firebase Messaging y sincronización de tokens FCM/APNs.
 - [x] Definir periodo rolling de 30 días para límites comerciales.
 - [ ] Implementar eventos de uso para exportaciones y compartición cuando existan esos flujos.
 
