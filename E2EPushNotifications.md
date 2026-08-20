@@ -66,8 +66,13 @@ pnpm --filter olympx-mobile android
 Para iOS:
 
 ```bash
+cd ios
+pod install
+cd ..
 pnpm --filter olympx-mobile ios
 ```
+
+El target iOS debe abrirse desde `ios/olympxmobile.xcworkspace`, no desde el `.xcodeproj`. `pod install` es obligatorio despues de agregar o actualizar Firebase Messaging.
 
 ## 5. Preparar Usuarios
 
@@ -202,6 +207,8 @@ Repetir cada caso, al menos una vez, en estos estados:
 
 ### iOS no muestra la notificacion
 
+- Confirmar que `Podfile.lock` contiene Firebase y RNFB Messaging.
+- Confirmar que `pod install` termino correctamente y que se abre el workspace.
 - Confirmar permisos de alert, badge y sonido.
 - Confirmar capability Push Notifications y Background Modes.
 - Confirmar APNs configurado en Firebase.
@@ -218,11 +225,27 @@ Repetir cada caso, al menos una vez, en estos estados:
 - [ ] Foreground muestra alerta y permite navegar.
 - [ ] Background navega al destino correcto.
 - [ ] App terminada navega al destino correcto.
+- [ ] Build iOS usa `aps-environment=development` en Debug y `production` en Release.
 - [ ] Tokens invalidos se desactivan.
 - [ ] La accion social continua funcionando si Firebase falla.
 - [ ] La credencial no aparece en Git ni en logs.
 
-## 11. Registro De Ejecucion
+## 11. Pruebas iOS Pendientes
+
+La build de simulador valida compilacion, pero no sustituye la validacion de APNs en hardware real.
+
+- [ ] Ejecutar en iPhone fisico con build Debug y `aps-environment=development`.
+- [ ] Confirmar permiso de alert, sonido y badge.
+- [ ] Confirmar registro del token APNs/FCM en `PushDevice`.
+- [ ] Probar push con app en foreground.
+- [ ] Probar push con app en background.
+- [ ] Probar push con app terminada.
+- [ ] Confirmar apertura de `PostDetail` para like, comentario y reaccion.
+- [ ] Confirmar apertura de `PublicProfile` para follow.
+- [ ] Ejecutar build Release/TestFlight con `aps-environment=production`.
+- [ ] Repetir al menos un caso desde TestFlight.
+
+## 12. Registro De Ejecucion
 
 Completar despues de ejecutar la prueba:
 

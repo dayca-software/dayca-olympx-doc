@@ -76,6 +76,7 @@ OlympX tiene una base de testing aun inicial. Hay pruebas smoke/minimas en web, 
 - No hay regression suite para login, home, posts, likes y training.
 - No existe cobertura cross-browser ni validacion mobile E2E.
 - La ausencia de tests en mobile aumenta el riesgo de regresiones de UI o navegación.
+- El workspace iOS ya compila con Firebase Messaging; las pruebas físicas de entrega APNs y apertura están pendientes y checklistadas en `doc/E2EPushNotifications.md`.
 
 ## 7. Prioridades De QA
 

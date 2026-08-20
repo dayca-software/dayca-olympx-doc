@@ -41,6 +41,7 @@ Hoy cubre:
 - Filtros de alertas y acción para marcar todo como leído.
 - Firebase Messaging configurado para registrar tokens FCM/APNs, refrescarlos en la API y procesar pushes en foreground, background y apertura inicial.
 - Android crea el canal nativo `olympx-social` para notificaciones de actividad social.
+- iOS tiene Firebase/AppDelegate, capabilities APNs y entitlements por configuracion; CocoaPods ya integra Firebase Messaging y la build de simulador pasa. Las pruebas de entrega APNs en dispositivo físico quedan pendientes en `doc/E2EPushNotifications.md`.
 - Edición y eliminación de publicaciones propias.
 - Edición, eliminación y reporte de comentarios.
 - Bloqueo y desbloqueo de usuarios desde perfiles públicos.
