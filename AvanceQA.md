@@ -17,7 +17,7 @@ OlympX tiene una base de testing aun inicial. Hay pruebas smoke/minimas en web, 
 - Script de test: `vitest run`
 - Script de cobertura: `vitest run --coverage`
 - Test visible actualmente: smoke del modulo principal (`test/app.test.ts`)
-- Suite API actual: 12 archivos y 110 tests pasando.
+- Suite API actual: 13 archivos y 114 tests pasando.
 - Smoke tests de onboarding y creación de sesiones con límite comercial.
 - Smoke test de Home autenticado y rechazo de sesión inválida.
 - Smoke tests de check-in dentro/fuera de radio y duplicado reciente.

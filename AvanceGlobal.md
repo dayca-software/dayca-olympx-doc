@@ -114,11 +114,12 @@ Validaciones ejecutadas recientemente:
 - La cache actual es de solo lectura; no hay cola de acciones pendientes.
 ## 7. Proxima Prioridad
 
-1. Separar mejor los flujos de publicaciones y entrenos.
-2. Cubrir endpoints criticos con tests.
-3. Reducir el uso de `any` en backend.
-4. Sumar tests de integracion del flujo completo.
-5. Agregar cola de acciones pendientes si se necesita escritura offline.
+1. Ejecutar el E2E manual del core documentado en `doc/E2EPushNotifications.md`.
+2. Validar push iOS en dispositivo físico y TestFlight.
+3. Configurar y confirmar RevenueCat Test Store en Android/iOS.
+4. Agregar tests de integración para posts, training y notifications.
+5. Ejecutar `format:check` y cerrar diferencias antes del MVP.
+6. Mantener exportaciones y compartición fuera del core hasta tener endpoints definidos.
 
 ## 8. Documentos Detallados
 
