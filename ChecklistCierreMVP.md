@@ -4,6 +4,18 @@
 
 > Convencion: `[x]` significa implementado y validado por typecheck/tests o build. Los flujos E2E fisicos se mantienen pendientes hasta ejecutarlos manualmente.
 
+> Nota de alcance: `AnexoMVP.md` define un MVP Core centrado en entrenamiento, mientras que la implementacion actual tambien incluye funciones sociales. La decision entre MVP Core y MVP ampliado debe quedar cerrada antes del lanzamiento.
+
+## 0. Alcance Y Cuenta
+
+- [ ] Definir si el lanzamiento corresponde al MVP Core o al MVP ampliado con red social.
+- [ ] Confirmar si Google OAuth y Apple OAuth forman parte del lanzamiento.
+- [ ] Implementar verificacion de email, si se exige para el lanzamiento.
+- [ ] Implementar recuperacion y cambio de contraseña.
+- [ ] Implementar eliminacion de cuenta y datos personales.
+- [ ] Validar consentimiento legal, version de terminos y regla para usuarios menores de edad.
+- [ ] Validar refresh token y comportamiento de sesiones expiradas.
+
 ## 1. Base Funcional
 
 - [x] Login y registro funcionando en mobile.
@@ -22,6 +34,24 @@
 - [x] Agregar sets con peso y repeticiones.
 - [x] Ver volumen, progreso y sets recientes.
 - [x] Ver historial de sesiones.
+- [ ] Validar rutinas por dias, orden de ejercicios, plantillas reutilizables y edicion completa.
+- [ ] Validar captura de RPE, RIR, notas y escala pre-sesion cuando corresponda al alcance.
+- [ ] Validar limites de sets, unidades, pesos y repeticiones con mensajes de error claros.
+- [ ] Resolver cola offline para acciones de escritura o dejarla explicitamente fuera del MVP.
+
+## 2.1 Progreso Y Competencia
+
+- [ ] Validar formulas de PR, 1RM estimado y tonelaje con casos borde.
+- [ ] Validar rankings por gimnasio, ejercicio y categorias demograficas incluidas en el alcance.
+- [ ] Validar frecuencia de actualizacion de rankings y consistencia de posiciones.
+- [ ] Confirmar rangos de fuerza, percentiles y tarjeta compartible/PDF como MVP o Fase 2.
+
+## 2.2 Gimnasios Y GPS
+
+- [ ] Validar radio de check-in de 100 metros en backend.
+- [ ] Validar expiracion del check-in y bloqueo de duplicados.
+- [ ] Validar busqueda manual, seleccion desde resultados y apertura en mapas.
+- [ ] Confirmar si actividad local, usuarios cercanos y heatmaps entran en el lanzamiento.
 
 ## 3. Social
 
@@ -32,6 +62,16 @@
 - [x] Comentar publicaciones.
 - [x] Dar like y unlike.
 - [x] Notificaciones con estado de visto persistido.
+- [ ] Validar compartir publicaciones, logros y banners fuera de la app.
+- [ ] Implementar o excluir del lanzamiento publicaciones automaticas por PR/conquista.
+
+## 3.1 Multimedia Y Estados
+
+- [ ] Implementar subida de imagen adjunta en publicaciones, si entra en el MVP ampliado.
+- [ ] Implementar estados/stories con expiracion de 24 horas, si entran en el MVP ampliado.
+- [ ] Implementar subida de video desde galeria con limite de 60 segundos y 50 MB, si entra en el alcance.
+- [ ] Implementar compresion y eliminacion automatica de multimedia expirada, si entra en el alcance.
+- [ ] Validar MIME, tamaño, extension y almacenamiento seguro de archivos subidos.
 
 ## 4. Monetizacion
 
@@ -42,6 +82,9 @@
 - [x] Configurar Firebase Messaging y sincronización de tokens FCM/APNs.
 - [x] Definir periodo rolling de 30 días para límites comerciales.
 - [ ] Implementar eventos de uso para exportaciones y compartición cuando existan esos flujos.
+- [ ] Validar restauracion de compras y sincronizacion de entitlements.
+- [ ] Validar cancelacion, expiracion, renovacion y perdida de acceso premium.
+- [ ] Confirmar limites Free, Trial y Paid en API, mobile y panel admin.
 
 ## 5. Calidad
 
@@ -53,8 +96,22 @@
 - [ ] Verificar format check general.
 - [x] Check-in valida GPS, gimnasio disponible y duplicados recientes.
 - [x] Búsqueda, alertas e historial ofrecen reintento o acción útil en estados vacíos/error.
+- [ ] Agregar tests mobile automatizados para login, home, training y navegacion critica.
+- [ ] Agregar tests de integracion para auth, posts, training, notifications y suscripciones.
+- [ ] Validar rendimiento de endpoints criticos bajo conexion 4G.
+- [ ] Validar rate limiting, HTTPS, backups, logs y monitoreo de produccion.
 
-## 7. Pendientes Reales Para Core
+## 6. Web Y Admin
+
+- [ ] Construir dashboard web con contenido real de producto o dejarlo fuera del lanzamiento.
+- [ ] Construir dashboard admin operativo con KPIs basicos.
+- [ ] Implementar gestion admin de usuarios, suspensiones y reactivaciones.
+- [ ] Implementar moderacion de reportes y contenido con auditoria.
+- [ ] Implementar gestion admin de gimnasios y catalogo de ejercicios.
+- [ ] Implementar gestion admin de planes, trials, cupones y limites Free.
+- [ ] Agregar tests de auth, roles y rutas protegidas de web/admin.
+
+## 7. Validacion Final
 
 - [ ] Ejecutar E2E manual de login -> home -> post -> training.
 - [ ] Ejecutar E2E manual de push Android en foreground, background y app terminada.
@@ -64,17 +121,22 @@
 - [ ] Ejecutar `format:check` general y corregir cualquier diferencia.
 - [ ] Agregar al menos una prueba de integración para posts/training/notifications.
 
-## 8. Fuera Del Core Actual
+## 8. Fase 2 O Fuera Del Core
 
 - [ ] Eventos de uso para exportaciones y compartición cuando existan esos endpoints.
 - [ ] Automatización E2E desde el repo raíz.
 - [ ] Suite de tests mobile de pantallas y navegación.
+- [ ] Coach, nudges, metas semanales y streaks.
+- [ ] Rivalidades, Top del Dia y titulos.
+- [ ] Activity summaries automaticos.
+- [ ] Heatmaps y actividad local avanzada.
 
 ## 9. Definition Of Done
 
 El MVP se puede dar por cerrado cuando:
 
-- Login, home, social y training funcionan end to end.
+- El alcance funcional seleccionado en la seccion 0 funciona end to end.
+- Si la red social forma parte del lanzamiento, login, home, social y training funcionan end to end.
 - Notifications quedan sincronizadas entre backend y mobile.
 - No hay bloqueos de pago sobre el flujo core.
 - Hay al menos un set minimo de tests para los caminos criticos.
