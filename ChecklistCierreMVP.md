@@ -8,13 +8,20 @@
 
 ## 0. Alcance Y Cuenta
 
-- [ ] Definir si el lanzamiento corresponde al MVP Core o al MVP ampliado con red social.
+- [x] El lanzamiento corresponde al MVP ampliado con red social; el entrenamiento sigue siendo el flujo core.
 - [ ] Confirmar si Google OAuth y Apple OAuth forman parte del lanzamiento.
 - [ ] Implementar verificacion de email, si se exige para el lanzamiento.
 - [ ] Implementar recuperacion y cambio de contraseña.
 - [ ] Implementar eliminacion de cuenta y datos personales.
 - [ ] Validar consentimiento legal, version de terminos y regla para usuarios menores de edad.
 - [ ] Validar refresh token y comportamiento de sesiones expiradas.
+
+### Decision De Alcance
+
+El MVP de lanzamiento incluye entrenamiento, progreso, comunidad social, perfiles publicos,
+publicaciones, comentarios, likes, reacciones, follows, alertas y rankings. Multimedia avanzada,
+stories, coach y funcionalidades de retencion avanzada quedan fuera de este corte salvo decision
+posterior.
 
 ## 1. Base Funcional
 
@@ -103,7 +110,7 @@
 - [x] Búsqueda, alertas e historial ofrecen reintento o acción útil en estados vacíos/error.
 - [x] Ejecutar `.maestro/core-smoke.yaml` en Android con usuario Trial y API local.
 - [x] Ejecutar `.maestro/free-limit-smoke.yaml` con usuario Free y comprobar bloqueo de creación.
-- [ ] Agregar tests mobile automatizados para login, home, training y navegacion critica.
+- [x] Agregar tests mobile automatizados para login, home, training, comunidad, competencia y navegacion critica.
 - [ ] Agregar tests de integracion para auth, posts, training, notifications y suscripciones.
 - [ ] Validar rendimiento de endpoints criticos bajo conexion 4G.
 - [ ] Validar rate limiting, HTTPS, backups, logs y monitoreo de produccion.

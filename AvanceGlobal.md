@@ -10,6 +10,10 @@ Tener una vista unica del avance real del producto, sin entrar en el detalle de 
 
 OlympX ya tiene una base funcional integrada entre backend y mobile.
 
+El alcance elegido para el lanzamiento es el **MVP ampliado con red social**: entrenamiento y
+progreso como core, más comunidad social, perfiles públicos, alertas y rankings. Multimedia
+avanzada, stories, coach y retención avanzada quedan fuera de este corte.
+
 Hoy el producto soporta:
 
 - Login, registro y persistencia de sesion.
@@ -106,21 +110,23 @@ Validaciones ejecutadas recientemente:
 - prisma generate
 - prisma push
 - prisma seed
+- Maestro iOS: core, límite Free, acciones de entrenamiento y suscripción
+- Jest mobile: 12 tests pasando
 
 ## 6. Riesgos Actuales
 
 - El home concentra demasiadas acciones.
-- Todavia no hay tests de integracion cubriendo el flujo completo.
+- Todavia no hay tests de integracion cubriendo el flujo social completo.
 - El acceso Prisma sigue teniendo algunos atajos con `any`.
-- La cache actual es de solo lectura; no hay cola de acciones pendientes.
+- La cola offline actual cubre escrituras repetibles de ubicación; publicaciones y entrenos aún requieren validación física de reintento.
 ## 7. Proxima Prioridad
 
-1. Ejecutar el E2E manual del core documentado en `doc/E2EPushNotifications.md`.
+1. Completar E2E de comunidad, competencia y suscripciones.
 2. Validar push iOS en dispositivo físico y TestFlight.
 3. Configurar y confirmar RevenueCat Test Store en Android/iOS, incluyendo restauración de compras.
-4. Agregar tests de integración para posts, training y notifications.
-5. Ejecutar `format:check` y cerrar diferencias antes del MVP.
-6. Mantener exportaciones y compartición fuera del core hasta tener endpoints definidos.
+4. Agregar tests de integración para posts, training, notifications y suscripciones.
+5. Ejecutar `format:check` y cerrar diferencias antes del MVP social.
+6. Mantener multimedia avanzada, coach y retención avanzada fuera del core de este lanzamiento.
 
 ## 8. Documentos Detallados
 

@@ -13,6 +13,13 @@
 | Competencia | 5-7 | Ranking general, ranking por ejercicio y logros | En curso |
 | Release | 7-8 | QA, seguridad, pulido visual y preparación de entrega | Pendiente |
 
+## Decision De Alcance
+
+El lanzamiento corresponde al **MVP ampliado con red social**. El entrenamiento y el progreso
+son el flujo core, acompañado por feed, publicaciones, comentarios, likes, reacciones, follows,
+perfiles públicos, alertas y rankings. Multimedia avanzada, stories, coach y retención avanzada
+quedan fuera de este corte.
+
 ## Cronograma
 
 ```mermaid
@@ -98,7 +105,10 @@ gantt
 
 ## Estado Actual
 
-Actualmente el producto se encuentra en una fase avanzada de implementación funcional. Los principales pendientes antes del release son la cobertura E2E, la mejora de notificaciones sociales, el soporte de contenido multimedia y la validación completa de seguridad y rendimiento.
+Actualmente el producto se encuentra en una fase avanzada de implementación funcional y adelantada
+respecto de las actividades de construcción del calendario. El riesgo está concentrado en la
+validación E2E del MVP social, RevenueCat real/Test Store, push en dispositivo físico, seguridad,
+rendimiento y decisión operativa sobre web/admin.
 
 ## Riesgos y Mitigaciones
 

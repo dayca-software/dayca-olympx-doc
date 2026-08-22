@@ -10,10 +10,10 @@
 | 1 | Discovery, planificación y UX/UI | Parcial | Documentación lista, Figma en curso |
 | 2 | Backend, BD y autenticación | Casi completa | API funcional, contratos, seed y registro |
 | 3 | Gimnasios, GPS y biblioteca | Parcial alta | Gimnasios + ubicación + ejercicios |
-| 4 | Rutinas y registro de entrenamiento | Parcial media | Sesiones y sets, sin rutinas completas |
-| 5 | PRs, progreso y rankings | Parcial baja | Progreso básico y leaderboard inicial |
-| 6 | Conquistas, estadísticas y notificaciones | Parcial baja | Notificaciones y stats base, sin capa full |
-| 7 | QA, estabilización y cierre | Inicial | Smoke tests y typecheck, falta integración |
+| 4 | Rutinas y registro de entrenamiento | Parcial alta | Sesiones, sets, historial y rutinas implementados; falta validación completa |
+| 5 | PRs, progreso y rankings | Parcial media | Progreso, 1RM, rangos y rankings implementados; falta calibración y cobertura |
+| 6 | Conquistas, estadísticas y notificaciones | Parcial media | Stats, logros base y push preparado; falta validación física y automatización completa |
+| 7 | QA, estabilización y cierre | Parcial | Smoke iOS, typecheck y unit tests; faltan integración, offline físico y release |
 
 ## Etapa 1 - Discovery, planificación y UX/UI
 
@@ -85,12 +85,12 @@
 ### Estado actual
 - Se pueden crear sesiones y sets.
 - El historial de sesiones ya existe.
-- El modelo todavía no incluye rutinas semanales completas.
-- Ya existe la base para registrar entrenamientos, pero la planificación semanal sigue pendiente.
+- Las rutinas persistentes permiten días, orden de ejercicios, objetivos y sesiones desde plantilla.
+- Ya existe la base completa del flujo de registro; falta cerrar validaciones de límites, errores y escenarios offline.
 
 ### Balance
-- **Estado:** Parcial media
-- **Observación:** el flujo base de entrenamiento existe, pero la parte de rutinas sigue pendiente.
+- **Estado:** Parcial alta
+- **Observación:** la funcionalidad está implementada; el pendiente principal es la evidencia E2E y la validación de casos borde.
 
 ## Etapa 5 - PRs, Progreso y Rankings
 
@@ -103,12 +103,12 @@
 
 ### Estado actual
 - Hay estadísticas básicas de usuario.
-- Existe base de leaderboard y progreso, pero no un sistema completo de PRs/rankings.
-- Se calcula `estimated1rmKg` en sets, útil como base técnica.
-- La capa de PRs y rankings todavía está en una fase inicial de base técnica.
+- Existe leaderboard general y por ejercicio, progreso, PRs y rangos de fuerza publicados.
+- Se calcula `estimated1rmKg` en sets y se muestran rango actual, siguiente rango y distancia restante.
+- La capa funcional está implementada; falta validar calibración por sexo, categorías y actualización de posiciones.
 
 ### Balance
-- **Estado:** Parcial baja
+- **Estado:** Parcial media
 
 ## Etapa 6 - Conquistas, Estadísticas y Notificaciones
 
@@ -119,12 +119,12 @@
 
 ### Estado actual
 - Perfil con stats básicas ya disponible.
-- Notifications existe como módulo, pero todavía no representa una capa completa de push/realtime.
-- No hay sistema formal de conquistas completo.
-- La Etapa 6 sigue en una base inicial: stats están, pero faltan conquistas automáticas y alertas push reales.
+- Notifications existe con vistas persistidas, registro de dispositivos y preparación FCM/APNs.
+- Hay logros base y estadísticas visibles, pero falta validar entrega push en dispositivo físico y ampliar automatizaciones.
+- La Etapa 6 está funcionalmente avanzada, pero no cerrada para release.
 
 ### Balance
-- **Estado:** Parcial baja
+- **Estado:** Parcial media
 
 ## Etapa 7 - QA, Estabilización y Cierre
 
@@ -135,21 +135,23 @@
 - Coordinación general
 
 ### Estado actual
-- Hay smoke tests en API, web y admin.
-- Typecheck y format están funcionando en los subproyectos validados.
-- Faltan suites de integración y E2E amplias.
-- La Etapa 7 sigue inicial: la base de QA existe, pero falta cobertura suficiente para estabilización real.
+- Hay smoke tests en API, web, admin y Maestro en mobile.
+- iOS ya tiene smoke de core, límite Free, acciones de entrenamiento y suscripción.
+- Jest mobile tiene 12 tests pasando y typecheck mobile pasa.
+- Faltan suites de integración, offline físico, push físico y validaciones de seguridad/rendimiento.
 
 ### Balance
 - **Estado:** Inicial
 
 ## Conclusión
 
-El proyecto ya cubre con solidez la base de la Etapa 2 y una parte importante de la Etapa 3. Etapa 1 sigue abierta solo por el Figma/prototipo navegable; cuando se complete, puede cerrarse formalmente. El siguiente foco razonable es cerrar Etapa 4 y dejar PRs/rankings como siguiente bloque, mientras QA sigue creciendo en paralelo.
+El proyecto ya cubre con solidez las etapas 2 y 3, y tiene implementada una parte importante de las
+etapas 4, 5 y 6. Etapa 1 sigue abierta formalmente por el Figma/prototipo navegable. El siguiente
+foco es cerrar la validación de entrenamiento y los E2E del MVP social antes de entrar en release.
 
 ## Recomendación de Prioridad
 
-1. Cerrar rutina completa y flujo de entrenamiento.
-2. Completar check-in/GPS como flujo real.
-3. Consolidar PRs y rankings.
-4. Subir cobertura QA antes de expandir conquistas y notificaciones avanzadas.
+1. Cerrar evidencia E2E de rutinas, historial, límites y offline.
+2. Ejecutar E2E de comunidad, competencia y suscripciones.
+3. Validar push físico, RevenueCat Test Store, seguridad y rendimiento.
+4. Mantener multimedia avanzada y retención fuera del corte actual.

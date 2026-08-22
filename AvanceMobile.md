@@ -257,12 +257,16 @@ Verificado recientemente:
 - tests unitarios de ordenamiento de actividad reciente
 - tests unitarios de validacion del formulario de autenticacion
 - smoke flow Maestro para Login -> Home -> publicar -> Training -> guardar usando `testID` estables
+- smoke iOS de entrenamiento: sets, edición, compartir y guardar rutina
+- smoke iOS de comunidad: publicar contenido y validar actividad
+- smoke iOS de competencia: posición personal y filtros de ranking
+- smoke iOS de suscripción: Paywall Free y activación Trial
 - cola offline con flush al iniciar y al volver a foreground
-- `testID` para estado de ubicación, límites comerciales y acciones Core.
+- `testID` para estado de ubicación, límites comerciales, acciones Core, tabs, comunidad y competencia.
 
 ## 8. Pendientes Priorizados
 
-1. Ejecutar `.maestro/core-smoke.yaml` en Android/iOS con credenciales de prueba y API activa.
+1. Ejecutar los smoke sociales y de competencia también en Android con credenciales de prueba.
 2. Separar mejor el composer de publicaciones y el composer de entrenos.
 3. Validar en dispositivo la sincronizacion offline de ubicación, publicaciones y entrenos.
 4. Evaluar analitica de uso mobile.
@@ -273,7 +277,8 @@ Verificado recientemente:
 - No hay analitica de uso mobile aun.
 - El smoke E2E requiere Maestro, un dispositivo/emulador y credenciales de prueba; no se ejecuta en Jest.
 - El entorno actual tiene Maestro instalado, emulador Android y simulador iOS disponibles.
-- Smoke Maestro Core y variante de límite Free ejecutados correctamente en Android; falta la validación iOS.
+- Smoke Maestro Core, límite Free, entrenamiento, comunidad, competencia y suscripción ejecutados correctamente en iOS.
+- La validación Android de los nuevos smoke sociales y de competencia sigue pendiente.
 - La cola offline requiere validación en dispositivo; el flush global se ejecuta al iniciar y al volver a foreground.
 
 ## 10. Criterio De Cierre Del Bloque
