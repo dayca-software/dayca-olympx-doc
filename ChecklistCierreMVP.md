@@ -25,6 +25,7 @@
 - [x] Leaderboard responde sin errores.
 - [x] Perfil y edicion de perfil guardan cambios.
 - [x] Subir y visualizar imagen de avatar desde mobile.
+- [x] Las cuentas `super_admin` quedan fuera de rankings, feed, perfiles y relaciones públicas.
 - [x] Onboarding post-registro obliga a completar perfil mínimo y gimnasio.
 
 ## 2. Entrenamiento
@@ -42,9 +43,11 @@
 ## 2.1 Progreso Y Competencia
 
 - [ ] Validar formulas de PR, 1RM estimado y tonelaje con casos borde.
+- [x] Mostrar rango actual y kilogramos faltantes para el siguiente rango desde el historial de PRs.
 - [ ] Validar rankings por gimnasio, ejercicio y categorias demograficas incluidas en el alcance.
 - [ ] Validar frecuencia de actualizacion de rankings y consistencia de posiciones.
-- [ ] Confirmar rangos de fuerza, percentiles y tarjeta compartible/PDF como MVP o Fase 2.
+- [ ] Calibrar rangos por sexo con una fuente de datos aprobada.
+- [ ] Implementar percentil y tarjeta compartible/PDF, o dejarlos explicitamente para Fase 2.
 
 ## 2.2 Gimnasios Y GPS
 
@@ -82,7 +85,8 @@
 - [x] Configurar Firebase Messaging y sincronización de tokens FCM/APNs.
 - [x] Definir periodo rolling de 30 días para límites comerciales.
 - [ ] Implementar eventos de uso para exportaciones y compartición cuando existan esos flujos.
-- [ ] Validar restauracion de compras y sincronizacion de entitlements.
+- [x] Incluir flujo de restauracion de compras en el paywall.
+- [ ] Validar restauracion y sincronizacion de entitlements con RevenueCat Test Store.
 - [ ] Validar cancelacion, expiracion, renovacion y perdida de acceso premium.
 - [ ] Confirmar limites Free, Trial y Paid en API, mobile y panel admin.
 

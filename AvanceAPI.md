@@ -26,11 +26,13 @@ Hoy cubre:
 - Actividad reciente de gimnasios.
 - Registro y consulta de sesiones de entrenamiento.
 - Progreso de entrenamiento con volumen, reps, semanas y 1RM estimado.
+- Rangos configurados de fuerza en los PRs: rango actual, siguiente rango y kilogramos restantes.
 - Rutinas persistentes y sesiones iniciadas desde plantilla.
 - Ranking competitivo por ejercicio basado en mejor 1RM estimado.
 - Perfil editable con nickname, región, provincia y comuna persistidos.
 - Edicion y eliminacion segura de sesiones propias.
 - Suscripcion, trial y catalogo comercial.
+- Webhook RevenueCat valida el entitlement configurado y mantiene acceso hasta el fin del periodo cuando hay cancelacion.
 - Límites comerciales rolling de 30 días aplicados para sesiones, gimnasios y ejercicios.
 - Endpoint de uso comercial: `GET /api/subscriptions/me/limits`.
 - Onboarding persistido con validación de perfil mínimo y gimnasio principal.
@@ -133,6 +135,7 @@ Hoy cubre:
 - Los rankings excluyen usuarios suspendidos.
 - `GET /api/training/progress`
 - `GET /api/training/prs`
+  - incluye rango actual, siguiente rango, progreso y kilogramos restantes cuando existen rangos publicados.
 - `GET /api/training/sessions/:id`
 - `POST /api/training/sessions`
 - `PATCH /api/training/sessions/:id`

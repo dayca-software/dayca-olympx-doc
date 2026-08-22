@@ -51,6 +51,7 @@ Hoy cubre:
 - Reordenamiento de ejercicios dentro de rutinas.
 - Gráfico semanal de volumen y mejores marcas por ejercicio.
 - Historial de récords personales por ejercicio.
+- Historial de récords con rango actual y distancia al siguiente rango.
 - Feed filtrable entre todo el contenido y usuarios seguidos.
 - Actividad reciente del gimnasio.
 - Paywall con RevenueCat.
@@ -203,6 +204,7 @@ La app consume estos flujos principales:
 - `POST /api/training/sessions`
 - `GET /api/training/sessions/:id`
 - `POST /api/training/sessions/:id/sets`
+- `GET /api/training/prs` devuelve rango actual y siguiente rango por ejercicio.
 
 La base de la integracion usa `axios` con interceptor de `Authorization` y `ApiEnvelope<T>` como contrato de respuesta.
 

@@ -104,9 +104,9 @@ Para no chocar con RevenueCat, el producto debe mantener separadas estas capas:
 - Registrar sets, peso y repeticiones.
 - Ver resumen de volumen y progreso.
 
-### Premium futuro
+### Premium y evolución futura
 
-- Rangos completos.
+- Rangos calibrados por sexo, percentiles y estándares ampliados.
 - Exportables.
 - Comparaciones avanzadas.
 - Capas sociales y de competencia extendidas.

@@ -167,6 +167,7 @@ Gestión de registro, inicio de sesión, perfil de usuario, niveles de experienc
 | RN-003 | La contraseña debe tener mínimo 8 caracteres, al menos 1 mayúscula, 1 número                           | —                       |
 | RN-004 | El nivel de usuario se calcula en base a: experiencia acumulada (PRs, sesiones, conquistas, actividad) | Los niveles no decrecen |
 | RN-005 | Usuario menor de 18 años requiere consentimiento parental (GDPR/ley local)                             | —                       |
+| RN-048 | Las cuentas `super_admin` solo deben ser visibles dentro del panel administrativo y no en superficies publicas | El acceso publico a su perfil devuelve recurso no disponible |
 
 ---
 

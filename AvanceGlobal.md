@@ -40,6 +40,7 @@ Hoy el producto soporta:
 - Alertas filtrables con estado persistente de lectura.
 - Infraestructura preparada para tokens push FCM/APNs.
 - Historial de récords personales por ejercicio.
+- Rangos de fuerza configurados visibles desde el historial de PRs.
 - Detalle de gimnasio, detalle de publicacion y detalle de sesion.
 - Perfil editable y paywall basico.
 - Gimnasio principal y check-in.
@@ -116,7 +117,7 @@ Validaciones ejecutadas recientemente:
 
 1. Ejecutar el E2E manual del core documentado en `doc/E2EPushNotifications.md`.
 2. Validar push iOS en dispositivo físico y TestFlight.
-3. Configurar y confirmar RevenueCat Test Store en Android/iOS.
+3. Configurar y confirmar RevenueCat Test Store en Android/iOS, incluyendo restauración de compras.
 4. Agregar tests de integración para posts, training y notifications.
 5. Ejecutar `format:check` y cerrar diferencias antes del MVP.
 6. Mantener exportaciones y compartición fuera del core hasta tener endpoints definidos.
