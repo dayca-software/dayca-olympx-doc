@@ -43,7 +43,7 @@
 
 ## 2.1 Progreso Y Competencia
 
-- [ ] Validar formulas de PR, 1RM estimado y tonelaje con casos borde.
+- [x] Validar formulas de PR, 1RM estimado y tonelaje con casos borde en API.
 - [x] Mostrar rango actual y kilogramos faltantes para el siguiente rango desde el historial de PRs.
 - [ ] Validar rankings por gimnasio, ejercicio y categorias demograficas incluidas en el alcance.
 - [ ] Validar frecuencia de actualizacion de rankings y consistencia de posiciones.
@@ -52,7 +52,7 @@
 
 ## 2.2 Gimnasios Y GPS
 
-- [ ] Validar radio de check-in de 100 metros en backend.
+- [x] Validar radio de check-in de 100 metros en backend.
 - [ ] Validar expiracion del check-in y bloqueo de duplicados.
 - [ ] Validar busqueda manual, seleccion desde resultados y apertura en mapas.
 - [ ] Confirmar si actividad local, usuarios cercanos y heatmaps entran en el lanzamiento.
@@ -101,6 +101,7 @@
 - [ ] Verificar format check general.
 - [x] Check-in valida GPS, gimnasio disponible y duplicados recientes.
 - [x] Búsqueda, alertas e historial ofrecen reintento o acción útil en estados vacíos/error.
+- [ ] Ejecutar `.maestro/core-smoke.yaml` en Android/iOS con API y credenciales de prueba.
 - [ ] Agregar tests mobile automatizados para login, home, training y navegacion critica.
 - [ ] Agregar tests de integracion para auth, posts, training, notifications y suscripciones.
 - [ ] Validar rendimiento de endpoints criticos bajo conexion 4G.

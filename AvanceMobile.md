@@ -257,6 +257,7 @@ Verificado recientemente:
 - tests unitarios de ordenamiento de actividad reciente
 - tests unitarios de validacion del formulario de autenticacion
 - smoke flow Maestro para Login -> Home -> publicar -> Training -> guardar usando `testID` estables
+- cola offline con flush al iniciar y al volver a foreground
 
 ## 8. Pendientes Priorizados
 
