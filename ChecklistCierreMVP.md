@@ -108,7 +108,7 @@ posterior.
 - [ ] Verificar format check general.
 - [x] Check-in valida GPS, gimnasio disponible y duplicados recientes.
 - [x] Búsqueda, alertas e historial ofrecen reintento o acción útil en estados vacíos/error.
-- [x] Ejecutar `.maestro/core-smoke.yaml` en Android con usuario Trial y API local.
+- [x] Ejecutar `.maestro/core-smoke.yaml` en iOS y `.maestro/core-android-smoke.yaml` en Android con usuario Trial y API local.
 - [x] Ejecutar `.maestro/free-limit-smoke.yaml` con usuario Free y comprobar bloqueo de creación.
 - [x] Agregar tests mobile automatizados para login, home, training, comunidad, competencia y navegacion critica.
 - [ ] Agregar tests de integracion para auth, posts, training, notifications y suscripciones.

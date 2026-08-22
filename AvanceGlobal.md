@@ -110,7 +110,8 @@ Validaciones ejecutadas recientemente:
 - prisma generate
 - prisma push
 - prisma seed
-- Maestro iOS: core, límite Free, acciones de entrenamiento y suscripción
+- Maestro iOS: core, límite Free, acciones de entrenamiento, comunidad, competencia y suscripción
+- Maestro Android: core, comunidad y competencia
 - Jest mobile: 12 tests pasando
 
 ## 6. Riesgos Actuales

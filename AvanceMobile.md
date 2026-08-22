@@ -278,7 +278,7 @@ Verificado recientemente:
 - El smoke E2E requiere Maestro, un dispositivo/emulador y credenciales de prueba; no se ejecuta en Jest.
 - El entorno actual tiene Maestro instalado, emulador Android y simulador iOS disponibles.
 - Smoke Maestro Core, límite Free, entrenamiento, comunidad, competencia y suscripción ejecutados correctamente en iOS.
-- La validación Android de los nuevos smoke sociales y de competencia sigue pendiente.
+- Smoke Android dedicado de Core, comunidad y competencia ejecutado correctamente.
 - La cola offline requiere validación en dispositivo; el flush global se ejecuta al iniciar y al volver a foreground.
 
 ## 10. Criterio De Cierre Del Bloque
