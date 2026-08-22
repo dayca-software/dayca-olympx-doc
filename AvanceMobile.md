@@ -262,6 +262,8 @@ Verificado recientemente:
 - smoke iOS de comunidad: publicar contenido y validar actividad
 - smoke iOS de competencia: posición personal y filtros de ranking
 - smoke iOS de suscripción: Paywall Free y activación Trial
+- compartir progreso semanal validado en Android y confirmado en el feed de la API
+- compartir progreso semanal offline validado: cola, reconexión y flush confirmados en Android
 - cola offline con flush al iniciar y al volver a foreground
 - `testID` para estado de ubicación, límites comerciales, acciones Core, tabs, comunidad y competencia.
 
