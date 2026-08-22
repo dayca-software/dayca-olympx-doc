@@ -114,6 +114,7 @@
 - [ ] Implementar gestion admin de gimnasios y catalogo de ejercicios.
 - [ ] Implementar gestion admin de planes, trials, cupones y limites Free.
 - [ ] Agregar tests de auth, roles y rutas protegidas de web/admin.
+- [x] Admin puede crear, editar, publicar y eliminar borradores de rangos de fuerza.
 
 ## 7. Validacion Final
 

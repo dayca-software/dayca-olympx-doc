@@ -37,6 +37,8 @@ Hoy cubre:
 - Endpoint de uso comercial: `GET /api/subscriptions/me/limits`.
 - Onboarding persistido con validación de perfil mínimo y gimnasio principal.
 - Resumen de administracion.
+- Dashboard admin con metricas, alertas de moderacion y health.
+- Admin de rangos de fuerza con CRUD de borradores, publicacion y auditoria.
 - Health check y Swagger.
 
 ## 3. Modulos Implementados
@@ -152,6 +154,11 @@ Hoy cubre:
 ### Admin
 
 - `GET /api/admin/summary`
+- `GET /api/admin/exercises/:exerciseId/strength-ranges`
+- `POST /api/admin/exercises/:exerciseId/strength-ranges`
+- `PATCH /api/admin/exercises/strength-ranges/:id`
+- `PATCH /api/admin/exercises/strength-ranges/:id/status`
+- `DELETE /api/admin/exercises/strength-ranges/:id`
 
 ### Health
 

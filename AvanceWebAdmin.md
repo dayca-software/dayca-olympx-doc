@@ -10,10 +10,10 @@ Documentar el estado real de las apps web publicas y admin para dejar claro que 
 
 Las dos apps web existen, compilan y estan conectadas al contrato compartido `dayca-olympx-contracts`.
 
-Hoy el avance es funcional pero aun minimo:
+Hoy el avance cubre los principales modulos operativos y comerciales:
 
 - Web publica: login, ruta protegida y home basico.
-- Admin: login, ruta protegida y dashboard basico.
+- Admin: login, dashboard operativo, usuarios, gimnasios, moderacion, catalogos y comercial.
 - Ambas consumen auth contra la API.
 - Ambas usan Zustand para estado de sesion.
 
@@ -29,9 +29,10 @@ Hoy el avance es funcional pero aun minimo:
 ### Admin
 
 - `LoginPage` con autenticacion contra `POST /api/auth/login`.
-- `ProtectedRoute` para bloquear acceso sin token.
-- `Dashboard` basico como punto de entrada del panel.
-- Estructura lista para crecer hacia moderacion y control interno.
+- `ProtectedRoute` y `AdminRoute` para bloquear acceso sin token o rol admin.
+- Dashboard operativo con metricas, alertas y health.
+- Gestion de usuarios, gimnasios, reportes, planes, suscripciones y cupones.
+- Catalogo de ejercicios y rangos de fuerza con acciones de publicacion.
 
 ## 4. Integracion Con API
 
@@ -41,6 +42,8 @@ Ambas apps ya dependen del backend para autenticar y obtener usuario:
 - `GET /api/auth/me` o `GET /api/users/me` segun flujo interno
 
 El transporte usa `axios` y los tipos compartidos para `ApiEnvelope<LoginResponse>`.
+
+El Admin tambien consume dominios operativos y comerciales mediante `privateHttp`, incluyendo dashboard, usuarios, gimnasios, reportes, planes, suscripciones, catalogo de ejercicios y rangos de fuerza.
 
 ## 5. Estado De UI
 
@@ -53,8 +56,8 @@ El transporte usa `axios` y los tipos compartidos para `ApiEnvelope<LoginRespons
 ### Admin
 
 - Visual simple, oscuro, muy base.
-- Solo cubre login y pantalla de dashboard placeholder.
-- Falta la estructura real de panel operacional.
+- La estructura operacional ya esta modularizada por dominio.
+- Falta completar cobertura E2E y validacion manual de operaciones criticas.
 
 ## 6. Contratos Compartidos Usados
 

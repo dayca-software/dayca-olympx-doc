@@ -98,7 +98,7 @@ Fuera de alcance inicial:
 | ------- | ---------------------------------------------------------------------------- | --------- | ------------ |
 | ARF-019 | El sistema debe permitir revisar catalogo de ejercicios                      | Alta      | ARF-001      |
 | ARF-020 | El sistema debe permitir activar o desactivar ejercicios competitivos        | Media     | ARF-019      |
-| ARF-021 | El sistema debe permitir revisar rangos de fuerza y su estado de publicacion | Media     | ARF-019      |
+| ARF-021 | El sistema debe permitir crear, editar, publicar, despublicar y eliminar borradores de rangos de fuerza | Alta     | ARF-019      |
 
 ### M07 - Gestion Comercial
 
@@ -164,6 +164,7 @@ Fuera de alcance inicial:
 | ACA-012 | Un admin puede ver claramente que features quedan bloqueadas en Free    | Matriz de limites visible        |
 | ACA-013 | Un admin puede configurar el cupo maximo de nuevas altas Free           | Cupo persistido                  |
 | ACA-014 | Al agotarse el cupo Free, el registro nuevo solo ofrece trial de 7 dias | Flujo bloqueado para Free        |
+| ACA-015 | Un admin puede gestionar rangos sin permitir solapamientos ni publicar datos invalidos | Rango persistido y validado |
 
 ## 9. Casos Borde
 
