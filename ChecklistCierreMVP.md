@@ -68,6 +68,7 @@ posterior.
 
 - [x] Crear publicaciones desde home.
 - [x] Compartir progreso semanal desde Home como publicación social con un toque.
+- [x] Compartir logros desbloqueados desde Perfil como publicación social.
 - [ ] Definir si las publicaciones del MVP admiten imagen adjunta; actualmente solo soportan texto.
 - [ ] Definir si el MVP incluye estados/stories temporales; no hay flujo implementado actualmente.
 - [x] Abrir detalle de publicacion.

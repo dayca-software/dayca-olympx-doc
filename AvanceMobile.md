@@ -55,6 +55,7 @@ Hoy cubre:
 - Componente reutilizable de progreso de rango con barra visual, siguiente nivel y kilos restantes.
 - Feed filtrable entre todo el contenido y usuarios seguidos.
 - Compartir progreso semanal desde Home como publicación social con un toque.
+- Compartir logros desbloqueados desde Perfil como publicación social.
 - Actividades, alertas, check-ins y sesiones ordenadas de más reciente a más antigua también al paginar o usar datos cacheados.
 - Cola offline conservadora para escrituras repetibles de ubicación, con coalescencia y reintento al recargar Home.
 - Claves de idempotencia para publicar posts y crear sesiones sin duplicados al reintentar.
@@ -264,6 +265,7 @@ Verificado recientemente:
 - smoke iOS de suscripción: Paywall Free y activación Trial
 - compartir progreso semanal validado en Android y confirmado en el feed de la API
 - compartir progreso semanal offline validado: cola, reconexión y flush confirmados en Android
+- compartir logros validado en Perfil en iOS y Android
 - cola offline con flush al iniciar y al volver a foreground
 - `testID` para estado de ubicación, límites comerciales, acciones Core, tabs, comunidad y competencia.
 

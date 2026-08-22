@@ -34,6 +34,7 @@ El orden recomendado es:
 
 - Mostrar PRs y progreso de forma mas visible.
 - Convertir el progreso semanal en contenido social compartible.
+- Convertir logros desbloqueados en contenido social compartible.
 - Conectar mejor el historial con el detalle.
 - Agregar cola de acciones offline si se valida la necesidad de escritura sin red.
 - Definir limites Free/Paid sin afectar el core.
