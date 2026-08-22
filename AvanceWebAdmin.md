@@ -33,6 +33,7 @@ Hoy el avance cubre los principales modulos operativos y comerciales:
 - Dashboard operativo con metricas, alertas y health.
 - Gestion de usuarios, gimnasios, reportes, planes, suscripciones y cupones.
 - Catalogo de ejercicios y rangos de fuerza con acciones de publicacion.
+- Las acciones de rangos de fuerza ya generan registros en `AuditLog`.
 
 ## 4. Integracion Con API
 
@@ -79,18 +80,19 @@ El Admin tambien consume dominios operativos y comerciales mediante `privateHttp
 
 ## 9. Riesgos Y Deuda Actual
 
-- Las dos apps estan demasiado cerca de un scaffold y aun no representan el producto final.
-- Falta una experiencia de dashboard real para web y admin.
-- No hay tests funcionales que cubran login o rutas protegidas.
+- Web publica sigue cerca de un scaffold y aun no representa el producto final.
+- Admin ya tiene dashboard y modulos operativos, pero falta validacion E2E.
+- No existe una suite E2E compartida para login, roles y acciones criticas.
 - No existe una capa de diseño compartida entre ambas apps.
 
 ## 10. Pendientes Priorizados
 
 1. Definir el contenido real del dashboard web publico.
-2. Construir el panel admin con modulos operativos.
-3. Extraer componentes y layout compartidos.
-4. Agregar pruebas de routing y auth.
-5. Alinear visualmente ambas apps con una guia de UI consistente.
+2. Completar cobertura funcional del panel admin en los flujos restantes.
+3. Construir consulta centralizada del historial de auditoria.
+4. Extraer componentes y layout compartidos.
+5. Agregar pruebas E2E de routing, auth y acciones criticas.
+6. Alinear visualmente ambas apps con una guia de UI consistente.
 
 ## 11. Criterio De Cierre Del Bloque
 

@@ -117,6 +117,16 @@ Fuera de alcance inicial:
 | ARF-032 | El sistema debe permitir configurar un cupo maximo de nuevas altas Free                                                       | Critica   | ARF-022          |
 | ARF-033 | El sistema debe redirigir nuevas altas al trial de 7 dias cuando el cupo Free este agotado                                    | Critica   | ARF-032, ARF-026 |
 
+### M08 - Auditoria Y Visibilidad Interna
+
+| ID      | Descripcion                                                                                                  | Prioridad | Dependencias |
+| ------- | ------------------------------------------------------------------------------------------------------------ | --------- | ------------ |
+| ARF-034 | El sistema debe registrar toda accion critica de Admin: usuarios, moderacion, gimnasios, catalogos y planes | Alta      | ARF-001      |
+| ARF-035 | El sistema debe conservar actor, entidad, accion, motivo, metadata y fecha de cada cambio administrativo    | Alta      | ARF-034      |
+| ARF-036 | El sistema debe permitir consultar el historial de auditoria por entidad, actor y rango de fechas           | Media     | ARF-035      |
+| ARF-037 | Las cuentas con rol `admin` no deben aparecer en rankings, feed, perfiles ni relaciones publicas             | Critica   | ARF-001      |
+| ARF-038 | El panel debe mantener modulos separados para dashboard, usuarios, moderacion, gimnasios, catalogos y comercial | Alta   | ARF-001      |
+
 ## 6. Reglas de Negocio
 
 | ID      | Regla                                                                                                       | Excepcion                                           |
@@ -165,6 +175,8 @@ Fuera de alcance inicial:
 | ACA-013 | Un admin puede configurar el cupo maximo de nuevas altas Free           | Cupo persistido                  |
 | ACA-014 | Al agotarse el cupo Free, el registro nuevo solo ofrece trial de 7 dias | Flujo bloqueado para Free        |
 | ACA-015 | Un admin puede gestionar rangos sin permitir solapamientos ni publicar datos invalidos | Rango persistido y validado |
+| ACA-016 | Una accion critica de Admin genera un registro de auditoria consultable | Actor, entidad y fecha visibles |
+| ACA-017 | Un usuario publico no puede descubrir una cuenta `admin` desde la app | No aparece en superficies publicas |
 
 ## 9. Casos Borde
 

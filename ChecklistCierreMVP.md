@@ -115,6 +115,8 @@
 - [ ] Implementar gestion admin de planes, trials, cupones y limites Free.
 - [ ] Agregar tests de auth, roles y rutas protegidas de web/admin.
 - [x] Admin puede crear, editar, publicar y eliminar borradores de rangos de fuerza.
+- [ ] Admin puede consultar auditoria por entidad, actor y fecha.
+- [x] La cuenta `admin` queda excluida de las superficies publicas de la app.
 
 ## 7. Validacion Final
 
