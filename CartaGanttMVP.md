@@ -98,6 +98,7 @@ gantt
 - Sesiones de entrenamiento, sets, historial y progreso.
 - Rutinas editables con días, ejercicios, sets y reps objetivo.
 - Feed social, publicaciones, comentarios, likes, reacciones y follows.
+- Compartir progreso semanal como publicación social.
 - Perfiles públicos, logros y ranking general.
 - Ranking por ejercicio basado en 1RM estimado.
 - Tab dedicada de Comunidad.

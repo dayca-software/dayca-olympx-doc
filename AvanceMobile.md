@@ -54,6 +54,7 @@ Hoy cubre:
 - Historial de récords con rango actual y distancia al siguiente rango.
 - Componente reutilizable de progreso de rango con barra visual, siguiente nivel y kilos restantes.
 - Feed filtrable entre todo el contenido y usuarios seguidos.
+- Compartir progreso semanal desde Home como publicación social con un toque.
 - Actividades, alertas, check-ins y sesiones ordenadas de más reciente a más antigua también al paginar o usar datos cacheados.
 - Cola offline conservadora para escrituras repetibles de ubicación, con coalescencia y reintento al recargar Home.
 - Claves de idempotencia para publicar posts y crear sesiones sin duplicados al reintentar.

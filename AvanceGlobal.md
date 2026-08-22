@@ -34,6 +34,7 @@ Hoy el producto soporta:
 - Webhook de RevenueCat protegido por secreto de integración.
 - Moderación ejecuta acciones reales sobre contenido y cuentas sancionadas.
 - Creacion de publicaciones.
+- Compartir progreso semanal como publicación social desde Home.
 - Creacion y seguimiento de entrenamientos.
 - Historial con filtros y cache offline basica.
 - Progreso de entrenamiento y mantenimiento de sesiones.
