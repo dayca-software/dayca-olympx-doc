@@ -53,7 +53,7 @@ Fuera de alcance inicial:
 
 | ID      | Descripcion                                                                         | Prioridad | Dependencias |
 | ------- | ----------------------------------------------------------------------------------- | --------- | ------------ |
-| ARF-001 | El sistema debe permitir iniciar sesion solo a usuarios con rol admin o super_admin | Critica   | -            |
+| ARF-001 | El sistema debe permitir iniciar sesion solo a usuarios con rol `admin` | Critica   | -            |
 | ARF-002 | El sistema debe proteger todas las rutas admin con autenticacion persistida         | Critica   | ARF-001      |
 | ARF-003 | El sistema debe permitir cerrar sesion y limpiar credenciales locales               | Alta      | ARF-001      |
 
@@ -133,7 +133,7 @@ Fuera de alcance inicial:
 | ARN-010 | Cualquier cambio en limites Free debe aplicarse sin romper datos historicos                                 | Requiere versionado                                 |
 | ARN-011 | El cupo de nuevas altas Free solo afecta registros nuevos, no usuarios existentes                           | Ninguna                                             |
 | ARN-012 | Si el cupo Free se agota, el flujo comercial debe ofrecer trial de 7 dias como unica alternativa de entrada | Ninguna                                             |
-| ARN-013 | Las cuentas `super_admin` solo son visibles dentro del panel Admin y no aparecen en superficies publicas | Acceso directo publico devuelve recurso no disponible |
+| ARN-013 | Las cuentas con rol `admin` solo son visibles dentro del panel Admin y no aparecen en superficies publicas | Acceso directo publico devuelve recurso no disponible |
 
 ## 7. Requerimientos No Funcionales
 
@@ -182,7 +182,7 @@ Fuera de alcance inicial:
 | ACB-011 | Se intenta habilitar una feature premium en Free sin configuracion | Bloquear y mostrar advertencia                                    |
 | ACB-012 | Se agota el cupo Free mientras un usuario esta registrandose       | Ofrecer solo trial de 7 dias con tarjeta                          |
 | ACB-013 | El trial no esta habilitado por configuracion comercial            | Bloquear alta Free si el cupo se agotó y mostrar mensaje de venta |
-| ACB-014 | Un usuario intenta abrir el perfil publico de un `super_admin`    | Devolver recurso no disponible y no exponer sus datos         |
+| ACB-014 | Un usuario intenta abrir el perfil publico de una cuenta administrativa | Devolver recurso no disponible y no exponer sus datos      |
 
 ## 10. Trazabilidad
 

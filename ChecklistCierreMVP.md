@@ -25,7 +25,7 @@
 - [x] Leaderboard responde sin errores.
 - [x] Perfil y edicion de perfil guardan cambios.
 - [x] Subir y visualizar imagen de avatar desde mobile.
-- [x] Las cuentas `super_admin` quedan fuera de rankings, feed, perfiles y relaciones públicas.
+- [x] Las cuentas `admin` quedan fuera de rankings, feed, perfiles y relaciones públicas.
 - [x] Onboarding post-registro obliga a completar perfil mínimo y gimnasio.
 
 ## 2. Entrenamiento

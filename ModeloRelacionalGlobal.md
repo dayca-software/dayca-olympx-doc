@@ -463,7 +463,7 @@ Configuracion singleton de negocio para controlar el cupo de nuevas altas Free y
 | id        | uuid        | No   | PK    | Usuario interno                        |
 | email     | varchar     | No   | UQ    | Login interno                          |
 | password  | varchar     | No   | -     | Hash                                   |
-| role      | varchar     | No   | -     | admin, super_admin, moderator, support |
+| role      | varchar     | No   | -     | admin, moderator, support              |
 | status    | varchar     | No   | -     | active, inactive                       |
 | createdAt | timestamptz | No   | -     | Creacion                               |
 | updatedAt | timestamptz | No   | -     | Actualizacion                          |
