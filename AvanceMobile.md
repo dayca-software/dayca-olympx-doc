@@ -54,6 +54,7 @@ Hoy cubre:
 - Historial de récords con rango actual y distancia al siguiente rango.
 - Componente reutilizable de progreso de rango con barra visual, siguiente nivel y kilos restantes.
 - Feed filtrable entre todo el contenido y usuarios seguidos.
+- Actividades, alertas, check-ins y sesiones ordenadas de más reciente a más antigua también al paginar o usar datos cacheados.
 - Actividad reciente del gimnasio.
 - Paywall con RevenueCat.
 - Terminos y condiciones dentro de la app.
@@ -251,6 +252,7 @@ Verificado recientemente:
 - typecheck de mobile
 - check de formato
 - test unitario de progreso de rango
+- tests unitarios de ordenamiento de actividad reciente
 
 ## 8. Pendientes Priorizados
 
