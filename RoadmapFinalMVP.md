@@ -14,12 +14,17 @@ Objetivo: asegurar que el producto principal ya no tenga huecos de flujo.
 
 ## Fase 2 - Hardening
 
-Objetivo: reducir deuda antes de pedir feedback externo.
+Objetivo: reducir deuda y preparar la expansion antes de pedir feedback externo.
 
 - Cola de acciones offline para operaciones de escritura.
 - Manejo de errores y estados vacios.
 - Type safety mas estricto en Prisma y contracts.
 - Smoke tests para auth, home, search y training.
+- Plan e infraestructura base de i18n con `i18next` + `react-i18next`.
+- `es-CL` como idioma base y `en` preparado como segundo locale.
+- Migracion inicial de textos de Login, Home y Training a claves traducibles.
+- Formateo localizado de fechas, numeros, moneda y plurales.
+- Codigos estables de error en API para no depender de mensajes en espanol.
 
 ## Fase 3 - Preparacion Comercial
 

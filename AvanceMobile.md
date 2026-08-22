@@ -253,10 +253,12 @@ Verificado recientemente:
 - check de formato
 - test unitario de progreso de rango
 - tests unitarios de ordenamiento de actividad reciente
+- tests unitarios de validacion del formulario de autenticacion
+- smoke flow Maestro para Login -> Home -> publicar -> Training -> guardar usando `testID` estables
 
 ## 8. Pendientes Priorizados
 
-1. Sumar tests basicos de mobile para login, home y training.
+1. Ejecutar `.maestro/core-smoke.yaml` en Android/iOS con credenciales de prueba y API activa.
 2. Separar mejor el composer de publicaciones y el composer de entrenos.
 3. Mejorar sincronizacion de acciones creadas offline.
 4. Evaluar analitica de uso mobile.
@@ -265,7 +267,7 @@ Verificado recientemente:
 
 - El home concentra demasiadas acciones en una sola pantalla.
 - No hay analitica de uso mobile aun.
-- No hay tests automatizados para mobile.
+- El smoke E2E requiere Maestro, un dispositivo/emulador y credenciales de prueba; no se ejecuta en Jest.
 - La cache actual es de solo lectura offline; no hay cola de acciones pendientes.
 
 ## 10. Criterio De Cierre Del Bloque
