@@ -258,6 +258,7 @@ Verificado recientemente:
 - tests unitarios de validacion del formulario de autenticacion
 - smoke flow Maestro para Login -> Home -> publicar -> Training -> guardar usando `testID` estables
 - cola offline con flush al iniciar y al volver a foreground
+- `testID` para estado de ubicación, límites comerciales y acciones Core.
 
 ## 8. Pendientes Priorizados
 
@@ -271,6 +272,7 @@ Verificado recientemente:
 - El home concentra demasiadas acciones en una sola pantalla.
 - No hay analitica de uso mobile aun.
 - El smoke E2E requiere Maestro, un dispositivo/emulador y credenciales de prueba; no se ejecuta en Jest.
+- El entorno actual tiene emulador Android y simulador iOS disponibles, pero Maestro no está instalado.
 - La cola offline requiere validación en dispositivo; el flush global se ejecuta al iniciar y al volver a foreground.
 
 ## 10. Criterio De Cierre Del Bloque
