@@ -52,6 +52,7 @@ Hoy cubre:
 - Gráfico semanal de volumen y mejores marcas por ejercicio.
 - Historial de récords personales por ejercicio.
 - Historial de récords con rango actual y distancia al siguiente rango.
+- Componente reutilizable de progreso de rango con barra visual, siguiente nivel y kilos restantes.
 - Feed filtrable entre todo el contenido y usuarios seguidos.
 - Actividad reciente del gimnasio.
 - Paywall con RevenueCat.
@@ -249,6 +250,7 @@ Verificado recientemente:
 
 - typecheck de mobile
 - check de formato
+- test unitario de progreso de rango
 
 ## 8. Pendientes Priorizados
 
