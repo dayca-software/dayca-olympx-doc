@@ -272,7 +272,8 @@ Verificado recientemente:
 - El home concentra demasiadas acciones en una sola pantalla.
 - No hay analitica de uso mobile aun.
 - El smoke E2E requiere Maestro, un dispositivo/emulador y credenciales de prueba; no se ejecuta en Jest.
-- El entorno actual tiene emulador Android y simulador iOS disponibles, pero Maestro no está instalado.
+- El entorno actual tiene Maestro instalado, emulador Android y simulador iOS disponibles.
+- Smoke Maestro Core y variante de límite Free ejecutados correctamente en Android; falta la validación iOS.
 - La cola offline requiere validación en dispositivo; el flush global se ejecuta al iniciar y al volver a foreground.
 
 ## 10. Criterio De Cierre Del Bloque
