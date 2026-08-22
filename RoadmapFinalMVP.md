@@ -16,7 +16,7 @@ Objetivo: asegurar que el producto principal ya no tenga huecos de flujo.
 
 Objetivo: reducir deuda y preparar la expansion antes de pedir feedback externo.
 
-- Cola de acciones offline para operaciones de escritura.
+- Cola conservadora de acciones offline con idempotencia para ubicación, publicaciones y creación de entrenos.
 - Manejo de errores y estados vacios.
 - Type safety mas estricto en Prisma y contracts.
 - Smoke tests para auth, home, search y training.

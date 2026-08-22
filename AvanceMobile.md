@@ -55,6 +55,8 @@ Hoy cubre:
 - Componente reutilizable de progreso de rango con barra visual, siguiente nivel y kilos restantes.
 - Feed filtrable entre todo el contenido y usuarios seguidos.
 - Actividades, alertas, check-ins y sesiones ordenadas de más reciente a más antigua también al paginar o usar datos cacheados.
+- Cola offline conservadora para escrituras repetibles de ubicación, con coalescencia y reintento al recargar Home.
+- Claves de idempotencia para publicar posts y crear sesiones sin duplicados al reintentar.
 - Actividad reciente del gimnasio.
 - Paywall con RevenueCat.
 - Terminos y condiciones dentro de la app.
@@ -260,7 +262,7 @@ Verificado recientemente:
 
 1. Ejecutar `.maestro/core-smoke.yaml` en Android/iOS con credenciales de prueba y API activa.
 2. Separar mejor el composer de publicaciones y el composer de entrenos.
-3. Mejorar sincronizacion de acciones creadas offline.
+3. Validar en dispositivo la sincronizacion offline de ubicación, publicaciones y entrenos.
 4. Evaluar analitica de uso mobile.
 
 ## 9. Riesgos Y Deuda Actual
@@ -268,7 +270,7 @@ Verificado recientemente:
 - El home concentra demasiadas acciones en una sola pantalla.
 - No hay analitica de uso mobile aun.
 - El smoke E2E requiere Maestro, un dispositivo/emulador y credenciales de prueba; no se ejecuta en Jest.
-- La cache actual es de solo lectura offline; no hay cola de acciones pendientes.
+- La cola offline requiere validación en dispositivo; el flush global se ejecuta al iniciar y al volver a foreground.
 
 ## 10. Criterio De Cierre Del Bloque
 

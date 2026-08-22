@@ -38,7 +38,8 @@
 - [ ] Validar rutinas por dias, orden de ejercicios, plantillas reutilizables y edicion completa.
 - [ ] Validar captura de RPE, RIR, notas y escala pre-sesion cuando corresponda al alcance.
 - [ ] Validar limites de sets, unidades, pesos y repeticiones con mensajes de error claros.
-- [ ] Resolver cola offline para acciones de escritura o dejarla explicitamente fuera del MVP.
+- [x] Resolver cola offline conservadora para ubicación y escrituras repetibles.
+- [x] Añadir idempotencia API antes de reintentar publicaciones o creación de entrenos offline.
 
 ## 2.1 Progreso Y Competencia
 
