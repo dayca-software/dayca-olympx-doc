@@ -35,6 +35,7 @@ Hoy cubre:
 - Cache local y fallback offline para Home e historial.
 - Home con pull-to-refresh.
 - Reacciones fitness, reportes y check-in de gimnasio.
+- Reacción rápida de fuego desde las tarjetas del feed, además de las reacciones completas en el detalle.
 - Check-in con solicitud de ubicación y validación de proximidad.
 - Las cuentas suspendidas no pueden iniciar ni mantener sesión activa.
 - Alertas sociales para likes, comentarios, reacciones y nuevos seguidores.

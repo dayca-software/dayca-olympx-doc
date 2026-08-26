@@ -40,6 +40,7 @@ Hoy el producto soporta:
 - Historial con filtros y cache offline basica.
 - Progreso de entrenamiento y mantenimiento de sesiones.
 - Comentarios y likes en publicaciones.
+- Reacción rápida de fuego desde el feed y reacciones fitness completas en el detalle.
 - Alertas sociales y gestión de publicaciones propias.
 - Rutinas con orden editable, objetivos y métricas visuales de progreso.
 - Moderación social con bloqueo, edición, eliminación y reportes de comentarios.

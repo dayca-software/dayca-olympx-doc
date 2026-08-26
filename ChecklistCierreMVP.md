@@ -74,6 +74,7 @@ posterior.
 - [x] Abrir detalle de publicacion.
 - [x] Comentar publicaciones.
 - [x] Dar like y unlike.
+- [x] Reacción rápida de fuego directamente desde el feed.
 - [x] Notificaciones con estado de visto persistido.
 - [ ] Validar compartir publicaciones, logros y banners fuera de la app.
 - [ ] Implementar o excluir del lanzamiento publicaciones automaticas por PR/conquista.
