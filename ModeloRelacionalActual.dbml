@@ -1,0 +1,555 @@
+// OlympX - Modelo Relacional Actual
+// Fuente: olympx-api/prisma/schema.prisma
+// Importar en https://dbdiagram.io/
+
+Enum UserStatus {
+  ACTIVE
+  SUSPENDED
+}
+
+Enum GymVerificationStatus {
+  PENDING
+  VERIFIED
+}
+
+Enum StrengthRangeStatus {
+  DRAFT
+  PUBLISHED
+}
+
+Enum PostReactionType {
+  FIRE
+  EXECUTION
+  PROGRESS
+  DOMINATED
+  DISAPPROVE
+  FUNNY
+}
+
+Enum ReportStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CLOSED
+}
+
+Enum ReportTargetType {
+  USER
+  POST
+  COMMENT
+}
+
+Enum ModerationActionType {
+  APPROVED
+  REJECTED
+  CLOSED
+  OBSERVATION_ADDED
+}
+
+Enum PlanStatus {
+  ACTIVE
+  INACTIVE
+}
+
+Enum SubscriptionStatus {
+  TRIALING
+  ACTIVE
+  CANCELLED
+  EXPIRED
+}
+
+Enum BillingInterval {
+  MONTHLY
+  YEARLY
+}
+
+Enum BillingProvider {
+  NONE
+  REVENUECAT
+  MERCADOPAGO
+}
+
+Enum Currency {
+  CLP
+  USD
+}
+
+Enum CouponDiscountType {
+  PERCENTAGE
+  FIXED
+}
+
+Enum SubscriptionEventType {
+  CREATED
+  TRIAL_STARTED
+  TRIAL_CONVERTED
+  CANCELLED
+  REACTIVATED
+  EXPIRED
+  EXTENDED
+  PLAN_CHANGED
+  PRICE_CHANGED
+}
+
+Table User {
+  id uuid [pk]
+  email varchar [unique, not null]
+  password varchar [not null, note: 'Hash de contraseña']
+  role varchar [not null, default: 'user']
+  status UserStatus [not null, default: 'ACTIVE']
+  nickname varchar [unique, not null]
+  name varchar
+  birthDate timestamp
+  sex varchar
+  weight float
+  height float
+  region varchar
+  province varchar
+  commune varchar
+  level varchar
+  avatar varchar
+  gymId uuid
+  lastLocationLat float
+  lastLocationLng float
+  lastLocationAccuracy float
+  lastLocationAt timestamp
+  createdAt timestamp [not null]
+  updatedAt timestamp [not null]
+  suspendedAt timestamp
+  suspendedReason varchar
+  suspendedById uuid
+  termsAcceptedAt timestamp
+  termsVersion varchar
+  onboardingCompletedAt timestamp
+}
+
+Table Gym {
+  id uuid [pk]
+  name varchar [not null]
+  address varchar
+  lat float
+  lng float
+  chain varchar
+  city varchar
+  region varchar
+  isActive boolean [not null, default: true]
+  verificationStatus GymVerificationStatus [not null, default: 'PENDING']
+  createdAt timestamp [not null]
+  updatedAt timestamp [not null]
+}
+
+Table GymCheckIn {
+  id uuid [pk]
+  userId uuid [not null]
+  gymId uuid [not null]
+  checkedInAt timestamp [not null]
+
+  indexes {
+    (userId, checkedInAt)
+    (gymId, checkedInAt)
+  }
+}
+
+Table UserFollow {
+  id uuid [pk]
+  followerId uuid [not null]
+  followingId uuid [not null]
+  createdAt timestamp [not null]
+
+  indexes {
+    (followerId, followingId) [unique]
+    (followingId, createdAt)
+  }
+}
+
+Table UserBlock {
+  id uuid [pk]
+  blockerId uuid [not null]
+  blockedId uuid [not null]
+  createdAt timestamp [not null]
+
+  indexes {
+    (blockerId, blockedId) [unique]
+    (blockerId, createdAt)
+    (blockedId, createdAt)
+  }
+}
+
+Table Exercise {
+  id uuid [pk]
+  name varchar [not null]
+  muscleGroup varchar
+  exerciseType varchar
+  muscleCategory varchar
+  image varchar
+  competitive boolean [not null, default: true]
+  createdAt timestamp [not null]
+  updatedAt timestamp [not null]
+}
+
+Table ExerciseStrengthRange {
+  id uuid [pk]
+  exerciseId uuid [not null]
+  level varchar [not null]
+  minWeight float [not null]
+  maxWeight float [not null]
+  status StrengthRangeStatus [not null, default: 'DRAFT']
+  createdAt timestamp [not null]
+  updatedAt timestamp [not null]
+
+  indexes {
+    exerciseId
+  }
+}
+
+Table Post {
+  id uuid [pk]
+  userId uuid [not null]
+  content varchar [not null]
+  idempotencyKey uuid [unique, not null]
+  createdAt timestamp [not null]
+  updatedAt timestamp [not null]
+}
+
+Table PostComment {
+  id uuid [pk]
+  postId uuid [not null]
+  userId uuid [not null]
+  content varchar [not null]
+  createdAt timestamp [not null]
+  updatedAt timestamp [not null]
+}
+
+Table PostLike {
+  id uuid [pk]
+  postId uuid [not null]
+  userId uuid [not null]
+  createdAt timestamp [not null]
+
+  indexes {
+    (postId, userId) [unique]
+  }
+}
+
+Table PostReaction {
+  id uuid [pk]
+  postId uuid [not null]
+  userId uuid [not null]
+  type PostReactionType [not null]
+  createdAt timestamp [not null]
+
+  indexes {
+    (postId, userId, type) [unique]
+    (postId, type)
+  }
+}
+
+Table TrainingSession {
+  id uuid [pk]
+  userId uuid [not null]
+  title varchar [not null]
+  durationMinutes int
+  intensity varchar
+  notes varchar
+  idempotencyKey uuid [unique, not null]
+  performedAt timestamp [not null]
+  createdAt timestamp [not null]
+  updatedAt timestamp [not null]
+  routineId uuid
+
+  indexes {
+    (userId, performedAt)
+    routineId
+  }
+}
+
+Table TrainingSet {
+  id uuid [pk]
+  sessionId uuid [not null]
+  exerciseId uuid [not null]
+  setNumber int [not null]
+  weightKg float [not null]
+  reps int [not null]
+  rpe float
+  rir float
+  isWarmup boolean [not null, default: false]
+  isCompetitive boolean [not null, default: true]
+  estimated1rmKg float
+  createdAt timestamp [not null]
+
+  indexes {
+    sessionId
+    exerciseId
+  }
+}
+
+Table TrainingRoutine {
+  id uuid [pk]
+  userId uuid [not null]
+  name varchar [not null]
+  description varchar
+  createdAt timestamp [not null]
+  updatedAt timestamp [not null]
+
+  indexes {
+    (userId, updatedAt)
+  }
+}
+
+Table TrainingRoutineDay {
+  id uuid [pk]
+  routineId uuid [not null]
+  name varchar [not null]
+  position int [not null, default: 0]
+
+  indexes {
+    (routineId, position)
+  }
+}
+
+Table TrainingRoutineExercise {
+  id uuid [pk]
+  dayId uuid [not null]
+  exerciseId uuid [not null]
+  position int [not null, default: 0]
+  targetSets int
+  targetReps int
+  restSeconds int
+
+  indexes {
+    (dayId, position)
+    exerciseId
+  }
+}
+
+Table NotificationView {
+  id uuid [pk]
+  userId uuid [not null]
+  notificationId uuid [not null, note: 'Referencia lógica; no existe tabla Notification']
+  viewedAt timestamp [not null]
+
+  indexes {
+    (userId, notificationId) [unique]
+    (userId, viewedAt)
+  }
+}
+
+Table PushDevice {
+  id uuid [pk]
+  userId uuid [not null]
+  token varchar [not null]
+  platform varchar [not null]
+  enabled boolean [not null, default: true]
+  lastSeenAt timestamp [not null]
+  createdAt timestamp [not null]
+  updatedAt timestamp [not null]
+
+  indexes {
+    (userId, token) [unique]
+    (userId, enabled)
+  }
+}
+
+Table AuditLog {
+  id uuid [pk]
+  actorId uuid [not null, note: 'Referencia lógica a User']
+  entityId uuid [not null, note: 'Referencia polimórfica']
+  entityType varchar [not null]
+  action varchar [not null]
+  reason varchar [not null]
+  metadata json
+  createdAt timestamp [not null]
+
+  indexes {
+    (actorId, createdAt)
+    (entityType, entityId, createdAt)
+    createdAt
+  }
+}
+
+Table Report {
+  id uuid [pk]
+  reporterId uuid [not null]
+  targetType ReportTargetType [not null]
+  targetId uuid [not null, note: 'Referencia polimórfica a User, Post o PostComment']
+  reason varchar [not null]
+  status ReportStatus [not null, default: 'PENDING']
+  createdAt timestamp [not null]
+  updatedAt timestamp [not null]
+
+  indexes {
+    status
+    (targetType, targetId)
+    reporterId
+  }
+}
+
+Table ModerationAction {
+  id uuid [pk]
+  reportId uuid [not null]
+  moderatorId uuid [not null]
+  action ModerationActionType [not null]
+  observation varchar
+  previousStatus ReportStatus
+  newStatus ReportStatus
+  createdAt timestamp [not null]
+
+  indexes {
+    (reportId, createdAt)
+    moderatorId
+  }
+}
+
+Table CommercialPlan {
+  id uuid [pk]
+  name varchar [not null]
+  description varchar
+  status PlanStatus [not null, default: 'ACTIVE']
+  monthlyPrice float [not null]
+  yearlyPrice float [not null]
+  currency Currency [not null, default: 'CLP']
+  billingProvider BillingProvider [not null, default: 'NONE']
+  billingProductId varchar
+  billingEntitlementId varchar
+  maxSessions int
+  maxGyms int
+  maxExercises int
+  maxExports int
+  maxSharing int
+  premiumFeatures json
+  trialEnabled boolean [not null, default: false]
+  trialDurationDays int
+  trialRequiresCard boolean [not null, default: false]
+  isFree boolean [not null, default: false]
+  freeSignupLimit int
+  createdAt timestamp [not null]
+  updatedAt timestamp [not null]
+}
+
+Table PlanPriceHistory {
+  id uuid [pk]
+  planId uuid [not null]
+  monthlyPrice float [not null]
+  yearlyPrice float [not null]
+  currency Currency [not null]
+  changedById uuid
+  reason varchar
+  createdAt timestamp [not null]
+
+  indexes {
+    (planId, createdAt)
+  }
+}
+
+Table Subscription {
+  id uuid [pk]
+  userId uuid [not null]
+  planId uuid [not null]
+  status SubscriptionStatus [not null, default: 'TRIALING']
+  billingInterval BillingInterval
+  billingProvider BillingProvider [default: 'NONE']
+  externalCustomerId varchar
+  externalProductId varchar
+  startedAt timestamp [not null]
+  trialStartedAt timestamp
+  trialEndsAt timestamp
+  currentPeriodStart timestamp
+  currentPeriodEnd timestamp
+  cancelledAt timestamp
+  expiredAt timestamp
+  cancelReason varchar
+  createdAt timestamp [not null]
+  updatedAt timestamp [not null]
+
+  indexes {
+    userId
+    planId
+    status
+    currentPeriodEnd
+  }
+}
+
+Table Coupon {
+  id uuid [pk]
+  code varchar [unique, not null]
+  description varchar
+  discountType CouponDiscountType [not null]
+  discountValue float [not null]
+  maxUses int
+  usedCount int [not null, default: 0]
+  validFrom timestamp
+  validUntil timestamp
+  isActive boolean [not null, default: true]
+  createdAt timestamp [not null]
+  updatedAt timestamp [not null]
+
+  indexes {
+    code
+    isActive
+  }
+}
+
+Table CommercialSettings {
+  id uuid [pk]
+  freeSignupLimit int [not null, default: 100]
+  freeSignupCount int [not null, default: 0]
+  freeTrialDurationDays int [not null, default: 7]
+  freeTrialRequiresCard boolean [not null, default: false]
+  createdAt timestamp [not null]
+  updatedAt timestamp [not null]
+}
+
+Table SubscriptionEvent {
+  id uuid [pk]
+  subscriptionId uuid [not null]
+  type SubscriptionEventType [not null]
+  metadata json
+  createdAt timestamp [not null]
+
+  indexes {
+    (subscriptionId, createdAt)
+    (type, createdAt)
+  }
+}
+
+Ref: User.gymId > Gym.id
+Ref: User.suspendedById > User.id
+
+Ref: GymCheckIn.userId > User.id
+Ref: GymCheckIn.gymId > Gym.id
+
+Ref: UserFollow.followerId > User.id
+Ref: UserFollow.followingId > User.id
+Ref: UserBlock.blockerId > User.id
+Ref: UserBlock.blockedId > User.id
+
+Ref: ExerciseStrengthRange.exerciseId > Exercise.id
+
+Ref: Post.userId > User.id
+Ref: PostComment.postId > Post.id
+Ref: PostComment.userId > User.id
+Ref: PostLike.postId > Post.id
+Ref: PostLike.userId > User.id
+Ref: PostReaction.postId > Post.id
+Ref: PostReaction.userId > User.id
+
+Ref: TrainingSession.userId > User.id
+Ref: TrainingSession.routineId > TrainingRoutine.id
+Ref: TrainingSet.sessionId > TrainingSession.id
+Ref: TrainingSet.exerciseId > Exercise.id
+Ref: TrainingRoutine.userId > User.id
+Ref: TrainingRoutineDay.routineId > TrainingRoutine.id
+Ref: TrainingRoutineExercise.dayId > TrainingRoutineDay.id
+Ref: TrainingRoutineExercise.exerciseId > Exercise.id
+
+Ref: NotificationView.userId > User.id
+Ref: PushDevice.userId > User.id
+
+Ref: Report.reporterId > User.id
+Ref: ModerationAction.reportId > Report.id
+Ref: ModerationAction.moderatorId > User.id
+
+Ref: PlanPriceHistory.planId > CommercialPlan.id
+Ref: Subscription.userId > User.id
+Ref: Subscription.planId > CommercialPlan.id
+Ref: SubscriptionEvent.subscriptionId > Subscription.id

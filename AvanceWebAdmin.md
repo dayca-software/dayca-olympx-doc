@@ -28,7 +28,7 @@ Hoy el avance cubre los principales modulos operativos y comerciales:
 
 ### Admin
 
-- `LoginPage` con autenticacion contra `POST /api/auth/login`.
+- `LoginPage` con autenticacion contra `POST /api/auth/login/admin`.
 - `ProtectedRoute` y `AdminRoute` para bloquear acceso sin token o rol admin.
 - Dashboard operativo con metricas, alertas y health.
 - Gestion de usuarios, gimnasios, reportes, planes, suscripciones y cupones.
@@ -40,6 +40,7 @@ Hoy el avance cubre los principales modulos operativos y comerciales:
 Ambas apps ya dependen del backend para autenticar y obtener usuario:
 
 - `POST /api/auth/login`
+- `POST /api/auth/login/admin` para Admin
 - `GET /api/auth/me` o `GET /api/users/me` segun flujo interno
 
 El transporte usa `axios` y los tipos compartidos para `ApiEnvelope<LoginResponse>`.

@@ -4,14 +4,14 @@
 
 ## Resumen Ejecutivo
 
-| Frente | Semanas | Entregable principal | Estado |
-|---|---:|---|---|
-| Fundación | 1-2 | Alcance, UX/UI, arquitectura y contratos | Completado |
-| Cuenta y perfil | 2-3 | Auth, perfiles, ubicación y gimnasios principales | Completado |
-| Entrenamiento | 3-6 | Sesiones, sets, rutinas, PRs y progreso | En curso |
-| Comunidad | 4-7 | Feed, publicaciones, comentarios, reacciones y follows | En curso |
-| Competencia | 5-7 | Ranking general, ranking por ejercicio y logros | En curso |
-| Release | 7-8 | QA, seguridad, pulido visual y preparación de entrega | Pendiente |
+| Frente          | Semanas | Entregable principal                                   | Estado            |
+| --------------- | ------: | ------------------------------------------------------ | ----------------- |
+| Fundación       |     1-2 | Alcance, UX/UI, arquitectura y contratos               | Completado        |
+| Cuenta y perfil |     2-3 | Auth, perfiles, ubicación y gimnasios principales      | Completado        |
+| Entrenamiento   |     3-6 | Sesiones, sets, rutinas, PRs y progreso                | Avance alto       |
+| Comunidad       |     4-7 | Feed, publicaciones, comentarios, reacciones y follows | Avance alto       |
+| Competencia     |     5-7 | Ranking general, ranking por ejercicio y logros        | Avance medio-alto |
+| Release         |     7-8 | QA, seguridad, pulido visual y preparación de entrega  | En preparación    |
 
 ## Decision De Alcance
 
@@ -61,34 +61,34 @@ gantt
 
 ## Detalle de Actividades
 
-| Actividad | Alcance | Entregable |
-|---|---|---|
-| Discovery | Alcance MVP, historias de usuario y prioridades | Backlog aprobado |
-| UX/UI | Flujos mobile, design system y estados de interfaz | Prototipo y componentes base |
-| Contratos | Tipos compartidos, envelope y reglas de integración | Paquete `olympx-contracts` |
-| Auth | Registro, login, sesión y roles | Acceso funcional |
-| Perfil | Datos personales, avatar y ubicación | Perfil editable |
-| Gimnasios | Búsqueda, GPS, gimnasio principal y check-in | Red de gimnasios operativa |
-| Sesiones | Sesiones, sets, detalle e historial | Registro de entrenamiento |
-| Rutinas | Días, ejercicios, objetivos y plantillas | Biblioteca de rutinas |
-| Progreso | Volumen, reps, 1RM, PRs y evolución | Panel de progreso |
-| Feed | Publicaciones y paginación | Feed social |
-| Social | Comentarios, likes, reacciones y follows | Interacción comunitaria |
-| Comunidad | Tab social, perfiles públicos y descubrimiento | Experiencia de comunidad |
-| Ranking | Podio, filtros y posición personal | Competencia general |
-| Logros | Conquistas por actividad y rendimiento | Sistema de logros |
-| QA | Flujos críticos, regresiones y E2E | Informe de calidad |
-| Seguridad | Validaciones, permisos, rendimiento y observabilidad | Checklist de release |
+| Actividad | Alcance                                              | Entregable                   |
+| --------- | ---------------------------------------------------- | ---------------------------- |
+| Discovery | Alcance MVP, historias de usuario y prioridades      | Backlog aprobado             |
+| UX/UI     | Flujos mobile, design system y estados de interfaz   | Prototipo y componentes base |
+| Contratos | Tipos compartidos, envelope y reglas de integración  | Paquete `olympx-contracts`   |
+| Auth      | Registro, login, sesión y roles                      | Acceso funcional             |
+| Perfil    | Datos personales, avatar y ubicación                 | Perfil editable              |
+| Gimnasios | Búsqueda, GPS, gimnasio principal y check-in         | Red de gimnasios operativa   |
+| Sesiones  | Sesiones, sets, detalle e historial                  | Registro de entrenamiento    |
+| Rutinas   | Días, ejercicios, objetivos y plantillas             | Biblioteca de rutinas        |
+| Progreso  | Volumen, reps, 1RM, PRs y evolución                  | Panel de progreso            |
+| Feed      | Publicaciones y paginación                           | Feed social                  |
+| Social    | Comentarios, likes, reacciones y follows             | Interacción comunitaria      |
+| Comunidad | Tab social, perfiles públicos y descubrimiento       | Experiencia de comunidad     |
+| Ranking   | Podio, filtros y posición personal                   | Competencia general          |
+| Logros    | Conquistas por actividad y rendimiento               | Sistema de logros            |
+| QA        | Flujos críticos, regresiones y E2E                   | Informe de calidad           |
+| Seguridad | Validaciones, permisos, rendimiento y observabilidad | Checklist de release         |
 
 ## Hitos
 
-| Hito | Fecha objetivo | Criterio de salida |
-|---|---:|---|
-| H1 - Base de producto | 24/08 | Auth, perfil, contratos y navegación estables |
-| H2 - Entrenamiento operativo | 14/09 | Crear sesión, registrar sets y consultar historial |
-| H3 - Comunidad funcional | 28/09 | Publicar, comentar, reaccionar y seguir atletas |
-| H4 - Competencia funcional | 28/09 | Ranking, PRs y logros disponibles |
-| H5 - MVP listo | 05/10 | QA crítico aprobado y build de release generado |
+| Hito                         | Fecha objetivo | Criterio de salida                                 |
+| ---------------------------- | -------------: | -------------------------------------------------- |
+| H1 - Base de producto        |          24/08 | Auth, perfil, contratos y navegación estables      |
+| H2 - Entrenamiento operativo |          14/09 | Crear sesión, registrar sets y consultar historial |
+| H3 - Comunidad funcional     |          28/09 | Publicar, comentar, reaccionar y seguir atletas    |
+| H4 - Competencia funcional   |          28/09 | Ranking, PRs y logros disponibles                  |
+| H5 - MVP listo               |          05/10 | QA crítico aprobado y build de release generado    |
 
 ## Entregables MVP
 
@@ -112,15 +112,44 @@ respecto de las actividades de construcción del calendario. El riesgo está con
 validación E2E del MVP social, RevenueCat real/Test Store, push en dispositivo físico, seguridad,
 rendimiento y decisión operativa sobre web/admin.
 
+### Corte Ejecutivo - 26/08/2026
+
+Los porcentajes siguientes son una estimación de avance del frente, no una métrica de cobertura de
+código. Se separa el avance funcional de la preparación real para release, porque el core ya está
+operativo pero todavía quedan validaciones de producción.
+
+| Frente          | Avance estimado | Evidencia actual                                                                      | Pendiente principal                                                |
+| --------------- | --------------: | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Fundación       |            100% | Alcance ampliado, contratos, arquitectura y navegación base                           | Ninguno bloqueante                                                 |
+| Cuenta y perfil |            100% | Auth, onboarding, perfil, avatar, ubicación y gimnasios validados                     | Recuperación, cambio y eliminación de cuenta                       |
+| Entrenamiento   |             80% | Sesiones, sets, historial, PRs, progreso y cola offline funcional                     | Validar rutinas completas, límites y reintentos físicos            |
+| Comunidad       |             90% | Feed, posts, comentarios, likes, reacción rápida, follows y compartir progreso/logros | Decidir multimedia y validar compartir fuera de la app             |
+| Competencia     |             75% | Rankings, 1RM, rangos de fuerza y logros disponibles                                  | Categorías, calibración por sexo, frecuencia y percentiles         |
+| Release         |             50% | Builds, typechecks, 152 tests API y smoke mobile iOS/Android                          | Integración, seguridad, rendimiento, RevenueCat real y push físico |
+
+**Lectura ejecutiva:** el avance funcional del MVP ampliado está aproximadamente en **80%**. La
+preparación para declarar release está aproximadamente en **50%**, porque los riesgos restantes son
+principalmente de validación, integraciones reales y operación, no de construcción del core.
+
+### Hitos Al Corte
+
+| Hito                         | Estado                | Comentario                                                             |
+| ---------------------------- | --------------------- | ---------------------------------------------------------------------- |
+| H1 - Base de producto        | Completado            | Auth, perfil, contratos y navegación estables                          |
+| H2 - Entrenamiento operativo | Mayormente completado | El flujo core funciona; falta cerrar validación de rutinas y bordes    |
+| H3 - Comunidad funcional     | Mayormente completado | Social implementado; falta validación final y decisiones de multimedia |
+| H4 - Competencia funcional   | En curso avanzado     | Ranking, PRs y logros disponibles; faltan calibraciones y categorías   |
+| H5 - MVP listo               | Pendiente             | Requiere cierre de QA, seguridad, pagos y push físico                  |
+
 ## Riesgos y Mitigaciones
 
-| Riesgo | Impacto | Mitigación |
-|---|---|---|
-| Tests E2E pendientes | Alto | Automatizar login, perfil, comunidad y entrenamiento |
-| Migraciones Prisma pendientes en algunos entornos | Alto | Ejecutar `prisma migrate deploy` en staging y producción |
-| Comunidad inicialmente basada en texto | Medio | Preparar storage para imágenes y videos después del MVP |
-| Muchas tabs en mobile | Medio | Revisar navegación y consolidar accesos secundarios |
-| API y mobile evolucionan en paralelo | Medio | Mantener contratos compartidos y typechecks obligatorios |
+| Riesgo                                            | Impacto | Mitigación                                               |
+| ------------------------------------------------- | ------- | -------------------------------------------------------- |
+| Tests E2E pendientes                              | Alto    | Automatizar login, perfil, comunidad y entrenamiento     |
+| Migraciones Prisma pendientes en algunos entornos | Alto    | Ejecutar `prisma migrate deploy` en staging y producción |
+| Comunidad inicialmente basada en texto            | Medio   | Preparar storage para imágenes y videos después del MVP  |
+| Muchas tabs en mobile                             | Medio   | Revisar navegación y consolidar accesos secundarios      |
+| API y mobile evolucionan en paralelo              | Medio   | Mantener contratos compartidos y typechecks obligatorios |
 
 ## Criterios de Salida
 

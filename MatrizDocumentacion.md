@@ -10,7 +10,8 @@ Evitar duplicacion, mantener trazabilidad y asegurar que cada cambio actualice l
 
 - Si cambia el negocio, actualiza `BaseRequerimientos.md`.
 - Si cambia el alcance de una feature, actualiza el documento de alcance especifico.
-- Si cambia el almacenamiento o relaciones, actualiza `ModeloRelacionalMVP.md`.
+- Si cambia el almacenamiento o relaciones implementadas, actualiza `ModeloRelacionalActual.md`.
+- Si cambia el diseño de alcance o entidades futuras, actualiza `ModeloRelacionalMVP.md` o `ModeloRelacionalGlobal.md`.
 - Si cambia el almacenamiento o relaciones a nivel global, actualiza `ModeloRelacionalGlobal.md`.
 - Si cambia la estrategia de implementacion Prisma por fases, actualiza `PrismaPorFases.md`.
 - Si cambia el backlog tecnico Prisma, actualiza `BacklogTecnicoPrisma.md`.
@@ -24,6 +25,7 @@ Evitar duplicacion, mantener trazabilidad y asegurar que cada cambio actualice l
 - Si cambia el estado real de API o mobile, actualiza `AvanceAPI.md`, `AvanceMobile.md` o `AvanceGlobal.md`.
 - Si cambia el estado real de pruebas o cobertura, actualiza `AvanceQA.md`.
 - Si cambia el estado real de web publica o admin, actualiza `AvanceWebAdmin.md`.
+- Si cambia la infraestructura, CI/CD o despliegue AWS/Neon, actualiza `DevOpsAWSNeon.md`.
 
 ## 3. Matriz Por Tipo De Cambio
 
@@ -46,26 +48,29 @@ Evitar duplicacion, mantener trazabilidad y asegurar que cada cambio actualice l
 
 ## 4. Dueño Del Documento
 
-| Documento                   | Dueño                       | Frecuencia de revision                                     |
-| --------------------------- | --------------------------- | ---------------------------------------------------------- |
-| `CLAUDE.md`                 | Contexto del proyecto       | Cuando cambie el proyecto o stack                          |
-| `AvanceGlobal.md`           | Liderazgo tecnico / PM      | Cuando cambie la foto ejecutiva del avance                 |
-| `AvanceAPI.md`              | Backend / Datos             | Cuando cambie el estado funcional de la API                |
-| `AvanceMobile.md`           | Mobile / Producto           | Cuando cambie el estado funcional de la app mobile         |
-| `AvanceQA.md`               | QA / Engineering            | Cuando cambie el estado de pruebas y cobertura             |
-| `AvanceWebAdmin.md`         | Frontend / Producto         | Cuando cambie el estado funcional de web o admin           |
-| `BaseRequerimientos.md`     | Producto / Analisis         | Cada cambio funcional                                      |
-| `ModeloRelacionalMVP.md`    | Backend / Datos             | Cada cambio en entidades o relaciones                      |
-| `ModeloRelacionalGlobal.md` | Backend / Datos             | Cuando cambie el alcance global de datos                   |
-| `PrismaPorFases.md`         | Backend / Datos             | Cuando cambie la estrategia de implementacion Prisma       |
-| `BacklogTecnicoPrisma.md`   | Backend / Datos             | Cuando cambie el backlog tecnico de implementacion Prisma  |
-| `PlanSprintPrisma.md`       | Backend / Datos             | Cuando cambie la ejecucion sprint a sprint                 |
-| `AlcanceMusculosYRangos.md` | Producto + UX               | Cuando cambie el scope de esa feature                      |
-| `AnexoMVP.md`               | Producto + Delivery         | Cuando cambie costo, etapas u horas                        |
-| `ResumenEjecutivoPO.md`     | Producto                    | Cuando cambie el mensaje ejecutivo o la prioridad          |
-| `AdminRequerimientos.md`    | Operaciones / Admin         | Cuando cambie el panel interno, moderacion o soporte       |
-| `CoachRequerimientos.md`    | Producto / Retencion        | Cuando cambie el acompanamiento, nudges o bienestar ligero |
-| `MatrizTrazabilidad.md`     | Producto + BA + Engineering | Cuando cambie la relacion entre vision, requisitos y datos |
+| Documento                     | Dueño                       | Frecuencia de revision                                     |
+| ----------------------------- | --------------------------- | ---------------------------------------------------------- |
+| `CLAUDE.md`                   | Contexto del proyecto       | Cuando cambie el proyecto o stack                          |
+| `AvanceGlobal.md`             | Liderazgo tecnico / PM      | Cuando cambie la foto ejecutiva del avance                 |
+| `AvanceAPI.md`                | Backend / Datos             | Cuando cambie el estado funcional de la API                |
+| `AvanceMobile.md`             | Mobile / Producto           | Cuando cambie el estado funcional de la app mobile         |
+| `AvanceQA.md`                 | QA / Engineering            | Cuando cambie el estado de pruebas y cobertura             |
+| `AvanceWebAdmin.md`           | Frontend / Producto         | Cuando cambie el estado funcional de web o admin           |
+| `DevOpsAWSNeon.md`            | DevOps / Delivery           | Cuando cambie infraestructura, CI/CD o despliegue          |
+| `BaseRequerimientos.md`       | Producto / Analisis         | Cada cambio funcional                                      |
+| `ModeloRelacionalMVP.md`      | Backend / Datos             | Cada cambio en entidades o relaciones                      |
+| `ModeloRelacionalActual.md`   | Backend / Datos             | Cada cambio aplicado en `schema.prisma`                    |
+| `ModeloRelacionalActual.dbml` | Backend / Datos             | Cada cambio de entidades o relaciones del diagrama actual  |
+| `ModeloRelacionalGlobal.md`   | Backend / Datos             | Cuando cambie el alcance global de datos                   |
+| `PrismaPorFases.md`           | Backend / Datos             | Cuando cambie la estrategia de implementacion Prisma       |
+| `BacklogTecnicoPrisma.md`     | Backend / Datos             | Cuando cambie el backlog tecnico de implementacion Prisma  |
+| `PlanSprintPrisma.md`         | Backend / Datos             | Cuando cambie la ejecucion sprint a sprint                 |
+| `AlcanceMusculosYRangos.md`   | Producto + UX               | Cuando cambie el scope de esa feature                      |
+| `AnexoMVP.md`                 | Producto + Delivery         | Cuando cambie costo, etapas u horas                        |
+| `ResumenEjecutivoPO.md`       | Producto                    | Cuando cambie el mensaje ejecutivo o la prioridad          |
+| `AdminRequerimientos.md`      | Operaciones / Admin         | Cuando cambie el panel interno, moderacion o soporte       |
+| `CoachRequerimientos.md`      | Producto / Retencion        | Cuando cambie el acompanamiento, nudges o bienestar ligero |
+| `MatrizTrazabilidad.md`       | Producto + BA + Engineering | Cuando cambie la relacion entre vision, requisitos y datos |
 
 ## 5. Checklist Antes De Cerrar Un Cambio
 
@@ -79,7 +84,9 @@ Evitar duplicacion, mantener trazabilidad y asegurar que cada cambio actualice l
 
 - Negocio: `BaseRequerimientos.md`
 - Alcance feature: `AlcanceMusculosYRangos.md`
-- Datos: `ModeloRelacionalMVP.md`
+- Datos actuales: `ModeloRelacionalActual.md`
+- Diagrama de datos: `ModeloRelacionalActual.dbml`
+- Diseño de datos y alcance: `ModeloRelacionalMVP.md` y `ModeloRelacionalGlobal.md`
 - Datos globales: `ModeloRelacionalGlobal.md`
 - Prisma por fases: `PrismaPorFases.md`
 - Backlog tecnico Prisma: `BacklogTecnicoPrisma.md`

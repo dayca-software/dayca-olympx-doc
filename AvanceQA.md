@@ -17,7 +17,7 @@ OlympX tiene una base de testing aun inicial. Hay pruebas smoke/minimas en web, 
 - Script de test: `vitest run`
 - Script de cobertura: `vitest run --coverage`
 - Test visible actualmente: smoke del modulo principal (`test/app.test.ts`)
-- Suite API actual: 13 archivos y 114 tests pasando.
+- Suite API actual: 21 archivos y 152 tests pasando.
 - Smoke tests de onboarding y creación de sesiones con límite comercial.
 - Smoke test de Home autenticado y rechazo de sesión inválida.
 - Smoke tests de check-in dentro/fuera de radio y duplicado reciente.
@@ -39,8 +39,8 @@ OlympX tiene una base de testing aun inicial. Hay pruebas smoke/minimas en web, 
 
 - Script de test: `jest`
 - Script de typecheck: `tsc --noEmit`
-- Hoy no se detectan tests committeados en `olympx-mobile`
-- La calidad de mobile se valida por typecheck y formato, no por suite automatizada propia
+- Mobile tiene 5 suites y 12 tests automatizados pasando.
+- La calidad de mobile se complementa con typecheck, formato y smoke flows Maestro en iOS/Android.
 
 ## 4. Cobertura Por Tipo
 
