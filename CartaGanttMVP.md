@@ -1,17 +1,22 @@
 # OlympX - Carta Gantt MVP
 
-> Roadmap ejecutivo de 8 semanas para entregar el MVP de la red social competitiva de gimnasio.
+> Roadmap ejecutivo de 14 semanas según la línea base de `AnexoMVP copy.md`.
+> El MVP Core se entrega en 8 semanas y la fase extendida concluye en la semana 14.
 
 ## Resumen Ejecutivo
 
-| Frente          | Semanas | Entregable principal                                   | Estado            |
-| --------------- | ------: | ------------------------------------------------------ | ----------------- |
-| Fundación       |     1-2 | Alcance, UX/UI, arquitectura y contratos               | Completado        |
-| Cuenta y perfil |     2-3 | Auth, perfiles, ubicación y gimnasios principales      | Completado        |
-| Entrenamiento   |     3-6 | Sesiones, sets, rutinas, PRs y progreso                | Avance alto       |
-| Comunidad       |     4-7 | Feed, publicaciones, comentarios, reacciones y follows | Avance alto       |
-| Competencia     |     5-7 | Ranking general, ranking por ejercicio y logros        | Avance medio-alto |
-| Release         |     7-8 | QA, seguridad, pulido visual y preparación de entrega  | En preparación    |
+| Etapa | Semanas | Entregable principal                      | Estado        |
+| ----: | :-----: | ----------------------------------------- | ------------- |
+|     1 |   1-2   | Discovery, planificación y diseño UX/UI   | Parcial       |
+|     2 |   2-4   | Backend, base de datos y autenticación    | Casi completa |
+|     3 |   4-6   | Gimnasios, GPS y biblioteca de ejercicios | Parcial alta  |
+|     4 |   6-8   | Rutinas y registro de entrenamiento       | Parcial alta  |
+|     5 |  8-10   | PRs, progreso y rankings                  | Parcial media |
+|     6 |  10-12  | Logros, estadísticas y notificaciones     | Parcial media |
+|     7 |  12-14  | QA, estabilización y cierre               | Inicial       |
+
+**Referencia de alcance:** Etapas 1 a 4 corresponden al MVP Core de 8 semanas. Etapas 5 a 7
+corresponden a la fase extendida de la cotización.
 
 ## Decision De Alcance
 
@@ -20,43 +25,38 @@ son el flujo core, acompañado por feed, publicaciones, comentarios, likes, reac
 perfiles públicos, alertas y rankings. Multimedia avanzada, stories, coach y retención avanzada
 quedan fuera de este corte.
 
-## Cronograma
+## Cronograma Base De 14 Semanas
+
+> Fechas de referencia calculadas desde el inicio del proyecto el 11/08/2026. Las etapas se
+> superponen en las semanas indicadas en el anexo original.
 
 ```mermaid
 gantt
-  title OlympX MVP - Roadmap de entrega
+  title OlympX MVP - Roadmap de 14 semanas
   dateFormat YYYY-MM-DD
   axisFormat %d/%m
   todayMarker stroke-width:2px,stroke:#F59E0B
 
-  section Fundación
-  Discovery                                    :foundation, 2026-08-11, 7d
-  UX/UI                                        :ux, after foundation, 7d
-  Contratos                                    :contracts, after foundation, 14d
+  section Etapa 1 - Discovery y UX/UI
+  Discovery, planificación y UX/UI          :e1, 2026-08-11, 14d
 
-  section Cuenta y Gimnasios
-  Auth                                         :auth, 2026-08-18, 7d
-  Perfil                                       :profile, after auth, 7d
-  Gimnasios                                    :gyms, after profile, 7d
+  section Etapa 2 - Backend y Auth
+  Backend, BD y autenticación                :e2, 2026-08-18, 21d
 
-  section Entrenamiento
-  Sesiones                                     :active, sessions, 2026-09-01, 14d
-  Rutinas                                      :active, routines, after sessions, 14d
-  Progreso                                     :active, progress, after sessions, 14d
+  section Etapa 3 - Gimnasios y Ejercicios
+  Gimnasios, GPS y biblioteca                :e3, 2026-09-01, 21d
 
-  section Comunidad
-  Feed                                         :active, feed, 2026-09-08, 14d
-  Social                                       :active, social, after feed, 14d
-  Comunidad                                    :active, community, after feed, 14d
+  section Etapa 4 - Rutinas y Entrenamiento
+  Rutinas y registro de entrenamiento        :e4, 2026-09-15, 21d
 
-  section Competencia
-  Ranking                                      :active, ranking, 2026-09-15, 14d
-  Logros                                       :active, achievements, after ranking, 7d
+  section Etapa 5 - PRs y Rankings
+  PRs, progreso y rankings                   :e5, 2026-09-29, 21d
 
-  section Release
-  QA                                           :qa, 2026-09-29, 7d
-  Seguridad                                    :security, 2026-09-29, 7d
-  Release                                      :milestone, release, 2026-10-05, 0d
+  section Etapa 6 - Logros y Notificaciones
+  Logros, estadísticas y notificaciones      :e6, 2026-10-13, 21d
+
+  section Etapa 7 - QA y Cierre
+  QA, estabilización y cierre                 :e7, 2026-10-27, 21d
 ```
 
 ## Detalle de Actividades
@@ -80,15 +80,17 @@ gantt
 | QA        | Flujos críticos, regresiones y E2E                   | Informe de calidad           |
 | Seguridad | Validaciones, permisos, rendimiento y observabilidad | Checklist de release         |
 
-## Hitos
+## Hitos Según Anexo
 
-| Hito                         | Fecha objetivo | Criterio de salida                                 |
-| ---------------------------- | -------------: | -------------------------------------------------- |
-| H1 - Base de producto        |          24/08 | Auth, perfil, contratos y navegación estables      |
-| H2 - Entrenamiento operativo |          14/09 | Crear sesión, registrar sets y consultar historial |
-| H3 - Comunidad funcional     |          28/09 | Publicar, comentar, reaccionar y seguir atletas    |
-| H4 - Competencia funcional   |          28/09 | Ranking, PRs y logros disponibles                  |
-| H5 - MVP listo               |          05/10 | QA crítico aprobado y build de release generado    |
+| Hito                                     | Semana | Fecha de referencia | Criterio de salida                                            |
+| ---------------------------------------- | -----: | ------------------: | ------------------------------------------------------------- |
+| H1 - Discovery y UX/UI aprobado          |      2 |          24/08/2026 | Alcance, arquitectura y flujos clave definidos                |
+| H2 - Backend y autenticación operativos  |      4 |          07/09/2026 | API, Prisma, health check, JWT y envelope funcionales         |
+| H3 - Gimnasios y ejercicios operativos   |      6 |          21/09/2026 | Gimnasio principal, GPS, check-in y catálogo disponibles      |
+| H4 - MVP Core operativo                  |      8 |          05/10/2026 | Crear rutinas, registrar entrenamientos y consultar historial |
+| H5 - PRs y rankings disponibles          |     10 |          19/10/2026 | PRs, tonelaje, progreso, 1RM y rankings funcionales           |
+| H6 - Logros y notificaciones disponibles |     12 |          02/11/2026 | Logros, estadísticas y alertas básicas disponibles            |
+| H7 - MVP extendido listo                 |     14 |          16/11/2026 | QA, estabilización y build de entrega aprobados               |
 
 ## Entregables MVP
 
@@ -133,13 +135,15 @@ principalmente de validación, integraciones reales y operación, no de construc
 
 ### Hitos Al Corte
 
-| Hito                         | Estado                | Comentario                                                             |
-| ---------------------------- | --------------------- | ---------------------------------------------------------------------- |
-| H1 - Base de producto        | Completado            | Auth, perfil, contratos y navegación estables                          |
-| H2 - Entrenamiento operativo | Mayormente completado | El flujo core funciona; falta cerrar validación de rutinas y bordes    |
-| H3 - Comunidad funcional     | Mayormente completado | Social implementado; falta validación final y decisiones de multimedia |
-| H4 - Competencia funcional   | En curso avanzado     | Ranking, PRs y logros disponibles; faltan calibraciones y categorías   |
-| H5 - MVP listo               | Pendiente             | Requiere cierre de QA, seguridad, pagos y push físico                  |
+| Hito                                     | Estado        | Comentario                                                                 |
+| ---------------------------------------- | ------------- | -------------------------------------------------------------------------- |
+| H1 - Discovery y UX/UI aprobado          | Parcial       | Documentación y arquitectura listas; prototipo maestro de Figma pendiente  |
+| H2 - Backend y autenticación operativos  | Casi completo | API, Prisma, health check, JWT y envelope funcionales                      |
+| H3 - Gimnasios y ejercicios operativos   | Parcial alta  | Gimnasios, GPS, check-in y catálogo implementados; falta evidencia final   |
+| H4 - MVP Core operativo                  | Parcial alta  | Sesiones, rutinas, sets, historial y progreso implementados; faltan bordes |
+| H5 - PRs y rankings disponibles          | Parcial media | PRs, 1RM, rangos y rankings implementados; faltan calibración y cobertura  |
+| H6 - Logros y notificaciones disponibles | Parcial media | Logros, estadísticas y alertas implementados; falta push físico            |
+| H7 - MVP extendido listo                 | Inicial       | Faltan integración, seguridad, rendimiento y validación de release         |
 
 ## Riesgos y Mitigaciones
 
