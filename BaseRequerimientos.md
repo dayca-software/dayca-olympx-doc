@@ -160,13 +160,13 @@ Gestión de registro, inicio de sesión, perfil de usuario, niveles de experienc
 
 ### 3. Reglas de Negocio
 
-| ID     | Regla                                                                                                  | Excepción               |
-| ------ | ------------------------------------------------------------------------------------------------------ | ----------------------- |
-| RN-001 | El nickname debe ser único en todo el sistema                                                          | —                       |
-| RN-002 | El email debe ser único en todo el sistema                                                             | —                       |
-| RN-003 | La contraseña debe tener mínimo 8 caracteres, al menos 1 mayúscula, 1 número                           | —                       |
-| RN-004 | El nivel de usuario se calcula en base a: experiencia acumulada (PRs, sesiones, conquistas, actividad) | Los niveles no decrecen |
-| RN-005 | Usuario menor de 18 años requiere consentimiento parental (GDPR/ley local)                             | —                       |
+| ID     | Regla                                                                                                            | Excepción                                                    |
+| ------ | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| RN-001 | El nickname debe ser único en todo el sistema                                                                    | —                                                            |
+| RN-002 | El email debe ser único en todo el sistema                                                                       | —                                                            |
+| RN-003 | La contraseña debe tener mínimo 8 caracteres, al menos 1 mayúscula, 1 número                                     | —                                                            |
+| RN-004 | El nivel de usuario se calcula en base a: experiencia acumulada (PRs, sesiones, conquistas, actividad)           | Los niveles no decrecen                                      |
+| RN-005 | Usuario menor de 18 años requiere consentimiento parental (GDPR/ley local)                                       | —                                                            |
 | RN-048 | Las cuentas con rol `admin` solo deben ser visibles dentro del panel administrativo y no en superficies publicas | El acceso publico a su perfil devuelve recurso no disponible |
 
 ---
@@ -193,21 +193,26 @@ Catálogo de gimnasios, geolocalización contextual, check-in por GPS, heatmaps 
 
 ### 2.1 Búsqueda y selección de gimnasios
 
-| ID      | Descripción                                                                                                                                             | Prioridad | Dependencias   |
-| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | -------------- |
-| RF-022A | El sistema debe buscar gimnasios usando la última ubicación válida del usuario como punto de partida y mostrar resultados para selección                | Alta      | RF-015, RF-017 |
-| RF-022B | El sistema debe permitir abrir los resultados de búsqueda en Google Maps o un proveedor equivalente para que el usuario seleccione el gimnasio correcto | Alta      | RF-014         |
-| RF-022C | El sistema debe permitir al usuario confirmar un gimnasio desde los resultados y guardarlo como gimnasio principal o gimnasio visitado                  | Alta      | RF-017, RF-016 |
+| ID      | Descripción                                                                                                                                             | Prioridad | Dependencias     |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ---------------- |
+| RF-022A | El sistema debe buscar gimnasios usando la última ubicación válida del usuario como punto de partida y mostrar resultados para selección                | Alta      | RF-015, RF-017   |
+| RF-022B | El sistema debe permitir abrir los resultados de búsqueda en Google Maps o un proveedor equivalente para que el usuario seleccione el gimnasio correcto | Alta      | RF-014           |
+| RF-022C | El sistema debe permitir al usuario confirmar un gimnasio desde los resultados y guardarlo como gimnasio principal o gimnasio visitado                  | Alta      | RF-017, RF-016   |
+| RF-022D | El sistema debe permitir solicitar un gimnasio ausente del catálogo con nombre, dirección y datos opcionales de ubicación                               | Media     | RF-014, RF-022A  |
+| RF-022E | El sistema debe permitir al usuario consultar el estado de sus solicitudes de gimnasio                                                                  | Media     | RF-022D          |
+| RF-022F | El sistema debe permitir vincular un resultado externo de Google Maps con una solicitud o un gimnasio local                                             | Media     | RF-022B, RF-022D |
 
 ### 3. Reglas de Negocio
 
-| ID     | Regla                                                                                                                                             | Excepción |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| RN-006 | El check-in solo es válido si el usuario está dentro de un radio de 100m del gimnasio                                                             | —         |
-| RN-007 | El check-in expira después de 2 horas sin actividad registrada                                                                                    | —         |
-| RN-008 | No existe tracking continuo GPS segundo a segundo                                                                                                 | —         |
-| RN-009 | Un usuario solo puede tener un gimnasio principal activo a la vez                                                                                 | —         |
-| RN-010 | La búsqueda de gimnasios debe priorizar la última ubicación válida del usuario; si no existe, usar la ubicación actual o permitir búsqueda manual | —         |
+| ID      | Regla                                                                                                                                             | Excepción                                                               |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| RN-006  | El check-in solo es válido si el usuario está dentro de un radio de 100m del gimnasio                                                             | —                                                                       |
+| RN-007  | El check-in expira después de 2 horas sin actividad registrada                                                                                    | —                                                                       |
+| RN-008  | No existe tracking continuo GPS segundo a segundo                                                                                                 | —                                                                       |
+| RN-009  | Un usuario solo puede tener un gimnasio principal activo a la vez                                                                                 | —                                                                       |
+| RN-010  | La búsqueda de gimnasios debe priorizar la última ubicación válida del usuario; si no existe, usar la ubicación actual o permitir búsqueda manual | —                                                                       |
+| RN-010A | Una solicitud pendiente no puede usarse como gimnasio principal ni aceptar check-in                                                               | —                                                                       |
+| RN-010B | No se deben crear solicitudes abiertas duplicadas para el mismo usuario y lugar                                                                   | Se usa `googlePlaceId` o coincidencia de nombre, dirección y proximidad |
 
 ---
 
@@ -564,32 +569,35 @@ Módulo de apoyo motivacional y de hábitos para aumentar adherencia, consistenc
 
 ## Criterios De Aceptacion MVP Core
 
-| ID     | Criterio                                                                              | Validacion                                                |
-| ------ | ------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| CA-001 | El usuario puede registrarse e iniciar sesion sin friccion                            | Crear cuenta, login y acceso exitoso                      |
-| CA-002 | El usuario puede completar su perfil y seleccionar un gimnasio principal              | Perfil persistido correctamente                           |
-| CA-003 | El usuario puede detectar gimnasios cercanos y hacer check-in valido                  | Check-in solo dentro del radio permitido                  |
-| CA-004 | El usuario puede registrar un entrenamiento con series, repeticiones, peso, RPE y RIR | Sesion guardada y visible en historial                    |
-| CA-005 | El sistema calcula tonelaje y PRs de forma consistente                                | Valores visibles en detalle de sesion y perfil            |
-| CA-006 | El usuario puede ver su rango de fuerza por ejercicio base                            | Rango, percentil y distancia al siguiente nivel visibles  |
-| CA-007 | El MVP no requiere feed social, conquistas ni notificaciones para ser usable          | La validacion inicial funciona sin M06-M10                |
-| CA-008 | El producto permite validacion en 3-5 gimnasios piloto                                | Operacion estable con usuarios reales y datos localizados |
-| CA-009 | La propuesta freemium no bloquea la adopcion inicial                                  | Free usable, Paid claramente incremental                  |
+| ID      | Criterio                                                                              | Validacion                                                |
+| ------- | ------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| CA-001  | El usuario puede registrarse e iniciar sesion sin friccion                            | Crear cuenta, login y acceso exitoso                      |
+| CA-002  | El usuario puede completar su perfil y seleccionar un gimnasio principal              | Perfil persistido correctamente                           |
+| CA-003  | El usuario puede detectar gimnasios cercanos y hacer check-in valido                  | Check-in solo dentro del radio permitido                  |
+| CA-004  | El usuario puede registrar un entrenamiento con series, repeticiones, peso, RPE y RIR | Sesion guardada y visible en historial                    |
+| CA-005  | El sistema calcula tonelaje y PRs de forma consistente                                | Valores visibles en detalle de sesion y perfil            |
+| CA-006  | El usuario puede ver su rango de fuerza por ejercicio base                            | Rango, percentil y distancia al siguiente nivel visibles  |
+| CA-007  | El MVP no requiere feed social, conquistas ni notificaciones para ser usable          | La validacion inicial funciona sin M06-M10                |
+| CA-008  | El producto permite validacion en 3-5 gimnasios piloto                                | Operacion estable con usuarios reales y datos localizados |
+| CA-009  | La propuesta freemium no bloquea la adopcion inicial                                  | Free usable, Paid claramente incremental                  |
+| CA-010A | El usuario puede solicitar un gimnasio ausente y consultar su estado                  | Solicitud `PENDING` visible en su historial               |
 
 ## Casos Borde Relevantes
 
-| ID     | Escenario                                        | Comportamiento esperado                                         |
-| ------ | ------------------------------------------------ | --------------------------------------------------------------- |
-| CB-001 | No hay ubicacion disponible                      | Permitir busqueda manual de gimnasio o reintento de GPS         |
-| CB-002 | El usuario esta fuera del radio de check-in      | Rechazar check-in y mostrar mensaje claro                       |
-| CB-003 | Email o nickname duplicado                       | Bloquear registro y pedir correccion                            |
-| CB-004 | El usuario intenta registrar un set invalido     | Validar rango de RPE/RIR/peso y no guardar datos corruptos      |
-| CB-005 | Se supera el limite de 50 sets por sesion        | Bloquear nuevos sets y sugerir dividir la sesion                |
-| CB-006 | No existe rango cargado para un ejercicio        | Mostrar estado de soporte parcial y ocultar comparacion premium |
-| CB-007 | Falla la carga de multimedia                     | Permitir guardar la sesion sin media y reintentar subida        |
-| CB-008 | El trial expira y la tarjeta falla               | Revertir a Free sin perder historial                            |
-| CB-009 | El usuario no concede permisos de notificaciones | La app sigue funcionando con notificaciones desactivadas        |
-| CB-010 | Se cae la red durante el registro                | Guardar progreso localmente o mostrar reintento seguro          |
+| ID      | Escenario                                        | Comportamiento esperado                                         |
+| ------- | ------------------------------------------------ | --------------------------------------------------------------- |
+| CB-001  | No hay ubicacion disponible                      | Permitir busqueda manual de gimnasio o reintento de GPS         |
+| CB-002  | El usuario esta fuera del radio de check-in      | Rechazar check-in y mostrar mensaje claro                       |
+| CB-003  | Email o nickname duplicado                       | Bloquear registro y pedir correccion                            |
+| CB-004  | El usuario intenta registrar un set invalido     | Validar rango de RPE/RIR/peso y no guardar datos corruptos      |
+| CB-005  | Se supera el limite de 50 sets por sesion        | Bloquear nuevos sets y sugerir dividir la sesion                |
+| CB-006  | No existe rango cargado para un ejercicio        | Mostrar estado de soporte parcial y ocultar comparacion premium |
+| CB-007  | Falla la carga de multimedia                     | Permitir guardar la sesion sin media y reintentar subida        |
+| CB-008  | El trial expira y la tarjeta falla               | Revertir a Free sin perder historial                            |
+| CB-009  | El usuario no concede permisos de notificaciones | La app sigue funcionando con notificaciones desactivadas        |
+| CB-010  | Se cae la red durante el registro                | Guardar progreso localmente o mostrar reintento seguro          |
+| CB-010A | El usuario no encuentra su gimnasio              | Permitir solicitud manual sin bloquear el entrenamiento         |
+| CB-010B | El usuario solicita un lugar ya registrado       | Mostrar coincidencia y evitar crear una solicitud duplicada     |
 
 ## Matriz de Trazabilidad Módulos vs. Etapas (AnexoMVP)
 

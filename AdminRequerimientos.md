@@ -51,11 +51,11 @@ Fuera de alcance inicial:
 
 ### M01 - Autenticacion y Acceso
 
-| ID      | Descripcion                                                                         | Prioridad | Dependencias |
-| ------- | ----------------------------------------------------------------------------------- | --------- | ------------ |
-| ARF-001 | El sistema debe permitir iniciar sesion solo a usuarios con rol `admin` | Critica   | -            |
-| ARF-002 | El sistema debe proteger todas las rutas admin con autenticacion persistida         | Critica   | ARF-001      |
-| ARF-003 | El sistema debe permitir cerrar sesion y limpiar credenciales locales               | Alta      | ARF-001      |
+| ID      | Descripcion                                                                 | Prioridad | Dependencias |
+| ------- | --------------------------------------------------------------------------- | --------- | ------------ |
+| ARF-001 | El sistema debe permitir iniciar sesion solo a usuarios con rol `admin`     | Critica   | -            |
+| ARF-002 | El sistema debe proteger todas las rutas admin con autenticacion persistida | Critica   | ARF-001      |
+| ARF-003 | El sistema debe permitir cerrar sesion y limpiar credenciales locales       | Alta      | ARF-001      |
 
 ### M02 - Dashboard Operativo
 
@@ -77,11 +77,14 @@ Fuera de alcance inicial:
 
 ### M04 - Gestion de Gimnasios
 
-| ID      | Descripcion                                                                                      | Prioridad | Dependencias |
-| ------- | ------------------------------------------------------------------------------------------------ | --------- | ------------ |
-| ARF-012 | El sistema debe permitir crear, editar y desactivar gimnasios                                    | Alta      | ARF-001      |
-| ARF-013 | El sistema debe permitir gestionar nombre, direccion, latitud, longitud, cadena, ciudad y region | Alta      | ARF-012      |
-| ARF-014 | El sistema debe permitir marcar un gimnasio como verificado o pendiente de revision              | Media     | ARF-012      |
+| ID       | Descripcion                                                                                      | Prioridad | Dependencias |
+| -------- | ------------------------------------------------------------------------------------------------ | --------- | ------------ |
+| ARF-012  | El sistema debe permitir crear, editar y desactivar gimnasios                                    | Alta      | ARF-001      |
+| ARF-013  | El sistema debe permitir gestionar nombre, direccion, latitud, longitud, cadena, ciudad y region | Alta      | ARF-012      |
+| ARF-014  | El sistema debe permitir marcar un gimnasio como verificado o pendiente de revision              | Media     | ARF-012      |
+| ARF-014A | El sistema debe permitir listar y filtrar solicitudes de gimnasios por estado, ciudad y fecha    | Media     | ARF-001      |
+| ARF-014B | El sistema debe permitir aprobar una solicitud creando o vinculando un gimnasio existente        | Media     | ARF-014A     |
+| ARF-014C | El sistema debe permitir rechazar o marcar duplicada una solicitud dejando una observacion       | Media     | ARF-014A     |
 
 ### M05 - Moderacion y Reportes
 
@@ -94,11 +97,11 @@ Fuera de alcance inicial:
 
 ### M06 - Catalogos Base
 
-| ID      | Descripcion                                                                  | Prioridad | Dependencias |
-| ------- | ---------------------------------------------------------------------------- | --------- | ------------ |
-| ARF-019 | El sistema debe permitir revisar catalogo de ejercicios                      | Alta      | ARF-001      |
-| ARF-020 | El sistema debe permitir activar o desactivar ejercicios competitivos        | Media     | ARF-019      |
-| ARF-021 | El sistema debe permitir crear, editar, publicar, despublicar y eliminar borradores de rangos de fuerza | Alta     | ARF-019      |
+| ID      | Descripcion                                                                                             | Prioridad | Dependencias |
+| ------- | ------------------------------------------------------------------------------------------------------- | --------- | ------------ |
+| ARF-019 | El sistema debe permitir revisar catalogo de ejercicios                                                 | Alta      | ARF-001      |
+| ARF-020 | El sistema debe permitir activar o desactivar ejercicios competitivos                                   | Media     | ARF-019      |
+| ARF-021 | El sistema debe permitir crear, editar, publicar, despublicar y eliminar borradores de rangos de fuerza | Alta      | ARF-019      |
 
 ### M07 - Gestion Comercial
 
@@ -119,31 +122,31 @@ Fuera de alcance inicial:
 
 ### M08 - Auditoria Y Visibilidad Interna
 
-| ID      | Descripcion                                                                                                  | Prioridad | Dependencias |
-| ------- | ------------------------------------------------------------------------------------------------------------ | --------- | ------------ |
-| ARF-034 | El sistema debe registrar toda accion critica de Admin: usuarios, moderacion, gimnasios, catalogos y planes | Alta      | ARF-001      |
-| ARF-035 | El sistema debe conservar actor, entidad, accion, motivo, metadata y fecha de cada cambio administrativo    | Alta      | ARF-034      |
-| ARF-036 | El sistema debe permitir consultar el historial de auditoria por entidad, actor y rango de fechas           | Media     | ARF-035      |
-| ARF-037 | Las cuentas con rol `admin` no deben aparecer en rankings, feed, perfiles ni relaciones publicas             | Critica   | ARF-001      |
-| ARF-038 | El panel debe mantener modulos separados para dashboard, usuarios, moderacion, gimnasios, catalogos y comercial | Alta   | ARF-001      |
+| ID      | Descripcion                                                                                                     | Prioridad | Dependencias |
+| ------- | --------------------------------------------------------------------------------------------------------------- | --------- | ------------ |
+| ARF-034 | El sistema debe registrar toda accion critica de Admin: usuarios, moderacion, gimnasios, catalogos y planes     | Alta      | ARF-001      |
+| ARF-035 | El sistema debe conservar actor, entidad, accion, motivo, metadata y fecha de cada cambio administrativo        | Alta      | ARF-034      |
+| ARF-036 | El sistema debe permitir consultar el historial de auditoria por entidad, actor y rango de fechas               | Media     | ARF-035      |
+| ARF-037 | Las cuentas con rol `admin` no deben aparecer en rankings, feed, perfiles ni relaciones publicas                | Critica   | ARF-001      |
+| ARF-038 | El panel debe mantener modulos separados para dashboard, usuarios, moderacion, gimnasios, catalogos y comercial | Alta      | ARF-001      |
 
 ## 6. Reglas de Negocio
 
-| ID      | Regla                                                                                                       | Excepcion                                           |
-| ------- | ----------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| ARN-001 | Solo roles internos pueden acceder al admin                                                                 | Ninguna                                             |
-| ARN-002 | Toda accion de suspension, reactivacion o moderacion debe quedar auditada                                   | Ninguna                                             |
-| ARN-003 | Un gimnasio desactivado no se elimina fisicamente si tiene historial asociado                               | Se mantiene para trazabilidad                       |
-| ARN-004 | Los reportes no deben resolverse automaticamente en el MVP                                                  | Revision manual obligatoria                         |
-| ARN-005 | Los cambios sobre catalogos base deben ser reversibles                                                      | Reversion por auditoria                             |
-| ARN-006 | Los cambios de precio y plan deben quedar con version historica                                             | Ninguna                                             |
-| ARN-007 | Un trial activo solo puede existir una vez por cuenta y por tarjeta                                         | Reintento permitido solo si el trial no se consumio |
-| ARN-008 | Una suscripcion cancelada mantiene acceso hasta la fecha de corte                                           | Ninguna                                             |
-| ARN-009 | El plan Free debe respetar limites maximos definidos por configuracion comercial                            | Ninguna                                             |
-| ARN-010 | Cualquier cambio en limites Free debe aplicarse sin romper datos historicos                                 | Requiere versionado                                 |
-| ARN-011 | El cupo de nuevas altas Free solo afecta registros nuevos, no usuarios existentes                           | Ninguna                                             |
-| ARN-012 | Si el cupo Free se agota, el flujo comercial debe ofrecer trial de 7 dias como unica alternativa de entrada | Ninguna                                             |
-| ARN-013 | Las cuentas con rol `admin` solo son visibles dentro del panel Admin y no aparecen en superficies publicas | Acceso directo publico devuelve recurso no disponible |
+| ID      | Regla                                                                                                       | Excepcion                                             |
+| ------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| ARN-001 | Solo roles internos pueden acceder al admin                                                                 | Ninguna                                               |
+| ARN-002 | Toda accion de suspension, reactivacion o moderacion debe quedar auditada                                   | Ninguna                                               |
+| ARN-003 | Un gimnasio desactivado no se elimina fisicamente si tiene historial asociado                               | Se mantiene para trazabilidad                         |
+| ARN-004 | Los reportes no deben resolverse automaticamente en el MVP                                                  | Revision manual obligatoria                           |
+| ARN-005 | Los cambios sobre catalogos base deben ser reversibles                                                      | Reversion por auditoria                               |
+| ARN-006 | Los cambios de precio y plan deben quedar con version historica                                             | Ninguna                                               |
+| ARN-007 | Un trial activo solo puede existir una vez por cuenta y por tarjeta                                         | Reintento permitido solo si el trial no se consumio   |
+| ARN-008 | Una suscripcion cancelada mantiene acceso hasta la fecha de corte                                           | Ninguna                                               |
+| ARN-009 | El plan Free debe respetar limites maximos definidos por configuracion comercial                            | Ninguna                                               |
+| ARN-010 | Cualquier cambio en limites Free debe aplicarse sin romper datos historicos                                 | Requiere versionado                                   |
+| ARN-011 | El cupo de nuevas altas Free solo afecta registros nuevos, no usuarios existentes                           | Ninguna                                               |
+| ARN-012 | Si el cupo Free se agota, el flujo comercial debe ofrecer trial de 7 dias como unica alternativa de entrada | Ninguna                                               |
+| ARN-013 | Las cuentas con rol `admin` solo son visibles dentro del panel Admin y no aparecen en superficies publicas  | Acceso directo publico devuelve recurso no disponible |
 
 ## 7. Requerimientos No Funcionales
 
@@ -158,44 +161,44 @@ Fuera de alcance inicial:
 
 ## 8. Criterios De Aceptacion
 
-| ID      | Criterio                                                                | Validacion                       |
-| ------- | ----------------------------------------------------------------------- | -------------------------------- |
-| ACA-001 | Un usuario sin rol admin no puede acceder al panel                      | Redireccion o bloqueo            |
-| ACA-002 | Un admin puede ver el dashboard operativo                               | KPIs visibles                    |
-| ACA-003 | Un admin puede suspender y reactivar un usuario                         | Estado persistido                |
-| ACA-004 | Un admin puede resolver reportes manualmente                            | Accion registrada                |
-| ACA-005 | Un admin puede crear o editar gimnasios                                 | Datos guardados                  |
-| ACA-006 | Toda accion critica genera registro auditable                           | Log disponible                   |
-| ACA-007 | Un admin puede crear, editar y desactivar planes                        | Plan persistido                  |
-| ACA-008 | Un admin puede configurar precios, trials y cupones                     | Configuracion visible            |
-| ACA-009 | Un admin puede ver suscripciones y sus estados                          | Listado disponible               |
-| ACA-010 | Un admin puede consultar KPIs comerciales basicos                       | MRR, churn y conversion visibles |
-| ACA-011 | Un admin puede modificar los limites del plan Free                      | Valores persistidos              |
-| ACA-012 | Un admin puede ver claramente que features quedan bloqueadas en Free    | Matriz de limites visible        |
-| ACA-013 | Un admin puede configurar el cupo maximo de nuevas altas Free           | Cupo persistido                  |
-| ACA-014 | Al agotarse el cupo Free, el registro nuevo solo ofrece trial de 7 dias | Flujo bloqueado para Free        |
-| ACA-015 | Un admin puede gestionar rangos sin permitir solapamientos ni publicar datos invalidos | Rango persistido y validado |
-| ACA-016 | Una accion critica de Admin genera un registro de auditoria consultable | Actor, entidad y fecha visibles |
-| ACA-017 | Un usuario publico no puede descubrir una cuenta `admin` desde la app | No aparece en superficies publicas |
+| ID      | Criterio                                                                               | Validacion                         |
+| ------- | -------------------------------------------------------------------------------------- | ---------------------------------- |
+| ACA-001 | Un usuario sin rol admin no puede acceder al panel                                     | Redireccion o bloqueo              |
+| ACA-002 | Un admin puede ver el dashboard operativo                                              | KPIs visibles                      |
+| ACA-003 | Un admin puede suspender y reactivar un usuario                                        | Estado persistido                  |
+| ACA-004 | Un admin puede resolver reportes manualmente                                           | Accion registrada                  |
+| ACA-005 | Un admin puede crear o editar gimnasios                                                | Datos guardados                    |
+| ACA-006 | Toda accion critica genera registro auditable                                          | Log disponible                     |
+| ACA-007 | Un admin puede crear, editar y desactivar planes                                       | Plan persistido                    |
+| ACA-008 | Un admin puede configurar precios, trials y cupones                                    | Configuracion visible              |
+| ACA-009 | Un admin puede ver suscripciones y sus estados                                         | Listado disponible                 |
+| ACA-010 | Un admin puede consultar KPIs comerciales basicos                                      | MRR, churn y conversion visibles   |
+| ACA-011 | Un admin puede modificar los limites del plan Free                                     | Valores persistidos                |
+| ACA-012 | Un admin puede ver claramente que features quedan bloqueadas en Free                   | Matriz de limites visible          |
+| ACA-013 | Un admin puede configurar el cupo maximo de nuevas altas Free                          | Cupo persistido                    |
+| ACA-014 | Al agotarse el cupo Free, el registro nuevo solo ofrece trial de 7 dias                | Flujo bloqueado para Free          |
+| ACA-015 | Un admin puede gestionar rangos sin permitir solapamientos ni publicar datos invalidos | Rango persistido y validado        |
+| ACA-016 | Una accion critica de Admin genera un registro de auditoria consultable                | Actor, entidad y fecha visibles    |
+| ACA-017 | Un usuario publico no puede descubrir una cuenta `admin` desde la app                  | No aparece en superficies publicas |
 
 ## 9. Casos Borde
 
-| ID      | Escenario                                                          | Comportamiento esperado                                           |
-| ------- | ------------------------------------------------------------------ | ----------------------------------------------------------------- |
-| ACB-001 | Token expirado                                                     | Cerrar sesion y pedir login                                       |
-| ACB-002 | Usuario sin permisos                                               | Denegar acceso                                                    |
-| ACB-003 | Reporte ya resuelto                                                | Informar estado y evitar doble accion                             |
-| ACB-004 | Gimnasio duplicado                                                 | Bloquear guardado                                                 |
-| ACB-005 | Error al guardar una accion administrativa                         | Mostrar error y no cambiar estado                                 |
-| ACB-006 | Se intenta cambiar el precio de un plan con suscripciones activas  | Guardar nueva version sin romper historico                        |
-| ACB-007 | Se desactiva un plan con suscriptores activos                      | Mantener acceso hasta vencimiento                                 |
-| ACB-008 | Coupon expirado o invalido                                         | Rechazar aplicacion                                               |
-| ACB-009 | Trial ya consumido                                                 | Bloquear nuevo trial                                              |
-| ACB-010 | Se reduce el limite Free por debajo del uso historico del usuario  | Mantener historial y aplicar nuevo limite solo hacia adelante     |
-| ACB-011 | Se intenta habilitar una feature premium en Free sin configuracion | Bloquear y mostrar advertencia                                    |
-| ACB-012 | Se agota el cupo Free mientras un usuario esta registrandose       | Ofrecer solo trial de 7 dias con tarjeta                          |
-| ACB-013 | El trial no esta habilitado por configuracion comercial            | Bloquear alta Free si el cupo se agotó y mostrar mensaje de venta |
-| ACB-014 | Un usuario intenta abrir el perfil publico de una cuenta administrativa | Devolver recurso no disponible y no exponer sus datos      |
+| ID      | Escenario                                                               | Comportamiento esperado                                           |
+| ------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| ACB-001 | Token expirado                                                          | Cerrar sesion y pedir login                                       |
+| ACB-002 | Usuario sin permisos                                                    | Denegar acceso                                                    |
+| ACB-003 | Reporte ya resuelto                                                     | Informar estado y evitar doble accion                             |
+| ACB-004 | Gimnasio duplicado                                                      | Bloquear guardado                                                 |
+| ACB-005 | Error al guardar una accion administrativa                              | Mostrar error y no cambiar estado                                 |
+| ACB-006 | Se intenta cambiar el precio de un plan con suscripciones activas       | Guardar nueva version sin romper historico                        |
+| ACB-007 | Se desactiva un plan con suscriptores activos                           | Mantener acceso hasta vencimiento                                 |
+| ACB-008 | Coupon expirado o invalido                                              | Rechazar aplicacion                                               |
+| ACB-009 | Trial ya consumido                                                      | Bloquear nuevo trial                                              |
+| ACB-010 | Se reduce el limite Free por debajo del uso historico del usuario       | Mantener historial y aplicar nuevo limite solo hacia adelante     |
+| ACB-011 | Se intenta habilitar una feature premium en Free sin configuracion      | Bloquear y mostrar advertencia                                    |
+| ACB-012 | Se agota el cupo Free mientras un usuario esta registrandose            | Ofrecer solo trial de 7 dias con tarjeta                          |
+| ACB-013 | El trial no esta habilitado por configuracion comercial                 | Bloquear alta Free si el cupo se agotó y mostrar mensaje de venta |
+| ACB-014 | Un usuario intenta abrir el perfil publico de una cuenta administrativa | Devolver recurso no disponible y no exponer sus datos             |
 
 ## 10. Trazabilidad
 

@@ -216,6 +216,29 @@ Este documento muestra:
 | sortOrder     | int          | No   | -     | Orden ascendente                        |
 | colorToken    | varchar      | Si   | -     | Token visual                            |
 
+### 4.12 GymRequest
+
+| Campo         | Tipo          | Null | Clave | Descripcion                            |
+| ------------- | ------------- | ---- | ----- | -------------------------------------- |
+| id            | uuid          | No   | PK    | Solicitud                              |
+| requestedById | uuid          | No   | FK    | Usuario solicitante                    |
+| name          | varchar       | No   | -     | Nombre informado                       |
+| address       | varchar       | No   | -     | Direccion informada                    |
+| city          | varchar       | Si   | -     | Ciudad                                 |
+| region        | varchar       | Si   | -     | Region                                 |
+| lat           | decimal(10,7) | Si   | -     | Latitud del lugar                      |
+| lng           | decimal(10,7) | Si   | -     | Longitud del lugar                     |
+| googlePlaceId | varchar       | Si   | UQ    | Identificador externo                  |
+| chain         | varchar       | Si   | -     | Cadena                                 |
+| notes         | text          | Si   | -     | Contexto aportado por el usuario       |
+| status        | varchar       | No   | -     | PENDING, APPROVED, REJECTED, DUPLICATE |
+| reviewNote    | text          | Si   | -     | Observacion de Admin                   |
+| reviewedById  | uuid          | Si   | FK    | Admin que resolvio                     |
+| resolvedGymId | uuid          | Si   | FK    | Gimnasio creado o vinculado            |
+| createdAt     | timestamptz   | No   | -     | Creacion                               |
+| updatedAt     | timestamptz   | No   | -     | Ultima modificacion                    |
+| reviewedAt    | timestamptz   | Si   | -     | Fecha de resolucion                    |
+
 ## 5. Relaciones Principales
 
 ```mermaid
@@ -237,6 +260,10 @@ erDiagram
 
   USER ||--o{ GYM_CHECKIN : makes
   GYM ||--o{ GYM_CHECKIN : receives
+
+  USER ||--o{ GYM_REQUEST : submits
+  USER ||--o{ GYM_REQUEST : reviews
+  GYM ||--o{ GYM_REQUEST : resolves_to
 
   USER ||--o{ USER_FOLLOW : follower
   USER ||--o{ USER_FOLLOW : following

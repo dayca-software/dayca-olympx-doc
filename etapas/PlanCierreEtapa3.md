@@ -264,3 +264,4 @@ duplicado no estén cerradas en API.
 - `../../olympx-api/src/modules/gyms/gyms.controller.ts`: endpoints y reglas de check-in.
 - `../../olympx-api/src/modules/gyms/gyms.controller.spec.ts`: pruebas actuales de check-in.
 - `../ModeloRelacionalActual.md`: modelo real de `Gym` y `GymCheckIn`.
+- `../GymRequest.md`: especificacion funcional de solicitudes y revision Admin.
