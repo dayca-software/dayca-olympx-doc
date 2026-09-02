@@ -11,6 +11,9 @@ La forma mas facil de registrar entrenamiento para un usuario no experto es sepa
 
 Este enfoque reduce friccion, evita formularios largos al inicio y refleja mejor como entrena realmente una persona en el gimnasio.
 
+El ciclo persistente de la sesion es: `ACTIVE` mientras se registran sets, `FINISHED` al cerrar un
+entreno con al menos un set y `CANCELLED` si el usuario abandona explicitamente sin continuar.
+
 ## 2. Recomendacion
 
 ### Flujo recomendado

@@ -115,12 +115,12 @@ actividad y estado de verificación.
 | `TrainingRoutine`         | `id` | `userId`                       | Índice por usuario y fecha de actualización      |
 | `TrainingRoutineDay`      | `id` | `routineId`                    | Índice por rutina y posición                     |
 | `TrainingRoutineExercise` | `id` | `dayId`, `exerciseId`          | Índice por día/posición y ejercicio              |
-| `TrainingSession`         | `id` | `userId`, `routineId` opcional | `idempotencyKey` único; índice por usuario/fecha |
+| `TrainingSession`         | `id` | `userId`, `routineId` opcional | `idempotencyKey` único; estado, timestamps de ciclo de vida e índice por usuario/fecha |
 | `TrainingSet`             | `id` | `sessionId`, `exerciseId`      | Índices por sesión y ejercicio                   |
 
-`TrainingSession` registra título, duración, intensidad, notas, fecha de ejecución y rutina de
-origen. `TrainingSet` registra peso, repeticiones, RPE, RIR, calentamiento, participación
-competitiva y 1RM estimado.
+`TrainingSession` registra título, estado (`DRAFT`, `ACTIVE`, `FINISHED` o `CANCELLED`), inicio,
+fin, duración, intensidad, notas, fecha de ejecución y rutina de origen. `TrainingSet` registra
+peso, repeticiones, RPE, RIR, calentamiento, participación competitiva y 1RM estimado.
 
 El PR y el progreso no tienen una tabla propia en el esquema actual: se calculan a partir de
 `TrainingSet` y `TrainingSession`.

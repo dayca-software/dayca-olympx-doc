@@ -141,8 +141,11 @@ Hoy cubre:
 - `GET /api/training/sessions/:id`
 - `POST /api/training/sessions`
 - `PATCH /api/training/sessions/:id`
+- `PATCH /api/training/sessions/:id/finish` exige al menos un set y marca la sesión como `FINISHED`.
+- `PATCH /api/training/sessions/:id/cancel` marca una sesión activa como `CANCELLED`.
 - `DELETE /api/training/sessions/:id`
 - `POST /api/training/sessions/:id/sets`
+- Las sesiones nuevas nacen como `ACTIVE`; los registros históricos se normalizaron como `FINISHED`.
 
 ### Commercial
 
