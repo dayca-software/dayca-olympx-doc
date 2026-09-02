@@ -26,6 +26,7 @@ Evitar duplicacion, mantener trazabilidad y asegurar que cada cambio actualice l
 - Si cambia el estado real de pruebas o cobertura, actualiza `AvanceQA.md`.
 - Si cambia el estado real de web publica o admin, actualiza `AvanceWebAdmin.md`.
 - Si cambia la infraestructura, CI/CD o despliegue AWS/Neon, actualiza `DevOpsAWSNeon.md`.
+- Si cambia la referencia competitiva o el flujo UX priorizado, actualiza `BenchmarkAppsYFlujoOlympX.md`.
 
 ## 3. Matriz Por Tipo De Cambio
 
@@ -95,3 +96,4 @@ Evitar duplicacion, mantener trazabilidad y asegurar que cada cambio actualice l
 - Contexto general: `CLAUDE.md`
 - Admin interno: `AdminRequerimientos.md`
 - Coach interno: `CoachRequerimientos.md`
+- Benchmark y flujo UX: `BenchmarkAppsYFlujoOlympX.md`
