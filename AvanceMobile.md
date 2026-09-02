@@ -46,8 +46,8 @@ Hoy cubre:
 - Edición y eliminación de publicaciones propias.
 - Edición, eliminación y reporte de comentarios.
 - Bloqueo y desbloqueo de usuarios desde perfiles públicos.
-- Onboarding post-registro con datos mínimos, nivel y gimnasio principal.
-- Redirección al onboarding antes de acceder al contenido principal.
+- Onboarding progresivo: el usuario puede entrar a Home sin completar perfil ni elegir gimnasio.
+- Perfil físico y gimnasio principal disponibles como configuración posterior.
 - Contador de comentarios visible en el feed.
 - Reordenamiento de ejercicios dentro de rutinas.
 - Gráfico semanal de volumen y mejores marcas por ejercicio.
@@ -65,6 +65,10 @@ Hoy cubre:
 - Terminos y condiciones dentro de la app.
 - Reintento explícito en errores de búsqueda, alertas e historial de entrenamiento.
 - Estados vacíos de entrenamiento con CTA para registrar la primera sesión.
+- Sesión rápida desde Home, tab central e historial con título por defecto.
+- Primer ejercicio preseleccionado automáticamente al abrir una sesión nueva.
+- Validación de ejercicio, peso y repeticiones antes de guardar el primer set.
+- Resumen explícito de sesión y progreso reciente después de registrar sets.
 
 ## 3. Pantallas Implementadas
 
@@ -127,6 +131,7 @@ Hoy cubre:
 
 - Crea sesiones con plantillas rapidas.
 - Permite seleccionar zonas musculares.
+- El modo rápido permite empezar con “Entreno de hoy” sin completar metadatos secundarios.
 
 ### Training Session Detail
 
@@ -136,6 +141,14 @@ Hoy cubre:
 - Incluye ajustes avanzados opcionales de RPE y RIR.
 - Permite compartir el resumen como publicación.
 - Permite guardar la sesión como rutina.
+- Preselecciona el primer ejercicio disponible y valida el primer set.
+- Permite finalizar con al menos un set y abrir el resumen de progreso.
+
+### Training Summary
+
+- Muestra métricas de la sesión: sets, repeticiones, volumen y ejercicios.
+- Muestra progreso agregado de los últimos 30 días cuando está disponible.
+- Permite volver a Inicio o abrir el historial completo.
 
 ### Routines
 
