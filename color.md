@@ -50,6 +50,10 @@
 | `successSoft` | `#9CECDA` | Fondos suaves y bordes de exito |
 | `successTint` | `#EAFBF7` | Superficies de exito de muy bajo contraste |
 
+El logo entregado utiliza `#FFFFFF` y `#00608C` en su degradado interno y conserva un fondo negro
+como parte del SVG. Debe mostrarse sobre superficies oscuras y no debe recibir filtros, tintes ni
+recoloreado desde los componentes.
+
 ## Degradado de marca
 
 El degradado principal combina azul luminoso con azul marino. Se recomienda usarlo en heroes,
@@ -113,6 +117,6 @@ OlympX utiliza dos familias complementarias en mobile y admin:
 
 ## Estado
 
-- Definicion: propuesta de paleta OlympX.
-- Alcance: mobile, web y admin.
-- Pendiente: integrar los tokens en cada sistema de estilos y validar contraste en las pantallas MVP.
+- Definicion: paleta y tipografia base de OlympX.
+- Alcance actual: mobile y admin.
+- Estado: tokens integrados; pendiente validar contraste en todas las pantallas MVP.
