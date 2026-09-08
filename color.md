@@ -1,6 +1,6 @@
-# OlympX Color System
+# CONQUEST Color System
 
-> Fuente de referencia para la identidad visual de OlympX. Los tokens definidos aqui deben
+> Fuente de referencia para la identidad visual de CONQUEST. Los tokens definidos aqui deben
 > mantenerse alineados entre `olympx-mobile`, `olympx-web` y `olympx-admin`.
 
 ## Principios
@@ -50,9 +50,9 @@
 | `successSoft` | `#9CECDA` | Fondos suaves y bordes de exito |
 | `successTint` | `#EAFBF7` | Superficies de exito de muy bajo contraste |
 
-El logo entregado utiliza `#FFFFFF` y `#00608C` en su degradado interno y conserva un fondo negro
-como parte del SVG. Debe mostrarse sobre superficies oscuras y no debe recibir filtros, tintes ni
-recoloreado desde los componentes.
+El logo de interfaz utiliza `#FFFFFF` y `#00608C` en su degradado interno y tiene fondo transparente
+para poder colocarse sobre cualquier superficie. Los iconos nativos usan una variante con fondo negro
+(`#000000`) de forma consistente y no deben recibir filtros, tintes ni recoloreado desde los componentes.
 
 ## Degradado de marca
 
@@ -77,7 +77,7 @@ Distribucion de referencia:
 
 ## Tipografia
 
-OlympX utiliza dos familias complementarias en mobile y admin:
+CONQUEST utiliza dos familias complementarias en mobile y admin:
 
 | Familia | Rol | Aplicacion |
 | --- | --- | --- |
@@ -117,6 +117,6 @@ OlympX utiliza dos familias complementarias en mobile y admin:
 
 ## Estado
 
-- Definicion: paleta y tipografia base de OlympX.
+- Definicion: paleta y tipografia base de CONQUEST.
 - Alcance actual: mobile y admin.
 - Estado: tokens integrados; pendiente validar contraste en todas las pantallas MVP.
