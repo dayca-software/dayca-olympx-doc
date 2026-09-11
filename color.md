@@ -11,8 +11,8 @@
 - Usar la escala `success` para confirmaciones, progreso positivo y objetivos completados.
 - Reservar blanco y negro para superficies neutras, iconos y contenido de alto contraste.
 - Usar `#000000` como fondo base de la aplicacion; reservar `#0F1B38` para el degradado de marca.
-- En mobile, usar `#080B10` para subcards y `#0D1218` para superficies elevadas; son negros grafito
-  que mantienen separacion visual sin competir con el contenido.
+- En mobile, usar `#080B10` para subcards y `#222284` para superficies elevadas; las elevated cards
+  funcionan como superficies de marca y las cards normales mantienen el grafito para no competir con el contenido.
 - No introducir colores aislados en componentes si existe un token equivalente.
 
 ## Tokens
