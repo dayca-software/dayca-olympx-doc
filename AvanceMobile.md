@@ -13,6 +13,8 @@ La app mobile ya esta alineada con el stack Dayca y consume el contrato comparti
 Hoy cubre:
 
 - Autenticacion con persistencia local.
+- Cambio de contraseña autenticado desde Seguridad de la cuenta.
+- Recuperación de contraseña con solicitud, confirmación, token manual/de desarrollo y deep link `olympx://reset-password`; la entrega real queda pendiente de proveedor.
 - Registro con aceptación persistida de términos y versión legal.
 - Home con resumen de perfil, gimnasios, publicaciones y entrenos recientes.
 - Busqueda global.
@@ -78,6 +80,7 @@ Hoy cubre:
 
 - Pantalla de entrada para credenciales.
 - Permite login y registro.
+- En registro exige contraseña con 8 caracteres, una mayúscula y un número.
 - Guarda token y usuario en Zustand + AsyncStorage.
 
 ### Home
@@ -183,6 +186,11 @@ Hoy cubre:
 - Edita datos personales y avatar.
 - Permite subir imagen desde galeria.
 
+### Change Password
+
+- Permite validar la contraseña actual y guardar una nueva contraseña.
+- Muestra requisitos mínimos y confirmación de coincidencia.
+
 ### Paywall
 
 - Lista planes comerciales activos.
@@ -198,6 +206,9 @@ La app consume estos flujos principales:
 
 - `POST /api/auth/login`
 - `POST /api/auth/register`
+- `PATCH /api/auth/password`
+- `POST /api/auth/password/request`
+- `POST /api/auth/password/reset`
 - `GET /api/home/summary`
 - `GET /api/posts`
 - `POST /api/posts`
@@ -250,6 +261,12 @@ La base de la integracion usa `axios` con interceptor de `Authorization` y `ApiE
 - `UserProfile`
 - `UserProfileStats`
 - `UpdateProfileRequest`
+- `ChangePasswordRequest`
+- `ChangePasswordResponse`
+- `RequestPasswordResetRequest`
+- `RequestPasswordResetResponse`
+- `ResetPasswordRequest`
+- `ResetPasswordResponse`
 - `TrainingSessionSummary`
 - `TrainingSessionDetail`
 - `TrainingSetSummary`
@@ -271,10 +288,12 @@ La base de la integracion usa `axios` con interceptor de `Authorization` y `ApiE
 Verificado recientemente:
 
 - typecheck de mobile
-- check de formato
+- check de formato de los archivos modificados; el check global sigue pendiente por deuda existente
 - test unitario de progreso de rango
 - tests unitarios de ordenamiento de actividad reciente
 - tests unitarios de validacion del formulario de autenticacion
+- validacion mobile de politica minima de contraseña y pantalla de cambio autenticado
+- pantallas mobile de solicitud y confirmación de recuperación de contraseña
 - smoke flow Maestro para Login -> Home -> publicar -> Training -> guardar usando `testID` estables
 - smoke iOS de entrenamiento: sets, edición, compartir y guardar rutina
 - smoke iOS de comunidad: publicar contenido y validar actividad
@@ -296,6 +315,7 @@ Verificado recientemente:
 2. Separar mejor el composer de publicaciones y el composer de entrenos.
 3. Validar en dispositivo la sincronizacion offline de ubicación, publicaciones y entrenos; la cobertura automatizada no sustituye esta prueba física.
 4. Evaluar analitica de uso mobile.
+5. Probar el deep link de recuperación en Android/iOS con un proveedor de entrega configurado.
 
 ## 9. Riesgos Y Deuda Actual
 

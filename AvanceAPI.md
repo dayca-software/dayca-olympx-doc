@@ -13,6 +13,7 @@ La API ya esta alineada con NestJS + Prisma + PostgreSQL y expone el contrato un
 Hoy cubre:
 
 - Autenticacion con login, registro y consulta de usuario actual.
+- Recuperación de contraseña con tokens de un solo uso y expiración; la entrega requiere un webhook configurado.
 - Resumen para home mobile.
 - Catalogo, busqueda y detalle de gimnasios.
 - Feed social con publicaciones, comentarios y likes.
@@ -48,6 +49,10 @@ Hoy cubre:
 
 - `POST /api/auth/login`
 - `POST /api/auth/register`
+- `PATCH /api/auth/password`
+- `POST /api/auth/password/request`
+- `POST /api/auth/password/reset`
+- Los endpoints de recuperación están limitados por IP con `ThrottlerGuard`.
 - `GET /api/auth/me`
 - `PATCH /api/users/me/onboarding/complete`
 - Soporta token bearer y flujo de sesion para mobile.
@@ -194,10 +199,12 @@ Entidades actuales en Prisma:
 - `TrainingSessionFocus`
 - `TrainingSet`
 - `GymCheckIn`
+- `PasswordResetToken`
 
 ## 6. Flujos Ya Cubiertos Por Mobile
 
 - Login y registro.
+- Solicitud y confirmación de recuperación de contraseña; el deep link mobile usa `olympx://reset-password`.
 - Home con summary y feed.
 - Busqueda de gimnasios, ejercicios y posts.
 - Ranking y notificaciones con estado de visto.
@@ -231,6 +238,8 @@ Eso permite validar el flujo completo sin depender de carga manual inicial.
 - Se mantuvo `ApiEnvelope` como formato unico para todas las respuestas.
 - El home agrega tanto feed como entrenos para reducir roundtrips en mobile.
 - Las sesiones de entrenamiento viven como dominio propio, no como parte del feed.
+- La política mínima de contraseña se comparte entre DTO y servicio; el cambio autenticado usa la contraseña actual antes de persistir un nuevo hash.
+- La recuperación guarda solo el hash SHA-256 de un token aleatorio, expira por defecto en 30 minutos, invalida tokens previos y reclama el token dentro de una transacción.
 
 ## 10. Estado De Calidad
 
@@ -241,14 +250,17 @@ Verificado recientemente:
 - prisma generate
 - prisma push
 - prisma seed
+- política de contraseña de registro y cambio autenticado cubiertos por tests de servicio y controller
+- recuperación de contraseña cubierta por tests de servicio, controller y delivery; migración local aplicada
 
 ## 11. Pendientes Priorizados
 
 1. Evitar el uso de `any` en queries Prisma y tipar el acceso al client generado.
 2. Introducir DTOs y validaciones mas especificas en escrituras.
 3. Agregar tests de integracion para auth, posts, search, training y commercial.
-4. Revisar paginacion y performance del feed si el volumen de datos crece.
-5. Tipar mejor los selects complejos de Prisma.
+4. Configurar y probar el webhook de entrega de recuperación; después evaluar verificación de email y refresh token.
+5. Revisar paginacion y performance del feed si el volumen de datos crece.
+6. Tipar mejor los selects complejos de Prisma.
 
 ## 12. Riesgos Y Deuda Actual
 

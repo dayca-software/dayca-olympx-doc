@@ -10,7 +10,7 @@
 | Diagrama editable              | `ModeloRelacionalActual.dbml`                          |
 | Motor                          | PostgreSQL                                             |
 | ORM                            | Prisma                                                 |
-| Corte                          | 12/09/2026                                             |
+| Corte                          | 13/09/2026                                             |
 | Estado                         | Implementado y sincronizado en desarrollo              |
 | Modelo planificado relacionado | `ModeloRelacionalMVP.md` y `ModeloRelacionalGlobal.md` |
 
@@ -21,14 +21,14 @@ propuestas en la documentación de producto.
 
 La base actual está organizada en seis dominios:
 
-| Dominio                    | Entidades principales                                                        | Responsabilidad                                  |
-| -------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------ |
-| Identidad y contexto       | `User`, `Gym`, `GymCheckIn`                                                  | Usuarios, roles, perfil, ubicación y gimnasios   |
-| Entrenamiento              | `Exercise`, `TrainingRoutine*`, `TrainingSession`, `TrainingSet`             | Rutinas, sesiones, series y métricas             |
-| Social                     | `Post`, `PostComment`, `PostLike`, `PostReaction`, `UserFollow`, `UserBlock` | Feed e interacción entre usuarios                |
-| Notificaciones y operación | `NotificationView`, `PushDevice`, `Report`, `ModerationAction`, `AuditLog`   | Alertas, dispositivos, reportes y moderación     |
-| Competencia                | `ExerciseStrengthRange`                                                      | Rangos de fuerza publicados por ejercicio        |
-| Comercial                  | `CommercialPlan`, `Subscription*`, `Coupon`, `CommercialSettings`            | Planes, trials, suscripciones, cupones y límites |
+| Dominio                    | Entidades principales                                                        | Responsabilidad                                   |
+| -------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------- |
+| Identidad y contexto       | `User`, `Gym`, `GymCheckIn`, `PasswordResetToken`                            | Usuarios, roles, perfil, ubicación y recuperación |
+| Entrenamiento              | `Exercise`, `TrainingRoutine*`, `TrainingSession`, `TrainingSet`             | Rutinas, sesiones, series y métricas              |
+| Social                     | `Post`, `PostComment`, `PostLike`, `PostReaction`, `UserFollow`, `UserBlock` | Feed e interacción entre usuarios                 |
+| Notificaciones y operación | `NotificationView`, `PushDevice`, `Report`, `ModerationAction`, `AuditLog`   | Alertas, dispositivos, reportes y moderación      |
+| Competencia                | `ExerciseStrengthRange`                                                      | Rangos de fuerza publicados por ejercicio         |
+| Comercial                  | `CommercialPlan`, `Subscription*`, `Coupon`, `CommercialSettings`            | Planes, trials, suscripciones, cupones y límites  |
 
 ## 3. Diagrama Relacional Actual
 
@@ -71,6 +71,8 @@ erDiagram
   USER ||--o{ MODERATION_ACTION : performs
   USER o|--o{ USER : suspends
 
+  USER ||--o{ PASSWORD_RESET_TOKEN : requests
+
   USER ||--o{ SUBSCRIPTION : owns
   COMMERCIAL_PLAN ||--o{ SUBSCRIPTION : applies
   COMMERCIAL_PLAN ||--o{ PLAN_PRICE_HISTORY : changes
@@ -85,13 +87,14 @@ observaciones.
 
 ### 4.1 Identidad Y Contexto
 
-| Entidad      | PK   | FKs                         | Restricciones e índices relevantes                                       |
-| ------------ | ---- | --------------------------- | ------------------------------------------------------------------------ |
-| `User`       | `id` | `gymId`, `suspendedById`    | `email` y `nickname` únicos; estado `ACTIVE/SUSPENDED`                   |
-| `Gym`        | `id` | -                           | Estado de verificación `PENDING/VERIFIED/REJECTED/DUPLICATE`; `isActive` |
-| `GymCheckIn` | `id` | `userId`, `gymId`           | Índices por usuario/fecha y gimnasio/fecha                               |
-| `UserFollow` | `id` | `followerId`, `followingId` | Único por par de usuarios; índice por seguido/fecha                      |
-| `UserBlock`  | `id` | `blockerId`, `blockedId`    | Único por par; índices por origen y destino                              |
+| Entidad              | PK   | FKs                         | Restricciones e índices relevantes                                       |
+| -------------------- | ---- | --------------------------- | ------------------------------------------------------------------------ |
+| `User`               | `id` | `gymId`, `suspendedById`    | `email` y `nickname` únicos; estado `ACTIVE/SUSPENDED`                   |
+| `Gym`                | `id` | -                           | Estado de verificación `PENDING/VERIFIED/REJECTED/DUPLICATE`; `isActive` |
+| `GymCheckIn`         | `id` | `userId`, `gymId`           | Índices por usuario/fecha y gimnasio/fecha                               |
+| `UserFollow`         | `id` | `followerId`, `followingId` | Único por par de usuarios; índice por seguido/fecha                      |
+| `UserBlock`          | `id` | `blockerId`, `blockedId`    | Único por par; índices por origen y destino                              |
+| `PasswordResetToken` | `id` | `userId`                    | Hash único, expiración, uso único e índices por usuario/fecha            |
 
 **Campos relevantes de `User`:** email, contraseña hasheada, rol, estado, nickname, perfil físico,
 región, provincia, comuna, avatar, gimnasio principal, última ubicación, consentimiento legal,

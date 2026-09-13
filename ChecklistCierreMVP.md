@@ -11,10 +11,12 @@
 - [x] El lanzamiento corresponde al MVP ampliado con red social; el entrenamiento sigue siendo el flujo core.
 - [ ] Confirmar si Google OAuth y Apple OAuth forman parte del lanzamiento.
 - [ ] Implementar verificacion de email, si se exige para el lanzamiento.
-- [ ] Implementar recuperacion y cambio de contraseña.
+- [ ] Validar recuperación de contraseña con un proveedor de entrega configurado.
+- [x] Implementar cambio de contraseña autenticado.
 - [ ] Implementar eliminacion de cuenta y datos personales.
 - [ ] Validar consentimiento legal, version de terminos y regla para usuarios menores de edad.
 - [ ] Validar refresh token y comportamiento de sesiones expiradas.
+- [x] Aplicar la politica minima de contraseña: 8 caracteres, una mayúscula y un número.
 
 ### Decision De Alcance
 

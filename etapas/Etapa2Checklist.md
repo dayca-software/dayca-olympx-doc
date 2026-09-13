@@ -18,6 +18,7 @@
 - `GET /api/auth/me` devuelve la sesion actual.
 - `GET /api/users/me` devuelve el perfil autenticado.
 - `POST /api/auth/login/admin` funciona para cuentas de admin.
+- `PATCH /api/auth/password` cambia la contraseña con autenticación y contraseña actual válida.
 - La API responde con `ApiEnvelope<T>` en rutas principales.
 
 ## Cobertura actual
@@ -30,6 +31,8 @@
 - Envelope `ApiEnvelope<T>` aplicado.
 - Swagger, CORS, Helmet y throttling configurados.
 - Contraseñas hasheadas en seed y login.
+- Política mínima de contraseña aplicada en registro y cambio de contraseña.
+- Cambio de contraseña autenticado disponible y cubierto por regresiones.
 
 ## Validaciones de calidad
 
@@ -41,6 +44,7 @@
 ## Pendientes de cierre
 
 - OAuth Google y Apple si se mantiene en alcance.
+- Recuperación de contraseña, verificación de email y refresh token si se mantienen en alcance.
 - Refinar perfil de usuario y estados de error.
 - Endurecimiento de seguridad y pruebas de regresion.
 

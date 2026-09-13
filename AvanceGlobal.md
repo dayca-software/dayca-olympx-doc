@@ -115,7 +115,9 @@ Validaciones ejecutadas recientemente:
 - prisma seed
 - Maestro iOS: core, límite Free, acciones de entrenamiento, comunidad, competencia y suscripción
 - Maestro Android: core, comunidad y competencia
-- Jest mobile: 16 tests pasando en 7 suites, incluyendo `TrainingSummaryScreen` y ciclo de push/offline
+- Jest mobile: 20 tests pasando en 8 suites, incluyendo las pantallas de recuperación, `TrainingSummaryScreen`, ciclo de push/offline y validación de contraseña
+- API: 218 tests pasando en 32 archivos, incluyendo el flujo técnico de recuperación de contraseña
+- M01: política de contraseña, cambio autenticado y recuperación técnica disponibles en API y mobile; falta configurar delivery real
 
 ## 6. Riesgos Actuales
 
@@ -130,8 +132,9 @@ Validaciones ejecutadas recientemente:
 2. Validar push iOS en dispositivo físico y TestFlight.
 3. Configurar y confirmar RevenueCat Test Store en Android/iOS, incluyendo restauración de compras.
 4. Agregar tests de integracion para posts, notifications y suscripciones; ampliar training con casos borde.
-5. Ejecutar `format:check` y cerrar diferencias antes del MVP social.
-6. Mantener multimedia avanzada, coach y retención avanzada fuera del core de este lanzamiento.
+5. Configurar delivery real de recuperación, y luego completar verificación de email y sesiones renovables si se mantienen en alcance.
+6. Ejecutar `format:check` y cerrar diferencias antes del MVP social.
+7. Mantener multimedia avanzada, coach y retención avanzada fuera del core de este lanzamiento.
 
 ## 8. Documentos Detallados
 

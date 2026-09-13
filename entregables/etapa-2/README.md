@@ -31,4 +31,5 @@
 
 - OAuth Google y Apple, solo si se mantienen dentro del alcance aprobado.
 - Hardening adicional y pruebas de regresión de autenticación.
-- Validación de sesiones expiradas, refresh token y recuperación de contraseña.
+- Validación de sesiones expiradas, refresh token y entrega real de recuperación de contraseña.
+- Verificación de email y OAuth solo si se mantienen dentro del alcance aprobado.

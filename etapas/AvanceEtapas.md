@@ -49,7 +49,7 @@
 
 - NestJS operativo con `health`, Swagger, CORS, Helmet y throttling.
 - Prisma activo con seed funcional.
-- Auth con login, registro, `me`, admin login y token JWT.
+- Auth con login, registro, `me`, admin login, cambio de contraseña y token JWT.
 - Envelope `ApiEnvelope<T>` implementado.
 - La Etapa 2 ya cubre el core backend de la validacion inicial; faltan solo detalles de cierre y endurecimiento.
 
@@ -163,7 +163,7 @@ check-in, experiencia mobile, pruebas iOS/Android y aprobación formal.
 
 - Hay smoke tests en API, web, admin y Maestro en mobile.
 - iOS ya tiene smoke de core, límite Free, acciones de entrenamiento y suscripción.
-- Jest mobile tiene 16 tests pasando en 7 suites y typecheck mobile pasa.
+- Jest mobile tiene 20 tests pasando en 8 suites y typecheck mobile pasa; API tiene 218 tests pasando en 32 archivos.
 - Faltan suites de integración, offline físico, push físico y validaciones de seguridad/rendimiento.
 
 ### Balance

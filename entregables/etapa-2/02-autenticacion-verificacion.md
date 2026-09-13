@@ -12,6 +12,8 @@
 - Bloqueo de cuentas no activas.
 - Control de acceso por rol.
 - Normalización de email con `trim().toLowerCase()`.
+- Política mínima de contraseña: 8 caracteres, una mayúscula y un número.
+- Cambio de contraseña autenticado validando la contraseña actual.
 
 ## Contrato JWT
 
@@ -48,13 +50,14 @@ Estas credenciales son únicamente para desarrollo y pruebas locales.
 
 - [`auth.controller.ts`](../../../olympx-api/src/modules/auth/auth.controller.ts): endpoints.
 - [`auth.service.ts`](../../../olympx-api/src/modules/auth/auth.service.ts): reglas de autenticación.
+- [`change-password.dto.ts`](../../../olympx-api/src/modules/auth/dto/change-password.dto.ts): validación del cambio de contraseña.
 - [`login.dto.ts`](../../../olympx-api/src/modules/auth/dto/login.dto.ts): validación y normalización.
 - [`auth.service.spec.ts`](../../../olympx-api/src/modules/auth/auth.service.spec.ts): pruebas del servicio.
 - [`Etapa2Checklist.md`](../../etapas/Etapa2Checklist.md): lista de verificación.
 
 ## Pendientes De Seguridad
 
-- Recuperación y cambio de contraseña.
+- Recuperación de contraseña.
 - Refresh token y sesiones expiradas.
 - Verificación de email.
 - OAuth Google y Apple si el alcance final lo requiere.

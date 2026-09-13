@@ -132,6 +132,20 @@ Table User {
   onboardingCompletedAt timestamp
 }
 
+Table PasswordResetToken {
+  id uuid [pk]
+  userId uuid [not null]
+  tokenHash varchar [unique, not null, note: 'SHA-256 del token; nunca se guarda el token crudo']
+  expiresAt timestamp [not null]
+  usedAt timestamp
+  createdAt timestamp [not null]
+
+  indexes {
+    (userId, expiresAt)
+    expiresAt
+  }
+}
+
 Table Gym {
   id uuid [pk]
   name varchar [not null]
@@ -539,6 +553,7 @@ Table SubscriptionEvent {
 
 Ref: User.gymId > Gym.id
 Ref: User.suspendedById > User.id
+Ref: PasswordResetToken.userId > User.id
 
 Ref: GymCheckIn.userId > User.id
 Ref: GymCheckIn.gymId > Gym.id

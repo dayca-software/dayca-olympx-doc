@@ -9,7 +9,7 @@ Tener visibilidad clara de que esta probado hoy, que esta solo preparado y que f
 ## 2. Estado General
 
 OlympX tiene una base de testing en crecimiento. API ya cuenta con pruebas unitarias y un flujo de
-integracion de entrenamiento; mobile cuenta con una prueba de pantalla real. Web/admin conservan
+integracion de entrenamiento; mobile cuenta con pruebas de pantalla reales. Web/admin conservan
 smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no automatizado.
 
 ## 3. Cobertura Actual
@@ -19,7 +19,7 @@ smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no 
 - Script de test: `vitest run`
 - Script de cobertura: `vitest run --coverage`
 - Test visible actualmente: smoke del modulo principal (`test/app.test.ts`)
-- Suite API actual: 29 archivos y 202 tests pasando.
+- Suite API actual: 32 archivos y 218 tests pasando.
 - Integracion critica: crear sesion -> registrar set -> finalizar -> consultar detalle, incluyendo focos musculares e idempotencia.
 - Smoke tests de onboarding y creación de sesiones con límite comercial.
 - Smoke test de Home autenticado y rechazo de sesión inválida.
@@ -42,7 +42,8 @@ smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no 
 
 - Script de test: `jest`
 - Script de typecheck: `tsc --noEmit`
-- Mobile tiene 7 suites y 16 tests automatizados pasando.
+- Mobile tiene 8 suites y 20 tests automatizados pasando.
+- M01 incluye regresiones para política de contraseña, cambio autenticado, recuperación de contraseña y protección de credenciales demo.
 - Prueba de pantalla: `TrainingSummaryScreen` valida resumen, progreso y focos musculares.
 - La calidad de mobile se complementa con typecheck, formato y smoke flows Maestro en iOS/Android.
 
@@ -82,7 +83,7 @@ smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no 
 - La cobertura real sigue siendo baja para un producto con varios flujos de negocio.
 - Falta regression suite automatizada para login, home, posts y likes; training ya tiene cobertura de flujo basica.
 - No existe cobertura cross-browser ni validacion mobile E2E.
-- La ausencia de tests en mobile aumenta el riesgo de regresiones de UI o navegación.
+- La cobertura de tests en mobile sigue siendo limitada y aumenta el riesgo de regresiones de UI o navegación.
 - El workspace no tiene un lint de API ejecutable hasta agregar la configuracion flat de ESLint 9.
 - El workspace iOS ya compila con Firebase Messaging; las pruebas físicas de entrega APNs y apertura están pendientes y checklistadas en `doc/E2EPushNotifications.md`.
 
