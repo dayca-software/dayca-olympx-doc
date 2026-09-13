@@ -237,7 +237,7 @@ Eso permite validar el flujo completo sin depender de carga manual inicial.
 Verificado recientemente:
 
 - typecheck de API
-- check de formato
+- check de formato global pendiente por deuda existente del workspace
 - prisma generate
 - prisma push
 - prisma seed

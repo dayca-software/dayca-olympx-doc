@@ -74,6 +74,8 @@ smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no 
 - `pnpm --filter olympx-api run prisma:generate`
 - `pnpm --filter olympx-api run prisma:push`
 - `pnpm --filter olympx-api run prisma:seed`
+- El lint de API esta pendiente: ESLint 9 no encuentra `eslint.config.js` en el proyecto.
+- El `format:check` global esta pendiente por deuda de formato existente en 240 archivos; el test mobile modificado si queda formateado.
 
 ## 6. Riesgos De Calidad
 
@@ -81,6 +83,7 @@ smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no 
 - Falta regression suite automatizada para login, home, posts y likes; training ya tiene cobertura de flujo basica.
 - No existe cobertura cross-browser ni validacion mobile E2E.
 - La ausencia de tests en mobile aumenta el riesgo de regresiones de UI o navegación.
+- El workspace no tiene un lint de API ejecutable hasta agregar la configuracion flat de ESLint 9.
 - El workspace iOS ya compila con Firebase Messaging; las pruebas físicas de entrega APNs y apertura están pendientes y checklistadas en `doc/E2EPushNotifications.md`.
 
 ## 7. Prioridades De QA

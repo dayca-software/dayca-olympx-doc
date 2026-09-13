@@ -109,7 +109,7 @@ Validaciones ejecutadas recientemente:
 
 - typecheck de API
 - typecheck de mobile
-- check de formato
+- check de formato del test mobile modificado; el check global sigue pendiente por deuda existente
 - prisma generate
 - prisma push
 - prisma seed
