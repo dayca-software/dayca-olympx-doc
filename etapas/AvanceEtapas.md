@@ -163,7 +163,7 @@ check-in, experiencia mobile, pruebas iOS/Android y aprobación formal.
 
 - Hay smoke tests en API, web, admin y Maestro en mobile.
 - iOS ya tiene smoke de core, límite Free, acciones de entrenamiento y suscripción.
-- Jest mobile tiene 20 tests pasando en 8 suites y typecheck mobile pasa; API tiene 218 tests pasando en 32 archivos.
+- Jest mobile tiene 20 tests pasando en 8 suites y typecheck mobile pasa; API tiene 223 tests pasando en 32 archivos.
 - Faltan suites de integración, offline físico, push físico y validaciones de seguridad/rendimiento.
 
 ### Balance

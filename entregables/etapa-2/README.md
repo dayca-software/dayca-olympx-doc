@@ -31,5 +31,7 @@
 
 - OAuth Google y Apple, solo si se mantienen dentro del alcance aprobado.
 - Hardening adicional y pruebas de regresión de autenticación.
-- Validación de sesiones expiradas, refresh token y entrega real de recuperación de contraseña.
-- Verificación de email y OAuth solo si se mantienen dentro del alcance aprobado.
+- Entrega real de recuperación de contraseña y validación del deep link con proveedor configurado.
+- Verificación de email y refresh token si se mantienen dentro del alcance aprobado.
+- Alinear PBKDF2 con RNF-002, que actualmente exige bcrypt costo 12.
+- OAuth solo si se mantiene dentro del alcance aprobado.

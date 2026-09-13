@@ -18,15 +18,17 @@ posteriores del producto.
 
 ## Rutas De Verificacion
 
-| Método | Ruta                    | Resultado esperado              |
-| ------ | ----------------------- | ------------------------------- |
-| GET    | `/api/health`           | Estado saludable de la API      |
-| POST   | `/api/auth/login`       | Token y usuario autenticado     |
-| POST   | `/api/auth/login/admin` | Token y usuario con rol `admin` |
-| POST   | `/api/auth/register`    | Cuenta creada y sesión inicial  |
-| PATCH  | `/api/auth/password`    | Contraseña actualizada          |
-| GET    | `/api/auth/me`          | Usuario de la sesión actual     |
-| GET    | `/api/users/me`         | Perfil autenticado              |
+| Método | Ruta                         | Resultado esperado                 |
+| ------ | ---------------------------- | ---------------------------------- |
+| GET    | `/api/health`                | Estado saludable de la API         |
+| POST   | `/api/auth/login`            | Token y usuario autenticado        |
+| POST   | `/api/auth/login/admin`      | Token y usuario con rol `admin`    |
+| POST   | `/api/auth/register`         | Cuenta creada y sesión inicial     |
+| PATCH  | `/api/auth/password`         | Contraseña actualizada             |
+| POST   | `/api/auth/password/request` | Solicitud genérica de recuperación |
+| POST   | `/api/auth/password/reset`   | Contraseña restablecida con token  |
+| GET    | `/api/auth/me`               | Usuario de la sesión actual        |
+| GET    | `/api/users/me`              | Perfil autenticado                 |
 
 ## Evidencia Técnica
 
@@ -38,6 +40,6 @@ posteriores del producto.
 ## Verificaciones Ejecutadas
 
 - Typecheck API aprobado.
-- Suite API: 32 archivos y 218 tests pasando.
+- Suite API: 32 archivos y 223 tests pasando.
 - `prisma generate` y seed funcionales.
 - Health check validado en entorno local.

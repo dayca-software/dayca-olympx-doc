@@ -19,6 +19,8 @@
 - `GET /api/users/me` devuelve el perfil autenticado.
 - `POST /api/auth/login/admin` funciona para cuentas de admin.
 - `PATCH /api/auth/password` cambia la contraseña con autenticación y contraseña actual válida.
+- `POST /api/auth/password/request` responde sin enumerar cuentas y crea recuperación para usuarios activos.
+- `POST /api/auth/password/reset` consume un token válido una sola vez.
 - La API responde con `ApiEnvelope<T>` en rutas principales.
 
 ## Cobertura actual
@@ -40,11 +42,16 @@
 - DTOs de entrada para login, perfil y ubicacion.
 - Contrato compartido usado por consumers.
 - Typecheck y tests basicos de API en verde.
+- Recuperación técnica con token de un solo uso, expiración y entrega desacoplada disponible.
+- Throttling global activo con límites específicos para recuperación.
+- Smoke HTTP local validó health, login, login admin, sesión, perfil, recuperación y rechazo `429` por burst.
 
 ## Pendientes de cierre
 
+- Entrega real del email de recuperación y deep link con proveedor configurado.
+- Verificación de email y refresh token si se mantienen en alcance.
 - OAuth Google y Apple si se mantiene en alcance.
-- Recuperación de contraseña, verificación de email y refresh token si se mantienen en alcance.
+- Alinear el algoritmo implementado (PBKDF2) con RNF-002, que actualmente documenta bcrypt costo 12.
 - Refinar perfil de usuario y estados de error.
 - Endurecimiento de seguridad y pruebas de regresion.
 

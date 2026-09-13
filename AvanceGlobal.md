@@ -116,7 +116,7 @@ Validaciones ejecutadas recientemente:
 - Maestro iOS: core, límite Free, acciones de entrenamiento, comunidad, competencia y suscripción
 - Maestro Android: core, comunidad y competencia
 - Jest mobile: 20 tests pasando en 8 suites, incluyendo las pantallas de recuperación, `TrainingSummaryScreen`, ciclo de push/offline y validación de contraseña
-- API: 218 tests pasando en 32 archivos, incluyendo el flujo técnico de recuperación de contraseña
+- API: 223 tests pasando en 32 archivos, incluyendo el flujo técnico de recuperación de contraseña
 - M01: política de contraseña, cambio autenticado y recuperación técnica disponibles en API y mobile; falta configurar delivery real
 
 ## 6. Riesgos Actuales

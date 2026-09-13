@@ -9,11 +9,14 @@
 - Backend NestJS operativo.
 - Base de datos y Prisma funcionando.
 - Login, registro, perfil y health check disponibles.
+- Recuperación técnica de contraseña disponible; la entrega real depende de un proveedor externo.
 - Contrato de respuesta estandarizado aplicado.
 
 ## Entregable pendiente
 
 - Si se mantiene en alcance, completitud de OAuth Google y Apple.
+- Entrega real de recuperación, verificación de email y refresh token si aplican al lanzamiento.
+- Alineación del algoritmo de hash con el requisito de seguridad aprobado.
 - Cierre de validaciones finales de autenticacion y hardening.
 
 ## Alcance minimo validado

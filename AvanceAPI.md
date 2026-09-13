@@ -48,11 +48,12 @@ Hoy cubre:
 ### Auth
 
 - `POST /api/auth/login`
+- `POST /api/auth/login/admin`
 - `POST /api/auth/register`
 - `PATCH /api/auth/password`
 - `POST /api/auth/password/request`
 - `POST /api/auth/password/reset`
-- Los endpoints de recuperación están limitados por IP con `ThrottlerGuard`.
+- La API usa `ThrottlerGuard` global y los endpoints de recuperación tienen límites específicos por IP.
 - `GET /api/auth/me`
 - `PATCH /api/users/me/onboarding/complete`
 - Soporta token bearer y flujo de sesion para mobile.
@@ -239,7 +240,9 @@ Eso permite validar el flujo completo sin depender de carga manual inicial.
 - El home agrega tanto feed como entrenos para reducir roundtrips en mobile.
 - Las sesiones de entrenamiento viven como dominio propio, no como parte del feed.
 - La política mínima de contraseña se comparte entre DTO y servicio; el cambio autenticado usa la contraseña actual antes de persistir un nuevo hash.
+- Las contraseñas se almacenan actualmente con PBKDF2-SHA256; RNF-002 todavía documenta bcrypt costo 12 y requiere decisión de alineación.
 - La recuperación guarda solo el hash SHA-256 de un token aleatorio, expira por defecto en 30 minutos, invalida tokens previos y reclama el token dentro de una transacción.
+- Las rutas auth principales mantienen coherencia entre el status HTTP y `statusCode` del envelope; un smoke local confirmó `200`, `201` para registro y `429` por rate limit.
 
 ## 10. Estado De Calidad
 
@@ -252,6 +255,7 @@ Verificado recientemente:
 - prisma seed
 - política de contraseña de registro y cambio autenticado cubiertos por tests de servicio y controller
 - recuperación de contraseña cubierta por tests de servicio, controller y delivery; migración local aplicada
+- demo users limitados a entornos no productivos y `JWT_SECRET` requerido fuera de tests
 
 ## 11. Pendientes Priorizados
 
