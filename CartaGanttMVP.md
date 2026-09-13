@@ -114,20 +114,20 @@ respecto de las actividades de construcción del calendario. El riesgo está con
 validación E2E del MVP social, RevenueCat real/Test Store, push en dispositivo físico, seguridad,
 rendimiento y decisión operativa sobre web/admin.
 
-### Corte Ejecutivo - 26/08/2026
+### Corte Ejecutivo - 12/09/2026
 
 Los porcentajes siguientes son una estimación de avance del frente, no una métrica de cobertura de
 código. Se separa el avance funcional de la preparación real para release, porque el core ya está
 operativo pero todavía quedan validaciones de producción.
 
-| Frente          | Avance estimado | Evidencia actual                                                                      | Pendiente principal                                                |
-| --------------- | --------------: | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| Fundación       |            100% | Alcance ampliado, contratos, arquitectura y navegación base                           | Ninguno bloqueante                                                 |
-| Cuenta y perfil |            100% | Auth, onboarding, perfil, avatar, ubicación y gimnasios validados                     | Recuperación, cambio y eliminación de cuenta                       |
-| Entrenamiento   |             80% | Sesiones, sets, historial, PRs, progreso y cola offline funcional                     | Validar rutinas completas, límites y reintentos físicos            |
-| Comunidad       |             90% | Feed, posts, comentarios, likes, reacción rápida, follows y compartir progreso/logros | Decidir multimedia y validar compartir fuera de la app             |
-| Competencia     |             75% | Rankings, 1RM, rangos de fuerza y logros disponibles                                  | Categorías, calibración por sexo, frecuencia y percentiles         |
-| Release         |             50% | Builds, typechecks, 152 tests API y smoke mobile iOS/Android                          | Integración, seguridad, rendimiento, RevenueCat real y push físico |
+| Frente          | Avance estimado | Evidencia actual                                                                            | Pendiente principal                                                |
+| --------------- | --------------: | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Fundación       |            100% | Alcance ampliado, contratos, arquitectura y navegación base                                 | Ninguno bloqueante                                                 |
+| Cuenta y perfil |            100% | Auth, onboarding, perfil, avatar, ubicación y gimnasios validados                           | Recuperación, cambio y eliminación de cuenta                       |
+| Entrenamiento   |             80% | Sesiones, sets, historial, PRs, progreso y cola offline funcional                           | Validar rutinas completas, límites y reintentos físicos            |
+| Comunidad       |             90% | Feed, posts, comentarios, likes, reacción rápida, follows y compartir progreso/logros       | Decidir multimedia y validar compartir fuera de la app             |
+| Competencia     |             75% | Rankings, 1RM, rangos de fuerza y logros disponibles                                        | Categorías, calibración por sexo, frecuencia y percentiles         |
+| Release         |             50% | Builds, typechecks, 191 tests API y 13 tests mobile; builds nativas Android/iOS verificadas | Integración, seguridad, rendimiento, RevenueCat real y push físico |
 
 **Lectura ejecutiva:** el avance funcional del MVP ampliado está aproximadamente en **80%**. La
 preparación para declarar release está aproximadamente en **50%**, porque los riesgos restantes son
@@ -144,6 +144,33 @@ principalmente de validación, integraciones reales y operación, no de construc
 | H5 - PRs y rankings disponibles          | Parcial media | PRs, 1RM, rangos y rankings implementados; faltan calibración y cobertura  |
 | H6 - Logros y notificaciones disponibles | Parcial media | Logros, estadísticas y alertas implementados; falta push físico            |
 | H7 - MVP extendido listo                 | Inicial       | Faltan integración, seguridad, rendimiento y validación de release         |
+
+## Plan De Cierre Priorizado
+
+> Replanificación operativa al 12/09/2026. La línea base de 14 semanas se conserva como referencia;
+> este plan ordena únicamente lo que falta para cerrar el MVP ampliado.
+
+| Orden | Frente                              | Periodo sugerido | Dependencias                              | Estado                     | Criterio de salida                                                                                                                     |
+| ----: | ----------------------------------- | ---------------- | ----------------------------------------- | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+|     1 | Cierre del flujo de entrenamiento   | 12/09 - 18/09    | Diseño mobile actual                      | En cierre técnico          | Crear sesión, seleccionar actividad, registrar sets, editar, finalizar y revisar detalle sin fricción                                  |
+|     2 | Modelo de foco muscular             | 15/09 - 25/09    | Decisión de persistencia                  | Implementado en desarrollo | El foco muscular deja de depender de `notes`; Prisma, API, contracts y mobile quedan sincronizados; migración aplicada en `olympx_dev` |
+|     3 | Tests de flujos críticos            | 19/09 - 02/10    | Flujo de entrenamiento estable            | Parcial                    | Integración API y pantalla mobile de training cubiertas; E2E login, home, post y training aún pendiente                                |
+|     4 | Validaciones reales e integraciones | 26/09 - 09/10    | Builds reproducibles                      | Parcial técnico            | Push/offline tienen cobertura automatizada y builds nativas verificadas; faltan dispositivos, credenciales y RevenueCat Test Store     |
+|     5 | Hardening backend y release         | 03/10 - 16/10    | Tests e integraciones del bloque anterior | Pendiente                  | Sin `any` crítico en Prisma, permisos revisados, migraciones verificadas, rendimiento básico y checklist de release aprobado           |
+
+### Pendientes Reales Al Corte
+
+- Terminar los bordes del flujo de entrenamiento: sesiones vacías, errores, límites comerciales y reintentos físicos.
+- Definir y persistir la selección de músculos como dato estructurado si se usará en progreso, filtros o rutinas.
+- Cubrir auth, home, comunidad y mobile con integración y regresión automatizada; training ya tiene un flujo crítico cubierto y la cobertura mobile sigue siendo limitada.
+- Ejecutar las pruebas físicas de push y restauración de compras, no solo la configuración técnica.
+- Completar hardening de Prisma, migraciones, permisos, rendimiento y observabilidad antes de declarar release.
+
+### Fuera Del Cierre Actual
+
+- Multimedia avanzada y stories.
+- Coach y retención avanzada.
+- Nuevas funciones sociales que no mejoren el loop de entrenamiento.
 
 ## Riesgos y Mitigaciones
 

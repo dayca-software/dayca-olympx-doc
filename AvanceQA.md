@@ -8,7 +8,9 @@ Tener visibilidad clara de que esta probado hoy, que esta solo preparado y que f
 
 ## 2. Estado General
 
-OlympX tiene una base de testing aun inicial. Hay pruebas smoke/minimas en web, admin y API; el procedimiento manual de push E2E esta documentado, pero aun no se ha ejecutado ni automatizado.
+OlympX tiene una base de testing en crecimiento. API ya cuenta con pruebas unitarias y un flujo de
+integracion de entrenamiento; mobile cuenta con una prueba de pantalla real. Web/admin conservan
+smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no automatizado.
 
 ## 3. Cobertura Actual
 
@@ -17,7 +19,8 @@ OlympX tiene una base de testing aun inicial. Hay pruebas smoke/minimas en web, 
 - Script de test: `vitest run`
 - Script de cobertura: `vitest run --coverage`
 - Test visible actualmente: smoke del modulo principal (`test/app.test.ts`)
-- Suite API actual: 21 archivos y 152 tests pasando.
+- Suite API actual: 27 archivos y 191 tests pasando.
+- Integracion critica: crear sesion -> registrar set -> finalizar -> consultar detalle, incluyendo focos musculares e idempotencia.
 - Smoke tests de onboarding y creación de sesiones con límite comercial.
 - Smoke test de Home autenticado y rechazo de sesión inválida.
 - Smoke tests de check-in dentro/fuera de radio y duplicado reciente.
@@ -39,7 +42,8 @@ OlympX tiene una base de testing aun inicial. Hay pruebas smoke/minimas en web, 
 
 - Script de test: `jest`
 - Script de typecheck: `tsc --noEmit`
-- Mobile tiene 5 suites y 12 tests automatizados pasando.
+- Mobile tiene 6 suites y 13 tests automatizados pasando.
+- Prueba de pantalla: `TrainingSummaryScreen` valida resumen, progreso y focos musculares.
 - La calidad de mobile se complementa con typecheck, formato y smoke flows Maestro en iOS/Android.
 
 ## 4. Cobertura Por Tipo
@@ -51,7 +55,8 @@ OlympX tiene una base de testing aun inicial. Hay pruebas smoke/minimas en web, 
 
 ### Integracion
 
-- No hay suite visible de integracion para API o frontend.
+- API tiene una suite de integracion de flujo en `training.flow.integration.spec.ts`.
+- Todavia no hay suite visible de integracion para auth, home, posts o frontend web.
 - No hay validacion automatizada de contratos entre mobile y API mas alla del tipado compartido.
 
 ### E2E
@@ -72,8 +77,8 @@ OlympX tiene una base de testing aun inicial. Hay pruebas smoke/minimas en web, 
 
 ## 6. Riesgos De Calidad
 
-- La cobertura real es baja para un producto con varios flujos de negocio.
-- No hay regression suite para login, home, posts, likes y training.
+- La cobertura real sigue siendo baja para un producto con varios flujos de negocio.
+- Falta regression suite automatizada para login, home, posts y likes; training ya tiene cobertura de flujo basica.
 - No existe cobertura cross-browser ni validacion mobile E2E.
 - La ausencia de tests en mobile aumenta el riesgo de regresiones de UI o navegación.
 - El workspace iOS ya compila con Firebase Messaging; las pruebas físicas de entrega APNs y apertura están pendientes y checklistadas en `doc/E2EPushNotifications.md`.
@@ -82,10 +87,9 @@ OlympX tiene una base de testing aun inicial. Hay pruebas smoke/minimas en web, 
 
 1. Agregar tests de integracion para auth, home y posts en API.
 2. Agregar tests de UI para `HomeScreen` y `PostDetailScreen`.
-3. Ejecutar `doc/E2EPushNotifications.md` y registrar el resultado.
-4. Introducir E2E automatizado para el flujo login -> home -> post -> training.
+3. Introducir E2E automatizado para el flujo login -> home -> post -> training.
+4. Ejecutar `doc/E2EPushNotifications.md` y registrar el resultado.
 5. Medir cobertura y fijar un piso minimo para codigo nuevo.
-6. Añadir smoke tests para mobile cuando el stack de pruebas quede definido.
 
 ## 8. Criterio De Cierre Del Bloque
 

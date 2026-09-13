@@ -37,7 +37,8 @@ Incluye:
 - Componente reusable para pintar musculos trabajados.
 - Vista frontal y posterior.
 - Leyenda basica de colores.
-- Estado solo lectura en MVP.
+- Seleccion interactiva de zonas como foco de una sesion.
+- Persistencia del foco mediante `TrainingSessionFocus`.
 
 ### 3.3 Rangos de fuerza universales
 
@@ -52,7 +53,7 @@ Incluye:
 
 ## 4. Fuera De Alcance En MVP
 
-- Highlighter interactivo editable por el usuario.
+- Personalizacion avanzada de anatomia fuera del catalogo de zonas definido.
 - Personalizacion avanzada de anatomia por entrenamientos particulares.
 - Aprendizaje automatico de nuevos estandares desde data social.
 - Rangos para ejercicios no incluidos en la lista inicial.
@@ -88,6 +89,11 @@ Incluye:
 - `ExerciseMuscleTarget` para relacion ejercicio-musculo.
 - `ExerciseStrengthStandard` y `ExerciseStrengthStandardBand` para rangos.
 - `TrainingSet` y `ExercisePR` para calcular 1RM y persistir progreso.
+- `TrainingSessionFocus` para guardar las zonas seleccionadas en cada sesion.
+
+En este corte, `TrainingSessionFocus.areaKey` referencia las claves estables del catalogo de la
+app. La normalizacion completa en entidades `Muscle` y `ExerciseMuscleTarget` queda fuera de este
+incremento y puede abordarse cuando se requiera una relacion anatomica mas detallada por ejercicio.
 
 ## 8. Regla De Producto
 
@@ -98,6 +104,7 @@ El alcance inicial prioriza ejercicios principales con evidencia suficiente. Los
 El feature se considera listo cuando:
 
 - El usuario puede ver los musculos principales de un ejercicio.
+- El usuario puede seleccionar uno o varios musculos como foco de una sesion.
 - El usuario puede ver su rango actual de fuerza por ejercicio.
 - El sistema puede mostrar el progreso hacia el siguiente rango.
 - El componente visual se puede reutilizar sin acoplar la UI al dominio.

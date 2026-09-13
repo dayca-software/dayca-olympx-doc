@@ -10,7 +10,7 @@
 | Diagrama editable              | `ModeloRelacionalActual.dbml`                          |
 | Motor                          | PostgreSQL                                             |
 | ORM                            | Prisma                                                 |
-| Corte                          | 26/08/2026                                             |
+| Corte                          | 12/09/2026                                             |
 | Estado                         | Implementado y sincronizado en desarrollo              |
 | Modelo planificado relacionado | `ModeloRelacionalMVP.md` y `ModeloRelacionalGlobal.md` |
 
@@ -53,6 +53,7 @@ erDiagram
 
   USER ||--o{ TRAINING_SESSION : performs
   TRAINING_SESSION ||--o{ TRAINING_SET : contains
+  TRAINING_SESSION ||--o{ TRAINING_SESSION_FOCUS : targets
   EXERCISE ||--o{ TRAINING_SET : used_in
   USER ||--o{ TRAINING_ROUTINE : owns
   TRAINING_ROUTINE ||--o{ TRAINING_ROUTINE_DAY : contains
@@ -76,27 +77,28 @@ erDiagram
   SUBSCRIPTION ||--o{ SUBSCRIPTION_EVENT : records
 ```
 
-`AuditLog`, `Report.targetId` y `NotificationView.notificationId` mantienen referencias lógicas
-sin una FK directa a una entidad única. Se detallan en la sección de observaciones.
+`AuditLog`, `Report.targetId`, `NotificationView.notificationId` y `TrainingSessionFocus.areaKey`
+mantienen referencias lógicas sin una FK directa a una entidad única. Se detallan en la sección de
+observaciones.
 
 ## 4. Inventario De Entidades
 
 ### 4.1 Identidad Y Contexto
 
-| Entidad      | PK   | FKs                         | Restricciones e índices relevantes                     |
-| ------------ | ---- | --------------------------- | ------------------------------------------------------ |
-| `User`       | `id` | `gymId`, `suspendedById`    | `email` y `nickname` únicos; estado `ACTIVE/SUSPENDED` |
-| `Gym`        | `id` | -                           | Estado de verificación `PENDING/VERIFIED`; `isActive`  |
-| `GymCheckIn` | `id` | `userId`, `gymId`           | Índices por usuario/fecha y gimnasio/fecha             |
-| `UserFollow` | `id` | `followerId`, `followingId` | Único por par de usuarios; índice por seguido/fecha    |
-| `UserBlock`  | `id` | `blockerId`, `blockedId`    | Único por par; índices por origen y destino            |
+| Entidad      | PK   | FKs                         | Restricciones e índices relevantes                                       |
+| ------------ | ---- | --------------------------- | ------------------------------------------------------------------------ |
+| `User`       | `id` | `gymId`, `suspendedById`    | `email` y `nickname` únicos; estado `ACTIVE/SUSPENDED`                   |
+| `Gym`        | `id` | -                           | Estado de verificación `PENDING/VERIFIED/REJECTED/DUPLICATE`; `isActive` |
+| `GymCheckIn` | `id` | `userId`, `gymId`           | Índices por usuario/fecha y gimnasio/fecha                               |
+| `UserFollow` | `id` | `followerId`, `followingId` | Único por par de usuarios; índice por seguido/fecha                      |
+| `UserBlock`  | `id` | `blockerId`, `blockedId`    | Único por par; índices por origen y destino                              |
 
 **Campos relevantes de `User`:** email, contraseña hasheada, rol, estado, nickname, perfil físico,
 región, provincia, comuna, avatar, gimnasio principal, última ubicación, consentimiento legal,
 onboarding y datos de suspensión.
 
-**Campos relevantes de `Gym`:** nombre, dirección, coordenadas, cadena, ciudad, región, estado de
-actividad y estado de verificación.
+**Campos relevantes de `Gym`:** nombre, dirección, coordenadas, cadena, ciudad, región, nota de
+revisión, estado de actividad y estado de verificación.
 
 ### 4.2 Ejercicios Y Competencia
 
@@ -110,17 +112,20 @@ actividad y estado de verificación.
 
 ### 4.3 Entrenamiento
 
-| Entidad                   | PK   | FKs                            | Restricciones e índices relevantes               |
-| ------------------------- | ---- | ------------------------------ | ------------------------------------------------ |
-| `TrainingRoutine`         | `id` | `userId`                       | Índice por usuario y fecha de actualización      |
-| `TrainingRoutineDay`      | `id` | `routineId`                    | Índice por rutina y posición                     |
-| `TrainingRoutineExercise` | `id` | `dayId`, `exerciseId`          | Índice por día/posición y ejercicio              |
+| Entidad                   | PK   | FKs                            | Restricciones e índices relevantes                                                     |
+| ------------------------- | ---- | ------------------------------ | -------------------------------------------------------------------------------------- |
+| `TrainingRoutine`         | `id` | `userId`                       | Índice por usuario y fecha de actualización                                            |
+| `TrainingRoutineDay`      | `id` | `routineId`                    | Índice por rutina y posición                                                           |
+| `TrainingRoutineExercise` | `id` | `dayId`, `exerciseId`          | Índice por día/posición y ejercicio                                                    |
 | `TrainingSession`         | `id` | `userId`, `routineId` opcional | `idempotencyKey` único; estado, timestamps de ciclo de vida e índice por usuario/fecha |
-| `TrainingSet`             | `id` | `sessionId`, `exerciseId`      | Índices por sesión y ejercicio                   |
+| `TrainingSessionFocus`    | `id` | `sessionId`                    | Único por sesión y `areaKey`; índice por área                                          |
+| `TrainingSet`             | `id` | `sessionId`, `exerciseId`      | Índices por sesión y ejercicio                                                         |
 
 `TrainingSession` registra título, estado (`DRAFT`, `ACTIVE`, `FINISHED` o `CANCELLED`), inicio,
 fin, duración, intensidad, notas, fecha de ejecución y rutina de origen. `TrainingSet` registra
 peso, repeticiones, RPE, RIR, calentamiento, participación competitiva y 1RM estimado.
+`TrainingSessionFocus` registra cada zona muscular seleccionada mediante un `areaKey` del catálogo
+de entrenamiento. La relación es opcional y permite que las sesiones antiguas sigan siendo válidas.
 
 El PR y el progreso no tienen una tabla propia en el esquema actual: se calculan a partir de
 `TrainingSet` y `TrainingSession`.
@@ -170,7 +175,8 @@ moneda, descuentos y eventos.
 | Enum                    | Valores                                                                                                                           |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | `UserStatus`            | `ACTIVE`, `SUSPENDED`                                                                                                             |
-| `GymVerificationStatus` | `PENDING`, `VERIFIED`                                                                                                             |
+| `GymVerificationStatus` | `PENDING`, `VERIFIED`, `REJECTED`, `DUPLICATE`                                                                                    |
+| `TrainingSessionStatus` | `DRAFT`, `ACTIVE`, `FINISHED`, `CANCELLED`                                                                                        |
 | `StrengthRangeStatus`   | `DRAFT`, `PUBLISHED`                                                                                                              |
 | `PostReactionType`      | `FIRE`, `EXECUTION`, `PROGRESS`, `DOMINATED`, `DISAPPROVE`, `FUNNY`                                                               |
 | `ReportStatus`          | `PENDING`, `APPROVED`, `REJECTED`, `CLOSED`                                                                                       |
@@ -191,6 +197,8 @@ moneda, descuentos y eventos.
 - Las escrituras repetibles de posts y sesiones usan `idempotencyKey` único.
 - Un usuario no puede repetir un follow, block, like o reacción del mismo tipo sobre el mismo objeto.
 - Las relaciones de rutina mantienen orden mediante `position`.
+- Una sesión puede tener múltiples focos musculares, sin repetir el mismo `areaKey` dentro de la sesión.
+- Las sesiones siguen el ciclo de vida `DRAFT`, `ACTIVE`, `FINISHED` o `CANCELLED`; registran `startedAt` y `endedAt` cuando corresponde.
 - Los rangos de fuerza se publican mediante `StrengthRangeStatus`.
 - El acceso comercial se controla mediante suscripciones, plan y periodo vigente.
 - El usuario Admin se excluye en la lógica de superficies públicas, no mediante una tabla separada.

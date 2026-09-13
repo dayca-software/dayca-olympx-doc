@@ -27,6 +27,8 @@ Hoy cubre:
 - Historial de check-ins del usuario.
 - Detalle de gimnasio y detalle de publicacion.
 - Historial, creacion y detalle de sesiones de entrenamiento.
+- Selector buscable de actividad dentro del registro de sets, con grupo muscular asociado.
+- Foco muscular estructurado al crear y editar una sesión, visible en el detalle y resumen.
 - Historial con filtros por periodo e intensidad.
 - Rutinas persistentes y creación desde sesiones.
 - Ranking por ejercicio con mejor 1RM estimado.
@@ -139,6 +141,7 @@ Hoy cubre:
 - Permite registrar sets nuevos.
 - Permite editar y eliminar la sesion propia.
 - Incluye ajustes avanzados opcionales de RPE y RIR.
+- Las sesiones finalizadas o canceladas muestran el detalle en modo lectura y no ofrecen registrar nuevos sets.
 - Permite compartir el resumen como publicación.
 - Permite guardar la sesión como rutina.
 - Preselecciona el primer ejercicio disponible y valida el primer set.
@@ -281,13 +284,17 @@ Verificado recientemente:
 - compartir progreso semanal offline validado: cola, reconexión y flush confirmados en Android
 - compartir logros validado en Perfil en iOS y Android
 - cola offline con flush al iniciar y al volver a foreground
+- pruebas automatizadas de push: permisos, registro/refresh de token, foreground, opened, initial y cleanup
+- payload offline de sesiones de training con focos musculares, scope e idempotencia
+- build Android Debug validada con Firebase Messaging y RevenueCat
+- build iOS de simulador arm64 validada con Firebase Messaging y RevenueCat; `react-native-screens` actualizado a `4.27.0`
 - `testID` para estado de ubicación, límites comerciales, acciones Core, tabs, comunidad y competencia.
 
 ## 8. Pendientes Priorizados
 
 1. Ejecutar los smoke sociales y de competencia también en Android con credenciales de prueba.
 2. Separar mejor el composer de publicaciones y el composer de entrenos.
-3. Validar en dispositivo la sincronizacion offline de ubicación, publicaciones y entrenos.
+3. Validar en dispositivo la sincronizacion offline de ubicación, publicaciones y entrenos; la cobertura automatizada no sustituye esta prueba física.
 4. Evaluar analitica de uso mobile.
 
 ## 9. Riesgos Y Deuda Actual
@@ -299,6 +306,7 @@ Verificado recientemente:
 - Smoke Maestro Core, límite Free, entrenamiento, comunidad, competencia y suscripción ejecutados correctamente en iOS.
 - Smoke Android dedicado de Core, comunidad y competencia ejecutado correctamente.
 - La cola offline requiere validación en dispositivo; el flush global se ejecuta al iniciar y al volver a foreground.
+- RevenueCat está enlazado nativamente y el paywall tiene compra/restauración, pero falta validar Test Store con claves y productos reales.
 
 ## 10. Criterio De Cierre Del Bloque
 

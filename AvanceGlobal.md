@@ -115,20 +115,21 @@ Validaciones ejecutadas recientemente:
 - prisma seed
 - Maestro iOS: core, límite Free, acciones de entrenamiento, comunidad, competencia y suscripción
 - Maestro Android: core, comunidad y competencia
-- Jest mobile: 12 tests pasando
+- Jest mobile: 13 tests pasando en 6 suites, incluyendo `TrainingSummaryScreen`
 
 ## 6. Riesgos Actuales
 
 - El home concentra demasiadas acciones.
-- Todavia no hay tests de integracion cubriendo el flujo social completo.
+- Ya existe un flujo de integracion para training; todavia no hay tests de integracion cubriendo la comunidad completa.
 - El acceso Prisma sigue teniendo algunos atajos con `any`.
-- La cola offline actual cubre escrituras repetibles de ubicación; publicaciones y entrenos aún requieren validación física de reintento.
+- La cola offline actual cubre escrituras repetibles de ubicación y tiene cobertura automatizada para posts/training; publicaciones y entrenos aún requieren validación física de reintento.
+
 ## 7. Proxima Prioridad
 
 1. Completar E2E de comunidad, competencia y suscripciones.
 2. Validar push iOS en dispositivo físico y TestFlight.
 3. Configurar y confirmar RevenueCat Test Store en Android/iOS, incluyendo restauración de compras.
-4. Agregar tests de integración para posts, training, notifications y suscripciones.
+4. Agregar tests de integracion para posts, notifications y suscripciones; ampliar training con casos borde.
 5. Ejecutar `format:check` y cerrar diferencias antes del MVP social.
 6. Mantener multimedia avanzada, coach y retención avanzada fuera del core de este lanzamiento.
 

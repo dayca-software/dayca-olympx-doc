@@ -10,6 +10,15 @@ Enum UserStatus {
 Enum GymVerificationStatus {
   PENDING
   VERIFIED
+  REJECTED
+  DUPLICATE
+}
+
+Enum TrainingSessionStatus {
+  DRAFT
+  ACTIVE
+  FINISHED
+  CANCELLED
 }
 
 Enum StrengthRangeStatus {
@@ -134,6 +143,7 @@ Table Gym {
   region varchar
   isActive boolean [not null, default: true]
   verificationStatus GymVerificationStatus [not null, default: 'PENDING']
+  reviewNote varchar
   createdAt timestamp [not null]
   updatedAt timestamp [not null]
 }
@@ -248,6 +258,9 @@ Table TrainingSession {
   id uuid [pk]
   userId uuid [not null]
   title varchar [not null]
+  status TrainingSessionStatus [not null, default: 'ACTIVE']
+  startedAt timestamp [not null]
+  endedAt timestamp
   durationMinutes int
   intensity varchar
   notes varchar
@@ -260,6 +273,18 @@ Table TrainingSession {
   indexes {
     (userId, performedAt)
     routineId
+  }
+}
+
+Table TrainingSessionFocus {
+  id        uuid [pk]
+  sessionId uuid [not null]
+  areaKey   varchar [not null, note: 'Clave del catálogo muscular; no es FK']
+  createdAt timestamp [not null]
+
+  indexes {
+    (sessionId, areaKey) [unique]
+    areaKey
   }
 }
 
@@ -535,6 +560,7 @@ Ref: PostReaction.userId > User.id
 
 Ref: TrainingSession.userId > User.id
 Ref: TrainingSession.routineId > TrainingRoutine.id
+Ref: TrainingSessionFocus.sessionId > TrainingSession.id
 Ref: TrainingSet.sessionId > TrainingSession.id
 Ref: TrainingSet.exerciseId > Exercise.id
 Ref: TrainingRoutine.userId > User.id

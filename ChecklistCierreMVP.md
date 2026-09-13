@@ -114,6 +114,10 @@ posterior.
 - [x] Ejecutar `.maestro/core-smoke.yaml` en iOS y `.maestro/core-android-smoke.yaml` en Android con usuario Trial y API local.
 - [x] Ejecutar `.maestro/free-limit-smoke.yaml` con usuario Free y comprobar bloqueo de creación.
 - [x] Agregar tests mobile automatizados para login, home, training, comunidad, competencia y navegacion critica.
+- [x] Cubrir ciclo de push mobile con mocks: permisos, token, refresh, foreground, opened, initial y cleanup.
+- [x] Cubrir payload offline de training con `focusAreas`, `scope` e `Idempotency-Key`.
+- [x] Verificar build Android con Firebase Messaging y RevenueCat autolinked.
+- [x] Verificar build iOS de simulador con Firebase Messaging y RevenueCat autolinked.
 - [ ] Agregar tests de integracion para auth, posts, training, notifications y suscripciones.
 - [ ] Validar rendimiento de endpoints criticos bajo conexion 4G.
 - [ ] Validar rate limiting, HTTPS, backups, logs y monitoreo de produccion.
