@@ -127,7 +127,7 @@ operativo pero todavía quedan validaciones de producción.
 | Entrenamiento   |             80% | Sesiones, sets, historial, PRs, progreso y cola offline funcional                           | Validar rutinas completas, límites y reintentos físicos            |
 | Comunidad       |             90% | Feed, posts, comentarios, likes, reacción rápida, follows y compartir progreso/logros       | Decidir multimedia y validar compartir fuera de la app             |
 | Competencia     |             75% | Rankings, 1RM, rangos de fuerza y logros disponibles                                        | Categorías, calibración por sexo, frecuencia y percentiles         |
-| Release         |             50% | Builds, typechecks, 191 tests API y 13 tests mobile; builds nativas Android/iOS verificadas | Integración, seguridad, rendimiento, RevenueCat real y push físico |
+| Release         |             50% | Builds, typechecks, 202 tests API y 16 tests mobile; builds nativas Android/iOS verificadas | Integración, seguridad, rendimiento, RevenueCat real y push físico |
 
 **Lectura ejecutiva:** el avance funcional del MVP ampliado está aproximadamente en **80%**. La
 preparación para declarar release está aproximadamente en **50%**, porque los riesgos restantes son

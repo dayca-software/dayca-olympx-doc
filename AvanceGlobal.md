@@ -115,7 +115,7 @@ Validaciones ejecutadas recientemente:
 - prisma seed
 - Maestro iOS: core, límite Free, acciones de entrenamiento, comunidad, competencia y suscripción
 - Maestro Android: core, comunidad y competencia
-- Jest mobile: 13 tests pasando en 6 suites, incluyendo `TrainingSummaryScreen`
+- Jest mobile: 16 tests pasando en 7 suites, incluyendo `TrainingSummaryScreen` y ciclo de push/offline
 
 ## 6. Riesgos Actuales
 

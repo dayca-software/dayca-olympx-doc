@@ -19,7 +19,7 @@ smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no 
 - Script de test: `vitest run`
 - Script de cobertura: `vitest run --coverage`
 - Test visible actualmente: smoke del modulo principal (`test/app.test.ts`)
-- Suite API actual: 27 archivos y 191 tests pasando.
+- Suite API actual: 29 archivos y 202 tests pasando.
 - Integracion critica: crear sesion -> registrar set -> finalizar -> consultar detalle, incluyendo focos musculares e idempotencia.
 - Smoke tests de onboarding y creación de sesiones con límite comercial.
 - Smoke test de Home autenticado y rechazo de sesión inválida.
@@ -42,7 +42,7 @@ smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no 
 
 - Script de test: `jest`
 - Script de typecheck: `tsc --noEmit`
-- Mobile tiene 6 suites y 13 tests automatizados pasando.
+- Mobile tiene 7 suites y 16 tests automatizados pasando.
 - Prueba de pantalla: `TrainingSummaryScreen` valida resumen, progreso y focos musculares.
 - La calidad de mobile se complementa con typecheck, formato y smoke flows Maestro en iOS/Android.
 
