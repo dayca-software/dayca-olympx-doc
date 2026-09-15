@@ -11,23 +11,33 @@
 - Catalogo de ejercicios con metadatos.
 - API de ejercicios con filtros.
 
-## Cobertura actual
+## Cobertura implementada
 
 - Catalogo de gimnasios disponible.
 - Busqueda de gimnasios cercanos disponible.
 - Actualizacion de ubicacion del usuario activa.
 - Biblioteca de ejercicios con filtros y detalle disponible.
-- Check-in formal con validación de radio de 100 metros disponible.
-- Bloqueo de check-in duplicado reciente disponible.
-- Selección y persistencia de gimnasio principal disponible.
+- Check-in formal con validacion de radio de 100 metros disponible.
+- Bloqueo de check-in duplicado durante 30 minutos disponible.
+- Check-in transaccional con actualizacion de gimnasio principal disponible.
+- Estados de gimnasio inactivo, no verificado y sin coordenadas representados en el detalle.
+- Actividad local limitada a 7 dias y usuarios publicos disponible.
+- Apertura de mapas mediante deep link disponible.
+
+## Evidencia automatizada
+
+- API: 34 archivos y 228 tests pasando; typecheck y build pasando.
+- Mobile: 9 suites y 21 tests pasando; typecheck y lint sin errores.
+- Contracts: build pasando.
+- Android: build, instalacion y lanzamiento verificados en emulador Pixel 10.
+- iOS: build, instalacion y lanzamiento verificados en simulador iPhone 17 Pro.
 
 ## Pendientes de cierre
 
 - Ejecutar smoke E2E del flujo completo en iOS y Android.
-- Validar estados de permiso GPS denegado y ubicación no disponible.
-- Validar gimnasio inactivo, no verificado y sin coordenadas desde la interfaz.
-- Actividad del gym con contexto local y usuarios públicos.
-- Confirmar apertura de mapas si se mantiene dentro del alcance.
+- Validar en dispositivo estados de permiso GPS denegado y ubicacion no disponible.
+- Validar en dispositivo gimnasio inactivo, no verificado y sin coordenadas desde la interfaz.
+- Confirmar en dispositivo la apertura de mapas y el flujo completo de check-in.
 
 ## Extension fuera del cierre
 

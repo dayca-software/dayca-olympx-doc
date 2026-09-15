@@ -9,7 +9,7 @@
 | ----- | ----------------------------------------- | ------------- | -------------------------------------------------------------------------------------- |
 | 1     | Discovery, planificación y UX/UI          | Parcial       | Documentación lista, Figma en curso                                                    |
 | 2     | Backend, BD y autenticación               | Casi completa | API funcional, contratos, seed y registro                                              |
-| 3     | Gimnasios, GPS y biblioteca               | Parcial alta  | Gimnasios + ubicación + ejercicios                                                     |
+| 3     | Gimnasios, GPS y biblioteca               | Casi completa | Gimnasios + GPS + ejercicios + check-in; falta E2E físico                              |
 | 4     | Rutinas y registro de entrenamiento       | Parcial alta  | Sesiones, sets, historial y rutinas implementados; falta validación completa           |
 | 5     | PRs, progreso y rankings                  | Parcial media | Progreso, 1RM, rangos y rankings implementados; falta calibración y cobertura          |
 | 6     | Conquistas, estadísticas y notificaciones | Parcial media | Stats, logros base y push preparado; falta validación física y automatización completa |
@@ -72,16 +72,20 @@
 - Catálogo de gimnasios y búsqueda cercana implementados.
 - Actualización de ubicación del usuario y geolocalización en mobile.
 - Biblioteca de ejercicios con filtros y detalle implementada.
+- Check-in con radio de 100 metros, cooldown de 30 minutos y actualización de gimnasio principal.
+- Actividad local pública, estados de disponibilidad y apertura de mapas implementados.
+- API con 34 archivos y 228 tests pasando; mobile con 9 suites y 21 tests pasando.
+- Build, instalación y lanzamiento nativo verificados en emulador Android Pixel 10 y simulador iOS iPhone 17 Pro.
 
 ### Pendiente clave
 
 - Validación E2E del check-in en iOS y Android.
-- Actividad del gym y estados alternos desde la experiencia mobile.
+- Validación E2E del check-in y estados alternos en iOS y Android físicos.
 
 ### Balance
 
-- **Estado:** Parcial alta
-- **Observación:** gimnasios, GPS, ejercicios y check-in ya están implementados; falta cerrar evidencia E2E y actividad local.
+- **Estado:** Casi completa
+- **Observación:** gimnasios, GPS, ejercicios, check-in y actividad local están implementados; falta cerrar evidencia E2E física y aprobación formal.
 
 ### Plan De Cierre
 
@@ -163,7 +167,7 @@ check-in, experiencia mobile, pruebas iOS/Android y aprobación formal.
 
 - Hay smoke tests en API, web, admin y Maestro en mobile.
 - iOS ya tiene smoke de core, límite Free, acciones de entrenamiento y suscripción.
-- Jest mobile tiene 20 tests pasando en 8 suites y typecheck mobile pasa; API tiene 223 tests pasando en 32 archivos.
+- Jest mobile tiene 21 tests pasando en 9 suites y typecheck mobile pasa; API tiene 228 tests pasando en 34 archivos.
 - Faltan suites de integración, offline físico, push físico y validaciones de seguridad/rendimiento.
 
 ### Balance
@@ -172,9 +176,9 @@ check-in, experiencia mobile, pruebas iOS/Android y aprobación formal.
 
 ## Conclusión
 
-El proyecto ya cubre con solidez las etapas 2 y 3, y tiene implementada una parte importante de las
-etapas 4, 5 y 6. Etapa 1 sigue abierta formalmente por el Figma/prototipo navegable. El siguiente
-foco es cerrar la validación de entrenamiento y los E2E del MVP social antes de entrar en release.
+El proyecto ya cubre con solidez la Etapa 2 y tiene la Etapa 3 casi completa, con pendiente de
+evidencia física. También existe una parte importante de las etapas 4, 5 y 6. Etapa 1 sigue abierta
+formalmente por el Figma/prototipo navegable. El siguiente foco es ejecutar los smoke físicos del MVP.
 
 ## Recomendación de Prioridad
 

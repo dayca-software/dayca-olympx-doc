@@ -15,6 +15,12 @@ La etapa tiene una cobertura funcional alta:
 - Validación de radio de 100 metros implementada.
 - Bloqueo de check-ins duplicados durante 30 minutos implementado.
 - Selección de gimnasio principal implementada en el detalle.
+- Actividad local pública y deep link a mapas implementados.
+
+La validación automatizada actual quedó en API `34/34` archivos y `228/228` tests, mobile `9/9`
+suites y `21/21` tests, además de typecheck/lint mobile y typecheck/build de API y contracts. El
+build, instalacion y lanzamiento nativo tambien fueron verificados en Android e iOS. El pendiente
+de cierre es la evidencia del recorrido funcional en dispositivos.
 
 El cierre formal requiere demostrar que esos flujos funcionan juntos desde la experiencia mobile y
 que los estados alternos están cubiertos.
@@ -242,18 +248,19 @@ duplicado no estén cerradas en API.
 ## 8. Definition Of Done
 
 - [ ] Reglas de radio, cooldown y disponibilidad aprobadas.
-- [ ] `nearby` no expone gimnasios no utilizables para el flujo principal.
-- [ ] Check-in exitoso validado dentro de 100 metros.
-- [ ] Check-in fuera de radio rechazado.
-- [ ] Check-in duplicado rechazado.
-- [ ] Gimnasio principal persistido y visible.
+- [x] `nearby` no expone gimnasios no utilizables para el flujo principal.
+- [x] Check-in exitoso validado dentro de 100 metros mediante tests API.
+- [x] Check-in fuera de radio rechazado mediante tests API.
+- [x] Check-in duplicado rechazado mediante tests API.
+- [x] Gimnasio principal persistido y visible en API/mobile.
 - [ ] GPS denegado y ubicación no disponible tienen salida útil.
-- [ ] Búsqueda manual y detalle funcionan.
-- [ ] Biblioteca y filtros funcionan.
+- [x] Búsqueda manual y detalle funcionan en API/mobile.
+- [x] Biblioteca y filtros funcionan en API/mobile.
 - [ ] Smoke iOS ejecutado y registrado.
 - [ ] Smoke Android ejecutado y registrado.
-- [ ] Tests API en verde.
-- [ ] Checklist y resumen para cliente actualizados.
+- [x] Tests API en verde.
+- [x] Tests mobile y contracts en verde.
+- [x] Checklist y resumen para cliente actualizados.
 - [ ] Aprobación de Producto/Delivery registrada.
 
 ## 9. Archivos Relacionados
