@@ -15,7 +15,7 @@
 
 ## Entregable pendiente
 
-- Validacion E2E del flujo de check-in en iOS y Android.
+- Validacion en dispositivo de estados alternos de check-in: GPS denegado, fuera de radio, duplicado y gimnasio no disponible.
 - Validacion en dispositivo de estados alternos: GPS denegado, fuera de radio y duplicado reciente.
 - Confirmacion en dispositivo de contexto local y apertura de mapas.
 
@@ -28,8 +28,9 @@
 - Consultar actividad publica reciente del gimnasio.
 
 La compilacion, instalacion y lanzamiento fueron verificados en un emulador Android Pixel 10 y un
-simulador iOS iPhone 17 Pro. La validacion pendiente es ejecutar el recorrido funcional completo en
-ambos dispositivos.
+simulador iOS iPhone 17 Pro. Los smoke de búsqueda, selección de gimnasio principal y check-in dentro
+del radio permitido pasaron en ambos dispositivos. La validacion pendiente cubre estados alternos,
+cooldown, mapas y disponibilidad.
 
 ## Criterio de cierre
 
@@ -38,8 +39,9 @@ ambos dispositivos.
 
 ## Nota
 
-La Etapa 3 tiene la base funcional y las pruebas automatizadas completas. Todavia depende de la
-evidencia E2E en iOS y Android para considerarla terminada.
+La Etapa 3 tiene la base funcional y las pruebas automatizadas completas. El happy path mobile de
+gimnasios y check-in ya esta validado en iOS y Android, pero todavia depende de la evidencia de estados
+alternos, mapas y aprobación formal para considerarla terminada.
 
 La solicitud de gimnasios que no aparecen en el catálogo queda documentada como extensión posterior,
 sin bloquear este cierre.

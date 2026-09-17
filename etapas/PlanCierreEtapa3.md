@@ -22,6 +22,12 @@ suites y `21/21` tests, además de typecheck/lint mobile y typecheck/build de AP
 build, instalacion y lanzamiento nativo tambien fueron verificados en Android e iOS. El pendiente
 de cierre es la evidencia del recorrido funcional en dispositivos.
 
+El 17 de septiembre de 2026 el smoke Maestro `gym-location-smoke.yaml` pasó en el simulador iOS
+iPhone 17 Pro y en el emulador Android Pixel 10. Esta ejecución cubre login, búsqueda, apertura del
+detalle, comprobación de acciones y selección del gimnasio principal. El smoke dedicado
+`gym-checkin-smoke.yaml` también pasó en ambos targets con ubicación simulada dentro del radio
+permitido, confirmando el happy path del check-in. Los estados alternos y mapas siguen pendientes.
+
 El cierre formal requiere demostrar que esos flujos funcionan juntos desde la experiencia mobile y
 que los estados alternos están cubiertos.
 
@@ -256,8 +262,10 @@ duplicado no estén cerradas en API.
 - [ ] GPS denegado y ubicación no disponible tienen salida útil.
 - [x] Búsqueda manual y detalle funcionan en API/mobile.
 - [x] Biblioteca y filtros funcionan en API/mobile.
-- [ ] Smoke iOS ejecutado y registrado.
-- [ ] Smoke Android ejecutado y registrado.
+- [x] Smoke iOS de búsqueda y selección de gimnasio principal ejecutado y registrado.
+- [x] Smoke Android de búsqueda y selección de gimnasio principal ejecutado y registrado.
+- [x] Smoke E2E de check-in dentro del radio permitido ejecutado en iOS y Android.
+- [ ] Estados alternos de check-in, GPS, cooldown, disponibilidad y mapas validados en dispositivos.
 - [x] Tests API en verde.
 - [x] Tests mobile y contracts en verde.
 - [x] Checklist y resumen para cliente actualizados.

@@ -9,7 +9,7 @@
 | ----- | ----------------------------------------- | ------------- | -------------------------------------------------------------------------------------- |
 | 1     | Discovery, planificación y UX/UI          | Parcial       | Documentación lista, Figma en curso                                                    |
 | 2     | Backend, BD y autenticación               | Casi completa | API funcional, contratos, seed y registro                                              |
-| 3     | Gimnasios, GPS y biblioteca               | Casi completa | Gimnasios + GPS + ejercicios + check-in; falta E2E físico                              |
+| 3     | Gimnasios, GPS y biblioteca               | Casi completa | Gimnasios + GPS + ejercicios + check-in; happy path validado, faltan estados alternos   |
 | 4     | Rutinas y registro de entrenamiento       | Parcial alta  | Sesiones, sets, historial y rutinas implementados; falta validación completa           |
 | 5     | PRs, progreso y rankings                  | Parcial media | Progreso, 1RM, rangos y rankings implementados; falta calibración y cobertura          |
 | 6     | Conquistas, estadísticas y notificaciones | Parcial media | Stats, logros base y push preparado; falta validación física y automatización completa |
@@ -76,16 +76,18 @@
 - Actividad local pública, estados de disponibilidad y apertura de mapas implementados.
 - API con 34 archivos y 228 tests pasando; mobile con 9 suites y 21 tests pasando.
 - Build, instalación y lanzamiento nativo verificados en emulador Android Pixel 10 y simulador iOS iPhone 17 Pro.
+- Smoke Maestro de búsqueda, detalle y selección de gimnasio principal pasado en iOS y Android.
+- Smoke Maestro de check-in dentro del radio permitido pasado en iOS y Android.
 
 ### Pendiente clave
 
-- Validación E2E del check-in en iOS y Android.
-- Validación E2E del check-in y estados alternos en iOS y Android físicos.
+- Validación de estados alternos de check-in en iOS y Android físicos.
+- Validación física de permisos GPS, cooldown, gimnasios no disponibles y apertura de mapas.
 
 ### Balance
 
 - **Estado:** Casi completa
-- **Observación:** gimnasios, GPS, ejercicios, check-in y actividad local están implementados; falta cerrar evidencia E2E física y aprobación formal.
+- **Observación:** gimnasios, GPS, ejercicios, check-in y actividad local están implementados; los smoke de búsqueda, selección y check-in happy path ya pasaron en ambos targets, pero faltan estados alternos y aprobación formal.
 
 ### Plan De Cierre
 
@@ -176,9 +178,10 @@ check-in, experiencia mobile, pruebas iOS/Android y aprobación formal.
 
 ## Conclusión
 
-El proyecto ya cubre con solidez la Etapa 2 y tiene la Etapa 3 casi completa, con pendiente de
-evidencia física. También existe una parte importante de las etapas 4, 5 y 6. Etapa 1 sigue abierta
-formalmente por el Figma/prototipo navegable. El siguiente foco es ejecutar los smoke físicos del MVP.
+El proyecto ya cubre con solidez la Etapa 2 y tiene la Etapa 3 casi completa: los smoke base de
+gimnasios y check-in happy path pasaron en iOS y Android, pero los estados alternos aún requieren evidencia.
+También existe una parte importante de las etapas 4, 5 y 6. Etapa 1 sigue abierta formalmente por el
+Figma/prototipo navegable. El siguiente foco es completar los smoke físicos del MVP.
 
 ## Recomendación de Prioridad
 

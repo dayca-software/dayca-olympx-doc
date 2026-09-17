@@ -31,10 +31,12 @@
 - Contracts: build pasando.
 - Android: build, instalacion y lanzamiento verificados en emulador Pixel 10.
 - iOS: build, instalacion y lanzamiento verificados en simulador iPhone 17 Pro.
+- Smoke Maestro de búsqueda, detalle y selección de gimnasio principal pasado en iOS y Android.
+- Smoke Maestro de check-in dentro del radio permitido pasado en iOS y Android.
 
 ## Pendientes de cierre
 
-- Ejecutar smoke E2E del flujo completo en iOS y Android.
+- Validar en dispositivo los estados alternos de check-in: GPS denegado, fuera de radio, duplicado y gimnasio no disponible.
 - Validar en dispositivo estados de permiso GPS denegado y ubicacion no disponible.
 - Validar en dispositivo gimnasio inactivo, no verificado y sin coordenadas desde la interfaz.
 - Confirmar en dispositivo la apertura de mapas y el flujo completo de check-in.
