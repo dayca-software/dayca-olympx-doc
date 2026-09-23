@@ -26,13 +26,14 @@
 
 ## Evidencia automatizada
 
-- API: 34 archivos y 228 tests pasando; typecheck y build pasando.
-- Mobile: 9 suites y 21 tests pasando; typecheck y lint sin errores.
+- API: 35 archivos y 233 tests pasando; typecheck y build pasando.
+- Mobile: 12 suites y 35 tests pasando; typecheck y lint sin errores.
 - Contracts: build pasando.
 - Android: build, instalacion y lanzamiento verificados en emulador Pixel 10.
 - iOS: build, instalacion y lanzamiento verificados en simulador iPhone 17 Pro.
 - Smoke Maestro de búsqueda, detalle y selección de gimnasio principal pasado en iOS y Android.
 - Smoke Maestro de check-in dentro del radio permitido pasado en iOS y Android.
+- APK QA `assembleQa` generada, instalada y lanzada en emulador Android; falta repetir el flujo con API HTTPS de staging.
 
 ## Pendientes de cierre
 

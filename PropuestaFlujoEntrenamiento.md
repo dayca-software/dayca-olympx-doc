@@ -73,7 +73,7 @@ Para el usuario final, el flujo correcto no es “crear todo de una vez”, sino
 
 ### No debe incluir por ahora
 
-- Programacion de rutinas complejas por semana.
+- Periodización compleja o analítica avanzada por semana. El MVP sí contempla días semanales simples y reutilizables.
 - Analitica avanzada de periodizacion.
 - Automatizacion por IA.
 - Recomendaciones clinicas o de salud.

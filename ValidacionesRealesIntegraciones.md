@@ -8,7 +8,7 @@
 | Area                   | Estado                | Evidencia                                                                                         |
 | ---------------------- | --------------------- | ------------------------------------------------------------------------------------------------- |
 | Push lifecycle mobile  | Automatizado          | `pushNotifications.test.ts` cubre permisos, token, refresh, foreground, opened, initial y cleanup |
-| Cola offline           | Automatizado          | `offlineQueue.test.ts` cubre payload de training, `scope` e `Idempotency-Key`                     |
+| Cola offline           | Automatizado          | `offlineQueue.test.ts` cubre sesiones, sets, cierre, `scope` e `Idempotency-Key`                  |
 | Android nativo         | Validado              | `./gradlew assembleDebug` exitoso con Firebase Messaging y RevenueCat autolinked                  |
 | iOS nativo             | Validado en simulador | `xcodebuild` exitoso para simulador arm64 con Firebase Messaging y RevenueCat                     |
 | Push FCM/APNs real     | Pendiente             | Requiere dos usuarios, Firebase Admin y dispositivo con permisos                                  |

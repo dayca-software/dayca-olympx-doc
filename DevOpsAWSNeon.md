@@ -180,32 +180,25 @@ Estructura recomendada:
 Terraform será la herramienta para versionar y reproducir la infraestructura AWS. No se deben crear
 recursos permanentes manualmente fuera de Terraform, salvo el bootstrap inicial del state.
 
-### Estructura Pendiente
+### Estructura Inicial Implementada
 
 ```text
-infra/aws/
-├── README.md
-├── bootstrap/
-│   └── state/
-├── modules/
-│   ├── ecr/
-│   ├── app-runner/
-│   ├── s3-cloudfront/
-│   ├── secrets/
-│   ├── github-oidc/
-│   └── monitoring/
-└── environments/
-    ├── dev/
-    │   ├── main.tf
-    │   ├── variables.tf
-    │   ├── outputs.tf
-    │   └── terraform.tfvars.example
-    └── prod/
-        ├── main.tf
-        ├── variables.tf
-        ├── outputs.tf
-        └── terraform.tfvars.example
+olympx-devops/
+├── terraform/
+│   ├── modules/ecr/
+│   ├── modules/app-runner/
+│   ├── modules/github-oidc/
+│   └── environments/
+│       ├── dev/
+│       └── prod/
+└── workflows/
+    ├── ci.yml.example
+    └── deploy-dev.yml.example
 ```
+
+El entorno `dev` ya contiene ECR, App Runner, roles de pull/secrets, health check y state remoto
+configurable. Los workflows permanecen como plantillas hasta configurar el role OIDC y las variables
+protegidas del repositorio.
 
 ### Recursos Gestionados
 
@@ -258,15 +251,38 @@ del bootstrap, el resto de los recursos debe pasar a ser administrado por Terraf
 ### Pendientes Para Retomar
 
 - Confirmar región AWS.
-- Confirmar App Runner frente a ECS Fargate.
+- App Runner seleccionado para el primer release; ECS Fargate queda como alternativa futura.
 - Definir dominio y nombres de buckets.
 - Crear backend remoto de Terraform.
-- Crear módulos y variables por ambiente.
-- Configurar roles IAM con GitHub OIDC.
-- Preparar Dockerfile de la API.
+- Completar la configuración de producción a partir del stack `dev`.
+- Configurar el role IAM con GitHub OIDC.
+- Dockerfile reproducible de la API agregado y verificado localmente con PostgreSQL efimero.
 - Conectar `DATABASE_URL` y `DIRECT_URL` desde Secrets Manager.
 
-## 14. Criterio De Operacion
+## 14. Punto De Reanudacion
+
+La implementacion queda pausada antes de cualquier `terraform apply` o despliegue. Para retomarla,
+completar en este orden:
+
+1. Confirmar la region AWS.
+2. Crear el bucket remoto S3 de Terraform con cifrado, versionado y bloqueo.
+3. Crear `DATABASE_URL` y `JWT_SECRET` en Secrets Manager y registrar sus ARNs localmente.
+4. Configurar `github_repository` y activar `github_oidc_enabled` para que Terraform cree el role IAM OIDC.
+5. Inicializar Terraform desde `olympx-devops/terraform/environments/dev`.
+6. Ejecutar una sola vez `terraform apply -target=module.ecr`.
+7. Construir y publicar el tag `staging` desde la raiz usando `olympx-api/Dockerfile`.
+8. Ejecutar `terraform plan` y `terraform apply` completos.
+9. Obtener el output `github_actions_role_arn` y configurarlo como `AWS_ROLE_TO_ASSUME` en GitHub.
+10. Copiar y configurar los workflows `.example` en `.github/workflows/`.
+11. Ejecutar el deploy Dev y validar `/api/health`.
+
+El scaffold, el Dockerfile y el health check ya fueron validados localmente. No hay credenciales AWS,
+secrets reales, `terraform apply` ni despliegue ejecutado.
+
+El bootstrap ECR requiere una identidad AWS local temporal. Una vez creado el role OIDC, los deploys
+posteriores deben usar GitHub Actions sin access keys permanentes.
+
+## 15. Criterio De Operacion
 
 La automatización se considera lista cuando:
 

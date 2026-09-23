@@ -10,7 +10,7 @@
 | 1     | Discovery, planificación y UX/UI          | Parcial       | Documentación lista, Figma en curso                                                    |
 | 2     | Backend, BD y autenticación               | Casi completa | API funcional, contratos, seed y registro                                              |
 | 3     | Gimnasios, GPS y biblioteca               | Casi completa | Gimnasios + GPS + ejercicios + check-in; happy path validado, faltan estados alternos   |
-| 4     | Rutinas y registro de entrenamiento       | Parcial alta  | Sesiones, sets, historial y rutinas implementados; falta validación completa           |
+| 4     | Rutinas y registro de entrenamiento       | Casi completa | Sesiones, sets, historial y rutinas implementados; falta E2E físico y migración staging |
 | 5     | PRs, progreso y rankings                  | Parcial media | Progreso, 1RM, rangos y rankings implementados; falta calibración y cobertura          |
 | 6     | Conquistas, estadísticas y notificaciones | Parcial media | Stats, logros base y push preparado; falta validación física y automatización completa |
 | 7     | QA, estabilización y cierre               | Parcial       | Smoke iOS, typecheck y unit tests; faltan integración, offline físico y release        |
@@ -74,7 +74,7 @@
 - Biblioteca de ejercicios con filtros y detalle implementada.
 - Check-in con radio de 100 metros, cooldown de 30 minutos y actualización de gimnasio principal.
 - Actividad local pública, estados de disponibilidad y apertura de mapas implementados.
-- API con 34 archivos y 228 tests pasando; mobile con 9 suites y 21 tests pasando.
+- API con 35 archivos y 233 tests pasando; mobile con 12 suites y 35 tests pasando.
 - Build, instalación y lanzamiento nativo verificados en emulador Android Pixel 10 y simulador iOS iPhone 17 Pro.
 - Smoke Maestro de búsqueda, detalle y selección de gimnasio principal pasado en iOS y Android.
 - Smoke Maestro de check-in dentro del radio permitido pasado en iOS y Android.
@@ -108,13 +108,16 @@ check-in, experiencia mobile, pruebas iOS/Android y aprobación formal.
 
 - Se pueden crear sesiones y sets.
 - El historial de sesiones ya existe.
-- Las rutinas persistentes permiten días, orden de ejercicios, objetivos y sesiones desde plantilla.
-- Ya existe la base completa del flujo de registro; falta cerrar validaciones de límites, errores y escenarios offline.
+- Las rutinas persistentes permiten días de la semana, orden de ejercicios, objetivos y sesiones desde plantilla.
+- Los sets soportan peso, repeticiones, RPE, RIR y notas.
+- La cola offline conserva sesiones, sets y cierre para sincronizar al recuperar conexión; la validación física sigue pendiente.
+- El límite de 50 sets está protegido en API y mobile, incluyendo serialización por sesión.
+- La API tiene 31 tests de training pasando y existe cobertura mobile del editor de rutina y la cola offline.
 
 ### Balance
 
-- **Estado:** Parcial alta
-- **Observación:** la funcionalidad está implementada; el pendiente principal es la evidencia E2E y la validación de casos borde.
+- **Estado:** Casi completa
+- **Observación:** la funcionalidad está implementada; el pendiente principal es la evidencia E2E física, offline real y la migración en staging.
 
 ## Etapa 5 - PRs, Progreso y Rankings
 
@@ -169,7 +172,7 @@ check-in, experiencia mobile, pruebas iOS/Android y aprobación formal.
 
 - Hay smoke tests en API, web, admin y Maestro en mobile.
 - iOS ya tiene smoke de core, límite Free, acciones de entrenamiento y suscripción.
-- Jest mobile tiene 21 tests pasando en 9 suites y typecheck mobile pasa; API tiene 228 tests pasando en 34 archivos.
+- Jest mobile tiene 35 tests pasando en 12 suites y typecheck mobile pasa; API tiene 233 tests pasando en 35 archivos.
 - Faltan suites de integración, offline físico, push físico y validaciones de seguridad/rendimiento.
 
 ### Balance

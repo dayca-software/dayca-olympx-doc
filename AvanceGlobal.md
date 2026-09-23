@@ -115,8 +115,10 @@ Validaciones ejecutadas recientemente:
 - prisma seed
 - Maestro iOS: core, límite Free, acciones de entrenamiento, comunidad, competencia y suscripción
 - Maestro Android: core, comunidad y competencia
-- Jest mobile: 20 tests pasando en 8 suites, incluyendo las pantallas de recuperación, `TrainingSummaryScreen`, ciclo de push/offline y validación de contraseña
-- API: 223 tests pasando en 32 archivos, incluyendo el flujo técnico de recuperación de contraseña
+- Jest mobile: 35 tests pasando en 12 suites, incluyendo el editor de rutinas, cierre offline, `TrainingSummaryScreen`, ciclo de push/offline y validación de contraseña
+- API: 233 tests pasando en 35 archivos, incluyendo rutinas, notas/idempotencia de sets y el límite de sets por sesión
+- APK QA: `assembleQa`, instalación y lanzamiento verificados en emulador Android con endpoint HTTPS ficticio
+- API Docker: healthcheck verificado contra PostgreSQL efímero; despliegue AWS/Neon real sigue pendiente
 - M01: política de contraseña, cambio autenticado y recuperación técnica disponibles en API y mobile; falta configurar delivery real
 
 ## 6. Riesgos Actuales

@@ -26,6 +26,7 @@ Hoy cubre:
 - Feed personalizado por usuarios seguidos.
 - Actividad reciente de gimnasios.
 - Registro y consulta de sesiones de entrenamiento.
+- Limite de 50 sets por sesion aplicado en API, rechazando nuevos registros al alcanzar el maximo.
 - Foco muscular estructurado por sesión mediante `focusAreas`.
 - Progreso de entrenamiento con volumen, reps, semanas y 1RM estimado.
 - Rangos configurados de fuerza en los PRs: rango actual, siguiente rango y kilogramos restantes.
@@ -256,6 +257,9 @@ Verificado recientemente:
 - política de contraseña de registro y cambio autenticado cubiertos por tests de servicio y controller
 - recuperación de contraseña cubierta por tests de servicio, controller y delivery; migración local aplicada
 - demo users limitados a entornos no productivos y `JWT_SECRET` requerido fuera de tests
+- 35 archivos y 233 tests pasando.
+- `npx prisma validate` pasando con el schema actual.
+- Imagen Docker multi-stage construida y verificada con PostgreSQL efimero y `GET /api/health` en `200`.
 
 ## 11. Pendientes Priorizados
 

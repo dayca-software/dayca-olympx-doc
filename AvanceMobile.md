@@ -32,7 +32,7 @@ Hoy cubre:
 - Selector buscable de actividad dentro del registro de sets, con grupo muscular asociado.
 - Foco muscular estructurado al crear y editar una sesión, visible en el detalle y resumen.
 - Historial con filtros por periodo e intensidad.
-- Rutinas persistentes y creación desde sesiones.
+- Rutinas persistentes, días de la semana y creación desde sesiones.
 - Ranking por ejercicio con mejor 1RM estimado.
 - Tab dedicada de Comunidad en la navegación principal.
 - Edición de nickname, región, provincia y comuna con catálogos de Chile.
@@ -62,8 +62,8 @@ Hoy cubre:
 - Compartir progreso semanal desde Home como publicación social con un toque.
 - Compartir logros desbloqueados desde Perfil como publicación social.
 - Actividades, alertas, check-ins y sesiones ordenadas de más reciente a más antigua también al paginar o usar datos cacheados.
-- Cola offline conservadora para escrituras repetibles de ubicación, con coalescencia y reintento al recargar Home.
-- Claves de idempotencia para publicar posts y crear sesiones sin duplicados al reintentar.
+- Cola offline conservadora para escrituras repetibles de ubicación y entrenamiento, con coalescencia y reintento al volver a foreground.
+- Claves de idempotencia para publicar posts, crear sesiones, registrar sets y conservar el cierre offline al reintentar.
 - Actividad reciente del gimnasio.
 - Paywall con RevenueCat.
 - Terminos y condiciones dentro de la app.
@@ -72,6 +72,8 @@ Hoy cubre:
 - Sesión rápida desde Home, tab central e historial con título por defecto.
 - Primer ejercicio preseleccionado automáticamente al abrir una sesión nueva.
 - Validación de ejercicio, peso y repeticiones antes de guardar el primer set.
+- Notas opcionales por set y recuperación de la última nota al repetir una serie.
+- Limite de 50 sets por sesión validado localmente antes de enviar nuevos registros.
 - Resumen explícito de sesión y progreso reciente después de registrar sets.
 
 ## 3. Pantallas Implementadas
@@ -160,7 +162,7 @@ Hoy cubre:
 
 - Lista rutinas guardadas.
 - Crea rutinas base.
-- Edita el nombre, descripción, días, ejercicios, sets objetivo y reps objetivo.
+- Edita el nombre, descripción, días de la semana, ejercicios, sets objetivo y reps objetivo.
 - Inicia una sesión desde una rutina.
 
 ### Exercise Leaderboard
@@ -305,17 +307,23 @@ Verificado recientemente:
 - cola offline con flush al iniciar y al volver a foreground
 - pruebas automatizadas de push: permisos, registro/refresh de token, foreground, opened, initial y cleanup
 - payload offline de sesiones de training con focos musculares, scope e idempotencia
+- payload offline de sets de training con notas, scope e idempotencia
+- editor de rutinas mostrando y conservando el día semanal
 - build Android Debug validada con Firebase Messaging y RevenueCat
+- variante Android `qa` validada con `assembleQa`, `API_URL` HTTPS inyectada en el bundle, instalación
+  y lanzamiento en emulador; la URL usada para esta prueba fue ficticia y no permite E2E funcional.
 - build iOS de simulador arm64 validada con Firebase Messaging y RevenueCat; `react-native-screens` actualizado a `4.27.0`
 - `testID` para estado de ubicación, límites comerciales, acciones Core, tabs, comunidad y competencia.
+- `npm run mobile:check`: 12 suites y 35 tests pasando.
 
 ## 8. Pendientes Priorizados
 
 1. Ejecutar los smoke sociales y de competencia también en Android con credenciales de prueba.
 2. Separar mejor el composer de publicaciones y el composer de entrenos.
 3. Validar en dispositivo la sincronizacion offline de ubicación, publicaciones y entrenos; la cobertura automatizada no sustituye esta prueba física.
-4. Evaluar analitica de uso mobile.
-5. Probar el deep link de recuperación en Android/iOS con un proveedor de entrega configurado.
+4. Generar una APK QA contra una URL HTTPS real y repetir login/check-in con Maestro.
+5. Evaluar analitica de uso mobile.
+6. Probar el deep link de recuperación en Android/iOS con un proveedor de entrega configurado.
 
 ## 9. Riesgos Y Deuda Actual
 
