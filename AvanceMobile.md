@@ -32,8 +32,10 @@ Hoy cubre:
 - Selector buscable de actividad dentro del registro de sets, con grupo muscular asociado.
 - Foco muscular estructurado al crear y editar una sesión, visible en el detalle y resumen.
 - Historial con filtros por periodo e intensidad.
+- Historial paginado por cursor con carga incremental.
 - Rutinas persistentes, días de la semana y creación desde sesiones.
 - Ranking por ejercicio con mejor 1RM estimado.
+- Ranking por ejercicio con filtros de periodo, alcance global/gimnasio y posición personal.
 - Tab dedicada de Comunidad en la navegación principal.
 - Edición de nickname, región, provincia y comuna con catálogos de Chile.
 - Cache local y fallback offline para Home e historial.
@@ -55,6 +57,7 @@ Hoy cubre:
 - Contador de comentarios visible en el feed.
 - Reordenamiento de ejercicios dentro de rutinas.
 - Gráfico semanal de volumen y mejores marcas por ejercicio.
+- Comparación del volumen de la semana actual contra la semana anterior.
 - Historial de récords personales por ejercicio.
 - Historial de récords con rango actual y distancia al siguiente rango.
 - Componente reutilizable de progreso de rango con barra visual, siguiente nivel y kilos restantes.
@@ -314,7 +317,7 @@ Verificado recientemente:
   y lanzamiento en emulador; la URL usada para esta prueba fue ficticia y no permite E2E funcional.
 - build iOS de simulador arm64 validada con Firebase Messaging y RevenueCat; `react-native-screens` actualizado a `4.27.0`
 - `testID` para estado de ubicación, límites comerciales, acciones Core, tabs, comunidad y competencia.
-- `npm run mobile:check`: 12 suites y 35 tests pasando.
+- `npm run mobile:check`: 14 suites y 37 tests pasando.
 
 ## 8. Pendientes Priorizados
 

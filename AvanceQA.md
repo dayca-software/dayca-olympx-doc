@@ -19,14 +19,16 @@ smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no 
 - Script de test: `vitest run`
 - Script de cobertura: `vitest run --coverage`
 - Test visible actualmente: smoke del modulo principal (`test/app.test.ts`)
-- Suite API actual: 35 archivos y 233 tests pasando.
+- Suite API actual: 38 archivos y 238 tests pasando.
 - Integracion critica: crear sesion -> registrar set -> finalizar -> consultar detalle, incluyendo focos musculares e idempotencia.
+- Integracion de progreso, PR persistido, paginación de historial y ranking competitivo por ejercicio.
 - Smoke tests de onboarding y creación de sesiones con límite comercial.
 - Smoke test de Home autenticado y rechazo de sesión inválida.
 - Smoke tests de check-in dentro/fuera de radio y duplicado reciente.
 - Validacion del limite de 50 sets por sesion en API y mobile.
 - Imagen Docker de API verificada con PostgreSQL efimero: `GET /api/health` devuelve `200`.
 - Las 27 migraciones Prisma, incluida `20260921100000_stage4_training_fields`, se aplicaron en PostgreSQL efimero y una segunda ejecución confirmó que no quedan pendientes.
+- La migración `20260922100000_stage5_prs_and_gym_snapshot` también se aplicó dos veces sobre PostgreSQL efímero sin pendientes.
 - Typecheck y Prisma sync se usan como validacion adicional de calidad
 
 ### Web
@@ -45,7 +47,7 @@ smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no 
 
 - Script de test: `jest`
 - Script de typecheck: `tsc --noEmit`
-- Mobile tiene 12 suites y 35 tests automatizados pasando.
+- Mobile tiene 14 suites y 37 tests automatizados pasando.
 - M01 incluye regresiones para política de contraseña, cambio autenticado, recuperación de contraseña y protección de credenciales demo.
 - Prueba de pantalla: `TrainingSummaryScreen` valida resumen, progreso y focos musculares.
 - La calidad de mobile se complementa con typecheck, formato y smoke flows Maestro en iOS/Android.

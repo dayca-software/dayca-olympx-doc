@@ -2,19 +2,20 @@
 
 ## Estado
 
-**Parcial baja.**
+**En progreso.**
 
 ## Entregables cubiertos
 
 - Base tecnica para calcular 1RM estimado.
 - Estadisticas basicas de usuario.
-- Cimientos para progreso y leaderboard.
+- PRs persistidos y trazables al entrenamiento que los generó.
+- Progreso semanal con volumen y comparación contra la semana anterior.
+- Ranking por ejercicio con filtros por periodo y gimnasio/global.
 
 ## Entregable pendiente
 
-- PRs persistidos y visibles.
-- Rankings por gimnasio, ejercicio y categorias.
-- Comparacion de progreso semanal.
+- Categorias por sexo, edad, peso e IMC.
+- Validación E2E y aplicación de la migración en staging.
 
 ## Alcance minimo validado
 
@@ -28,4 +29,5 @@
 
 ## Nota
 
-La Etapa 5 aun no esta lista para cierre formal, porque la capa de PRs y rankings sigue en fase de base tecnica.
+La Etapa 5 ya tiene su primer slice funcional en API, contratos y mobile, pero no está lista para cierre formal por
+categorías demográficas, E2E y validación en staging.

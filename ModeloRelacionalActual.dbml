@@ -283,10 +283,12 @@ Table TrainingSession {
   createdAt timestamp [not null]
   updatedAt timestamp [not null]
   routineId uuid
+  gymId uuid
 
   indexes {
     (userId, performedAt)
     routineId
+    (gymId, performedAt)
   }
 }
 
@@ -311,6 +313,7 @@ Table TrainingSet {
   reps int [not null]
   rpe float
   rir float
+  notes varchar
   isWarmup boolean [not null, default: false]
   isCompetitive boolean [not null, default: true]
   estimated1rmKg float
@@ -319,6 +322,25 @@ Table TrainingSet {
   indexes {
     sessionId
     exerciseId
+  }
+}
+
+Table ExercisePR {
+  id uuid [pk]
+  userId uuid [not null]
+  exerciseId uuid [not null]
+  prType varchar [not null, default: 'one_rep_max']
+  valueKg float [not null]
+  reps int
+  estimated1rmKg float
+  sourceSessionId uuid
+  achievedAt timestamp [not null]
+  createdAt timestamp [not null]
+
+  indexes {
+    (userId, exerciseId, prType, estimated1rmKg)
+    (userId, achievedAt)
+    sourceSessionId
   }
 }
 
@@ -575,9 +597,13 @@ Ref: PostReaction.userId > User.id
 
 Ref: TrainingSession.userId > User.id
 Ref: TrainingSession.routineId > TrainingRoutine.id
+Ref: TrainingSession.gymId > Gym.id
 Ref: TrainingSessionFocus.sessionId > TrainingSession.id
 Ref: TrainingSet.sessionId > TrainingSession.id
 Ref: TrainingSet.exerciseId > Exercise.id
+Ref: ExercisePR.userId > User.id
+Ref: ExercisePR.exerciseId > Exercise.id
+Ref: ExercisePR.sourceSessionId > TrainingSession.id
 Ref: TrainingRoutine.userId > User.id
 Ref: TrainingRoutineDay.routineId > TrainingRoutine.id
 Ref: TrainingRoutineExercise.dayId > TrainingRoutineDay.id

@@ -34,7 +34,7 @@ Traducir el modelo global de datos en una secuencia de implementacion tecnica qu
 | BT-006 | Crear `WorkoutRoutineExercise` | BT-005, BT-003 | Rutinas con ejercicios |
 | BT-007 | Crear `TrainingSession`        | BT-001, BT-002 | Sesiones registrables  |
 | BT-008 | Crear `TrainingSet`            | BT-007, BT-003 | Sets persistidos       |
-| BT-009 | Crear `ExercisePR`             | BT-007, BT-003 | PRs calculables        |
+| BT-009 | Crear `ExercisePR` (completado Stage 5) | BT-007, BT-003 | PRs persistidos y trazables |
 | BT-010 | Crear `GymCheckin`             | BT-001, BT-002 | Check-in por gimnasio  |
 | BT-011 | Crear `UserLocationSnapshot`   | BT-001         | Ubicacion contextual   |
 

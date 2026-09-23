@@ -17,7 +17,7 @@
 
 - Evidencia E2E completa en dispositivos físicos.
 - Validación offline real de sets y cierre de sesión.
-- Decisión sobre paginación del historial más allá de las 10 sesiones actuales.
+- Aplicación de la migración Prisma en staging.
 
 ## Alcance minimo validado
 
@@ -33,5 +33,5 @@
 
 ## Nota
 
-La funcionalidad principal ya está implementada. El cierre restante es evidencia E2E, validación offline física y la
-decisión de producto sobre la paginación del historial.
+La funcionalidad principal ya está implementada. El historial ahora usa paginación por cursor; el cierre restante es
+evidencia E2E, validación offline física y aplicación de la migración en staging.

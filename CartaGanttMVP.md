@@ -11,7 +11,7 @@
 |     2 |   2-4   | Backend, base de datos y autenticación    | Casi completa |
 |     3 |   4-6   | Gimnasios, GPS y biblioteca de ejercicios | Parcial alta  |
 |     4 |   6-8   | Rutinas y registro de entrenamiento       | Parcial alta  |
-|     5 |  8-10   | PRs, progreso y rankings                  | Parcial media |
+|     5 |  8-10   | PRs, progreso y rankings                  | Parcial alta  |
 |     6 |  10-12  | Logros, estadísticas y notificaciones     | Parcial media |
 |     7 |  12-14  | QA, estabilización y cierre               | Inicial       |
 
@@ -124,10 +124,10 @@ operativo pero todavía quedan validaciones de producción.
 | --------------- | --------------: | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
 | Fundación       |            100% | Alcance ampliado, contratos, arquitectura y navegación base                                 | Ninguno bloqueante                                                 |
 | Cuenta y perfil |            100% | Auth, onboarding, perfil, avatar, ubicación, gimnasios y recuperación técnica validados     | Delivery real, verificación de email y eliminación de cuenta       |
-| Entrenamiento   |             80% | Sesiones, sets, historial, PRs, progreso y cola offline funcional                           | Validar rutinas completas, límites y reintentos físicos            |
+| Entrenamiento   |             85% | Sesiones, sets, historial paginado, PRs persistidos, progreso y cola offline funcional      | Validar rutinas completas, límites y reintentos físicos            |
 | Comunidad       |             90% | Feed, posts, comentarios, likes, reacción rápida, follows y compartir progreso/logros       | Decidir multimedia y validar compartir fuera de la app             |
 | Competencia     |             75% | Rankings, 1RM, rangos de fuerza y logros disponibles                                        | Categorías, calibración por sexo, frecuencia y percentiles         |
-| Release         |             50% | Builds, typechecks, 233 tests API y 35 tests mobile; APK QA y builds nativas Android/iOS verificadas | Integración, seguridad, rendimiento, RevenueCat real y push físico |
+| Release         |             50% | Builds, typechecks, 238 tests API y 37 tests mobile; APK QA y builds nativas Android/iOS verificadas | Integración, seguridad, rendimiento, RevenueCat real y push físico |
 
 **Lectura ejecutiva:** el avance funcional del MVP ampliado está aproximadamente en **80%**. La
 preparación para declarar release está aproximadamente en **50%**, porque los riesgos restantes son
@@ -141,7 +141,7 @@ principalmente de validación, integraciones reales y operación, no de construc
 | H2 - Backend y autenticación operativos  | Casi completo | API, Prisma, health check, JWT y envelope funcionales                      |
 | H3 - Gimnasios y ejercicios operativos   | Parcial alta  | Gimnasios, GPS, check-in y catálogo implementados; falta evidencia final   |
 | H4 - MVP Core operativo                  | Parcial alta  | Sesiones, rutinas, sets, historial y progreso implementados; faltan bordes |
-| H5 - PRs y rankings disponibles          | Parcial media | PRs, 1RM, rangos y rankings implementados; faltan calibración y cobertura  |
+| H5 - PRs y rankings disponibles          | Parcial alta  | PRs, 1RM, rangos y rankings implementados; faltan calibración, cobertura y E2E |
 | H6 - Logros y notificaciones disponibles | Parcial media | Logros, estadísticas y alertas implementados; falta push físico            |
 | H7 - MVP extendido listo                 | Inicial       | Faltan integración, seguridad, rendimiento y validación de release         |
 

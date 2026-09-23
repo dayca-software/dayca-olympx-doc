@@ -10,7 +10,7 @@
 | Diagrama editable              | `ModeloRelacionalActual.dbml`                          |
 | Motor                          | PostgreSQL                                             |
 | ORM                            | Prisma                                                 |
-| Corte                          | 13/09/2026                                             |
+| Corte                          | 22/09/2026                                             |
 | Estado                         | Implementado y sincronizado en desarrollo              |
 | Modelo planificado relacionado | `ModeloRelacionalMVP.md` y `ModeloRelacionalGlobal.md` |
 
@@ -27,7 +27,7 @@ La base actual está organizada en seis dominios:
 | Entrenamiento              | `Exercise`, `TrainingRoutine*`, `TrainingSession`, `TrainingSet`             | Rutinas, sesiones, series y métricas              |
 | Social                     | `Post`, `PostComment`, `PostLike`, `PostReaction`, `UserFollow`, `UserBlock` | Feed e interacción entre usuarios                 |
 | Notificaciones y operación | `NotificationView`, `PushDevice`, `Report`, `ModerationAction`, `AuditLog`   | Alertas, dispositivos, reportes y moderación      |
-| Competencia                | `ExerciseStrengthRange`                                                      | Rangos de fuerza publicados por ejercicio         |
+| Competencia                | `ExerciseStrengthRange`, `ExercisePR`                                        | Rangos de fuerza y marcas personales             |
 | Comercial                  | `CommercialPlan`, `Subscription*`, `Coupon`, `CommercialSettings`            | Planes, trials, suscripciones, cupones y límites  |
 
 ## 3. Diagrama Relacional Actual
@@ -52,9 +52,13 @@ erDiagram
   USER ||--o{ POST_REACTION : gives
 
   USER ||--o{ TRAINING_SESSION : performs
+  GYM ||--o{ TRAINING_SESSION : hosts
   TRAINING_SESSION ||--o{ TRAINING_SET : contains
+  TRAINING_SESSION ||--o{ EXERCISE_PR : generates
   TRAINING_SESSION ||--o{ TRAINING_SESSION_FOCUS : targets
   EXERCISE ||--o{ TRAINING_SET : used_in
+  EXERCISE ||--o{ EXERCISE_PR : records
+  USER ||--o{ EXERCISE_PR : achieves
   USER ||--o{ TRAINING_ROUTINE : owns
   TRAINING_ROUTINE ||--o{ TRAINING_ROUTINE_DAY : contains
   TRAINING_ROUTINE_DAY ||--o{ TRAINING_ROUTINE_EXERCISE : contains
@@ -120,20 +124,29 @@ revisión, estado de actividad y estado de verificación.
 | `TrainingRoutine`         | `id` | `userId`                       | Índice por usuario y fecha de actualización                                            |
 | `TrainingRoutineDay`      | `id` | `routineId`                    | Índice por rutina y posición                                                           |
 | `TrainingRoutineExercise` | `id` | `dayId`, `exerciseId`          | Índice por día/posición y ejercicio                                                    |
-| `TrainingSession`         | `id` | `userId`, `routineId` opcional | `idempotencyKey` único; estado, timestamps de ciclo de vida e índice por usuario/fecha |
+| `TrainingSession`         | `id` | `userId`, `routineId`, `gymId` opcionales | `idempotencyKey` único; estado, timestamps, gimnasio histórico e índices por usuario/gimnasio |
 | `TrainingSessionFocus`    | `id` | `sessionId`                    | Único por sesión y `areaKey`; índice por área                                          |
-| `TrainingSet`             | `id` | `sessionId`, `exerciseId`      | Índices por sesión y ejercicio                                                         |
+| `TrainingSet`             | `id` | `sessionId`, `exerciseId`      | Notas, flags competitivos e índices por sesión y ejercicio                             |
 
 `TrainingSession` registra título, estado (`DRAFT`, `ACTIVE`, `FINISHED` o `CANCELLED`), inicio,
-fin, duración, intensidad, notas, fecha de ejecución y rutina de origen. `TrainingSet` registra
+fin, duración, intensidad, notas, fecha de ejecución, gimnasio histórico y rutina de origen. `TrainingSet` registra
 peso, repeticiones, RPE, RIR, calentamiento, participación competitiva y 1RM estimado.
 `TrainingSessionFocus` registra cada zona muscular seleccionada mediante un `areaKey` del catálogo
 de entrenamiento. La relación es opcional y permite que las sesiones antiguas sigan siendo válidas.
 
-El PR y el progreso no tienen una tabla propia en el esquema actual: se calculan a partir de
-`TrainingSet` y `TrainingSession`.
+`ExercisePR` conserva cada nueva mejor marca de 1RM estimado, el valor levantado, repeticiones,
+sesión de origen y fecha. El progreso semanal y los rankings se calculan sobre sesiones finalizadas
+y sets que cumplen las reglas competitivas.
 
-### 4.4 Social
+### 4.4 PRs Y Progreso
+
+| Entidad      | PK   | FKs                                      | Restricciones e índices relevantes                         |
+| ------------ | ---- | ---------------------------------------- | ---------------------------------------------------------- |
+| `ExercisePR` | `id` | `userId`, `exerciseId`, `sourceSessionId` | Índices por usuario/ejercicio/PR y usuario/fecha           |
+
+Solo se registran PRs de ejercicios competitivos, sets competitivos y sets que no son warmup.
+
+### 4.5 Social
 
 | Entidad        | PK   | FKs                | Restricciones e índices relevantes                     |
 | -------------- | ---- | ------------------ | ------------------------------------------------------ |
@@ -145,7 +158,7 @@ El PR y el progreso no tienen una tabla propia en el esquema actual: se calculan
 Los tipos actuales de reacción son `FIRE`, `EXECUTION`, `PROGRESS`, `DOMINATED`, `DISAPPROVE` y
 `FUNNY`.
 
-### 4.5 Notificaciones, Moderación Y Auditoría
+### 4.6 Notificaciones, Moderación Y Auditoría
 
 | Entidad            | PK   | FKs                       | Propósito                                            |
 | ------------------ | ---- | ------------------------- | ---------------------------------------------------- |
@@ -159,7 +172,7 @@ Los tipos actuales de reacción son `FIRE`, `EXECUTION`, `PROGRESS`, `DOMINATED`
 guarda el identificador correspondiente. `AuditLog.entityType` y `entityId` usan el mismo patrón
 polimórfico para mantener auditoría sobre distintos dominios.
 
-### 4.6 Comercial
+### 4.7 Comercial
 
 | Entidad              | PK   | FKs                | Restricciones e índices relevantes                 |
 | -------------------- | ---- | ------------------ | -------------------------------------------------- |
@@ -211,7 +224,7 @@ moneda, descuentos y eventos.
 
 | Tema           | Diseño planificado                     | Diseño actual                                        |
 | -------------- | -------------------------------------- | ---------------------------------------------------- |
-| PRs            | Tabla `ExercisePR` independiente       | Se derivan desde sesiones y sets                     |
+| PRs            | Tabla `ExercisePR` independiente       | Eventos persistidos y derivados de sets competitivos |
 | Rankings       | Tablas o vistas persistidas            | Se calculan desde progreso y sesiones                |
 | Conquistas     | Entidad `Conquest`                     | No existe tabla física propia                        |
 | Ubicación      | `UserLocationSnapshot`                 | Última ubicación vive en `User`                      |

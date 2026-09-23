@@ -20,14 +20,13 @@
 - Cola offline para crear sesiones, registrar sets y solicitar el cierre, con claves de idempotencia.
 - Base tecnica para calculo de volumen y 1RM estimado.
 - API de training: 7 archivos y 31 tests pasando.
-- Mobile: 12 suites y 35 tests pasando, incluyendo editor de rutina, cola offline y resumen.
+- Mobile: 14 suites y 37 tests pasando, incluyendo historial paginado, ranking por ejercicio, editor de rutina, cola offline y resumen.
 - Migración Prisma validada con `prisma migrate deploy` sobre PostgreSQL efímero; una segunda ejecución no dejó migraciones pendientes.
 
 ## Pendientes de cierre
 
 - Ejecutar E2E completo de rutina en Android e iOS físicos.
 - Validar reconexión offline real con sets y cierre de sesión en dispositivo.
-- Decidir si el historial debe ampliarse con paginación más allá de las 10 sesiones actuales.
 - Publicar y aplicar la migración Prisma en staging; la validación local efímera ya está completada.
 
 ## Criterio de aprobacion

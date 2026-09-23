@@ -26,8 +26,8 @@
 
 ## Evidencia automatizada
 
-- API: 35 archivos y 233 tests pasando; typecheck y build pasando.
-- Mobile: 12 suites y 35 tests pasando; typecheck y lint sin errores.
+- API: 38 archivos y 238 tests pasando; typecheck y build pasando.
+- Mobile: 14 suites y 37 tests pasando; typecheck y lint sin errores.
 - Contracts: build pasando.
 - Android: build, instalacion y lanzamiento verificados en emulador Pixel 10.
 - iOS: build, instalacion y lanzamiento verificados en simulador iPhone 17 Pro.

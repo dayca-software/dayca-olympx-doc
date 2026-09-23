@@ -148,7 +148,7 @@ P0:
 
 P1:
 
-- Asociar formalmente `TrainingSession` con `gymId` cuando el modelo de negocio este confirmado.
+- Mantener el snapshot de `gymId` en `TrainingSession` y validar su uso en rankings por gimnasio.
 - Agregar ejercicios desde una biblioteca curada y buscable.
 - Permitir editar o eliminar sets.
 - Compartir una tarjeta de progreso revisable antes de publicar.
@@ -177,7 +177,7 @@ La competencia debe premiar constancia y mejora, no volumen extremo, riesgo o pr
 4. La busqueda textual puede exponer gimnasios no activos o no verificados.
 5. Check-in no ofrece una transicion directa a iniciar entrenamiento.
 6. El check-in actualiza el backend, pero la pantalla puede conservar el estado local anterior.
-7. `TrainingSession` no tiene aun estado formal de sesion ni `gymId`.
+7. `TrainingSession` ya tiene estado formal y `gymId`; falta validar la experiencia completa de ranking por gimnasio.
 8. El detalle de entrenamiento no tiene finalizacion explicita ni recuperacion offline completa.
 9. `HomeFeedSection` existe, pero Home no lo renderiza actualmente.
 10. Las metricas de Home usan listados limitados y pueden subestimar sesiones o progreso.

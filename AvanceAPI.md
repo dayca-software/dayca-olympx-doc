@@ -29,9 +29,11 @@ Hoy cubre:
 - Limite de 50 sets por sesion aplicado en API, rechazando nuevos registros al alcanzar el maximo.
 - Foco muscular estructurado por sesión mediante `focusAreas`.
 - Progreso de entrenamiento con volumen, reps, semanas y 1RM estimado.
+- Comparación de volumen contra la semana anterior con ventanas de 7, 30 o 90 días.
 - Rangos configurados de fuerza en los PRs: rango actual, siguiente rango y kilogramos restantes.
 - Rutinas persistentes y sesiones iniciadas desde plantilla.
-- Ranking competitivo por ejercicio basado en mejor 1RM estimado.
+- PRs persistidos por evento, trazables a la sesión de origen y generados al finalizar sesiones.
+- Ranking competitivo por ejercicio basado en mejor 1RM estimado, periodo, gimnasio/global y posición personal.
 - Perfil editable con nickname, región, provincia y comuna persistidos.
 - Edicion y eliminacion segura de sesiones propias.
 - Suscripcion, trial y catalogo comercial.
@@ -138,19 +140,24 @@ Hoy cubre:
 - `POST /api/training/routines/:id/start`
 - Al iniciar una rutina, el mobile carga sus ejercicios y objetivos en la sesión.
 - `GET /api/training/sessions`
+- acepta `cursor` y `limit` para historial paginado; el límite máximo es 50.
 
 ### Leaderboard
 
 - `GET /api/leaderboard/exercises/:exerciseId`
-- Los rankings excluyen usuarios suspendidos.
+- acepta `period=all|7d|30d` y `scope=global|gym`.
+- excluye usuarios suspendidos, sesiones no finalizadas, calentamientos y ejercicios no competitivos.
+- devuelve la posición personal cuando existe.
 - `GET /api/training/progress`
+- acepta `days=7|30|90`; por defecto usa 30 días.
 - `GET /api/training/prs`
-  - incluye rango actual, siguiente rango, progreso y kilogramos restantes cuando existen rangos publicados.
+  - lee PRs persistidos e incluye sesión de origen, rango actual, siguiente rango, progreso y kilogramos restantes cuando existen rangos publicados.
 - `GET /api/training/sessions/:id`
 - `POST /api/training/sessions`
 - `focusAreas` se recibe como lista de claves del catálogo y se persiste sin mezclarla con `notes`.
 - `PATCH /api/training/sessions/:id`
 - `PATCH /api/training/sessions/:id/finish` exige al menos un set y marca la sesión como `FINISHED`.
+- Al finalizar una sesión se generan eventos `ExercisePR` solo para sets competitivos, no warmup y ejercicios elegibles.
 - `PATCH /api/training/sessions/:id/cancel` marca una sesión activa como `CANCELLED`.
 - `DELETE /api/training/sessions/:id`
 - `POST /api/training/sessions/:id/sets`
@@ -200,6 +207,7 @@ Entidades actuales en Prisma:
 - `TrainingSession`
 - `TrainingSessionFocus`
 - `TrainingSet`
+- `ExercisePR`
 - `GymCheckIn`
 - `PasswordResetToken`
 
@@ -257,8 +265,9 @@ Verificado recientemente:
 - política de contraseña de registro y cambio autenticado cubiertos por tests de servicio y controller
 - recuperación de contraseña cubierta por tests de servicio, controller y delivery; migración local aplicada
 - demo users limitados a entornos no productivos y `JWT_SECRET` requerido fuera de tests
-- 35 archivos y 233 tests pasando.
+- 38 archivos y 238 tests pasando.
 - `npx prisma validate` pasando con el schema actual.
+- Migraciones de Etapas 4 y 5 validadas dos veces sobre PostgreSQL efímero, sin migraciones pendientes.
 - Imagen Docker multi-stage construida y verificada con PostgreSQL efimero y `GET /api/health` en `200`.
 
 ## 11. Pendientes Priorizados

@@ -17,8 +17,8 @@ La etapa tiene una cobertura funcional alta:
 - Selección de gimnasio principal implementada en el detalle.
 - Actividad local pública y deep link a mapas implementados.
 
-La validación automatizada actual quedó en API `35/35` archivos y `233/233` tests, mobile `12/12`
-suites y `35/35` tests, además de typecheck/lint mobile y typecheck/build de API y contracts. El
+La validación automatizada actual quedó en API `38/38` archivos y `238/238` tests, mobile `14/14`
+suites y `37/37` tests, además de typecheck/lint mobile y typecheck/build de API y contracts. El
 build, instalacion y lanzamiento nativo tambien fueron verificados en Android e iOS. El pendiente
 de cierre es la evidencia del recorrido funcional en dispositivos.
 

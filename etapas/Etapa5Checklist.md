@@ -13,15 +13,17 @@
 ## Cobertura actual
 
 - Base tecnica para 1RM estimado disponible.
+- PRs persistidos por evento, con sesión de origen y backfill de históricos.
 - Estadisticas basicas de usuario disponibles.
-- Base de leaderboard/progreso disponible.
+- Progreso semanal con volumen, comparación contra la semana anterior y filtros de ventana.
+- Ranking competitivo por ejercicio con filtros global/gimnasio y periodo.
+- Posición personal incluida aunque el usuario no esté en el top visible.
 
 ## Pendientes de cierre
 
-- Persistencia completa de PRs.
-- Ranking por gimnasio y por ejercicio.
 - Categorias por sexo/edad/peso/IMC.
-- Visualizacion clara de progresion semanal.
+- Validación E2E y de rendimiento con datos reales.
+- Aplicación de la migración en staging.
 
 ## Criterio de aprobacion
 

@@ -11,7 +11,7 @@
 | 2     | Backend, BD y autenticación               | Casi completa | API funcional, contratos, seed y registro                                              |
 | 3     | Gimnasios, GPS y biblioteca               | Casi completa | Gimnasios + GPS + ejercicios + check-in; happy path validado, faltan estados alternos   |
 | 4     | Rutinas y registro de entrenamiento       | Casi completa | Sesiones, sets, historial y rutinas implementados; falta E2E físico y migración staging |
-| 5     | PRs, progreso y rankings                  | Parcial media | Progreso, 1RM, rangos y rankings implementados; falta calibración y cobertura          |
+| 5     | PRs, progreso y rankings                  | Parcial alta  | PRs persistidos, progreso semanal y rankings por periodo/gimnasio; faltan categorías y E2E |
 | 6     | Conquistas, estadísticas y notificaciones | Parcial media | Stats, logros base y push preparado; falta validación física y automatización completa |
 | 7     | QA, estabilización y cierre               | Parcial       | Smoke iOS, typecheck y unit tests; faltan integración, offline físico y release        |
 
@@ -74,7 +74,7 @@
 - Biblioteca de ejercicios con filtros y detalle implementada.
 - Check-in con radio de 100 metros, cooldown de 30 minutos y actualización de gimnasio principal.
 - Actividad local pública, estados de disponibilidad y apertura de mapas implementados.
-- API con 35 archivos y 233 tests pasando; mobile con 12 suites y 35 tests pasando.
+- API con 38 archivos y 238 tests pasando; mobile con 14 suites y 37 tests pasando.
 - Build, instalación y lanzamiento nativo verificados en emulador Android Pixel 10 y simulador iOS iPhone 17 Pro.
 - Smoke Maestro de búsqueda, detalle y selección de gimnasio principal pasado en iOS y Android.
 - Smoke Maestro de check-in dentro del radio permitido pasado en iOS y Android.
@@ -132,13 +132,14 @@ check-in, experiencia mobile, pruebas iOS/Android y aprobación formal.
 ### Estado actual
 
 - Hay estadísticas básicas de usuario.
-- Existe leaderboard general y por ejercicio, progreso, PRs y rangos de fuerza publicados.
-- Se calcula `estimated1rmKg` en sets y se muestran rango actual, siguiente rango y distancia restante.
-- La capa funcional está implementada; falta validar calibración por sexo, categorías y actualización de posiciones.
+- Existe leaderboard general y ranking competitivo por ejercicio con alcance global/gimnasio y periodo.
+- Los PRs se persisten al finalizar sesiones, con sesión de origen y backfill de históricos.
+- El progreso incluye volumen semanal, comparación contra la semana anterior y reglas competitivas consistentes.
+- Falta validar calibración por sexo, categorías, rendimiento con datos reales y E2E.
 
 ### Balance
 
-- **Estado:** Parcial media
+- **Estado:** Parcial alta
 
 ## Etapa 6 - Conquistas, Estadísticas y Notificaciones
 
@@ -172,7 +173,7 @@ check-in, experiencia mobile, pruebas iOS/Android y aprobación formal.
 
 - Hay smoke tests en API, web, admin y Maestro en mobile.
 - iOS ya tiene smoke de core, límite Free, acciones de entrenamiento y suscripción.
-- Jest mobile tiene 35 tests pasando en 12 suites y typecheck mobile pasa; API tiene 233 tests pasando en 35 archivos.
+- Jest mobile tiene 37 tests pasando en 14 suites y typecheck mobile pasa; API tiene 238 tests pasando en 38 archivos.
 - Faltan suites de integración, offline físico, push físico y validaciones de seguridad/rendimiento.
 
 ### Balance
