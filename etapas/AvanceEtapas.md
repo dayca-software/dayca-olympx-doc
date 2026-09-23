@@ -5,15 +5,15 @@
 
 ## Resumen Ejecutivo
 
-| Etapa | Nombre                                    | Estado        | Cobertura real                                                                         |
-| ----- | ----------------------------------------- | ------------- | -------------------------------------------------------------------------------------- |
-| 1     | Discovery, planificación y UX/UI          | Parcial       | Documentación lista, Figma en curso                                                    |
-| 2     | Backend, BD y autenticación               | Casi completa | API funcional, contratos, seed y registro                                              |
-| 3     | Gimnasios, GPS y biblioteca               | Casi completa | Gimnasios + GPS + ejercicios + check-in; happy path validado, faltan estados alternos   |
-| 4     | Rutinas y registro de entrenamiento       | Casi completa | Sesiones, sets, historial y rutinas implementados; falta E2E físico y migración staging |
-| 5     | PRs, progreso y rankings                  | Parcial alta  | PRs persistidos, progreso semanal y rankings por periodo/gimnasio; faltan categorías y E2E |
-| 6     | Conquistas, estadísticas y notificaciones | Parcial media | Stats, logros base y push preparado; falta validación física y automatización completa |
-| 7     | QA, estabilización y cierre               | Parcial       | Smoke iOS, typecheck y unit tests; faltan integración, offline físico y release        |
+| Etapa | Nombre                                    | Estado        | Cobertura real                                                                                                                     |
+| ----- | ----------------------------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| 1     | Discovery, planificación y UX/UI          | Parcial       | Documentación lista, Figma en curso                                                                                                |
+| 2     | Backend, BD y autenticación               | Casi completa | API funcional, contratos, seed y registro                                                                                          |
+| 3     | Gimnasios, GPS y biblioteca               | Casi completa | Gimnasios + GPS + ejercicios + check-in; happy path validado, faltan estados alternos                                              |
+| 4     | Rutinas y registro de entrenamiento       | Casi completa | Sesiones, sets, historial y rutinas implementados; falta E2E físico y migración staging                                            |
+| 5     | PRs, progreso y rankings                  | Parcial alta  | PRs persistidos, progreso semanal y rankings por periodo/gimnasio; faltan categorías y E2E                                         |
+| 6     | Conquistas, estadísticas y notificaciones | Parcial alta  | `AchievementUnlock`, primer PR automático, consulta de logros, admin y push preparado; faltan automatizaciones y validación física |
+| 7     | QA, estabilización y cierre               | Parcial       | Smoke iOS, typecheck y unit tests; faltan integración, offline físico y release                                                    |
 
 ## Etapa 1 - Discovery, planificación y UX/UI
 
@@ -74,7 +74,7 @@
 - Biblioteca de ejercicios con filtros y detalle implementada.
 - Check-in con radio de 100 metros, cooldown de 30 minutos y actualización de gimnasio principal.
 - Actividad local pública, estados de disponibilidad y apertura de mapas implementados.
-- API con 38 archivos y 238 tests pasando; mobile con 14 suites y 37 tests pasando.
+- API con 40 archivos y 245 tests pasando; mobile con 14 suites y 37 tests pasando.
 - Build, instalación y lanzamiento nativo verificados en emulador Android Pixel 10 y simulador iOS iPhone 17 Pro.
 - Smoke Maestro de búsqueda, detalle y selección de gimnasio principal pasado en iOS y Android.
 - Smoke Maestro de check-in dentro del radio permitido pasado en iOS y Android.
@@ -153,7 +153,10 @@ check-in, experiencia mobile, pruebas iOS/Android y aprobación formal.
 
 - Perfil con stats básicas ya disponible.
 - Notifications existe con vistas persistidas, registro de dispositivos y preparación FCM/APNs.
-- Hay logros base y estadísticas visibles, pero falta validar entrega push en dispositivo físico y ampliar automatizaciones.
+- `AchievementUnlock` persiste desbloqueos con unicidad por usuario y clave, referencias opcionales y backfill del primer PR histórico.
+- El cierre de una sesión genera `first-pr` automáticamente cuando se crea el primer PR del usuario.
+- El perfil consulta logros y admin puede crear desbloqueos manuales desde el detalle de usuario, con auditoría y push preparado.
+- Falta persistir automáticamente el resto de logros, validar entrega push en dispositivo físico y completar banners/compartición.
 - La Etapa 6 está funcionalmente avanzada, pero no cerrada para release.
 
 ### Balance
@@ -173,7 +176,7 @@ check-in, experiencia mobile, pruebas iOS/Android y aprobación formal.
 
 - Hay smoke tests en API, web, admin y Maestro en mobile.
 - iOS ya tiene smoke de core, límite Free, acciones de entrenamiento y suscripción.
-- Jest mobile tiene 37 tests pasando en 14 suites y typecheck mobile pasa; API tiene 238 tests pasando en 38 archivos.
+- Jest mobile tiene 37 tests pasando en 14 suites y typecheck mobile pasa; API tiene 245 tests pasando en 40 archivos.
 - Faltan suites de integración, offline físico, push físico y validaciones de seguridad/rendimiento.
 
 ### Balance

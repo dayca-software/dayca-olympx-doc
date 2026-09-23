@@ -33,6 +33,8 @@ Hoy cubre:
 - Rangos configurados de fuerza en los PRs: rango actual, siguiente rango y kilogramos restantes.
 - Rutinas persistentes y sesiones iniciadas desde plantilla.
 - PRs persistidos por evento, trazables a la sesión de origen y generados al finalizar sesiones.
+- `AchievementUnlock` persistido con unicidad por usuario y clave; el primer PR desbloquea `first-pr` dentro de la transacción de cierre.
+- Consulta de logros con progreso calculado y trazabilidad de sesión, PR, ejercicio y métrica.
 - Ranking competitivo por ejercicio basado en mejor 1RM estimado, periodo, gimnasio/global y posición personal.
 - Perfil editable con nickname, región, provincia y comuna persistidos.
 - Edicion y eliminacion segura de sesiones propias.
@@ -104,8 +106,8 @@ Hoy cubre:
 
 - `GET /api/notifications`
 - `POST /api/notifications/viewed`
-- Las alertas incluyen likes, comentarios, reacciones fitness y nuevos seguidores.
-- `GET /api/notifications?type=all|like|comment|reaction|follow`
+- Las alertas incluyen likes, comentarios, reacciones fitness, nuevos seguidores y conquistas desbloqueadas.
+- `GET /api/notifications?type=all|like|comment|reaction|follow|achievement`
 - `POST /api/notifications/viewed/all`
 - `POST /api/notifications/devices`
 - `POST /api/notifications/devices/disable`
@@ -178,6 +180,8 @@ Hoy cubre:
 - `PATCH /api/admin/exercises/strength-ranges/:id`
 - `PATCH /api/admin/exercises/strength-ranges/:id/status`
 - `DELETE /api/admin/exercises/strength-ranges/:id`
+- `POST /api/admin/achievements/unlocks`
+  - requiere rol admin, valida las referencias opcionales, evita duplicados por usuario/logro y registra auditoría.
 
 ### Health
 
@@ -208,6 +212,7 @@ Entidades actuales en Prisma:
 - `TrainingSessionFocus`
 - `TrainingSet`
 - `ExercisePR`
+- `AchievementUnlock`
 - `GymCheckIn`
 - `PasswordResetToken`
 
@@ -265,9 +270,10 @@ Verificado recientemente:
 - política de contraseña de registro y cambio autenticado cubiertos por tests de servicio y controller
 - recuperación de contraseña cubierta por tests de servicio, controller y delivery; migración local aplicada
 - demo users limitados a entornos no productivos y `JWT_SECRET` requerido fuera de tests
-- 38 archivos y 238 tests pasando.
+- 40 archivos y 245 tests pasando.
 - `npx prisma validate` pasando con el schema actual.
 - Migraciones de Etapas 4 y 5 validadas dos veces sobre PostgreSQL efímero, sin migraciones pendientes.
+- La migración `20260922110000_stage6_achievement_unlocks` está creada, aplicada en `olympx_dev` y el schema pasa validación; falta repetir la aplicación sobre PostgreSQL efímero.
 - Imagen Docker multi-stage construida y verificada con PostgreSQL efimero y `GET /api/health` en `200`.
 
 ## 11. Pendientes Priorizados

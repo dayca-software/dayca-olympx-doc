@@ -34,6 +34,7 @@ Hoy el avance cubre los principales modulos operativos y comerciales:
 - Gestion de usuarios, gimnasios, reportes, planes, suscripciones y cupones.
 - Catalogo de ejercicios y rangos de fuerza con acciones de publicacion.
 - Las acciones de rangos de fuerza ya generan registros en `AuditLog`.
+- El detalle de usuario permite crear manualmente un `AchievementUnlock` con referencias de origen opcionales.
 
 ## 4. Integracion Con API
 
@@ -45,7 +46,7 @@ Ambas apps ya dependen del backend para autenticar y obtener usuario:
 
 El transporte usa `axios` y los tipos compartidos para `ApiEnvelope<LoginResponse>`.
 
-El Admin tambien consume dominios operativos y comerciales mediante `privateHttp`, incluyendo dashboard, usuarios, gimnasios, reportes, planes, suscripciones, catalogo de ejercicios y rangos de fuerza.
+El Admin tambien consume dominios operativos y comerciales mediante `privateHttp`, incluyendo dashboard, usuarios, gimnasios, reportes, planes, suscripciones, catalogo de ejercicios, rangos de fuerza y `POST /api/admin/achievements/unlocks`.
 
 ## 5. Estado De UI
 
@@ -70,6 +71,7 @@ El Admin tambien consume dominios operativos y comerciales mediante `privateHttp
 
 - Web tiene un smoke test de `App`.
 - Admin tiene un smoke test de `App`.
+- Admin tiene 10 archivos y 69 tests pasando, incluyendo auditoría y desbloqueos manuales.
 - Ambas apps tienen `typecheck` y `vitest` configurados.
 - No hay suite de integracion ni E2E para web/admin hoy.
 

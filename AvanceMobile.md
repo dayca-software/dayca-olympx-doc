@@ -25,7 +25,7 @@ Hoy cubre:
 - Perfiles publicos desde el ranking.
 - Seguir y dejar de seguir usuarios.
 - Listas de seguidores y seguidos.
-- Logros y conquistas calculados desde la actividad.
+- Logros y conquistas con progreso calculado y desbloqueos persistidos, incluido `first-pr`.
 - Historial de check-ins del usuario.
 - Detalle de gimnasio y detalle de publicacion.
 - Historial, creacion y detalle de sesiones de entrenamiento.
@@ -44,7 +44,7 @@ Hoy cubre:
 - Reacción rápida de fuego desde las tarjetas del feed, además de las reacciones completas en el detalle.
 - Check-in con solicitud de ubicación y validación de proximidad.
 - Las cuentas suspendidas no pueden iniciar ni mantener sesión activa.
-- Alertas sociales para likes, comentarios, reacciones y nuevos seguidores.
+- Alertas sociales y de conquistas para likes, comentarios, reacciones y nuevos seguidores.
 - Filtros de alertas y acción para marcar todo como leído.
 - Firebase Messaging configurado para registrar tokens FCM/APNs, refrescarlos en la API y procesar pushes en foreground, background y apertura inicial.
 - Android crea el canal nativo `olympx-social` para notificaciones de actividad social.
@@ -231,6 +231,7 @@ La app consume estos flujos principales:
 - `GET /api/notifications`
 - `GET /api/users/me`
 - `GET /api/users/me/stats`
+- `GET /api/users/me/achievements`
 - `GET /api/users/:id`
 - `PATCH /api/users/me`
 - `PATCH /api/users/me/gym`
@@ -263,6 +264,8 @@ La base de la integracion usa `axios` con interceptor de `Authorization` y `ApiE
 - `SearchResponse`
 - `LeaderboardResponse`
 - `NotificationResponse`
+- `AchievementItem`
+- `AchievementsResponse`
 - `UserProfile`
 - `UserProfileStats`
 - `UpdateProfileRequest`

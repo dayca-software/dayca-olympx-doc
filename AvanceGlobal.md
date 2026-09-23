@@ -48,6 +48,8 @@ Hoy el producto soporta:
 - Infraestructura preparada para tokens push FCM/APNs.
 - Historial de récords personales por ejercicio.
 - Rangos de fuerza configurados visibles desde el historial de PRs.
+- Primer logro `first-pr` persistido automáticamente desde el cierre de sesión y logros consultables desde Perfil.
+- Desbloqueos manuales de logros disponibles para Admin con auditoría y alerta push preparada.
 - Detalle de gimnasio, detalle de publicacion y detalle de sesion.
 - Perfil editable y paywall basico.
 - Gimnasio principal y check-in.
@@ -100,7 +102,7 @@ La app mobile ya permite validar el producto en un flujo completo:
 
 - Se usa `dayca-olympx-contracts` como fuente compartida de tipos.
 - La API responde con `ApiEnvelope<T>`.
-- Prisma ya incluye `User`, `Gym`, `Exercise`, `Post`, `PostComment`, `PostLike` y `TrainingSession`.
+- Prisma ya incluye `User`, `Gym`, `Exercise`, `Post`, `PostComment`, `PostLike`, `TrainingSession`, `ExercisePR` y `AchievementUnlock`.
 - El seed ya deja datos demo para probar el flujo completo.
 
 ## 5. Verificacion Reciente
@@ -116,7 +118,7 @@ Validaciones ejecutadas recientemente:
 - Maestro iOS: core, límite Free, acciones de entrenamiento, comunidad, competencia y suscripción
 - Maestro Android: core, comunidad y competencia
 - Jest mobile: 37 tests pasando en 14 suites, incluyendo historial paginado, ranking por ejercicio, editor de rutinas, cierre offline, `TrainingSummaryScreen`, ciclo de push/offline y validación de contraseña
-- API: 238 tests pasando en 38 archivos, incluyendo PRs persistidos, progreso semanal, paginación de historial y ranking competitivo
+- API: 245 tests pasando en 40 archivos, incluyendo PRs persistidos, `AchievementUnlock`, progreso semanal, paginación de historial y ranking competitivo
 - APK QA: `assembleQa`, instalación y lanzamiento verificados en emulador Android con endpoint HTTPS ficticio
 - API Docker: healthcheck verificado contra PostgreSQL efímero; despliegue AWS/Neon real sigue pendiente
 - M01: política de contraseña, cambio autenticado y recuperación técnica disponibles en API y mobile; falta configurar delivery real

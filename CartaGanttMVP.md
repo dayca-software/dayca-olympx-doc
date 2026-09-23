@@ -12,7 +12,7 @@
 |     3 |   4-6   | Gimnasios, GPS y biblioteca de ejercicios | Parcial alta  |
 |     4 |   6-8   | Rutinas y registro de entrenamiento       | Parcial alta  |
 |     5 |  8-10   | PRs, progreso y rankings                  | Parcial alta  |
-|     6 |  10-12  | Logros, estadísticas y notificaciones     | Parcial media |
+|     6 |  10-12  | Logros, estadísticas y notificaciones     | Parcial alta  |
 |     7 |  12-14  | QA, estabilización y cierre               | Inicial       |
 
 **Referencia de alcance:** Etapas 1 a 4 corresponden al MVP Core de 8 semanas. Etapas 5 a 7
@@ -120,14 +120,14 @@ Los porcentajes siguientes son una estimación de avance del frente, no una mét
 código. Se separa el avance funcional de la preparación real para release, porque el core ya está
 operativo pero todavía quedan validaciones de producción.
 
-| Frente          | Avance estimado | Evidencia actual                                                                            | Pendiente principal                                                |
-| --------------- | --------------: | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| Fundación       |            100% | Alcance ampliado, contratos, arquitectura y navegación base                                 | Ninguno bloqueante                                                 |
-| Cuenta y perfil |            100% | Auth, onboarding, perfil, avatar, ubicación, gimnasios y recuperación técnica validados     | Delivery real, verificación de email y eliminación de cuenta       |
-| Entrenamiento   |             85% | Sesiones, sets, historial paginado, PRs persistidos, progreso y cola offline funcional      | Validar rutinas completas, límites y reintentos físicos            |
-| Comunidad       |             90% | Feed, posts, comentarios, likes, reacción rápida, follows y compartir progreso/logros       | Decidir multimedia y validar compartir fuera de la app             |
-| Competencia     |             75% | Rankings, 1RM, rangos de fuerza y logros disponibles                                        | Categorías, calibración por sexo, frecuencia y percentiles         |
-| Release         |             50% | Builds, typechecks, 238 tests API y 37 tests mobile; APK QA y builds nativas Android/iOS verificadas | Integración, seguridad, rendimiento, RevenueCat real y push físico |
+| Frente          | Avance estimado | Evidencia actual                                                                                     | Pendiente principal                                                |
+| --------------- | --------------: | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Fundación       |            100% | Alcance ampliado, contratos, arquitectura y navegación base                                          | Ninguno bloqueante                                                 |
+| Cuenta y perfil |            100% | Auth, onboarding, perfil, avatar, ubicación, gimnasios y recuperación técnica validados              | Delivery real, verificación de email y eliminación de cuenta       |
+| Entrenamiento   |             85% | Sesiones, sets, historial paginado, PRs persistidos, progreso y cola offline funcional               | Validar rutinas completas, límites y reintentos físicos            |
+| Comunidad       |             90% | Feed, posts, comentarios, likes, reacción rápida, follows y compartir progreso/logros                | Decidir multimedia y validar compartir fuera de la app             |
+| Competencia     |             75% | Rankings, 1RM, rangos de fuerza y logros disponibles                                                 | Categorías, calibración por sexo, frecuencia y percentiles         |
+| Release         |             50% | Builds, typechecks, 245 tests API y 37 tests mobile; APK QA y builds nativas Android/iOS verificadas | Integración, seguridad, rendimiento, RevenueCat real y push físico |
 
 **Lectura ejecutiva:** el avance funcional del MVP ampliado está aproximadamente en **80%**. La
 preparación para declarar release está aproximadamente en **50%**, porque los riesgos restantes son
@@ -135,15 +135,15 @@ principalmente de validación, integraciones reales y operación, no de construc
 
 ### Hitos Al Corte
 
-| Hito                                     | Estado        | Comentario                                                                 |
-| ---------------------------------------- | ------------- | -------------------------------------------------------------------------- |
-| H1 - Discovery y UX/UI aprobado          | Parcial       | Documentación y arquitectura listas; prototipo maestro de Figma pendiente  |
-| H2 - Backend y autenticación operativos  | Casi completo | API, Prisma, health check, JWT y envelope funcionales                      |
-| H3 - Gimnasios y ejercicios operativos   | Parcial alta  | Gimnasios, GPS, check-in y catálogo implementados; falta evidencia final   |
-| H4 - MVP Core operativo                  | Parcial alta  | Sesiones, rutinas, sets, historial y progreso implementados; faltan bordes |
-| H5 - PRs y rankings disponibles          | Parcial alta  | PRs, 1RM, rangos y rankings implementados; faltan calibración, cobertura y E2E |
-| H6 - Logros y notificaciones disponibles | Parcial media | Logros, estadísticas y alertas implementados; falta push físico            |
-| H7 - MVP extendido listo                 | Inicial       | Faltan integración, seguridad, rendimiento y validación de release         |
+| Hito                                     | Estado        | Comentario                                                                                                  |
+| ---------------------------------------- | ------------- | ----------------------------------------------------------------------------------------------------------- |
+| H1 - Discovery y UX/UI aprobado          | Parcial       | Documentación y arquitectura listas; prototipo maestro de Figma pendiente                                   |
+| H2 - Backend y autenticación operativos  | Casi completo | API, Prisma, health check, JWT y envelope funcionales                                                       |
+| H3 - Gimnasios y ejercicios operativos   | Parcial alta  | Gimnasios, GPS, check-in y catálogo implementados; falta evidencia final                                    |
+| H4 - MVP Core operativo                  | Parcial alta  | Sesiones, rutinas, sets, historial y progreso implementados; faltan bordes                                  |
+| H5 - PRs y rankings disponibles          | Parcial alta  | PRs, 1RM, rangos y rankings implementados; faltan calibración, cobertura y E2E                              |
+| H6 - Logros y notificaciones disponibles | Parcial alta  | Primer logro persistido, perfil, admin y alertas implementados; falta automatización completa y push físico |
+| H7 - MVP extendido listo                 | Inicial       | Faltan integración, seguridad, rendimiento y validación de release                                          |
 
 ## Plan De Cierre Priorizado
 

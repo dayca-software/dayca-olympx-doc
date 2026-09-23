@@ -27,7 +27,7 @@ La base actual está organizada en seis dominios:
 | Entrenamiento              | `Exercise`, `TrainingRoutine*`, `TrainingSession`, `TrainingSet`             | Rutinas, sesiones, series y métricas              |
 | Social                     | `Post`, `PostComment`, `PostLike`, `PostReaction`, `UserFollow`, `UserBlock` | Feed e interacción entre usuarios                 |
 | Notificaciones y operación | `NotificationView`, `PushDevice`, `Report`, `ModerationAction`, `AuditLog`   | Alertas, dispositivos, reportes y moderación      |
-| Competencia                | `ExerciseStrengthRange`, `ExercisePR`                                        | Rangos de fuerza y marcas personales             |
+| Competencia                | `ExerciseStrengthRange`, `ExercisePR`, `AchievementUnlock`                   | Rangos, marcas personales y logros persistidos    |
 | Comercial                  | `CommercialPlan`, `Subscription*`, `Coupon`, `CommercialSettings`            | Planes, trials, suscripciones, cupones y límites  |
 
 ## 3. Diagrama Relacional Actual
@@ -55,10 +55,14 @@ erDiagram
   GYM ||--o{ TRAINING_SESSION : hosts
   TRAINING_SESSION ||--o{ TRAINING_SET : contains
   TRAINING_SESSION ||--o{ EXERCISE_PR : generates
+  TRAINING_SESSION ||--o{ ACHIEVEMENT_UNLOCK : sources
   TRAINING_SESSION ||--o{ TRAINING_SESSION_FOCUS : targets
   EXERCISE ||--o{ TRAINING_SET : used_in
   EXERCISE ||--o{ EXERCISE_PR : records
+  EXERCISE ||--o{ ACHIEVEMENT_UNLOCK : contextualizes
   USER ||--o{ EXERCISE_PR : achieves
+  USER ||--o{ ACHIEVEMENT_UNLOCK : unlocks
+  EXERCISE_PR ||--o{ ACHIEVEMENT_UNLOCK : evidences
   USER ||--o{ TRAINING_ROUTINE : owns
   TRAINING_ROUTINE ||--o{ TRAINING_ROUTINE_DAY : contains
   TRAINING_ROUTINE_DAY ||--o{ TRAINING_ROUTINE_EXERCISE : contains
@@ -119,14 +123,14 @@ revisión, estado de actividad y estado de verificación.
 
 ### 4.3 Entrenamiento
 
-| Entidad                   | PK   | FKs                            | Restricciones e índices relevantes                                                     |
-| ------------------------- | ---- | ------------------------------ | -------------------------------------------------------------------------------------- |
-| `TrainingRoutine`         | `id` | `userId`                       | Índice por usuario y fecha de actualización                                            |
-| `TrainingRoutineDay`      | `id` | `routineId`                    | Índice por rutina y posición                                                           |
-| `TrainingRoutineExercise` | `id` | `dayId`, `exerciseId`          | Índice por día/posición y ejercicio                                                    |
+| Entidad                   | PK   | FKs                                       | Restricciones e índices relevantes                                                            |
+| ------------------------- | ---- | ----------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `TrainingRoutine`         | `id` | `userId`                                  | Índice por usuario y fecha de actualización                                                   |
+| `TrainingRoutineDay`      | `id` | `routineId`                               | Índice por rutina y posición                                                                  |
+| `TrainingRoutineExercise` | `id` | `dayId`, `exerciseId`                     | Índice por día/posición y ejercicio                                                           |
 | `TrainingSession`         | `id` | `userId`, `routineId`, `gymId` opcionales | `idempotencyKey` único; estado, timestamps, gimnasio histórico e índices por usuario/gimnasio |
-| `TrainingSessionFocus`    | `id` | `sessionId`                    | Único por sesión y `areaKey`; índice por área                                          |
-| `TrainingSet`             | `id` | `sessionId`, `exerciseId`      | Notas, flags competitivos e índices por sesión y ejercicio                             |
+| `TrainingSessionFocus`    | `id` | `sessionId`                               | Único por sesión y `areaKey`; índice por área                                                 |
+| `TrainingSet`             | `id` | `sessionId`, `exerciseId`                 | Notas, flags competitivos e índices por sesión y ejercicio                                    |
 
 `TrainingSession` registra título, estado (`DRAFT`, `ACTIVE`, `FINISHED` o `CANCELLED`), inicio,
 fin, duración, intensidad, notas, fecha de ejecución, gimnasio histórico y rutina de origen. `TrainingSet` registra
@@ -140,13 +144,23 @@ y sets que cumplen las reglas competitivas.
 
 ### 4.4 PRs Y Progreso
 
-| Entidad      | PK   | FKs                                      | Restricciones e índices relevantes                         |
-| ------------ | ---- | ---------------------------------------- | ---------------------------------------------------------- |
-| `ExercisePR` | `id` | `userId`, `exerciseId`, `sourceSessionId` | Índices por usuario/ejercicio/PR y usuario/fecha           |
+| Entidad      | PK   | FKs                                       | Restricciones e índices relevantes               |
+| ------------ | ---- | ----------------------------------------- | ------------------------------------------------ |
+| `ExercisePR` | `id` | `userId`, `exerciseId`, `sourceSessionId` | Índices por usuario/ejercicio/PR y usuario/fecha |
 
 Solo se registran PRs de ejercicios competitivos, sets competitivos y sets que no son warmup.
 
-### 4.5 Social
+### 4.5 Logros Persistidos
+
+| Entidad             | PK   | FKs                                                     | Restricciones e índices relevantes                                        |
+| ------------------- | ---- | ------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `AchievementUnlock` | `id` | `userId`, `sourceSessionId`, `sourcePrId`, `exerciseId` | Único por usuario y `achievementKey`; índices por usuario/fecha y fuentes |
+
+`AchievementUnlock` conserva el logro concedido, su fecha, la métrica opcional y la evidencia que lo
+originó. El primer slice de Etapa 6 persiste automáticamente `first-pr` al generar el primer PR de un
+usuario y también permite concesiones manuales auditadas desde Admin.
+
+### 4.6 Social
 
 | Entidad        | PK   | FKs                | Restricciones e índices relevantes                     |
 | -------------- | ---- | ------------------ | ------------------------------------------------------ |
@@ -158,7 +172,7 @@ Solo se registran PRs de ejercicios competitivos, sets competitivos y sets que n
 Los tipos actuales de reacción son `FIRE`, `EXECUTION`, `PROGRESS`, `DOMINATED`, `DISAPPROVE` y
 `FUNNY`.
 
-### 4.6 Notificaciones, Moderación Y Auditoría
+### 4.7 Notificaciones, Moderación Y Auditoría
 
 | Entidad            | PK   | FKs                       | Propósito                                            |
 | ------------------ | ---- | ------------------------- | ---------------------------------------------------- |
@@ -172,7 +186,7 @@ Los tipos actuales de reacción son `FIRE`, `EXECUTION`, `PROGRESS`, `DOMINATED`
 guarda el identificador correspondiente. `AuditLog.entityType` y `entityId` usan el mismo patrón
 polimórfico para mantener auditoría sobre distintos dominios.
 
-### 4.7 Comercial
+### 4.8 Comercial
 
 | Entidad              | PK   | FKs                | Restricciones e índices relevantes                 |
 | -------------------- | ---- | ------------------ | -------------------------------------------------- |
@@ -219,20 +233,22 @@ moneda, descuentos y eventos.
 - El acceso comercial se controla mediante suscripciones, plan y periodo vigente.
 - El usuario Admin se excluye en la lógica de superficies públicas, no mediante una tabla separada.
 - Las entidades de moderación conservan el actor y la transición de estado.
+- Un usuario no puede tener dos desbloqueos con la misma `achievementKey`.
+- Los desbloqueos manuales requieren rol Admin, validan sus referencias y generan `AuditLog`.
 
 ## 7. Diferencias Frente Al Modelo Planificado
 
-| Tema           | Diseño planificado                     | Diseño actual                                        |
-| -------------- | -------------------------------------- | ---------------------------------------------------- |
-| PRs            | Tabla `ExercisePR` independiente       | Eventos persistidos y derivados de sets competitivos |
-| Rankings       | Tablas o vistas persistidas            | Se calculan desde progreso y sesiones                |
-| Conquistas     | Entidad `Conquest`                     | No existe tabla física propia                        |
-| Ubicación      | `UserLocationSnapshot`                 | Última ubicación vive en `User`                      |
-| Check-in       | Más atributos de salida y coordenadas  | `GymCheckIn` conserva usuario, gimnasio y fecha      |
-| Notificaciones | Entidad de notificación completa       | Solo existe `NotificationView` y `PushDevice`        |
-| Multi-tenant   | `company_uuid` en entidades aplicables | No existe `company_uuid` como columna en este schema |
-| Reportes       | Relaciones por tipo de objeto          | `targetType` + `targetId` polimórficos               |
-| Auditoría      | FK de entidad concreta                 | `entityType` + `entityId` polimórficos               |
+| Tema           | Diseño planificado                     | Diseño actual                                                                                  |
+| -------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| PRs            | Tabla `ExercisePR` independiente       | Eventos persistidos y derivados de sets competitivos                                           |
+| Rankings       | Tablas o vistas persistidas            | Se calculan desde progreso y sesiones                                                          |
+| Conquistas     | Entidad `Conquest`                     | `AchievementUnlock` para logros simples del primer slice; la conquista semanal sigue pendiente |
+| Ubicación      | `UserLocationSnapshot`                 | Última ubicación vive en `User`                                                                |
+| Check-in       | Más atributos de salida y coordenadas  | `GymCheckIn` conserva usuario, gimnasio y fecha                                                |
+| Notificaciones | Entidad de notificación completa       | Solo existe `NotificationView` y `PushDevice`                                                  |
+| Multi-tenant   | `company_uuid` en entidades aplicables | No existe `company_uuid` como columna en este schema                                           |
+| Reportes       | Relaciones por tipo de objeto          | `targetType` + `targetId` polimórficos                                                         |
+| Auditoría      | FK de entidad concreta                 | `entityType` + `entityId` polimórficos                                                         |
 
 Estas diferencias no son necesariamente defectos: algunas capacidades pueden calcularse de forma
 dinámica para el MVP. Deben considerarse antes de escalar volumen, reporting o integraciones externas.

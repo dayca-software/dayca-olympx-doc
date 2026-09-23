@@ -19,7 +19,7 @@ smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no 
 - Script de test: `vitest run`
 - Script de cobertura: `vitest run --coverage`
 - Test visible actualmente: smoke del modulo principal (`test/app.test.ts`)
-- Suite API actual: 38 archivos y 238 tests pasando.
+- Suite API actual: 40 archivos y 245 tests pasando.
 - Integracion critica: crear sesion -> registrar set -> finalizar -> consultar detalle, incluyendo focos musculares e idempotencia.
 - Integracion de progreso, PR persistido, paginación de historial y ranking competitivo por ejercicio.
 - Smoke tests de onboarding y creación de sesiones con límite comercial.
@@ -27,8 +27,9 @@ smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no 
 - Smoke tests de check-in dentro/fuera de radio y duplicado reciente.
 - Validacion del limite de 50 sets por sesion en API y mobile.
 - Imagen Docker de API verificada con PostgreSQL efimero: `GET /api/health` devuelve `200`.
-- Las 27 migraciones Prisma, incluida `20260921100000_stage4_training_fields`, se aplicaron en PostgreSQL efimero y una segunda ejecución confirmó que no quedan pendientes.
+- Las 27 migraciones Prisma previas, incluida `20260921100000_stage4_training_fields`, se aplicaron en PostgreSQL efimero y una segunda ejecución confirmó que no quedan pendientes.
 - La migración `20260922100000_stage5_prs_and_gym_snapshot` también se aplicó dos veces sobre PostgreSQL efímero sin pendientes.
+- La migración `20260922110000_stage6_achievement_unlocks` está creada y aplicada en `olympx_dev`; falta aplicarla dos veces sobre PostgreSQL efímero.
 - Typecheck y Prisma sync se usan como validacion adicional de calidad
 
 ### Web
@@ -42,6 +43,7 @@ smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no 
 - Script de test: `vitest run`
 - Script de cobertura: `vitest run --coverage`
 - Test visible actualmente: smoke del `App`
+- El build y typecheck pasan; la suite actual cubre 10 archivos y 69 tests, incluyendo auditoría y el flujo de desbloqueo admin.
 
 ### Mobile
 

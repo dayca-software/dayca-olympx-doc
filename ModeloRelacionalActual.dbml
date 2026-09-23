@@ -344,6 +344,25 @@ Table ExercisePR {
   }
 }
 
+Table AchievementUnlock {
+  id uuid [pk]
+  userId uuid [not null]
+  achievementKey varchar [not null]
+  sourceSessionId uuid
+  sourcePrId uuid
+  exerciseId uuid
+  metricValue float
+  unlockedAt timestamp [not null]
+  createdAt timestamp [not null]
+
+  indexes {
+    (userId, achievementKey) [unique]
+    (userId, unlockedAt)
+    sourceSessionId
+    sourcePrId
+  }
+}
+
 Table TrainingRoutine {
   id uuid [pk]
   userId uuid [not null]
@@ -604,6 +623,10 @@ Ref: TrainingSet.exerciseId > Exercise.id
 Ref: ExercisePR.userId > User.id
 Ref: ExercisePR.exerciseId > Exercise.id
 Ref: ExercisePR.sourceSessionId > TrainingSession.id
+Ref: AchievementUnlock.userId > User.id
+Ref: AchievementUnlock.sourceSessionId > TrainingSession.id
+Ref: AchievementUnlock.sourcePrId > ExercisePR.id
+Ref: AchievementUnlock.exerciseId > Exercise.id
 Ref: TrainingRoutine.userId > User.id
 Ref: TrainingRoutineDay.routineId > TrainingRoutine.id
 Ref: TrainingRoutineExercise.dayId > TrainingRoutineDay.id
