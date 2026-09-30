@@ -10,10 +10,11 @@ evitar duplicar fuentes de verdad.
 
 ## Estructura
 
-| Carpeta                 | Etapa                                  | Estado                                                |
-| ----------------------- | -------------------------------------- | ----------------------------------------------------- |
-| [`etapa-1`](./etapa-1/) | Discovery, planificación y UX/UI       | Parcial: falta cerrar prototipo navegable             |
-| [`etapa-2`](./etapa-2/) | Backend, base de datos y autenticación | Casi completa: falta hardening y validaciones finales |
+| Carpeta                 | Etapa                                     | Estado                                                                        |
+| ----------------------- | ----------------------------------------- | ----------------------------------------------------------------------------- |
+| [`etapa-1`](./etapa-1/) | Discovery, planificación y UX/UI          | Parcial: falta cerrar prototipo navegable                                     |
+| [`etapa-2`](./etapa-2/) | Backend, base de datos y autenticación    | Casi completa: falta hardening y validaciones finales                         |
+| [`etapa-3`](./etapa-3/) | Gimnasios, GPS y biblioteca de ejercicios | Completada según el alcance aprobado; equipamiento pasa a una etapa posterior |
 
 ## Documentos Base
 
