@@ -414,7 +414,14 @@ El panel Admin permite consultar el catálogo con filtros por:
 - Categoría muscular.
 - Estado competitivo.
 
-También permite modificar el indicador competitivo. La acción queda auditada para mantener trazabilidad sobre cambios que afectan rankings y conquistas futuras.
+También permite:
+
+- Crear ejercicios nuevos.
+- Registrar nombre, grupo muscular, tipo, categoría e imagen opcional.
+- Definir si el ejercicio nace como competitivo.
+- Modificar posteriormente el indicador competitivo.
+
+La creación rechaza nombres duplicados sin distinguir mayúsculas y minúsculas, y las acciones de creación y cambio competitivo quedan auditadas para mantener trazabilidad sobre cambios que afectan rankings y conquistas futuras.
 
 ## 9. Reglas De Negocio Implementadas
 

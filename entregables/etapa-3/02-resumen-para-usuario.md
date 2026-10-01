@@ -185,6 +185,7 @@ El administrador puede:
 - Buscar gimnasios por texto.
 - Filtrar gimnasios según su estado.
 - Consultar el catálogo de ejercicios.
+- Crear ejercicios nuevos indicando su información básica.
 - Filtrar ejercicios por sus características.
 - Definir si un ejercicio es competitivo.
 
