@@ -1,6 +1,6 @@
 # Etapa 4 - Checklist Rutinas y Registro de Entrenamiento
 
-> Criterio minimo para considerar cerrada la Etapa 4.
+> Criterio mínimo para considerar cerrada la implementación de la Etapa 4.
 
 ## Entregables esperados
 
@@ -18,16 +18,22 @@
 - Registro de sets disponible con peso, repeticiones, RPE, RIR y notas.
 - Finalizacion, resumen e historial de entrenamientos disponible.
 - Cola offline para crear sesiones, registrar sets y solicitar el cierre, con claves de idempotencia.
+- Sesiones offline completas desde la UI con IDs de cliente estables y actualización optimista de sets.
+- Catálogo de ejercicios cacheado para continuar registrando sets sin conexión.
+- Selección y persistencia del día de rutina al iniciar una sesión.
+- Migración de día de rutina aplicada automáticamente al arrancar el contenedor de API.
+- Flujo Maestro online actualizado para registrar, editar, finalizar y revisar historial.
+- Flujo Maestro offline preparado para validar pérdida y recuperación de conexión.
 - Base tecnica para calculo de volumen y 1RM estimado.
-- API de training: 7 archivos y 31 tests pasando.
-- Mobile: 14 suites y 37 tests pasando, incluyendo historial paginado, ranking por ejercicio, editor de rutina, cola offline y resumen.
-- Migración Prisma validada con `prisma migrate deploy` sobre PostgreSQL efímero; una segunda ejecución no dejó migraciones pendientes.
+- API de training: 7 archivos y 33 tests pasando.
+- Mobile: 14 suites y 39 tests pasando, incluyendo historial paginado, ranking por ejercicio, editor de rutina, cola offline y resumen.
+- Migración Prisma aplicada con `prisma migrate deploy` sobre PostgreSQL local; no quedaron migraciones pendientes.
 
-## Pendientes de cierre
+## Pendientes de validación operativa
 
 - Ejecutar E2E completo de rutina en Android e iOS físicos.
 - Validar reconexión offline real con sets y cierre de sesión en dispositivo.
-- Publicar y aplicar la migración Prisma en staging; la validación local efímera ya está completada.
+- Publicar y aplicar la migración Prisma en staging; el contenedor ya ejecuta `prisma migrate deploy`.
 
 ## Criterio de aprobacion
 
@@ -36,3 +42,6 @@
 - [x] Los sets soportan RPE, RIR, peso y notas.
 - [x] El historial refleja sesiones y progreso agregado.
 - [ ] El flujo completo está validado E2E en dispositivos físicos.
+
+La implementación de código está completa; estos tres puntos requieren infraestructura y hardware
+que no están disponibles en el entorno local.

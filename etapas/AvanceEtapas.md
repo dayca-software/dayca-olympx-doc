@@ -111,13 +111,15 @@ check-in, experiencia mobile, pruebas iOS/Android y aprobación formal.
 - Las rutinas persistentes permiten días de la semana, orden de ejercicios, objetivos y sesiones desde plantilla.
 - Los sets soportan peso, repeticiones, RPE, RIR y notas.
 - La cola offline conserva sesiones, sets y cierre para sincronizar al recuperar conexión; la validación física sigue pendiente.
+- La creación offline conserva un ID de cliente estable, actualiza sets localmente y permite llegar al resumen antes de sincronizar.
+- El inicio desde rutina permite elegir y persistir un día semanal; el editor envía `dayOfWeek` al guardar.
 - El límite de 50 sets está protegido en API y mobile, incluyendo serialización por sesión.
-- La API tiene 31 tests de training pasando y existe cobertura mobile del editor de rutina y la cola offline.
+- La API tiene 33 tests de training pasando y existe cobertura mobile del editor de rutina y la cola offline.
 
 ### Balance
 
-- **Estado:** Casi completa
-- **Observación:** la funcionalidad está implementada; el pendiente principal es la evidencia E2E física, offline real y la migración en staging.
+- **Estado:** Implementación completa; cierre operativo pendiente
+- **Observación:** el código y las pruebas locales cubren el loop completo; falta ejecutar evidencia E2E offline en dispositivos físicos y aplicar la migración en staging.
 
 ## Etapa 5 - PRs, Progreso y Rankings
 
@@ -176,7 +178,7 @@ check-in, experiencia mobile, pruebas iOS/Android y aprobación formal.
 
 - Hay smoke tests en API, web, admin y Maestro en mobile.
 - iOS ya tiene smoke de core, límite Free, acciones de entrenamiento y suscripción.
-- Jest mobile tiene 37 tests pasando en 14 suites y typecheck mobile pasa; API tiene 245 tests pasando en 40 archivos.
+- Jest mobile tiene 39 tests pasando en 14 suites y typecheck mobile pasa; API tiene 411 tests pasando en 50 archivos.
 - Faltan suites de integración, offline físico, push físico y validaciones de seguridad/rendimiento.
 
 ### Balance

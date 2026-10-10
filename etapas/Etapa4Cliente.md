@@ -2,7 +2,7 @@
 
 ## Estado
 
-**Casi completa.**
+**Implementada; pendiente de validación física y staging.**
 
 ## Entregables cubiertos
 
@@ -11,7 +11,9 @@
 - Historial de entrenamientos disponible.
 - Rutinas persistentes con días de la semana disponibles.
 - Reutilización de rutinas para iniciar sesiones disponible.
+- Selección del día de rutina al iniciar una sesión disponible.
 - Sets con peso, repeticiones, RPE, RIR y notas disponibles.
+- Continuidad offline de creación, sets y cierre disponible.
 
 ## Entregable pendiente
 
@@ -33,5 +35,5 @@
 
 ## Nota
 
-La funcionalidad principal ya está implementada. El historial ahora usa paginación por cursor; el cierre restante es
-evidencia E2E, validación offline física y aplicación de la migración en staging.
+La funcionalidad principal ya está implementada. El historial usa paginación por cursor y la cola
+offline conserva la sesión completa; el cierre restante es evidencia física y staging.
