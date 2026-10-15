@@ -113,8 +113,11 @@ check-in, experiencia mobile, pruebas iOS/Android y aprobación formal.
 - La cola offline conserva sesiones, sets y cierre para sincronizar al recuperar conexión; la validación física sigue pendiente.
 - La creación offline conserva un ID de cliente estable, actualiza sets localmente y permite llegar al resumen antes de sincronizar.
 - El inicio desde rutina permite elegir y persistir un día semanal; el editor envía `dayOfWeek` al guardar.
-- El límite de 50 sets está protegido en API y mobile, incluyendo serialización por sesión.
-- La API tiene 33 tests de training pasando y existe cobertura mobile del editor de rutina y la cola offline.
+- El límite de 50 sets está protegido en API y mobile, incluyendo serialización por sesión y mensaje
+  de error explícito.
+- La API tiene 49 tests de training pasando, con cobertura de plantillas desde sesión, selección de
+  día por `dayOfWeek`, aislamiento por usuario y edición completa de rutinas; mobile cubre el editor
+  de rutina (día, alta y reordenamiento de ejercicios) y la cola offline.
 
 ### Balance
 

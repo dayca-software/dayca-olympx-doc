@@ -44,9 +44,16 @@ posterior.
 - [x] Agregar sets con peso y repeticiones.
 - [x] Ver volumen, progreso y sets recientes.
 - [x] Ver historial de sesiones.
-- [ ] Validar rutinas por dias, orden de ejercicios, plantillas reutilizables y edicion completa.
+- [x] Validar rutinas por dias, orden de ejercicios, plantillas reutilizables y edicion completa.
 - [ ] Validar captura de RPE, RIR, notas y escala pre-sesion cuando corresponda al alcance.
-- [ ] Validar limites de sets, unidades, pesos y repeticiones con mensajes de error claros.
+- [x] Validar limites de sets, unidades, pesos y repeticiones con mensajes de error claros.
+
+> Validado por tests automatizados (2026-10-15): rutinas por día, orden de ejercicios, plantillas
+> desde sesión y edición completa en API y mobile; RPE, RIR y notas de punta a punta en el flujo de
+> registro; límite de 50 sets con mensaje explícito y valores borde de peso/reps/RPE/RIR.
+> Pendiente dentro del alcance actual: la escala pre-sesión no está implementada. La app opera en
+> kg sin conversión de unidades, quedando esa conversión como decisión de alcance.
+
 - [x] Resolver cola offline conservadora para ubicación y escrituras repetibles.
 - [x] Añadir idempotencia API antes de reintentar publicaciones o creación de entrenos offline.
 
@@ -113,7 +120,7 @@ posterior.
 - [ ] Verificar format check general.
 - [x] Check-in valida GPS, gimnasio disponible y duplicados recientes.
 - [x] Búsqueda, alertas e historial ofrecen reintento o acción útil en estados vacíos/error.
-- [x] Ejecutar `.maestro/core-smoke.yaml` en iOS y `.maestro/core-android-smoke.yaml` en Android con usuario Trial y API local.
+- [x] Mantener suites Maestro por plataforma (`olympx-mobile/.maestro/android/*` y `olympx-mobile/.maestro/ios/*`) con implementación compartida; ejecutar los mismos flows con usuario Trial y API local.
 - [x] Ejecutar `.maestro/free-limit-smoke.yaml` con usuario Free y comprobar bloqueo de creación.
 - [x] Agregar tests mobile automatizados para login, home, training, comunidad, competencia y navegacion critica.
 - [x] Cubrir ciclo de push mobile con mocks: permisos, token, refresh, foreground, opened, initial y cleanup.

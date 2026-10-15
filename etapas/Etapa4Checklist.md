@@ -15,7 +15,11 @@
 - Creacion y edicion de rutinas persistentes disponible.
 - Organizacion de dias por semana disponible.
 - Inicio de sesiones desde una rutina disponible.
+- Plantillas reutilizables desde una sesión registrada, con sets y repeticiones promedio derivados.
+- Aislamiento por usuario en consulta y edición de rutinas (404 sobre rutinas ajenas).
+- Selección de día por `dayId` o `dayOfWeek` al iniciar una rutina.
 - Registro de sets disponible con peso, repeticiones, RPE, RIR y notas.
+- Captura de RPE, RIR y notas validada de punta a punta en el flujo de registro (DTO y detalle).
 - Finalizacion, resumen e historial de entrenamientos disponible.
 - Cola offline para crear sesiones, registrar sets y solicitar el cierre, con claves de idempotencia.
 - Sesiones offline completas desde la UI con IDs de cliente estables y actualización optimista de sets.
@@ -25,8 +29,10 @@
 - Flujo Maestro online actualizado para registrar, editar, finalizar y revisar historial.
 - Flujo Maestro offline preparado para validar pérdida y recuperación de conexión.
 - Base tecnica para calculo de volumen y 1RM estimado.
-- API de training: 7 archivos y 33 tests pasando.
-- Mobile: 14 suites y 39 tests pasando, incluyendo historial paginado, ranking por ejercicio, editor de rutina, cola offline y resumen.
+- API de training: 9 archivos y 49 tests pasando, incluyendo plantillas desde sesión, selección de
+  día, aislamiento por usuario y edición completa de rutinas.
+- Mobile: 14 suites y 41 tests pasando, incluyendo historial paginado, ranking por ejercicio, editor
+  de rutina (día semanal, alta y reordenamiento de ejercicios), cola offline y resumen.
 - Migración Prisma aplicada con `prisma migrate deploy` sobre PostgreSQL local; no quedaron migraciones pendientes.
 
 ## Pendientes de validación operativa
