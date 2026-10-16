@@ -7,10 +7,10 @@
 Comprobar el flujo completo entre dos usuarios:
 
 ```text
-Accion social -> API -> PushDevice -> Firebase Admin -> FCM/APNs -> Mobile -> pantalla destino
+Accion de producto -> API -> PushDevice -> Firebase Admin -> FCM/APNs -> Mobile -> pantalla destino
 ```
 
-Esta guia cubre likes, comentarios, reacciones y follows.
+Esta guia cubre likes, comentarios, reacciones, follows y desbloqueos de logros.
 
 ## 2. Estado
 
@@ -156,6 +156,25 @@ Payload esperado:
 }
 ```
 
+### 6.5 Logro
+
+1. Usuario A finaliza una sesión con sets suficientes para alcanzar un logro, publica un post o realiza
+   un primer check-in.
+2. La API debe persistir el `AchievementUnlock` correspondiente una sola vez.
+3. A debe recibir un push con `type=achievement` y la `achievementKey` desbloqueada.
+4. `GET /api/notifications?type=achievement` debe mostrar la misma conquista aunque Firebase no esté
+   configurado o el push falle.
+
+Payload mínimo esperado:
+
+```json
+{
+  "type": "achievement",
+  "achievementId": "<unlock-id>",
+  "achievementKey": "first-session|ten-sessions|hundred-sets|tonnage-1000|first-post|five-posts|first-pr|first-checkin"
+}
+```
+
 ## 7. Estados Mobile
 
 Repetir cada caso, al menos una vez, en estos estados:
@@ -196,6 +215,7 @@ Repetir cada caso, al menos una vez, en estos estados:
 
 - Revisar `postId` para likes, comentarios y reacciones.
 - Revisar `actorId` para follows.
+- Revisar `achievementKey` y `achievementId` para logros.
 - Confirmar que la app esta autenticada al procesar el evento.
 - Confirmar que `NavigationContainer` esta listo.
 
@@ -221,6 +241,7 @@ Repetir cada caso, al menos una vez, en estos estados:
 - [ ] Comentario entrega push al propietario del post.
 - [ ] Reaccion entrega push al propietario del post.
 - [ ] Follow entrega push al usuario seguido.
+- [ ] Un evento de entrenamiento, post o check-in entrega push de logro y conserva la notificación in-app.
 - [ ] No se envian pushes por unlike, quitar reaccion o unfollow.
 - [ ] Foreground muestra alerta y permite navegar.
 - [ ] Background navega al destino correcto.

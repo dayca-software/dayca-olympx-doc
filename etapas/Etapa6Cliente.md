@@ -2,29 +2,29 @@
 
 ## Estado
 
-**Parcial alta.**
+**Implementación funcional completa; cierre operativo pendiente.**
 
 ## Entregables cubiertos
 
 - Perfil con estadísticas básicas.
 - Base de notificaciones y moderación.
 - Estructura para reaccionar a eventos del producto.
-- Primer logro automático por PR persistido y trazable.
+- Catálogo actual de ocho logros automáticos, persistidos y trazables.
+- Desbloqueos automáticos al finalizar sesiones, publicar posts y hacer check-in.
 - Consulta de conquistas desde el perfil.
 - Gestión manual de logros desde el detalle de usuario en el panel admin.
 - Auditoría de desbloqueos manuales y preparación de alertas push.
 
 ## Entregable pendiente
 
-- Automatización de todos los tipos de logro.
 - Notificaciones push reales en dispositivos físicos.
-- Integración completa con PRs, rankings y banners compartibles.
+- Banners compartibles e integración ampliada con rankings/contenido, fuera del criterio mínimo actual.
 
 ## Alcance minimo validado
 
 - Ver estadísticas del perfil.
 - Ver conquistas y progreso desde el perfil.
-- Desbloquear automáticamente el primer logro competitivo al registrar un PR.
+- Desbloquear automáticamente los logros al registrar sus eventos de origen, incluido el primer PR competitivo.
 - Permitir soporte manual desde el panel admin sin perder trazabilidad.
 
 ## Criterio de cierre
@@ -34,5 +34,5 @@
 
 ## Nota
 
-La Etapa 6 todavía no está lista para cierre formal porque falta automatizar el catálogo completo de logros
-y validar la entrega push en dispositivos físicos.
+La implementación funcional está cerrada. El cierre formal de release requiere validar la entrega push en
+dispositivos físicos y ejecutar la validación de migraciones en staging.

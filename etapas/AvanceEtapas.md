@@ -11,8 +11,8 @@
 | 2     | Backend, BD y autenticación               | Casi completa | API funcional, contratos, seed y registro                                                                                          |
 | 3     | Gimnasios, GPS y biblioteca               | Casi completa | Gimnasios + GPS + ejercicios + check-in; happy path validado, faltan estados alternos                                              |
 | 4     | Rutinas y registro de entrenamiento       | Casi completa | Sesiones, sets, historial y rutinas implementados; falta E2E físico y migración staging                                            |
-| 5     | PRs, progreso y rankings                  | Parcial alta  | PRs persistidos, progreso semanal y rankings por periodo/gimnasio; faltan categorías y E2E                                         |
-| 6     | Conquistas, estadísticas y notificaciones | Parcial alta  | `AchievementUnlock`, primer PR automático, consulta de logros, admin y push preparado; faltan automatizaciones y validación física |
+| 5     | PRs, progreso y rankings                  | Implementación completa | PRs persistidos, progreso semanal y rankings por periodo/gimnasio/categoría; faltan E2E y cierre en staging             |
+| 6     | Conquistas, estadísticas y notificaciones | Implementación completa; cierre operativo pendiente | Catálogo de 8 logros automático y trazable, perfil, bandeja in-app y push FCM/APNs preparado; falta validación física |
 | 7     | QA, estabilización y cierre               | Parcial       | Smoke iOS, typecheck y unit tests; faltan integración, offline físico y release                                                    |
 
 ## Etapa 1 - Discovery, planificación y UX/UI
@@ -140,11 +140,13 @@ check-in, experiencia mobile, pruebas iOS/Android y aprobación formal.
 - Existe leaderboard general y ranking competitivo por ejercicio con alcance global/gimnasio y periodo.
 - Los PRs se persisten al finalizar sesiones, con sesión de origen y backfill de históricos.
 - El progreso incluye volumen semanal, comparación contra la semana anterior y reglas competitivas consistentes.
-- Falta validar calibración por sexo, categorías, rendimiento con datos reales y E2E.
+- El ranking competitivo admite categorías por sexo, edad, peso corporal e IMC, usando los datos existentes del perfil.
+- Las reglas aprobadas son sexo `male/female/other`, edad `18–20`, bandas consecutivas de 3 años, tramo final `66–69` y `70+`, peso en bandas de 5 kg e IMC por los umbrales documentados.
+- Falta validar rendimiento/E2E con datos reales y aplicar la migración en staging.
 
 ### Balance
 
-- **Estado:** Parcial alta
+- **Estado:** Implementación completa; cierre operativo pendiente
 
 ## Etapa 6 - Conquistas, Estadísticas y Notificaciones
 
@@ -160,13 +162,15 @@ check-in, experiencia mobile, pruebas iOS/Android y aprobación formal.
 - Notifications existe con vistas persistidas, registro de dispositivos y preparación FCM/APNs.
 - `AchievementUnlock` persiste desbloqueos con unicidad por usuario y clave, referencias opcionales y backfill del primer PR histórico.
 - El cierre de una sesión genera `first-pr` automáticamente cuando se crea el primer PR del usuario.
+- El cierre de una sesión persiste también `first-session`, `ten-sessions`, `hundred-sets` y `tonnage-1000`, con sesión de origen y métrica.
+- La creación de posts persiste `first-post`/`five-posts` y el check-in persiste `first-checkin`, sin duplicados por usuario.
 - El perfil consulta logros y admin puede crear desbloqueos manuales desde el detalle de usuario, con auditoría y push preparado.
-- Falta persistir automáticamente el resto de logros, validar entrega push en dispositivo físico y completar banners/compartición.
-- La Etapa 6 está funcionalmente avanzada, pero no cerrada para release.
+- Los desbloqueos nuevos quedan visibles en la bandeja in-app y disparan el intento de push; Firebase permanece opcional sin credenciales.
+- Falta validar entrega push en dispositivo físico, migraciones en staging y completar banners/compartición fuera del criterio mínimo.
 
 ### Balance
 
-- **Estado:** Parcial media
+- **Estado:** Implementación completa; cierre operativo pendiente
 
 ## Etapa 7 - QA, Estabilización y Cierre
 
@@ -181,7 +185,7 @@ check-in, experiencia mobile, pruebas iOS/Android y aprobación formal.
 
 - Hay smoke tests en API, web, admin y Maestro en mobile.
 - iOS ya tiene smoke de core, límite Free, acciones de entrenamiento y suscripción.
-- Jest mobile tiene 39 tests pasando en 14 suites y typecheck mobile pasa; API tiene 411 tests pasando en 50 archivos.
+- Jest mobile tiene 45 tests pasando en 15 suites y typecheck mobile pasa; API tiene 429 tests pasando en 51 archivos.
 - Faltan suites de integración, offline físico, push físico y validaciones de seguridad/rendimiento.
 
 ### Balance
@@ -192,8 +196,9 @@ check-in, experiencia mobile, pruebas iOS/Android y aprobación formal.
 
 El proyecto ya cubre con solidez la Etapa 2 y tiene la Etapa 3 casi completa: los smoke base de
 gimnasios y check-in happy path pasaron en iOS y Android, pero los estados alternos aún requieren evidencia.
-También existe una parte importante de las etapas 4, 5 y 6. Etapa 1 sigue abierta formalmente por el
-Figma/prototipo navegable. El siguiente foco es completar los smoke físicos del MVP.
+Las etapas 4, 5 y 6 tienen implementación funcional completa, con cierre operativo pendiente en E2E,
+staging y dispositivos físicos. Etapa 1 sigue abierta formalmente por el Figma/prototipo navegable. El
+siguiente foco es completar los smoke físicos del MVP.
 
 ## Recomendación de Prioridad
 

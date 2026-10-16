@@ -19,11 +19,11 @@ smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no 
 - Script de test: `vitest run`
 - Script de cobertura: `vitest run --coverage`
 - Test visible actualmente: smoke del modulo principal (`test/app.test.ts`)
-- Suite API actual: 50 archivos y 421 tests pasando.
+- Suite API actual: 51 archivos y 429 tests pasando.
 - Integracion critica: crear sesion -> registrar set -> finalizar -> consultar detalle, incluyendo focos musculares e idempotencia.
 - Integracion de rutinas: plantilla reutilizable desde sesión, selección de día por `dayOfWeek`, aislamiento por usuario (404) y edición completa con reconstrucción de días.
 - Captura de RPE, RIR y notas validada en DTO y en el flujo completo hasta el detalle de la sesión.
-- Integracion de progreso, PR persistido, paginación de historial y ranking competitivo por ejercicio.
+- Integracion de progreso, PR persistido, paginación de historial, ranking competitivo por ejercicio y automatización de logros, incluyendo categorías demográficas.
 - Smoke tests de onboarding y creación de sesiones con límite comercial.
 - Smoke test de Home autenticado y rechazo de sesión inválida.
 - Smoke tests de check-in dentro/fuera de radio y duplicado reciente.
@@ -52,7 +52,7 @@ smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no 
 
 - Script de test: `jest`
 - Script de typecheck: `tsc --noEmit`
-- Mobile tiene 14 suites y 41 tests automatizados pasando.
+- Mobile tiene 15 suites y 45 tests automatizados pasando.
 - M01 incluye regresiones para política de contraseña, cambio autenticado, recuperación de contraseña y protección de credenciales demo.
 - `RoutineEditorScreen` cubre persistencia del día semanal, alta de ejercicio con objetivos y reordenamiento con posiciones actualizadas.
 - Prueba de pantalla: `TrainingSummaryScreen` valida resumen, progreso y focos musculares.

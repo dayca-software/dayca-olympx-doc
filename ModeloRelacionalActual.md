@@ -157,8 +157,9 @@ Solo se registran PRs de ejercicios competitivos, sets competitivos y sets que n
 | `AchievementUnlock` | `id` | `userId`, `sourceSessionId`, `sourcePrId`, `exerciseId` | Único por usuario y `achievementKey`; índices por usuario/fecha y fuentes |
 
 `AchievementUnlock` conserva el logro concedido, su fecha, la métrica opcional y la evidencia que lo
-originó. El primer slice de Etapa 6 persiste automáticamente `first-pr` al generar el primer PR de un
-usuario y también permite concesiones manuales auditadas desde Admin.
+originó. La Etapa 6 persiste automáticamente los ocho logros soportados al ocurrir sus eventos de origen
+(sesiones, sets, tonelaje, PR, posts y check-ins), además de permitir concesiones manuales auditadas desde
+Admin.
 
 ### 4.6 Social
 
@@ -242,7 +243,7 @@ moneda, descuentos y eventos.
 | -------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | PRs            | Tabla `ExercisePR` independiente       | Eventos persistidos y derivados de sets competitivos                                           |
 | Rankings       | Tablas o vistas persistidas            | Se calculan desde progreso y sesiones                                                          |
-| Conquistas     | Entidad `Conquest`                     | `AchievementUnlock` para logros simples del primer slice; la conquista semanal sigue pendiente |
+| Conquistas     | Entidad `Conquest`                     | `AchievementUnlock` para los ocho logros simples del MVP; la conquista semanal sigue pendiente |
 | Ubicación      | `UserLocationSnapshot`                 | Última ubicación vive en `User`                                                                |
 | Check-in       | Más atributos de salida y coordenadas  | `GymCheckIn` conserva usuario, gimnasio y fecha                                                |
 | Notificaciones | Entidad de notificación completa       | Solo existe `NotificationView` y `PushDevice`                                                  |

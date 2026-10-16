@@ -48,7 +48,7 @@ Hoy el producto soporta:
 - Infraestructura preparada para tokens push FCM/APNs.
 - Historial de récords personales por ejercicio.
 - Rangos de fuerza configurados visibles desde el historial de PRs.
-- Primer logro `first-pr` persistido automáticamente desde el cierre de sesión y logros consultables desde Perfil.
+- Catálogo de ocho logros persistido automáticamente al ocurrir el evento de origen y consultable desde Perfil.
 - Desbloqueos manuales de logros disponibles para Admin con auditoría y alerta push preparada.
 - Detalle de gimnasio, detalle de publicacion y detalle de sesion.
 - Perfil editable y paywall basico.
@@ -117,8 +117,8 @@ Validaciones ejecutadas recientemente:
 - prisma seed
 - Maestro iOS: core, límite Free, acciones de entrenamiento, comunidad, competencia y suscripción
 - Maestro Android: core, comunidad y competencia
-- Jest mobile: 37 tests pasando en 14 suites, incluyendo historial paginado, ranking por ejercicio, editor de rutinas, cierre offline, `TrainingSummaryScreen`, ciclo de push/offline y validación de contraseña
-- API: 245 tests pasando en 40 archivos, incluyendo PRs persistidos, `AchievementUnlock`, progreso semanal, paginación de historial y ranking competitivo
+- Jest mobile: 45 tests pasando en 15 suites, incluyendo historial paginado, ranking por ejercicio, editor de rutinas, cierre offline, `TrainingSummaryScreen`, ciclo de push/offline y validación de contraseña
+- API: 429 tests pasando en 51 archivos, incluyendo automatización de logros, PRs persistidos, progreso semanal, paginación de historial, ranking competitivo y categorías demográficas
 - APK QA: `assembleQa`, instalación y lanzamiento verificados en emulador Android con endpoint HTTPS ficticio
 - API Docker: healthcheck verificado contra PostgreSQL efímero; despliegue AWS/Neon real sigue pendiente
 - M01: política de contraseña, cambio autenticado y recuperación técnica disponibles en API y mobile; falta configurar delivery real

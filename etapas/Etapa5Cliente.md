@@ -2,7 +2,7 @@
 
 ## Estado
 
-**En progreso.**
+**Implementación funcional completa; cierre operativo pendiente.**
 
 ## Entregables cubiertos
 
@@ -11,11 +11,12 @@
 - PRs persistidos y trazables al entrenamiento que los generó.
 - Progreso semanal con volumen y comparación contra la semana anterior.
 - Ranking por ejercicio con filtros por periodo y gimnasio/global.
+- Categorías de ranking por sexo, edad, peso corporal e IMC con reglas consistentes.
 
 ## Entregable pendiente
 
-- Categorias por sexo, edad, peso e IMC.
-- Validación E2E y aplicación de la migración en staging.
+- Validación E2E y de rendimiento con datos representativos.
+- Aplicación y verificación de la migración de Etapa 5 en staging.
 
 ## Alcance minimo validado
 
@@ -29,5 +30,5 @@
 
 ## Nota
 
-La Etapa 5 ya tiene su primer slice funcional en API, contratos y mobile, pero no está lista para cierre formal por
-categorías demográficas, E2E y validación en staging.
+La lógica funcional de Etapa 5 está disponible en API, contratos y mobile. El cierre formal queda condicionado a
+la validación E2E/rendimiento y a la ejecución de la migración en staging.

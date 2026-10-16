@@ -320,7 +320,7 @@ Verificado recientemente:
   y lanzamiento en emulador; la URL usada para esta prueba fue ficticia y no permite E2E funcional.
 - build iOS de simulador arm64 validada con Firebase Messaging y RevenueCat; `react-native-screens` actualizado a `4.27.0`
 - `testID` para estado de ubicación, límites comerciales, acciones Core, tabs, comunidad y competencia.
-- `npm run mobile:check`: 14 suites y 37 tests pasando.
+- `npm run mobile:check`: 15 suites y 45 tests pasando.
 
 ## 8. Pendientes Priorizados
 

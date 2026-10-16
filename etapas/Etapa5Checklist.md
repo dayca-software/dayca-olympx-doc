@@ -18,10 +18,11 @@
 - Progreso semanal con volumen, comparación contra la semana anterior y filtros de ventana.
 - Ranking competitivo por ejercicio con filtros global/gimnasio y periodo.
 - Posición personal incluida aunque el usuario no esté en el top visible.
+- Categorías demográficas operativas por sexo, edad, peso corporal e IMC.
+- Reglas aprobadas: sexo `male/female/other`; edad `18–20`, bandas consecutivas de 3 años, tramo final `66–69` y `70+`; peso en bandas de 5 kg; IMC `<18.5`, `18.5–<25`, `25–<30` y `≥30`.
 
 ## Pendientes de cierre
 
-- Categorias por sexo/edad/peso/IMC.
 - Validación E2E y de rendimiento con datos reales.
 - Aplicación de la migración en staging.
 

@@ -34,8 +34,10 @@ Hoy cubre:
 - Rutinas persistentes y sesiones iniciadas desde plantilla.
 - PRs persistidos por evento, trazables a la sesión de origen y generados al finalizar sesiones.
 - `AchievementUnlock` persistido con unicidad por usuario y clave; el primer PR desbloquea `first-pr` dentro de la transacción de cierre.
+- El cierre de sesión persiste también los logros de sesiones, sets y tonelaje; posts y check-ins persisten sus hitos automáticamente.
+- Los nuevos desbloqueos disparan el intento de push y quedan representados en la bandeja in-app mediante `AchievementUnlock`.
 - Consulta de logros con progreso calculado y trazabilidad de sesión, PR, ejercicio y métrica.
-- Ranking competitivo por ejercicio basado en mejor 1RM estimado, periodo, gimnasio/global y posición personal.
+- Ranking competitivo por ejercicio basado en mejor 1RM estimado, periodo, gimnasio/global, categoría demográfica y posición personal.
 - Perfil editable con nickname, región, provincia y comuna persistidos.
 - Edicion y eliminacion segura de sesiones propias.
 - Suscripcion, trial y catalogo comercial.
@@ -147,7 +149,8 @@ Hoy cubre:
 ### Leaderboard
 
 - `GET /api/leaderboard/exercises/:exerciseId`
-- acepta `period=all|7d|30d` y `scope=global|gym`.
+- acepta `period=all|7d|30d`, `scope=global|gym` y `category=general|sex|age|weight|bmi`.
+- Las categorías usan el perfil del usuario autenticado: sexo, edad en bandas no solapadas, peso en bandas de 5 kg e IMC (`<18.5`, `18.5–<25`, `25–<30`, `≥30`).
 - excluye usuarios suspendidos, sesiones no finalizadas, calentamientos y ejercicios no competitivos.
 - devuelve la posición personal cuando existe.
 - `GET /api/training/progress`
@@ -270,7 +273,7 @@ Verificado recientemente:
 - política de contraseña de registro y cambio autenticado cubiertos por tests de servicio y controller
 - recuperación de contraseña cubierta por tests de servicio, controller y delivery; migración local aplicada
 - demo users limitados a entornos no productivos y `JWT_SECRET` requerido fuera de tests
-- 40 archivos y 245 tests pasando.
+- 51 archivos y 429 tests pasando.
 - `npx prisma validate` pasando con el schema actual.
 - Migraciones de Etapas 4 y 5 validadas dos veces sobre PostgreSQL efímero, sin migraciones pendientes.
 - La migración `20260922110000_stage6_achievement_unlocks` está creada, aplicada en `olympx_dev` y el schema pasa validación; falta repetir la aplicación sobre PostgreSQL efímero.

@@ -142,7 +142,7 @@ principalmente de validación, integraciones reales y operación, no de construc
 | H3 - Gimnasios y ejercicios operativos   | Parcial alta  | Gimnasios, GPS, check-in y catálogo implementados; falta evidencia final                                    |
 | H4 - MVP Core operativo                  | Parcial alta  | Sesiones, rutinas, sets, historial y progreso implementados; faltan bordes                                  |
 | H5 - PRs y rankings disponibles          | Parcial alta  | PRs, 1RM, rangos y rankings implementados; faltan calibración, cobertura y E2E                              |
-| H6 - Logros y notificaciones disponibles | Parcial alta  | Primer logro persistido, perfil, admin y alertas implementados; falta automatización completa y push físico |
+| H6 - Logros y notificaciones disponibles | Implementación completa; cierre operativo pendiente | Ocho logros automáticos, perfil, admin, bandeja in-app y push preparado; falta validación física |
 | H7 - MVP extendido listo                 | Inicial       | Faltan integración, seguridad, rendimiento y validación de release                                          |
 
 ## Plan De Cierre Priorizado
