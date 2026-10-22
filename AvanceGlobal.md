@@ -120,7 +120,7 @@ Validaciones ejecutadas recientemente:
 - Jest mobile: 45 tests pasando en 15 suites, incluyendo historial paginado, ranking por ejercicio, editor de rutinas, cierre offline, `TrainingSummaryScreen`, ciclo de push/offline y validación de contraseña
 - API: 429 tests pasando en 51 archivos, incluyendo automatización de logros, PRs persistidos, progreso semanal, paginación de historial, ranking competitivo y categorías demográficas
 - APK QA: `assembleQa`, instalación y lanzamiento verificados en emulador Android con endpoint HTTPS ficticio
-- API Docker: healthcheck verificado contra PostgreSQL efímero; despliegue AWS/Neon real sigue pendiente
+- API Docker: healthcheck verificado contra PostgreSQL efímero; scaffold de staging AWS/App Runner + Neon preparado, apply real sigue pendiente
 - M01: política de contraseña, cambio autenticado y recuperación técnica disponibles en API y mobile; falta configurar delivery real
 
 ## 6. Riesgos Actuales

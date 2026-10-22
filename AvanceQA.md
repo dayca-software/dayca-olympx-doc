@@ -32,6 +32,7 @@ smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no 
 - Las 32 migraciones Prisma actuales, incluida `20261010120000_training_routine_day_sessions`, se aplicaron en PostgreSQL local y una segunda ejecución confirmó que no quedan pendientes.
 - La migración `20260922100000_stage5_prs_and_gym_snapshot` también se aplicó dos veces sobre PostgreSQL efímero sin pendientes.
 - La migración `20260922110000_stage6_achievement_unlocks` está creada y aplicada en `olympx_dev`; falta aplicarla dos veces sobre PostgreSQL efímero.
+- El stack Terraform de staging AWS/App Runner + Neon tiene `fmt` y `validate` verificados en contenedor; falta bootstrap de AWS, conexión Neon y smoke HTTPS real.
 - La migración `20261010120000_training_routine_day_sessions` agrega el día seleccionado de una rutina y se ejecuta automáticamente desde el contenedor de API.
 - Typecheck y Prisma sync se usan como validacion adicional de calidad
 

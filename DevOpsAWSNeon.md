@@ -4,7 +4,7 @@
 
 ## 1. Objetivo
 
-Automatizar validación, migraciones y despliegue de OlympX con separación clara entre `dev` y
+Automatizar validación, migraciones y despliegue de OlympX con separación clara entre `staging` y
 `prod`, usando Neon para PostgreSQL y AWS para hosting, archivos, secretos y observabilidad.
 
 ## 2. Flujo General
@@ -15,8 +15,8 @@ Pull Request
     v
 CI: lint + typecheck + tests + build + Prisma validate
     |
-    +--> Merge a develop --> Deploy DEV automático
-    |                         Neon Dev + AWS Dev
+    +--> Merge a develop --> Deploy STAGING automático
+    |                         Neon Staging + AWS Staging
     |
     +--> Merge a main ------> Aprobación manual
                               |
@@ -27,10 +27,10 @@ CI: lint + typecheck + tests + build + Prisma validate
 
 ## 3. Ambientes
 
-| Ambiente | Branch    | Base Neon              | AWS                         | Deploy                       |
-| -------- | --------- | ---------------------- | --------------------------- | ---------------------------- |
-| Dev      | `develop` | Proyecto `olympx-dev`  | Recursos con sufijo `-dev`  | Automático                   |
-| Prod     | `main`    | Proyecto `olympx-prod` | Recursos con sufijo `-prod` | Manual después de aprobación |
+| Ambiente | Branch    | Base Neon                 | AWS                            | Deploy                       |
+| -------- | --------- | ------------------------- | ------------------------------ | ---------------------------- |
+| Staging  | `develop` | Proyecto `olympx-staging` | Recursos con sufijo `-staging` | Automático                   |
+| Prod     | `main`    | Proyecto `olympx-prod`    | Recursos con sufijo `-prod`    | Manual después de aprobación |
 
 Las bases de datos deben ser proyectos Neon separados. Las branches de Neon se pueden usar para
 pruebas efímeras, pero nunca se debe conectar producción con una branch de desarrollo.
@@ -53,18 +53,18 @@ Se ejecuta en cada Pull Request y antes de cualquier deploy.
 
 Si una validación falla, no se puede hacer merge a `develop` ni a `main`.
 
-## 5. Deploy A Dev
+## 5. Deploy A Staging
 
 Se dispara después de mergear a `develop`.
 
 1. Construir la imagen de `olympx-api`.
 2. Etiquetar la imagen con el SHA del commit.
-3. Publicar la imagen en ECR `olympx-api-dev`.
-4. Ejecutar migraciones contra Neon Dev usando `DIRECT_URL`.
-5. Desplegar la imagen en App Runner o ECS Dev.
-6. Construir Web y Admin con `VITE_API_URL` de Dev.
-7. Publicar assets en S3 Dev.
-8. Invalidar la distribución CloudFront Dev.
+3. Publicar la imagen en ECR `olympx-api-staging`.
+4. Ejecutar migraciones contra Neon Staging usando la conexión autorizada para migraciones.
+5. Desplegar la imagen en App Runner o ECS Staging.
+6. Construir Web y Admin con `VITE_API_URL` de Staging cuando entren en alcance.
+7. Publicar assets en S3 Staging cuando entren en alcance.
+8. Invalidar la distribución CloudFront Staging cuando entre en alcance.
 9. Ejecutar smoke tests contra `/api/health` y login.
 
 ## 6. Deploy A Prod
@@ -88,11 +88,11 @@ críticos en el mismo release que todavía usa la versión anterior de la API.
 
 | Necesidad           | Servicio                | Separación                                     |
 | ------------------- | ----------------------- | ---------------------------------------------- |
-| Imagen API          | ECR                     | Repositorios `dev` y `prod`                    |
-| API NestJS          | App Runner inicialmente | Servicios `olympx-api-dev` y `olympx-api-prod` |
+| Imagen API          | ECR                     | Repositorios `staging` y `prod`                    |
+| API NestJS          | App Runner inicialmente | Servicios `olympx-api-staging` y `olympx-api-prod` |
 | Web/Admin           | S3 + CloudFront         | Buckets y distribuciones separadas             |
 | Archivos de usuario | S3                      | Buckets separados y privados                   |
-| Secretos            | Secrets Manager         | Prefijos `dev/` y `prod/`                      |
+| Secretos            | Secrets Manager         | Prefijos `staging/` y `prod/`                  |
 | Identidad CI/CD     | IAM + GitHub OIDC       | Roles separados por ambiente                   |
 | Logs                | CloudWatch              | Grupos separados                               |
 | Alertas             | CloudWatch Alarms + SNS | Alertas de error, latencia y costo             |
@@ -106,8 +106,10 @@ control de red, workers, tareas programadas o despliegues más complejos.
 
 Guardar en AWS Secrets Manager, nunca en GitHub ni en el repositorio:
 
-- `DATABASE_URL`: conexión pooled de Neon para runtime.
-- `DIRECT_URL`: conexión directa de Neon para Prisma migrations.
+- `DATABASE_URL`: conexión de Neon usada por runtime y `prisma migrate deploy`; para el primer staging
+  debe ser una conexión directa.
+- `DIRECT_URL`: reservarla como secreto adicional cuando el datasource Prisma soporte separar pooled y
+  directa.
 - `JWT_SECRET`.
 - `CORS_ORIGIN`.
 - `APP_URL`.
@@ -126,7 +128,7 @@ Estructura recomendada:
 ```text
 .github/workflows/
 ├── ci.yml
-├── deploy-dev.yml
+├── deploy-staging.yml
 └── deploy-prod.yml
 ```
 
@@ -134,7 +136,7 @@ Estructura recomendada:
 
 - GitHub Actions usa OIDC para asumir un role AWS.
 - No se guardan access keys permanentes.
-- El role Dev solo puede operar recursos Dev.
+- El role Staging solo puede operar recursos Staging.
 - El role Prod requiere environment protegido y aprobación.
 
 ## 10. Rollback
@@ -150,7 +152,7 @@ Estructura recomendada:
 - Las migraciones no se revierten automáticamente.
 - Usar migraciones expand/contract.
 - Restaurar backup solo ante incidente de datos y siguiendo un runbook.
-- Probar migraciones en Neon Dev antes de producción.
+- Probar migraciones en Neon Staging antes de producción.
 
 ## 11. Monitoreo Y Costos
 
@@ -164,14 +166,16 @@ Estructura recomendada:
 
 ## 12. Orden De Implementacion
 
-1. Crear proyectos Neon `olympx-dev` y `olympx-prod`.
-2. Configurar `DATABASE_URL` pooled y `DIRECT_URL` directa.
-3. Agregar `directUrl = env("DIRECT_URL")` al datasource Prisma si se usarán ambas conexiones.
+1. Crear proyectos Neon `olympx-staging` y `olympx-prod`.
+2. Configurar `DATABASE_URL` de staging; para el primer bootstrap usar una URL Neon directa que permita
+   `prisma migrate deploy`.
+3. Si se separan conexiones pooled/directa, agregar `directUrl = env("DIRECT_URL")` al datasource Prisma
+   y exponer `DIRECT_URL` como secreto adicional.
 4. Crear ECR, S3, CloudFront, Secrets Manager y roles OIDC.
 5. Agregar Dockerfile reproducible para la API.
 6. Crear workflow `ci.yml`.
-7. Crear workflow `deploy-dev.yml`.
-8. Validar migración, API, Web y Admin en Dev.
+7. Crear workflow `deploy-staging.yml`.
+8. Validar migración y API en Staging; Web y Admin quedan para una segunda iteración.
 9. Crear workflow protegido `deploy-prod.yml`.
 10. Ejecutar primer release con aprobación manual.
 
@@ -189,14 +193,14 @@ olympx-devops/
 │   ├── modules/app-runner/
 │   ├── modules/github-oidc/
 │   └── environments/
-│       ├── dev/
+│       ├── staging/
 │       └── prod/
 └── workflows/
     ├── ci.yml.example
-    └── deploy-dev.yml.example
+    └── deploy-staging.yml.example
 ```
 
-El entorno `dev` ya contiene ECR, App Runner, roles de pull/secrets, health check y state remoto
+El entorno `staging` contiene ECR, App Runner, roles de pull/secrets, health check y state remoto
 configurable. Los workflows permanecen como plantillas hasta configurar el role OIDC y las variables
 protegidas del repositorio.
 
@@ -216,11 +220,11 @@ repositorio; se cargan en Secrets Manager por ambiente.
 
 ### State Y Ambientes
 
-Dev y Prod deben tener states separados, aunque inicialmente compartan una cuenta AWS:
+Staging y Prod deben tener states separados, aunque inicialmente compartan una cuenta AWS:
 
 ```text
 S3 Terraform State
-├── olympx/dev/terraform.tfstate
+├── olympx/staging/terraform.tfstate
 └── olympx/prod/terraform.tfstate
 ```
 
@@ -240,7 +244,7 @@ terraform plan
 
 El pipeline debe ejecutar `apply` únicamente en el ambiente correspondiente:
 
-- `develop` puede aplicar Dev automáticamente.
+- `develop` puede aplicar Staging automáticamente.
 - `main` requiere aprobación manual antes de aplicar Prod.
 
 ### Bootstrap Manual Inicial
@@ -248,47 +252,28 @@ El pipeline debe ejecutar `apply` únicamente en el ambiente correspondiente:
 El bucket remoto de state y su cifrado deben crearse una sola vez, con acceso restringido. Después
 del bootstrap, el resto de los recursos debe pasar a ser administrado por Terraform.
 
-### Pendientes Para Retomar
+### Estado de implementación
 
-- Confirmar región AWS.
-- App Runner seleccionado para el primer release; ECS Fargate queda como alternativa futura.
-- Definir dominio y nombres de buckets.
-- Crear backend remoto de Terraform.
-- Completar la configuración de producción a partir del stack `dev`.
-- Configurar el role IAM con GitHub OIDC.
-- Dockerfile reproducible de la API agregado y verificado localmente con PostgreSQL efimero.
-- Conectar `DATABASE_URL` y `DIRECT_URL` desde Secrets Manager.
+- AWS staging, Secrets Manager, ECR y App Runner están provisionados con Terraform.
+- El rol GitHub OIDC está creado para `dayca-software/dayca-olympx-api` y el environment `staging`.
+- La imagen actual está identificada por SHA y el despliegue se ejecuta manualmente.
+- El workflow local está en `olympx-api/.github/workflows/deploy-staging.yml`.
+- Pendiente: publicar el workflow y configurar sus variables/secreto en GitHub.
 
-## 14. Punto De Reanudacion
+## 14. Operación actual
 
-La implementacion queda pausada antes de cualquier `terraform apply` o despliegue. Para retomarla,
-completar en este orden:
-
-1. Confirmar la region AWS.
-2. Crear el bucket remoto S3 de Terraform con cifrado, versionado y bloqueo.
-3. Crear `DATABASE_URL` y `JWT_SECRET` en Secrets Manager y registrar sus ARNs localmente.
-4. Configurar `github_repository` y activar `github_oidc_enabled` para que Terraform cree el role IAM OIDC.
-5. Inicializar Terraform desde `olympx-devops/terraform/environments/dev`.
-6. Ejecutar una sola vez `terraform apply -target=module.ecr`.
-7. Construir y publicar el tag `staging` desde la raiz usando `olympx-api/Dockerfile`.
-8. Ejecutar `terraform plan` y `terraform apply` completos.
-9. Obtener el output `github_actions_role_arn` y configurarlo como `AWS_ROLE_TO_ASSUME` en GitHub.
-10. Copiar y configurar los workflows `.example` en `.github/workflows/`.
-11. Ejecutar el deploy Dev y validar `/api/health`.
-
-El scaffold, el Dockerfile y el health check ya fueron validados localmente. No hay credenciales AWS,
-secrets reales, `terraform apply` ni despliegue ejecutado.
-
-El bootstrap ECR requiere una identidad AWS local temporal. Una vez creado el role OIDC, los deploys
-posteriores deben usar GitHub Actions sin access keys permanentes.
+1. Trabajar en la rama `staging` para QA; reservar `main` para producción.
+2. Ejecutar el workflow manual cuando se publique en GitHub, o publicar manualmente la imagen desde la raíz.
+3. Validar `/api/health`, Swagger y las migraciones antes de entregar la URL a mobile.
+4. Mantener `DATABASE_URL` y `JWT_SECRET` únicamente en Secrets Manager.
 
 ## 15. Criterio De Operacion
 
 La automatización se considera lista cuando:
 
 - Un Pull Request bloquea merges si falla CI.
-- `develop` despliega Dev sin intervención manual.
-- `main` requiere aprobación antes de Producción.
+- El workflow de `staging` requiere ejecución manual.
+- `main` queda reservada para Producción.
 - Los secretos no están en el repositorio.
 - Las migraciones se ejecutan contra la base correcta.
 - El release puede identificarse y revertirse por SHA.
