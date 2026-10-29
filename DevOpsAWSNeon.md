@@ -15,8 +15,8 @@ Pull Request
     v
 CI: lint + typecheck + tests + build + Prisma validate
     |
-    +--> Merge a develop --> Deploy STAGING automático
-    |                         Neon Staging + AWS Staging
+    +--> Merge a staging --> QA STAGING (deploy manual)
+    |                        Neon Staging + AWS Staging
     |
     +--> Merge a main ------> Aprobación manual
                               |
@@ -29,7 +29,7 @@ CI: lint + typecheck + tests + build + Prisma validate
 
 | Ambiente | Branch    | Base Neon                 | AWS                            | Deploy                       |
 | -------- | --------- | ------------------------- | ------------------------------ | ---------------------------- |
-| Staging  | `develop` | Proyecto `olympx-staging` | Recursos con sufijo `-staging` | Automático                   |
+| Staging  | `staging` | Proyecto `olympx-staging` | Recursos con sufijo `-staging` | Manual-only para QA          |
 | Prod     | `main`    | Proyecto `olympx-prod`    | Recursos con sufijo `-prod`    | Manual después de aprobación |
 
 Las bases de datos deben ser proyectos Neon separados. Las branches de Neon se pueden usar para
@@ -51,17 +51,18 @@ Se ejecuta en cada Pull Request y antes de cualquier deploy.
 
 ### Regla
 
-Si una validación falla, no se puede hacer merge a `develop` ni a `main`.
+Si una validación falla, no se puede hacer merge a `staging` ni a `main`.
 
 ## 5. Deploy A Staging
 
-Se dispara después de mergear a `develop`.
+Se ejecuta manualmente desde la rama `staging` cuando QA necesita una nueva versión.
 
 1. Construir la imagen de `olympx-api`.
 2. Etiquetar la imagen con el SHA del commit.
 3. Publicar la imagen en ECR `olympx-api-staging`.
-4. Ejecutar migraciones contra Neon Staging usando la conexión autorizada para migraciones.
-5. Desplegar la imagen en App Runner o ECS Staging.
+4. Actualizar ECS Express Mode Staging con la imagen identificada por digest; el contenedor ejecuta las
+   migraciones con `prisma migrate deploy` antes de iniciar NestJS.
+5. Validar CloudWatch Logs y el estado `ACTIVE` con una tarea `RUNNING`.
 6. Construir Web y Admin con `VITE_API_URL` de Staging cuando entren en alcance.
 7. Publicar assets en S3 Staging cuando entren en alcance.
 8. Invalidar la distribución CloudFront Staging cuando entre en alcance.
@@ -73,8 +74,9 @@ Se dispara después de mergear a `main` y aprobar el environment `production` en
 
 1. Reutilizar o reconstruir la imagen identificada por SHA.
 2. Publicarla en ECR `olympx-api-prod`.
-3. Ejecutar migraciones compatibles contra Neon Prod.
-4. Desplegar la API en App Runner o ECS Prod.
+3. Desplegar una migración compatible contra Neon Prod mediante `prisma migrate deploy` durante el arranque
+   controlado del contenedor.
+4. Desplegar la API en ECS Prod cuando el entorno de producción esté provisionado.
 5. Construir Web y Admin con `VITE_API_URL` de Producción.
 6. Publicar assets en S3 Prod.
 7. Invalidar CloudFront Prod.
@@ -89,7 +91,7 @@ críticos en el mismo release que todavía usa la versión anterior de la API.
 | Necesidad           | Servicio                | Separación                                     |
 | ------------------- | ----------------------- | ---------------------------------------------- |
 | Imagen API          | ECR                     | Repositorios `staging` y `prod`                    |
-| API NestJS          | App Runner inicialmente | Servicios `olympx-api-staging` y `olympx-api-prod` |
+| API NestJS          | ECS Express Mode       | Servicios `conquest-api-staging` y `conquest-api-prod` |
 | Web/Admin           | S3 + CloudFront         | Buckets y distribuciones separadas             |
 | Archivos de usuario | S3                      | Buckets separados y privados                   |
 | Secretos            | Secrets Manager         | Prefijos `staging/` y `prod/`                  |
@@ -97,8 +99,8 @@ críticos en el mismo release que todavía usa la versión anterior de la API.
 | Logs                | CloudWatch              | Grupos separados                               |
 | Alertas             | CloudWatch Alarms + SNS | Alertas de error, latencia y costo             |
 
-App Runner reduce la operación inicial. ECS Fargate puede evaluarse cuando se necesiten mayor
-control de red, workers, tareas programadas o despliegues más complejos.
+ECS Express Mode reduce la operación inicial manteniendo Fargate administrado. Los servicios se mantienen
+separados por ambiente y el despliegue de staging permanece bajo demanda para QA.
 
 ## 8. Secretos Y Variables
 
@@ -190,7 +192,7 @@ recursos permanentes manualmente fuera de Terraform, salvo el bootstrap inicial 
 olympx-devops/
 ├── terraform/
 │   ├── modules/ecr/
-│   ├── modules/app-runner/
+│   ├── modules/ecs-express/
 │   ├── modules/github-oidc/
 │   └── environments/
 │       ├── staging/
@@ -200,14 +202,14 @@ olympx-devops/
     └── deploy-staging.yml.example
 ```
 
-El entorno `staging` contiene ECR, App Runner, roles de pull/secrets, health check y state remoto
-configurable. Los workflows permanecen como plantillas hasta configurar el role OIDC y las variables
-protegidas del repositorio.
+El entorno `staging` contiene ECR, ECS Express Mode, roles de ejecución e infraestructura, secrets, health
+check, CloudWatch Logs y state remoto configurable. Los workflows permanecen como plantillas hasta
+configurar el role OIDC y las variables protegidas del repositorio.
 
 ### Recursos Gestionados
 
 - ECR para imágenes de la API.
-- App Runner para NestJS inicialmente.
+- ECS Express Mode para NestJS.
 - S3 y CloudFront para Web y Admin.
 - S3 privado para archivos de usuarios.
 - Secrets Manager.
@@ -244,7 +246,7 @@ terraform plan
 
 El pipeline debe ejecutar `apply` únicamente en el ambiente correspondiente:
 
-- `develop` puede aplicar Staging automáticamente.
+- `staging` se usa para QA y el workflow de deploy es manual-only.
 - `main` requiere aprobación manual antes de aplicar Prod.
 
 ### Bootstrap Manual Inicial
@@ -254,7 +256,7 @@ del bootstrap, el resto de los recursos debe pasar a ser administrado por Terraf
 
 ### Estado de implementación
 
-- AWS staging, Secrets Manager, ECR y App Runner están provisionados con Terraform.
+- AWS staging, Secrets Manager, ECR y ECS Express Mode están provisionados con Terraform.
 - El rol GitHub OIDC está creado para `dayca-software/dayca-olympx-api` y el environment `staging`.
 - La imagen actual está identificada por SHA y el despliegue se ejecuta manualmente.
 - El workflow local está en `olympx-api/.github/workflows/deploy-staging.yml`.
@@ -263,7 +265,8 @@ del bootstrap, el resto de los recursos debe pasar a ser administrado por Terraf
 ## 14. Operación actual
 
 1. Trabajar en la rama `staging` para QA; reservar `main` para producción.
-2. Ejecutar el workflow manual cuando se publique en GitHub, o publicar manualmente la imagen desde la raíz.
+2. Ejecutar manualmente el workflow desde `staging` cuando se publique en GitHub, o publicar manualmente la
+   imagen desde la raíz.
 3. Validar `/api/health`, Swagger y las migraciones antes de entregar la URL a mobile.
 4. Mantener `DATABASE_URL` y `JWT_SECRET` únicamente en Secrets Manager.
 

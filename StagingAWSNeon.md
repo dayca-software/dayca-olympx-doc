@@ -5,7 +5,7 @@ con desarrollo o producción.
 
 ## Alcance
 
-- API NestJS en AWS App Runner.
+- API NestJS en ECS Express Mode sobre Fargate.
 - Imagen API en ECR.
 - PostgreSQL administrado en un proyecto/branch Neon separado.
 - Migraciones Prisma ejecutadas por el contenedor antes de iniciar la API.
@@ -17,13 +17,13 @@ Stack Terraform: `olympx-devops/terraform/environments/staging`.
 
 - [ ] Cuenta AWS confirmada y región elegida.
 - [ ] Terraform `>= 1.10` instalado.
-- [ ] AWS CLI autenticado con permisos de bootstrap ECR, IAM, App Runner, Secrets Manager y S3.
+- [ ] AWS CLI autenticado con permisos de bootstrap ECR, IAM, ECS Express, Secrets Manager y CloudWatch Logs.
 - [ ] Proyecto Neon separado de desarrollo/producción.
 - [ ] Usuario/base Neon creados y conexiones verificadas desde una máquina autorizada.
 - [ ] Repositorio GitHub y branch de staging definidos para el workflow posterior.
 - [ ] Si `olympx-contracts` es privado, crear `CONTRACTS_READ_TOKEN` como secret de GitHub con permiso de
       lectura únicamente para ese repositorio.
-- [ ] Dominio HTTPS opcional para la API; App Runner entrega una URL HTTPS temporal.
+- [ ] Dominio HTTPS opcional para la API; ECS Express entrega una URL HTTPS temporal.
 
 Comprobación local antes de provisionar:
 
@@ -91,9 +91,9 @@ terraform validate
 terraform plan
 ```
 
-## 5. Bootstrap de ECR y App Runner
+## 5. Bootstrap de ECR y ECS Express Mode
 
-La primera imagen debe existir antes de crear App Runner:
+La primera imagen debe existir antes de crear ECS Express:
 
 ```bash
 terraform apply -target=module.ecr
@@ -104,8 +104,8 @@ Publicar la imagen desde la raíz del workspace:
 ```bash
 aws ecr get-login-password --region <region> \
   | docker login --username AWS --password-stdin <account>.dkr.ecr.<region>.amazonaws.com
-docker build -f olympx-api/Dockerfile -t <account>.dkr.ecr.<region>.amazonaws.com/olympx-api-staging:staging .
-docker push <account>.dkr.ecr.<region>.amazonaws.com/olympx-api-staging:staging
+docker build -f olympx-api/Dockerfile -t <account>.dkr.ecr.<region>.amazonaws.com/conquest-api-staging:staging .
+docker push <account>.dkr.ecr.<region>.amazonaws.com/conquest-api-staging:staging
 ```
 
 Crear el resto del stack:
@@ -113,11 +113,19 @@ Crear el resto del stack:
 ```bash
 terraform plan -out=staging.tfplan
 terraform apply staging.tfplan
-terraform output app_runner_service_url
+terraform output ecs_express_service_url
 ```
 
-El despliegue debe esperar a que App Runner marque el servicio como `RUNNING`. El `start.sh` ejecutará
-`prisma migrate deploy` antes de arrancar NestJS.
+El despliegue debe dejar el servicio ECS Express en estado `ACTIVE` con una tarea `RUNNING`. El `start.sh`
+ejecutará `prisma migrate deploy` antes de arrancar NestJS. Los logs se consultan en
+`/aws/ecs/conquest-api-staging`:
+
+```bash
+aws logs tail /aws/ecs/conquest-api-staging \
+  --profile <perfil-staging> \
+  --region <region> \
+  --since 30m
+```
 
 ## 6. Smoke de aceptación
 
@@ -129,7 +137,7 @@ curl --fail "${STAGING_API_URL}/api/docs"
 ```
 
 - [ ] Health responde `200`.
-- [ ] Logs de App Runner confirman que las migraciones terminaron sin error.
+- [ ] Logs de ECS confirman que las migraciones terminaron sin error.
 - [ ] Prisma no reporta migraciones pendientes.
 - [ ] Registro/login funcionan con una cuenta de prueba no productiva.
 - [ ] Una ruta protegida rechaza un token inválido.
@@ -145,7 +153,7 @@ El rol OIDC ya está creado y el workflow manual está preparado localmente en
 Cuando se publique el workflow, configurar en el environment protegido `staging`:
 
 1. Secret `AWS_ROLE_TO_ASSUME`: output `github_actions_role_arn`.
-2. Variables `AWS_REGION`, `ECR_REPOSITORY` y `APP_RUNNER_SERVICE_ARN`.
+2. Variables `AWS_REGION`, `ECR_REPOSITORY` y `ECS_EXPRESS_SERVICE_ARN`.
 3. Ejecutar manualmente desde la rama `staging` y registrar el SHA desplegado.
 
 ## 8. Criterio de cierre
@@ -160,7 +168,9 @@ Cuando se publique el workflow, configurar en el environment protegido `staging`
 
 ## Estado actual del workspace
 
-- API en App Runner: `RUNNING`.
+- API en ECS Express: `ACTIVE`, con una tarea `RUNNING`.
+- URL actual de staging: `https://co-983f7a26bfbc4020889665e1b2b8ebef.ecs.us-east-1.on.aws`.
 - Health, Swagger, rutas públicas y autenticación sin token validados por HTTPS.
 - 32 migraciones Prisma aplicadas; no hay migraciones pendientes.
+- CORS permite únicamente el endpoint HTTPS de la API; `conquestspa.cl` no está habilitado.
 - Pendiente: publicar el workflow y configurar las variables/secreto del environment de GitHub.

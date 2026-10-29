@@ -1,0 +1,6 @@
+# IOS
+
+# This file is used to ignore the .DS_Store files that are created in the project directory
+.DS_Store
+
+*.apk
