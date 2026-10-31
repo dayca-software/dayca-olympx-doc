@@ -10,7 +10,7 @@ Tener visibilidad clara de que esta probado hoy, que esta solo preparado y que f
 
 OlympX tiene una base de testing en crecimiento. API ya cuenta con pruebas unitarias y un flujo de
 integracion de entrenamiento; mobile cuenta con pruebas de pantalla reales. Web/admin conservan
-smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no automatizado.
+smokes basicos y una suite E2E de staging para admin y rankings ya versionada.
 
 ## 3. Cobertura Actual
 
@@ -19,7 +19,7 @@ smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no 
 - Script de test: `vitest run`
 - Script de cobertura: `vitest run --coverage`
 - Test visible actualmente: smoke del modulo principal (`test/app.test.ts`)
-- Suite API actual: 51 archivos y 429 tests pasando.
+- Suite API actual: 51 archivos y 434 tests pasando.
 - Integracion critica: crear sesion -> registrar set -> finalizar -> consultar detalle, incluyendo focos musculares e idempotencia.
 - Integracion de rutinas: plantilla reutilizable desde sesión, selección de día por `dayOfWeek`, aislamiento por usuario (404) y edición completa con reconstrucción de días.
 - Captura de RPE, RIR y notas validada en DTO y en el flujo completo hasta el detalle de la sesión.
@@ -35,6 +35,9 @@ smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no 
 - El stack Terraform de staging ECS Express + Neon tiene `fmt`, `validate`, bootstrap AWS, conexión Neon y
   smoke HTTPS real verificados.
 - ECS registra las 32 migraciones Prisma y `No pending migrations to apply`; `/api/health` responde `200`.
+- Staging E2E: `npm run test:staging:e2e`, con credenciales por variables de entorno; valida login admin web, dos usuarios del mismo gimnasio y ranking.
+- Benchmark de ranking: `npm run benchmark:leaderboard`; ejecuta 50 requests con concurrencia 5, respetando el rate limit mediante lotes espaciados y sin mutar datos.
+- La validación global de staging pasó el 2026-10-31; la validación `scope=gym` queda pendiente porque las sesiones históricas seed tienen `gymId=null`.
 - La migración `20261010120000_training_routine_day_sessions` agrega el día seleccionado de una rutina y se ejecuta automáticamente desde el contenedor de API.
 - Typecheck y Prisma sync se usan como validacion adicional de calidad
 
@@ -78,9 +81,9 @@ smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no 
 
 ### E2E
 
-- No existe suite E2E automatizada/versionada en el repo hoy.
-- La prueba manual de notificaciones push esta documentada en `doc/E2EPushNotifications.md`.
-- No hay Playwright/Cypress visible ni comandos raiz para ejecutarla.
+- API mantiene `test/staging-e2e.mjs`, ejecutable contra staging con Playwright y `npm run test:staging:e2e`.
+- La suite cubre login admin en CloudFront, dashboard, autenticación de dos usuarios y ranking por ejercicio.
+- La prueba manual de notificaciones push sigue documentada en `doc/E2EPushNotifications.md`.
 
 ## 5. Validaciones Que Si Se Estan Usando
 
@@ -104,13 +107,14 @@ smokes basicos y el procedimiento manual de push E2E sigue documentado, pero no 
 - No existe cobertura cross-browser ni validacion mobile E2E.
 - La cobertura de tests en mobile sigue siendo limitada y aumenta el riesgo de regresiones de UI o navegación.
 - El workspace no tiene un lint de API ejecutable hasta agregar la configuracion flat de ESLint 9.
+- Los datos seed históricos de staging no asignan `gymId` a las sesiones, bloqueando la validación del scope específico por gimnasio.
 - El workspace iOS ya compila con Firebase Messaging; las pruebas físicas de entrega APNs y apertura están pendientes y checklistadas en `doc/E2EPushNotifications.md`.
 
 ## 7. Prioridades De QA
 
 1. Agregar tests de integracion para auth, home y posts en API.
 2. Agregar tests de UI para `HomeScreen` y `PostDetailScreen`.
-3. Introducir E2E automatizado para el flujo login -> home -> post -> training.
+3. Corregir el `gymId` de sesiones históricas y repetir E2E/benchmark con `scope=gym`.
 4. Ejecutar `doc/E2EPushNotifications.md` y registrar el resultado.
 5. Medir cobertura y fijar un piso minimo para codigo nuevo.
 
