@@ -2,7 +2,7 @@
 
 > Documento maestro de requerimientos del panel interno de administracion de OlympX.
 > Enfocado en operacion, moderacion, soporte y control del sistema.
-> Version: 1.0 · Fecha: Junio 2026
+> Version: 1.1 · Fecha: Octubre 2026
 
 ## 1. Objetivo
 
@@ -220,3 +220,45 @@ Fuera de alcance inicial:
 | Limites del plan Free        | M07    | Restringir el acceso Free sin tocar historial    |
 | Cupo de nuevas altas Free    | M07    | Bloquear altas Free cuando se alcance el maximo  |
 | Soporte de conquistas        | M03    | Crear desbloqueos manuales trazables por usuario |
+
+## 11. Inventario de Implementación y Backlog
+
+### 11.1 Estado auditado
+
+| Área                         | Estado       | Evidencia de cierre o cobertura                                                                 | Pendiente relevante |
+| ---------------------------- | ------------ | ----------------------------------------------------------------------------------------------- | ------------------- |
+| Auth y permisos              | Implementado | Login admin, sesión persistida, `AdminRoute`, bloqueo por rol y cierre por `401`               | Automatizar E2E en CI |
+| Dashboard operativo         | Implementado | Métricas, alertas y health con estados `null` cuando una dependencia no responde              | Ninguno crítico |
+| Usuarios                     | Implementado | Búsqueda, detalle, suspensión, reactivación y auditoría de acciones                           | Ninguno crítico |
+| Gimnasios                   | Implementado | CRUD, filtros, verificación, activación, solicitudes, observaciones y vinculación de duplicados | Backfill de staging y repetir E2E `scope=gym` |
+| Reportes y moderación       | Implementado | Detalle, historial, observaciones, acciones protegidas y feedback de error/éxito               | Ninguno crítico |
+| Catálogos                   | Implementado | Ejercicios competitivos y rangos de fuerza con validación y auditoría                        | Ninguno crítico |
+| Comercial                   | Implementado | Planes, precios versionados, trials, cupón, suscripciones, configuración y KPIs               | E2E de operaciones críticas |
+| Auditoría                   | Implementado | Consulta paginada, filtros y detalle de registros administrativos                             | Exportación avanzada fuera del MVP |
+| Calidad del Admin           | Parcial      | 16 archivos de test, 115 tests, typecheck y build de producción exitosos                      | Falta configuración ESLint ejecutable |
+
+### 11.2 Backlog priorizado post-auditoría
+
+| ID       | Prioridad | Pendiente                                                                                                  | Criterio de cierre |
+| -------- | --------- | ---------------------------------------------------------------------------------------------------------- | ------------------ |
+| ENV-001  | P0        | Reparar datos históricos de staging para asociar sesiones al gimnasio de prueba                           | `scope=gym` pasa con dos participantes del mismo gimnasio sin escribir datos durante el benchmark |
+| QA-001   | P1        | Ejecutar E2E Admin/API automáticamente contra staging                                                     | Rama, secrets y GitHub Environment disponibles; login, permisos, Gym y moderación cubiertos |
+| QA-002   | P1        | Añadir configuración ESLint del Admin y ejecutarla en CI                                                   | `npm run lint` termina sin error de configuración y los hallazgos quedan medidos |
+| QA-003   | P1        | Agregar regresiones de componentes para invalidación de detalle y bloqueo de acciones concurrentes         | Tests cubren Gym, solicitudes y ReportDetailModal al cambiar de entidad o guardar observaciones |
+| UX-001   | P2        | Evaluar exportación CSV y mejoras visuales compartidas                                                     | Decisión de producto y alcance aprobados; no bloquea el MVP operativo |
+
+> Nota: aprobar una solicitud cambia el registro `Gym` de `PENDING` a `VERIFIED`. Cuando la
+> solicitud es duplicada, el Admin exige seleccionar un gimnasio activo y verificado; la API
+> persiste `duplicateOfGymId` mediante una relación autorreferenciada y deja el destino en la
+> auditoría. El modelo actual reutiliza `Gym` como registro de solicitud; no existe una entidad
+> separada `GymRequest`.
+
+## 12. Evidencia de Validación del Corte
+
+- Admin: `npm test` → 16 archivos y 115 tests exitosos.
+- Admin: `npm run build` exitoso; el typecheck está incluido en el build.
+- API: 51 archivos y 436 tests exitosos; `npx tsc --noEmit` exitoso.
+- Mobile: typecheck y 17 suites/50 tests exitosos.
+- Contracts: build exitoso.
+- Staging: flujo global de Admin, dashboard y dos usuarios validado; benchmark de ranking de solo lectura con 50/50 respuestas `200` (p50 `207.84 ms`, p95 `804.35 ms`, p99 `896.46 ms`).
+- Bloqueo conocido: el E2E `scope=gym` requiere reparar sesiones históricas de staging con `gymId` nulo; la reparación queda fuera del código y requiere credenciales AWS SSO válidas.

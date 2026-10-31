@@ -98,7 +98,7 @@ observaciones.
 | Entidad              | PK   | FKs                         | Restricciones e índices relevantes                                       |
 | -------------------- | ---- | --------------------------- | ------------------------------------------------------------------------ |
 | `User`               | `id` | `gymId`, `suspendedById`    | `email` y `nickname` únicos; estado `ACTIVE/SUSPENDED`                   |
-| `Gym`                | `id` | -                           | Estado de verificación `PENDING/VERIFIED/REJECTED/DUPLICATE`; `isActive` |
+| `Gym`                | `id` | `duplicateOfGymId` (self FK) | Estado de verificación `PENDING/VERIFIED/REJECTED/DUPLICATE`; `isActive`; índice para duplicados |
 | `GymCheckIn`         | `id` | `userId`, `gymId`           | Índices por usuario/fecha y gimnasio/fecha                               |
 | `UserFollow`         | `id` | `followerId`, `followingId` | Único por par de usuarios; índice por seguido/fecha                      |
 | `UserBlock`          | `id` | `blockerId`, `blockedId`    | Único por par; índices por origen y destino                              |
@@ -109,7 +109,8 @@ región, provincia, comuna, avatar, gimnasio principal, última ubicación, cons
 onboarding y datos de suspensión.
 
 **Campos relevantes de `Gym`:** nombre, dirección, coordenadas, cadena, ciudad, región, nota de
-revisión, estado de actividad y estado de verificación.
+revisión, estado de actividad, estado de verificación y `duplicateOfGymId`, que vincula una
+solicitud duplicada con el gimnasio activo/verificado correspondiente.
 
 ### 4.2 Ejercicios Y Competencia
 

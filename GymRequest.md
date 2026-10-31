@@ -126,6 +126,11 @@ Respuesta: `201` con la solicitud y estado `PENDING`.
 
 ### Admin
 
+> **Estado de implementación actual:** el backend vigente reutiliza `Gym` como registro de
+> solicitud. La bandeja Admin usa `/api/admin/gyms` y la acción de duplicado se ejecuta en
+> `POST /api/admin/gyms/:id/duplicate` con `duplicateOfGymId` y `note`. El modelo separado
+> `GymRequest` descrito más abajo continúa siendo una evolución futura del dominio.
+
 `GET /api/admin/gym-requests?status=PENDING`
 
 - Lista paginada para la bandeja de revision.
@@ -161,14 +166,17 @@ Respuesta: `201` con la solicitud y estado `PENDING`.
 }
 ```
 
-`PATCH /api/admin/gym-requests/:id/duplicate`
+`POST /api/admin/gyms/:id/duplicate`
 
 ```json
 {
-  "gymId": "gym-existente",
-  "reviewNote": "Coincide con la sede existente"
+  "duplicateOfGymId": "gym-existente",
+  "note": "Coincide con la sede existente"
 }
 ```
+
+- `duplicateOfGymId` es obligatorio y debe apuntar a un gimnasio activo y verificado.
+- La API conserva el registro solicitado en estado `DUPLICATE` y registra el gimnasio destino en la auditoría.
 
 ## 7. Modelo De Datos Propuesto
 

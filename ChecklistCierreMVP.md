@@ -6,6 +6,16 @@
 
 > Nota de alcance: `AnexoMVP.md` define un MVP Core centrado en entrenamiento, mientras que la implementacion actual tambien incluye funciones sociales. La decision entre MVP Core y MVP ampliado debe quedar cerrada antes del lanzamiento.
 
+## Recordatorio P0 — Validaciones comerciales y de cuenta
+
+**No marcar el MVP como cerrado hasta completar estas comprobaciones:**
+
+- [ ] **RevenueCat Test Store:** configurar claves Android/iOS, producto `olympx_pro_monthly` y entitlement `olympx_pro`.
+- [ ] **Compras:** validar compra, restauración, cancelación, expiración y pérdida de acceso premium en Android e iOS.
+- [ ] **Recuperación:** configurar un proveedor real de correo y probar el deep link `olympx://reset-password` en dispositivos físicos.
+- [ ] **Sesiones:** validar expiración y renovación mediante refresh token.
+- [ ] **Cuenta y cumplimiento:** cerrar decisión sobre eliminación de cuenta, datos personales, consentimiento legal, verificación de email y OAuth Google/Apple.
+
 ## 0. Alcance Y Cuenta
 
 - [x] El lanzamiento corresponde al MVP ampliado con red social; el entrenamiento sigue siendo el flujo core.

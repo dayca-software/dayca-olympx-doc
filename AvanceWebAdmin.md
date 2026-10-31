@@ -60,7 +60,7 @@ El Admin tambien consume dominios operativos y comerciales mediante `privateHttp
 
 - Visual simple, oscuro, muy base.
 - La estructura operacional ya esta modularizada por dominio.
-- Falta completar cobertura E2E y validacion manual de operaciones criticas.
+- El flujo global de staging y las operaciones principales ya fueron validados manualmente; falta automatizar la ejecución en CI.
 
 ## 6. Contratos Compartidos Usados
 
@@ -70,10 +70,10 @@ El Admin tambien consume dominios operativos y comerciales mediante `privateHttp
 ## 7. Test Y Calidad
 
 - Web tiene un smoke test de `App`.
-- Admin tiene un smoke test de `App`.
-- Admin tiene 10 archivos y 69 tests pasando, incluyendo auditoría y desbloqueos manuales.
-- Ambas apps tienen `typecheck` y `vitest` configurados.
-- No hay suite de integracion ni E2E para web/admin hoy.
+- Admin tiene un smoke test de `App` y cobertura por páginas/módulos.
+- Admin tiene 16 archivos y 115 tests pasando, incluyendo auditoría, Gym y desbloqueos manuales.
+- Admin tiene typecheck y build de producción exitosos.
+- Existe un E2E de staging en `olympx-api/test`; aún falta conectarlo a una rama, secrets y GitHub Environment para ejecución automática.
 
 ## 8. Decisiones Tecnicas
 
@@ -84,17 +84,18 @@ El Admin tambien consume dominios operativos y comerciales mediante `privateHttp
 ## 9. Riesgos Y Deuda Actual
 
 - Web publica sigue cerca de un scaffold y aun no representa el producto final.
-- Admin ya tiene dashboard y modulos operativos, pero falta validacion E2E.
-- No existe una suite E2E compartida para login, roles y acciones criticas.
+- El flujo `scope=gym` del E2E queda bloqueado por sesiones históricas de staging con `gymId` nulo.
+- Las solicitudes Gym duplicadas ya pueden vincularse a un gimnasio activo/verificado y la relación queda auditada.
+- El lint del Admin no puede ejecutarse porque falta una configuración ESLint.
 - No existe una capa de diseño compartida entre ambas apps.
 
 ## 10. Pendientes Priorizados
 
 1. Definir el contenido real del dashboard web publico.
-2. Completar cobertura funcional del panel admin en los flujos restantes.
-3. Construir consulta centralizada del historial de auditoria.
-4. Extraer componentes y layout compartidos.
-5. Agregar pruebas E2E de routing, auth y acciones criticas.
+2. Modelar la vinculación de solicitudes Gym duplicadas.
+3. Reparar staging y cerrar el E2E `scope=gym`.
+4. Conectar E2E de staging a CI y agregar configuración ESLint del Admin.
+5. Extraer componentes y layout compartidos.
 6. Alinear visualmente ambas apps con una guia de UI consistente.
 
 ## 11. Criterio De Cierre Del Bloque
