@@ -19,7 +19,7 @@ smokes basicos y una suite E2E de staging para admin y rankings ya versionada.
 - Script de test: `vitest run`
 - Script de cobertura: `vitest run --coverage`
 - Test visible actualmente: smoke del modulo principal (`test/app.test.ts`)
-- Suite API actual: 51 archivos y 434 tests pasando.
+- Suite API actual: 51 archivos y 440 tests pasando.
 - Integracion critica: crear sesion -> registrar set -> finalizar -> consultar detalle, incluyendo focos musculares e idempotencia.
 - Integracion de rutinas: plantilla reutilizable desde sesión, selección de día por `dayOfWeek`, aislamiento por usuario (404) y edición completa con reconstrucción de días.
 - Captura de RPE, RIR y notas validada en DTO y en el flujo completo hasta el detalle de la sesión.
@@ -29,13 +29,14 @@ smokes basicos y una suite E2E de staging para admin y rankings ya versionada.
 - Smoke tests de check-in dentro/fuera de radio y duplicado reciente.
 - Validacion del limite de 50 sets por sesion en API y mobile, incluyendo el mensaje de error explicito.
 - Imagen Docker de API verificada con PostgreSQL efimero: `GET /api/health` devuelve `200`.
-- Las 32 migraciones Prisma actuales, incluida `20261010120000_training_routine_day_sessions`, se aplicaron en PostgreSQL local y una segunda ejecución confirmó que no quedan pendientes.
+- Las 36 migraciones Prisma actuales, incluida `20261010120000_training_routine_day_sessions` y la idempotencia de eventos RevenueCat, se aplicaron en PostgreSQL local y una segunda ejecución confirmó que no quedan pendientes.
 - La migración `20260922100000_stage5_prs_and_gym_snapshot` también se aplicó dos veces sobre PostgreSQL efímero sin pendientes.
 - La migración `20260922110000_stage6_achievement_unlocks` está creada y aplicada en `olympx_dev`; falta aplicarla dos veces sobre PostgreSQL efímero.
 - El stack Terraform de staging ECS Express + Neon tiene `fmt`, `validate`, bootstrap AWS, conexión Neon y
   smoke HTTPS real verificados.
 - ECS registra las 32 migraciones Prisma y `No pending migrations to apply`; `/api/health` responde `200`.
 - Staging E2E: `npm run test:staging:e2e`, con credenciales por variables de entorno; valida login admin web, dos usuarios del mismo gimnasio y ranking.
+- Smoke de sesiones renovables: `npm run test:staging:auth`, valida login con refresh token, rotación, reutilización, revocación de familia y logout.
 - Benchmark de ranking: `npm run benchmark:leaderboard`; ejecuta 50 requests con concurrencia 5, respetando el rate limit mediante lotes espaciados y sin mutar datos.
 - La validación global de staging pasó el 2026-10-31; la validación `scope=gym` queda pendiente porque las sesiones históricas seed tienen `gymId=null`.
 - La migración `20261010120000_training_routine_day_sessions` agrega el día seleccionado de una rutina y se ejecuta automáticamente desde el contenedor de API.
@@ -58,7 +59,7 @@ smokes basicos y una suite E2E de staging para admin y rankings ya versionada.
 
 - Script de test: `jest`
 - Script de typecheck: `tsc --noEmit`
-- Mobile tiene 15 suites y 45 tests automatizados pasando.
+- Mobile tiene 17 suites y 50 tests automatizados pasando.
 - M01 incluye regresiones para política de contraseña, cambio autenticado, recuperación de contraseña y protección de credenciales demo.
 - `RoutineEditorScreen` cubre persistencia del día semanal, alta de ejercicio con objetivos y reordenamiento con posiciones actualizadas.
 - Prueba de pantalla: `TrainingSummaryScreen` valida resumen, progreso y focos musculares.

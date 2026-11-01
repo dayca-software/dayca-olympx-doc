@@ -25,6 +25,18 @@ npm run typecheck
 npm run lint -- --quiet
 ```
 
+Desde `olympx-api`, contra staging:
+
+```bash
+STAGING_API_URL='https://<staging-api>/api' \
+STAGING_USER_EMAIL='<user>' \
+STAGING_USER_PASSWORD='<password>' \
+npm run test:staging:auth
+```
+
+Este smoke valida que el login entregue refresh token, que la rotación invalide el token anterior,
+que la reutilización revoque la familia completa y que el logout revoque la sesión.
+
 Desde `olympx-mobile/android`:
 
 ```bash
