@@ -14,12 +14,12 @@
 - [ ] **Compras:** validar compra, restauración, cancelación, expiración y pérdida de acceso premium en Android e iOS.
 - [ ] **Recuperación:** configurar un proveedor real de correo y probar el deep link `olympx://reset-password` en dispositivos físicos.
 - [x] **Sesiones renovables:** validar login, rotación, reutilización, revocación de familia y logout mediante refresh token en staging.
-- [ ] **Cuenta y cumplimiento:** cerrar decisión sobre eliminación de cuenta, datos personales, consentimiento legal, verificación de email y OAuth Google/Apple.
+- [ ] **Cuenta y cumplimiento:** cerrar decisión sobre eliminación de cuenta, datos personales, consentimiento legal, verificación de email y regla para menores.
 
 ## 0. Alcance Y Cuenta
 
 - [x] El lanzamiento corresponde al MVP ampliado con red social; el entrenamiento sigue siendo el flujo core.
-- [ ] Confirmar si Google OAuth y Apple OAuth forman parte del lanzamiento.
+- [x] Google OAuth y Apple OAuth quedan fuera de este lanzamiento y se trasladan a una fase separada.
 - [ ] Implementar verificacion de email, si se exige para el lanzamiento.
 - [ ] Validar recuperación de contraseña con un proveedor de entrega configurado.
 - [x] Implementar cambio de contraseña autenticado.

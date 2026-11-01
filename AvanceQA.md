@@ -19,7 +19,7 @@ smokes basicos y una suite E2E de staging para admin y rankings ya versionada.
 - Script de test: `vitest run`
 - Script de cobertura: `vitest run --coverage`
 - Test visible actualmente: smoke del modulo principal (`test/app.test.ts`)
-- Suite API actual: 51 archivos y 440 tests pasando.
+- Suite API actual: 51 archivos y 442 tests pasando.
 - Integracion critica: crear sesion -> registrar set -> finalizar -> consultar detalle, incluyendo focos musculares e idempotencia.
 - Integracion de rutinas: plantilla reutilizable desde sesión, selección de día por `dayOfWeek`, aislamiento por usuario (404) y edición completa con reconstrucción de días.
 - Captura de RPE, RIR y notas validada en DTO y en el flujo completo hasta el detalle de la sesión.

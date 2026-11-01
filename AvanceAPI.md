@@ -13,7 +13,7 @@ La API ya esta alineada con NestJS + Prisma + PostgreSQL y expone el contrato un
 Hoy cubre:
 
 - Autenticacion con login, registro y consulta de usuario actual.
-- Recuperación de contraseña con tokens de un solo uso y expiración; la entrega requiere un webhook configurado.
+- Recuperación de contraseña con tokens de un solo uso y expiración; la entrega soporta Resend o un webhook configurado.
 - Resumen para home mobile.
 - Catalogo, busqueda y detalle de gimnasios.
 - Feed social con publicaciones, comentarios y likes.
@@ -284,7 +284,7 @@ Verificado recientemente:
 1. Evitar el uso de `any` en queries Prisma y tipar el acceso al client generado.
 2. Introducir DTOs y validaciones mas especificas en escrituras.
 3. Agregar tests de integracion para auth, posts, search, training y commercial.
-4. Configurar y probar el webhook de entrega de recuperación; después evaluar verificación de email y refresh token.
+4. Configurar y probar Resend para la entrega de recuperación; después evaluar verificación de email y refresh token.
 5. Revisar paginacion y performance del feed si el volumen de datos crece.
 6. Tipar mejor los selects complejos de Prisma.
 
