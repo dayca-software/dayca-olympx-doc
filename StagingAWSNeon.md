@@ -42,7 +42,7 @@ Crear una base separada, por ejemplo `olympx-staging`. No reutilizar `olympx_dev
 - `DIRECT_URL`: conservar la URL directa para el procedimiento futuro de migraciones si se habilita en
   el datasource Prisma; no publicarla ni guardarla en Git.
 
-Antes del deploy, confirmar que el usuario de la URL tiene permisos para crear tablas y aplicar las 32
+Antes del deploy, confirmar que el usuario de la URL tiene permisos para crear tablas y aplicar las 36
 migraciones actuales. El contenedor ejecutará `prisma migrate deploy`; no usar `prisma db push` en staging.
 
 ## 3. Secrets Manager
@@ -104,7 +104,8 @@ Publicar la imagen desde la raíz del workspace:
 ```bash
 aws ecr get-login-password --region <region> \
   | docker login --username AWS --password-stdin <account>.dkr.ecr.<region>.amazonaws.com
-docker build -f olympx-api/Dockerfile -t <account>.dkr.ecr.<region>.amazonaws.com/conquest-api-staging:staging .
+docker build --platform linux/amd64 -f olympx-api/Dockerfile \
+  -t <account>.dkr.ecr.<region>.amazonaws.com/conquest-api-staging:staging .
 docker push <account>.dkr.ecr.<region>.amazonaws.com/conquest-api-staging:staging
 ```
 
@@ -136,11 +137,12 @@ curl --fail "${STAGING_API_URL}/api/health"
 curl --fail "${STAGING_API_URL}/api/docs"
 ```
 
-- [ ] Health responde `200`.
-- [ ] Logs de ECS confirman que las migraciones terminaron sin error.
-- [ ] Prisma no reporta migraciones pendientes.
-- [ ] Registro/login funcionan con una cuenta de prueba no productiva.
-- [ ] Una ruta protegida rechaza un token inválido.
+- [x] Health responde `200`.
+- [x] Logs de ECS confirman que las migraciones terminaron sin error.
+- [x] Prisma aplica las 36 migraciones mediante `migrate deploy`.
+- [x] Registro/login funcionan con una cuenta de prueba no productiva.
+- [x] Login entrega access token y refresh token rotativo; la reutilización revoca la familia y logout revoca la sesión.
+- [x] Una ruta protegida rechaza un token inválido.
 - [ ] Los uploads no se consideran persistentes hasta configurar S3; no probarlos como almacenamiento
       definitivo en este primer corte.
 - [ ] Mobile QA usa `https://<staging>/api` y completa login + sesión + cierre.
@@ -161,16 +163,17 @@ Cuando se publique el workflow, configurar en el environment protegido `staging`
 - [ ] AWS, Neon y state están separados de producción.
 - [ ] Secretos no aparecen en Git, logs ni artefactos.
 - [ ] Migraciones Prisma aplicadas mediante `migrate deploy`.
-- [ ] Health, login y una ruta protegida validados por HTTPS.
-- [ ] URL documentada para mobile QA.
+- [x] Health, login y una ruta protegida validados por HTTPS.
+- [x] URL documentada para mobile QA.
 - [ ] Rollback probado apuntando a una imagen anterior por SHA.
 - [ ] Push Firebase/APNs se valida después, con credenciales y dispositivos físicos.
 
 ## Estado actual del workspace
 
 - API en ECS Express: `ACTIVE`, con una tarea `RUNNING`.
+- Revisión activa `13`, arquitectura `X86_64`, deployment `SUCCESSFUL`, digest `sha256:3409ce37…`.
 - URL actual de staging: `https://co-983f7a26bfbc4020889665e1b2b8ebef.ecs.us-east-1.on.aws`.
 - Health, Swagger, rutas públicas y autenticación sin token validados por HTTPS.
-- 32 migraciones Prisma aplicadas; no hay migraciones pendientes.
+- 36 migraciones Prisma aplicadas; no hay migraciones pendientes.
 - CORS permite únicamente el endpoint HTTPS de la API; `conquestspa.cl` no está habilitado.
 - Pendiente: publicar el workflow y configurar las variables/secreto del environment de GitHub.

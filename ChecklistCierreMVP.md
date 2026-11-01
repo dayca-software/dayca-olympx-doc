@@ -13,7 +13,7 @@
 - [ ] **RevenueCat Test Store:** configurar claves Android/iOS, producto `olympx_pro_monthly` y entitlement `olympx_pro`.
 - [ ] **Compras:** validar compra, restauración, cancelación, expiración y pérdida de acceso premium en Android e iOS.
 - [ ] **Recuperación:** configurar un proveedor real de correo y probar el deep link `olympx://reset-password` en dispositivos físicos.
-- [ ] **Sesiones:** validar expiración y renovación mediante refresh token.
+- [x] **Sesiones renovables:** validar login, rotación, reutilización, revocación de familia y logout mediante refresh token en staging.
 - [ ] **Cuenta y cumplimiento:** cerrar decisión sobre eliminación de cuenta, datos personales, consentimiento legal, verificación de email y OAuth Google/Apple.
 
 ## 0. Alcance Y Cuenta
@@ -25,7 +25,7 @@
 - [x] Implementar cambio de contraseña autenticado.
 - [ ] Implementar eliminacion de cuenta y datos personales.
 - [ ] Validar consentimiento legal, version de terminos y regla para usuarios menores de edad.
-- [ ] Validar refresh token y comportamiento de sesiones expiradas.
+- [x] Validar refresh token y comportamiento de sesiones renovables; la expiración temporal del TTL queda cubierta por las pruebas automatizadas.
 - [x] Aplicar la politica minima de contraseña: 8 caracteres, una mayúscula y un número.
 
 ### Decision De Alcance
