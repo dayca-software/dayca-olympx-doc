@@ -53,6 +53,7 @@ Crear secretos individuales en la región elegida. Los valores nunca deben entra
 | ---------------- | ----------------------------- |
 | `DATABASE_URL`   | `olympx/staging/DATABASE_URL` |
 | `JWT_SECRET`     | `olympx/staging/JWT_SECRET`   |
+| `REVENUECAT_WEBHOOK_SECRET` | `olympx/staging/REVENUECAT_WEBHOOK_SECRET` |
 
 Opcionales para una segunda iteración:
 
@@ -61,6 +62,9 @@ Opcionales para una segunda iteración:
 - `FIREBASE_PRIVATE_KEY`
 - `PASSWORD_RESET_WEBHOOK_URL`
 - `PASSWORD_RESET_WEBHOOK_AUTH_TOKEN`
+
+`REVENUECAT_WEBHOOK_SECRET` y `PASSWORD_RESET_WEBHOOK_AUTH_TOKEN` deben entrar como secretos
+adicionales del task definition. `PASSWORD_RESET_WEBHOOK_URL` es una variable runtime no sensible.
 
 El primer staging puede operar sin Firebase; la API mantendrá push deshabilitado de forma segura.
 
