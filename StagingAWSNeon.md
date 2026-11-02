@@ -177,7 +177,7 @@ Cuando se publique el workflow, configurar en el environment protegido `staging`
 ## Estado actual del workspace
 
 - API en ECS Express: `ACTIVE`, con una tarea `RUNNING`.
-- Revisión activa `13`, arquitectura `X86_64`, deployment `SUCCESSFUL`, digest `sha256:3409ce37…`.
+- Revisión activa `14`, arquitectura `X86_64`, deployment `SUCCESSFUL`, imagen `staging`, digest `sha256:3af11c53…`; `RESEND_API_KEY` se inyecta desde Secrets Manager.
 - URL actual de staging: `https://co-983f7a26bfbc4020889665e1b2b8ebef.ecs.us-east-1.on.aws`.
 - Health, Swagger, rutas públicas y autenticación sin token validados por HTTPS.
 - 36 migraciones Prisma aplicadas; no hay migraciones pendientes.

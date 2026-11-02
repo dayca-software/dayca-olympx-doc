@@ -34,7 +34,7 @@ smokes basicos y una suite E2E de staging para admin y rankings ya versionada.
 - La migración `20260922110000_stage6_achievement_unlocks` está creada y aplicada en `olympx_dev`; falta aplicarla dos veces sobre PostgreSQL efímero.
 - El stack Terraform de staging ECS Express + Neon tiene `fmt`, `validate`, bootstrap AWS, conexión Neon y
   smoke HTTPS real verificados.
-- ECS Express revision 13 (`X86_64`) desplegada con éxito (`SUCCESSFUL`) usando el digest `sha256:3409ce37…`; registra 36 migraciones y `All migrations have been successfully applied`; `/api/health` responde `200`.
+- ECS Express revision 14 (`X86_64`) desplegada con éxito (`SUCCESSFUL`) usando la imagen `staging` con digest `sha256:3af11c53…`; registra 36 migraciones y `All migrations have been successfully applied`; `/api/health` responde `200`. Resend quedó inyectado desde Secrets Manager.
 - Staging E2E: `npm run test:staging:e2e`, con credenciales por variables de entorno; valida login admin web, dos usuarios del mismo gimnasio y ranking.
 - Smoke de sesiones renovables: `npm run test:staging:auth`, valida login con refresh token, rotación, reutilización, revocación de familia y logout; `auth.service.spec.ts` cubre además expiración del refresh token y revocación de su familia.
 - Benchmark de ranking: `npm run benchmark:leaderboard`; ejecuta 50 requests con concurrencia 5, respetando el rate limit mediante lotes espaciados y sin mutar datos.

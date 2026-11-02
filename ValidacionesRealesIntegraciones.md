@@ -11,7 +11,7 @@
 | Cola offline           | Automatizado          | `offlineQueue.test.ts` cubre sesiones, sets, cierre, `scope` e `Idempotency-Key`                  |
 | Android nativo         | Validado              | `./gradlew assembleDebug` exitoso con Firebase Messaging y RevenueCat autolinked                  |
 | iOS nativo             | Validado en simulador | `xcodebuild` exitoso para simulador arm64 con Firebase Messaging y RevenueCat                     |
-| Recuperación por Resend | Implementado en API   | Adaptador `POST /emails` probado; faltan API key, sender verificado y dispositivo físico         |
+| Recuperación por Resend | Configurado en staging | Adaptador `POST /emails`, API key en Secrets Manager y sender verificado; falta cuenta activa y dispositivo físico |
 | Push FCM/APNs real     | Pendiente             | Requiere dos usuarios, Firebase Admin y dispositivo con permisos                                  |
 | RevenueCat Test Store  | Pendiente             | Requiere claves publicas, productos y entitlement configurados                                    |
 | Offline en dispositivo | Pendiente             | Requiere ejecutar perdida/restauracion de red en Android e iOS                                    |
